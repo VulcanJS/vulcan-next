@@ -1,63 +1,142 @@
 import Head from 'next/head'
+import {
+  useQuery,
+  useMutation
+} from '@apollo/react-hooks'
+import gql from 'graphql-tag'
+import { useForm } from 'react-hook-form'
 
-const Home = () => (
-  <div className="container">
-    <Head>
-      <title>Create Next App</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
+const Home = () => {
 
-    <main>
-      <h1 className="title">
-        Welcome to <a href="https://nextjs.org">Next.js!</a>
-      </h1>
+  const { loading, error, data } = useQuery(gql`
+  query current {
+    currentUser {
+      _id
+    }
+  }
+  `)
+  const currentUser = data ? data.currentUser : null
 
-      <p className="description">
-        Get started by editing <code>pages/index.js</code>
-      </p>
+  const [logout] = useMutation(gql`
+  mutation logout {
+    logout {
+      userId
+    }
+  }`)
 
-      <div className="grid">
-        <a href="https://nextjs.org/docs" className="card">
-          <h3>Documentation &rarr;</h3>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+  const [login, { data: loginData, error: loginError, loading: loginLoading }] = useMutation(gql`
+  mutation login($input: AuthPasswordInput) {
+    authenticateWithPassword(input: $input) {
+      userId
+      token
+    }
+  }`)
+  const { handleSubmit, register, errors } = useForm();
+  console.log('errors', errors)
+  const onSubmit = values => {
+    login({ variables: { input: { userSelector: { username: values.username }, password: values.password } } })
+  };
 
-        <a href="https://nextjs.org/learn" className="card">
-          <h3>Learn &rarr;</h3>
-          <p>Learn about Next.js in an interactive course with quizzes!</p>
-        </a>
+  const userId = currentUser
+    ? currentUser._id
+    : loginData
+      ? loginData.authenticateWithPassword.userId
+      : null
+  return (
+    <div className="container">
+      <Head>
+        <title>Create Next App</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
-        <a
-          href="https://github.com/zeit/next.js/tree/master/examples"
-          className="card"
-        >
-          <h3>Examples &rarr;</h3>
-          <p>Discover and deploy boilerplate example Next.js projects.</p>
-        </a>
+      <main>
+        <h1 className="title">
+          Welcome to <a href="https://nextjs.org">Next.js!</a>
+        </h1>
 
-        <a
-          href="https://zeit.co/new?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          className="card"
-        >
-          <h3>Deploy &rarr;</h3>
-          <p>
-            Instantly deploy your Next.js site to a public URL with ZEIT Now.
+        <p className="description">
+          Get started by editing <code>pages/index.js</code>
+        </p>
+
+        {!!error && (
+          <div>
+            <p>Could not fetch current user!</p>
+          </div>
+        )}
+        {loginData && (
+          <div>
+            <div>You just logged in, your meteor_login_token is: {loginData.authenticateWithPassword.token}</div>
+            <div>Store this token into the `meteor_login_token` cookie or pass it as the Authorization header to make authorized queries.</div>
+          </div>
+        )}
+        {userId ? (
+          <div>
+            You are logged in from a Vulcan application as {userId}
+            <button onClick={() => logout()}>Logout</button>
+          </div>
+        ) : (
+            <div>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <input
+                  name="username"
+                  ref={register({
+                    required: 'Required',
+                  })}
+                />
+                <input
+                  name="password"
+                  type="password"
+                  ref={register({
+                    required: 'Required'
+                  })}
+                />
+                <button type="submit">Login using a Vulcan app</button>
+              </form>
+            </div>
+          )}
+
+        <div className="grid">
+          <a href="https://nextjs.org/docs" className="card">
+            <h3>Documentation &rarr;</h3>
+            <p>Find in-depth information about Next.js features and API.</p>
+          </a>
+
+          <a href="https://nextjs.org/learn" className="card">
+            <h3>Learn &rarr;</h3>
+            <p>Learn about Next.js in an interactive course with quizzes!</p>
+          </a>
+
+          <a
+            href="https://github.com/zeit/next.js/tree/master/examples"
+            className="card"
+          >
+            <h3>Examples &rarr;</h3>
+            <p>Discover and deploy boilerplate example Next.js projects.</p>
+          </a>
+
+          <a
+            href="https://zeit.co/new?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+            className="card"
+          >
+            <h3>Deploy &rarr;</h3>
+            <p>
+              Instantly deploy your Next.js site to a public URL with ZEIT Now.
           </p>
+          </a>
+        </div>
+      </main>
+
+      <footer>
+        <a
+          href="https://zeit.co?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Powered by <img src="/zeit.svg" alt="ZEIT Logo" />
         </a>
-      </div>
-    </main>
+      </footer>
 
-    <footer>
-      <a
-        href="https://zeit.co?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Powered by <img src="/zeit.svg" alt="ZEIT Logo" />
-      </a>
-    </footer>
-
-    <style jsx>{`
+      <style jsx>{`
       .container {
         min-height: 100vh;
         padding: 0 0.5rem;
@@ -184,7 +263,7 @@ const Home = () => (
       }
     `}</style>
 
-    <style jsx global>{`
+      <style jsx global>{`
       html,
       body {
         padding: 0;
@@ -197,7 +276,8 @@ const Home = () => (
         box-sizing: border-box;
       }
     `}</style>
-  </div>
-)
+    </div>
+  )
+}
 
 export default Home
