@@ -31,4 +31,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Other projects using Next and Apollo
 
+- [Official Apollo example](https://github.com/zeit/next.js/tree/canary/examples/with-apollo)
 - [Next react Graphql Apollo Bootstrap](https://github.com/Sebastp/Next-react-graphql-apollo_Boostrap)
