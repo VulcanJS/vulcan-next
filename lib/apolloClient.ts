@@ -7,11 +7,8 @@ import { ApolloLink } from 'apollo-link'
 import { onError } from 'apollo-link-error'
 import { HttpLink } from 'apollo-link-http'
 
-// TODO: process.env not here client side
-const { GRAPHQL_URL } = process.env
-
 const httpLink = new HttpLink({
-    uri: 'http://localhost:3001/graphql', //GRAPHQL_URL,
+    uri: process.env.GRAPHQL_URL,
     fetch: fetch,
     credentials: 'same-origin',
 })
