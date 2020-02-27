@@ -1,4 +1,5 @@
 import '@vulcan/demo'
+import { withVulcan } from '@vulcan/core'
 import Demo from 'components/demo'
 
 const IS_PROD = process.env.NODE_ENV === 'production'
@@ -11,7 +12,7 @@ const graphqlUrl = IS_PROD
   ? process.env.GRAPHQL_URL
   : 'http://localhost:3001/graphql'
 
-export default () => (
+const About = () => (
   <div>
     <h1>vulcan-next-starter</h1>
     <p>IS_PROD: {JSON.stringify(IS_PROD)}</p>
@@ -20,3 +21,5 @@ export default () => (
     <Demo />
   </div>
 )
+
+export default withVulcan({ ssr: true, graphqlUrl })(About)
