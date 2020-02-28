@@ -2,7 +2,14 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+In another terminal, run a Vulcan application on `localhost:3001`:
+
+```bash
+cd SomeVulcanApp
+meteor run --settings settings.json --port 3001
+```
+
+In another terminal, run the Next development server:
 
 ```bash
 GRAPHQL_URL="your-vulcan-server-url" npm run dev

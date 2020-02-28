@@ -1,6 +1,7 @@
 const extendWebpackConfig = require('./extendWebpackConfig')
-const withVulcan = require('./withVulcan')
+const extendNextConfig = require('./extendNextConfig')
 
-extendWebpackConfig.withVulcan = withVulcan
-
-module.exports = extendWebpackConfig
+module.exports = {
+    extendWebpackConfig,
+    extendNextConfig
+}
