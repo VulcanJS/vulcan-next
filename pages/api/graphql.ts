@@ -1,4 +1,5 @@
-import { ApolloServer, gql } from 'apollo-server-micro'
+import express from 'express'
+import { ApolloServer, gql } from 'apollo-server-express'
 
 const typeDefs = gql`
   type Query {
@@ -17,12 +18,29 @@ const resolvers = {
   },
 }
 
-const apolloServer = new ApolloServer({ typeDefs, resolvers })
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  introspection: process.env.NODE_ENV !== 'production',
+  playground: process.env.NODE_ENV !== 'production'
+    ? {
+      settings: {
+        'request.credentials': 'include'
+      }
+    }
+    : false,
+})
+
+const app = express()
+
+app.set('trust proxy', true)
+
+server.applyMiddleware({ app, path: '/api/graphql' })
 
 export const config = {
   api: {
     bodyParser: false,
-  },
+  }
 }
 
-export default apolloServer.createHandler({ path: '/api/graphql' })
+export default app
