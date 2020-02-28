@@ -13,9 +13,9 @@
 const extendWebpackConfig = (environment) => (webpackConfig) => {
   const extended = { ...webpackConfig }
   if (environment === 'server') {
-      extended.resolve.mainFiles = ['index.server', 'index']
+    extended.resolve.mainFiles = ['index.server.ts', 'index.server.js', 'index.ts', 'index.js']
   } else if (environment === 'client') {
-      extended.resolve.mainFiles = ['index.client', 'index']
+    extended.resolve.mainFiles = ['index.client.ts', 'index.client.js', 'index.ts', 'index.js']
   }
   return extended
 }
