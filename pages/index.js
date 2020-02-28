@@ -4,13 +4,6 @@ import {
 } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import { useForm } from 'react-hook-form'
-import { withVulcan } from '@vulcan/core'
-
-const IS_PROD = process.env.NODE_ENV === 'production'
-
-const graphqlUrl = IS_PROD
-  ? process.env.GRAPHQL_URL
-  : 'http://localhost:3001/graphql'
 
 const Home = () => {
   const siteDataQuery = gql`
@@ -112,4 +105,4 @@ const Home = () => {
   )
 }
 
-export default withVulcan({ ssr: true, graphqlUrl })(Home)
+export default Home

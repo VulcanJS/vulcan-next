@@ -1,5 +1,4 @@
 import '@vulcan/demo'
-import { withVulcan } from '@vulcan/core'
 import Demo from 'components/demo'
 
 const IS_PROD = process.env.NODE_ENV === 'production'
@@ -22,4 +21,4 @@ const About = () => (
   </div>
 )
 
-export default withVulcan({ ssr: true, graphqlUrl })(About)
+export default About
