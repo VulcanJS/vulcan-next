@@ -1,6 +1,6 @@
 {
   "name": "vulcan-next-starter",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "next",
@@ -23,7 +23,7 @@
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.3",
     "isomorphic-unfetch": "^3.0.0",
-    "next": "latest",
+    "next": "^9.4.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-hook-form": "^4.9.8"
