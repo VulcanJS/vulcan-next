@@ -1,7 +1,10 @@
 {
   "extends": "../tsconfig.common.json",
+  "outDir": "./dist/",
+
   "compilerOptions": {
     "types": ["cypress"],
+    "noEmit": false,
     "isolatedModules": false
   },
   "include": ["./**/*.ts", "./**/*.tsx"]

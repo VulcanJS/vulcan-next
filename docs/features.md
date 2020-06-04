@@ -36,9 +36,7 @@ We allow folders and packages to contain an `index.client` or `index.server` fil
 
 ## Cypress for e2e testing
 
-### TypeScript
-
-### No screenshot/videos as a default
+### TypeScript and vanilla JS (+ESLint)
 
 ### Custom commands, with TypeScript
 
@@ -46,17 +44,23 @@ We allow folders and packages to contain an `index.client` or `index.server` fil
 
 You can write JavaScript tests and still enjoy auto-completion of custom commands, thanks to TS [triple slash directives](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html).
 
+### Reuse app Webpack config
+
+You may want your Cypress code to be as powerful as your app code. For this, we are enhancing the Cypress webpack config with the same features as in the app.
+
 ### Code coverage
 
-### Vanilla JS test files (with Eslint rules)
+### No screenshot/videos as a default
 
+### Import from your code
 
+We use [Cypress Webpack Preprocessor](https://github.com/cypress-io/cypress-webpack-preprocessor), to enhance Cypress build with similar options as the actual app.
+
+We use `ts-loader`, with [`transpileOnly`](https://github.com/TypeStrong/ts-loader#transpileonly) option to fasten build. We expect your e2e tests typing to be correct at run time.
 
 
 
 ## TODO
-
-Cypress
 
 i18n
 

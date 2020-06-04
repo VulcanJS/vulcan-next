@@ -8,6 +8,7 @@
 const path = require("path");
 
 const withMagicImports = (config = {}) => {
+  if (!config.resolve) config.resolve = {};
   config.resolve.alias = {
     ...config.resolve.alias,
     "~": path.join(__dirname, "../../../", "src"),
@@ -27,6 +28,7 @@ const withMagicImports = (config = {}) => {
 const extendWebpackConfig = (environment) => (webpackConfig) => {
   // NOTE: you still need to have an "index" file for TypeScript, because it can't tell your environment
   if (environment === "server") {
+    if (!webpackConfig.resolve) webpackConfig.resolve = {};
     webpackConfig.resolve.mainFiles = [
       "index.server.ts",
       "index.server.tsx",
@@ -38,6 +40,7 @@ const extendWebpackConfig = (environment) => (webpackConfig) => {
       "index.jsx",
     ];
   } else if (environment === "client") {
+    if (!webpackConfig.resolve) webpackConfig.resolve = {};
     webpackConfig.resolve.mainFiles = [
       "index.client.ts",
       "index.client.tsx",
