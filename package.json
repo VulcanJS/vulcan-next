@@ -3,11 +3,16 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "coverage:e2e": "cross-env COVERAGE=1 npm run test:e2e",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run --headless",
     "dev": "next",
     "build": "next build",
     "start": "next start",
+    "start-node": "next start",
+    "start-test": "cross-env NODE_ENV=test npm run start-node",
+    "build-and-start-test": "npm run build && npm run start-test",
+    "test:e2e": "start-server-and-test build-and-start-test http://localhost:3000 cypress:run",
     "type-check": "tsc",
     "lint-eslint": "eslint . --ext js,jsx,ts,tsx --max-warnings=0"
   },
@@ -22,6 +27,7 @@
     "apollo-link-http": "^1.5.16",
     "apollo-server-express": "^2.10.1",
     "babel-plugin-istanbul": "^6.0.0",
+    "cross-env": "^7.0.2",
     "eslint-plugin-cypress": "^2.11.1",
     "express": "^4.17.1",
     "graphql": "^14.6.0",
@@ -48,6 +54,7 @@
     "eslint-plugin-react-hooks": "^2.5.0",
     "nyc": "^15.1.0",
     "source-map-support": "^0.5.19",
+    "start-server-and-test": "^1.11.0",
     "ts-loader": "^7.0.5",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.0"

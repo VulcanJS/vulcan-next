@@ -15,7 +15,7 @@ const HomePage = () => {
     }
   `;
 
-  const { data, loading, error, client } = useQuery(vulcanSiteDataQuery);
+  const { data, loading, error } = useQuery(vulcanSiteDataQuery);
 
   let content;
   if (loading) {

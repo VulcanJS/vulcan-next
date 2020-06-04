@@ -20,7 +20,7 @@
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
     "sourceMap": true,
     "target": "esnext"
   },

@@ -1,15 +1,12 @@
-import '@vulcan/demo'
-import Demo from 'components/demo'
+import "@vulcan/demo";
 
-const IS_PROD = process.env.NODE_ENV === 'production'
+const IS_PROD = process.env.NODE_ENV === "production";
 
-const rootUrl = IS_PROD
-  ? process.env.ROOT_URL
-  : 'http://localhost:3000'
+const rootUrl = IS_PROD ? process.env.ROOT_URL : "http://localhost:3000";
 
 const graphqlUrl = IS_PROD
   ? process.env.GRAPHQL_URL
-  : 'http://localhost:3001/graphql'
+  : "http://localhost:3001/graphql";
 
 const About = () => (
   <div>
@@ -17,8 +14,7 @@ const About = () => (
     <p>IS_PROD: {JSON.stringify(IS_PROD)}</p>
     <p>rootUrl: {rootUrl}</p>
     <p>graphqlUrl: {graphqlUrl}</p>
-    <Demo />
   </div>
-)
+);
 
-export default About
+export default About;

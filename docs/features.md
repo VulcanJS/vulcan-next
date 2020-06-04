@@ -70,9 +70,9 @@ We use [Cypress Webpack Preprocessor](https://github.com/cypress-io/cypress-webp
 
 We use `ts-loader`, with [`transpileOnly`](https://github.com/TypeStrong/ts-loader#transpileonly) option to fasten build. We expect your e2e tests typing to be correct at run time.
 
-
-
 ## TODO
+
+Cleaner debug call (active only when DEBUG=1)
 
 i18n
 
