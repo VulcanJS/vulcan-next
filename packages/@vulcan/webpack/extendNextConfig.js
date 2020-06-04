@@ -1,5 +1,4 @@
-const path = require('path')
-const extendWebpackConfig = require('./extendWebpackConfig')
+const extendWebpackConfig = require("./extendWebpackConfig");
 
 // type NextConfig = {
 //   webpack?: Object | Function
@@ -18,34 +17,36 @@ const extendWebpackConfig = require('./extendWebpackConfig')
 module.exports = (nextConfig = {}) => {
   return Object.assign({}, nextConfig, {
     env: {
-      ROOT_URL: process.env.ROOT_URL || 'http://localhost:3000',
-      GRAPHQL_URL: process.env.GRAPHQL_URL || 'http://localhost:3000/api/graphql',
-      ...nextConfig.env
+      ROOT_URL: process.env.ROOT_URL || "http://localhost:3000",
+      GRAPHQL_URL:
+        process.env.GRAPHQL_URL || "http://localhost:3000/api/graphql",
+      ...nextConfig.env,
     },
     webpack: (config, options) => {
       if (!options.isServer) {
-        config = extendWebpackConfig('client')(config)
+        config = extendWebpackConfig("client")(config);
       } else {
-        config = extendWebpackConfig('server')(config)
+        config = extendWebpackConfig("server")(config);
       }
 
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        components: path.join(__dirname, '..', '..', '..', 'components/'),
-        lib: path.join(__dirname, '..', '..', '..', 'lib/')
+      //config.resolve.alias = {
+      //  ...config.resolve.alias,
+      //  components: path.join(__dirname, "..", "..", "..", "components/"),
+      //  lib: path.join(__dirname, "..", "..", "..", "lib/"),
+      //};
+
+      //config.resolve.modules = [
+      //  ...(config.resolve.modules || []),
+      //  path.join(__dirname, "..", "..", "..", "packages"),
+      //  "node_modules",
+      //];
+
+      if (typeof nextConfig.webpack === "function") {
+        return nextConfig.webpack(config, options);
       }
+      console.debug("extended config", config);
 
-      config.resolve.modules = [
-        ...(config.resolve.modules || []),
-        path.join(__dirname, '..', '..', '..', 'packages'),
-        'node_modules'
-      ]
-
-      if (typeof nextConfig.webpack === 'function') {
-        return nextConfig.webpack(config, options)
-      }
-
-      return config
-    }
-  })
-}
+      return config;
+    },
+  });
+};

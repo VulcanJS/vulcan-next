@@ -5,19 +5,53 @@
 // }
 // type Environment = "server" | "client"
 
-/**
-* Extend a webpack config to resolve environment specific index files as a default
-* @see https://github.com/comus/react-vulcan-proposal/blob/master/src/withVulcan.js
-* @param environment 
-*/
-const extendWebpackConfig = (environment) => (webpackConfig) => {
-  const extended = { ...webpackConfig }
-  if (environment === 'server') {
-    extended.resolve.mainFiles = ['index.server.ts', 'index.server.js', 'index.ts', 'index.js']
-  } else if (environment === 'client') {
-    extended.resolve.mainFiles = ['index.client.ts', 'index.client.js', 'index.ts', 'index.js']
-  }
-  return extended
-}
+const path = require("path");
 
-module.exports = extendWebpackConfig
+const withMagicImports = (config = {}) => {
+  config.resolve.alias = {
+    ...config.resolve.alias,
+    "~": path.join(__dirname, "../../../", "src"),
+  };
+  config.resolve.modules = [
+    ...(config.resolve.modules || []),
+    path.join(__dirname, "../../../", "packages"),
+  ];
+  return config;
+};
+
+/**
+ * Extend a webpack config to resolve environment specific index files as a default
+ * @see https://github.com/comus/react-vulcan-proposal/blob/master/src/withVulcan.js
+ * @param environment
+ */
+const extendWebpackConfig = (environment) => (webpackConfig) => {
+  // NOTE: you still need to have an "index" file for TypeScript, because it can't tell your environment
+  if (environment === "server") {
+    webpackConfig.resolve.mainFiles = [
+      "index.server.ts",
+      "index.server.tsx",
+      "index.server.js",
+      "index.server.jsx",
+      "index.ts",
+      "index.tsx",
+      "index.js",
+      "index.jsx",
+    ];
+  } else if (environment === "client") {
+    webpackConfig.resolve.mainFiles = [
+      "index.client.ts",
+      "index.client.tsx",
+      "index.client.js",
+      "index.client.jsx",
+      "index.ts",
+      "index.tsx",
+      "index.js",
+      "index.jsx",
+    ];
+  }
+
+  withMagicImports(webpackConfig);
+  return webpackConfig;
+};
+
+module.exports = extendWebpackConfig;

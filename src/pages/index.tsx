@@ -1,8 +1,9 @@
 import { useQuery /*, useMutation*/ } from "@apollo/react-hooks";
 import gql from "graphql-tag";
+import Home from "~/components/home";
 //import { useForm } from "react-hook-form";
 
-const Home = () => {
+const HomePage = () => {
   const vulcanSiteDataQuery = gql`
     query getSiteData {
       SiteData {
@@ -72,6 +73,7 @@ const Home = () => {
   return (
     <div className="container">
       <main>
+        <Home />
         {content}
 
         {/* {!!error && (
@@ -118,4 +120,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;
