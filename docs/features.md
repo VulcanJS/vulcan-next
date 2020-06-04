@@ -1,8 +1,12 @@
 ## Features from Next
 
+## TypeScript
+
 - TypeScript
 
 [Relevant Next doc](https://nextjs.org/docs/basic-features/typescript)
+
+## Code architecture and build
 
 - Code in `src`
 
@@ -61,6 +65,7 @@ TypeScript for dynamic component
 Error tracking with Sentry
 ES6 webpack config?
 Reproduction of various small issues
+Storybook serve public folder
 
 ## Failures & learnings
 
@@ -84,11 +89,13 @@ At build time, we added some Webpack magic so that `import "@vulcan/multi-env-de
 
 What went wrong? The problem is that the concept of environment is foreign to the code itself. TypeScript and VS Code won't be able to tell whether you want to import `client` or `server`, and it will necessarily break autocompletion.
 
+There don't seem to be any option in TypeScript to define new possible names or extension for folder `index`, so you can't even specify an order (like ["index", "index.server", "index.client", "main.js"...] for instance). TS will simply ignore files that are not specifically named `index.ts`, `index.tsx`, `index.js`, `index.jsx`.
+
 [See this SO question for instance](https://stackoverflow.com/questions/61386301/webpack-metro-mainfiles-module-resolution-with-typescript)
 
 ### Learning
 
-- Magic isomorphism, with build time replacement, is bad for static analysis. You should not need to replace your `import` statement at build time. To be avoided.
+- Magic isomorphism, with build time replacement, is bad for static analysis. You should not need to replace your `import` statement at build time. To be used carefully.
 
 Magic isomorphism is when you actually want to load a different piece of code depending on the environment, but hide this magic from the developer.
 
