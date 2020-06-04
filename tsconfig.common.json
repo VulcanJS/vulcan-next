@@ -21,6 +21,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
+    "sourceMap": true,
     "target": "esnext"
   },
   "exclude": ["node_modules"]

@@ -28,3 +28,5 @@ yarn-error.log*
 .now
 cypress/screenshots
 cypress/videos
+coverage-e2e/
+.nyc_output/

@@ -52,6 +52,14 @@ You may want your Cypress code to be as powerful as your app code. For this, we 
 
 ### Code coverage
 
+See [Cypress Code Coverage example for TS](https://github.com/cypress-io/code-coverage/tree/master/examples/ts-example).
+
+See [Cypress Next example](https://github.com/bahmutov/next-and-cypress-example)
+
+See additional [Cypress TS example](https://github.com/lluia/cypress-typescript-coverage-example)
+
+Note: [doc of NYC for TS](https://www.npmjs.com/package/@istanbuljs/nyc-config-typescript) has to be followed carefully (computing sourceMaps for TS code, installing all sibling packages...)
+
 ### No screenshot/videos as a default
 
 For some reason, Cypress:run will automatically store videos of test run. We disabled this behavior in the config as it may bloat CI/CD.

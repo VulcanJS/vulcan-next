@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "cypress:open": "cypress open",
+    "cypress:run": "cypress run --headless",
     "dev": "next",
     "build": "next build",
     "start": "next start",
@@ -20,6 +21,7 @@
     "apollo-link-error": "^1.1.12",
     "apollo-link-http": "^1.5.16",
     "apollo-server-express": "^2.10.1",
+    "babel-plugin-istanbul": "^6.0.0",
     "eslint-plugin-cypress": "^2.11.1",
     "express": "^4.17.1",
     "graphql": "^14.6.0",
@@ -31,7 +33,9 @@
     "react-hook-form": "^4.9.8"
   },
   "devDependencies": {
+    "@cypress/code-coverage": "^3.8.1",
     "@cypress/webpack-preprocessor": "^5.4.1",
+    "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@types/node": "^13.7.6",
     "@types/react": "^16.9.23",
     "@types/react-dom": "^16.9.5",
@@ -42,7 +46,18 @@
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.18.3",
     "eslint-plugin-react-hooks": "^2.5.0",
+    "nyc": "^15.1.0",
+    "source-map-support": "^0.5.19",
     "ts-loader": "^7.0.5",
+    "ts-node": "^8.10.2",
     "typescript": "^3.9.0"
+  },
+  "nyc": {
+    "extends": "@istanbuljs/nyc-config-typescript",
+    "report-dir": "coverage-e2e",
+    "all": true,
+    "include": [
+      "src/**/*.{js,jsx,ts,tsx}"
+    ]
   }
 }

@@ -21,6 +21,7 @@ const config = {
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
+    modules: ["node_modules"],
   },
   output: {
     filename: "bundle.js",

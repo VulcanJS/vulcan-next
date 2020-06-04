@@ -20,5 +20,14 @@ const cypressTypeScriptPreprocessor = require("./cy-webpack-preprocessor");
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
-  on("file:preprocessor", cypressTypeScriptPreprocessor);
+  on(
+    "file:preprocessor",
+    cypressTypeScriptPreprocessor,
+    require("@cypress/code-coverage/use-browserify-istanbul")
+    //require("@cypress/code-coverage/use-babelrc") // on the fly instrumentation
+  );
+
+  require("@cypress/code-coverage/task")(on, config);
+
+  return config;
 };
