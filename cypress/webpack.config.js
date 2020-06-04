@@ -11,7 +11,7 @@ const config = {
           {
             loader: "ts-loader",
             options: {
-              transpileOnly: true,
+              //transpileOnly: true, // FIXME: this option is mandatory for "basic.spec.js" to run correctly. But this is a palliative, there is an underlying issue.
             },
           },
         ],
