@@ -26,3 +26,5 @@ yarn-error.log*
 
 # now
 .now
+cypress/screenshots
+cypress/videos

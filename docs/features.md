@@ -54,6 +54,8 @@ You may want your Cypress code to be as powerful as your app code. For this, we 
 
 ### No screenshot/videos as a default
 
+For some reason, Cypress:run will automatically store videos of test run. We disabled this behavior in the config as it may bloat CI/CD.
+
 ### Import from your code
 
 We use [Cypress Webpack Preprocessor](https://github.com/cypress-io/cypress-webpack-preprocessor), to enhance Cypress build with similar options as the actual app.
