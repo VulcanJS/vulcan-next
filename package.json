@@ -58,13 +58,5 @@
     "ts-loader": "^7.0.5",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.0"
-  },
-  "nyc": {
-    "extends": "@istanbuljs/nyc-config-typescript",
-    "report-dir": "coverage-e2e",
-    "all": true,
-    "include": [
-      "src/**/*.{js,jsx,ts,tsx}"
-    ]
   }
 }
