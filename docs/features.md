@@ -34,15 +34,37 @@ Relative imports are a huge mess to support. A relative import should never go f
 We allow folders and packages to contain an `index.client` or `index.server` file, that will be used at build time depending on the environment.
 /!\ You still need to have a bare `index` file alongside those environment specific file. Otherwise TypeScript will complain (see the "Failures and learnings" documentation for more details).
 
-## Testing
+## Cypress for e2e testing
 
-### Cypress with TypeScript
+### TypeScript
+
+### No screenshot/videos as a default
+
+### Custom commands, with TypeScript
+
+[Relevant doc](https://docs.cypress.io/guides/tooling/typescript-support.html#Types-for-custom-commands)
+
+You can write JavaScript tests and still enjoy auto-completion of custom commands, thanks to TS [triple slash directives](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html).
+
+### Code coverage
+
+### Vanilla JS test files (with Eslint rules)
+
+
+
+
 
 ## TODO
 
 Cypress
 
 i18n
+
+Pure JS support (no TS), in cypress, in code, in storybook, in jest...
+
+
+
+PErformance testing?
 
 Jest
 Storybook

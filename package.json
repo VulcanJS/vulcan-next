@@ -20,6 +20,7 @@
     "apollo-link-error": "^1.1.12",
     "apollo-link-http": "^1.5.16",
     "apollo-server-express": "^2.10.1",
+    "eslint-plugin-cypress": "^2.11.1",
     "express": "^4.17.1",
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.3",

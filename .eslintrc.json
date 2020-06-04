@@ -1,4 +1,5 @@
 {
+  "extends": ["plugin:cypress/recommended"],
   "root": true,
   "parser": "babel-eslint",
   "plugins": ["react", "react-hooks"],
