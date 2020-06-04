@@ -1,12 +1,9 @@
-import {
-  useQuery,
-  useMutation
-} from '@apollo/react-hooks'
-import gql from 'graphql-tag'
-import { useForm } from 'react-hook-form'
+import { useQuery /*, useMutation*/ } from "@apollo/react-hooks";
+import gql from "graphql-tag";
+//import { useForm } from "react-hook-form";
 
 const Home = () => {
-  const siteDataQuery = gql`
+  const vulcanSiteDataQuery = gql`
     query getSiteData {
       SiteData {
         url
@@ -17,8 +14,24 @@ const Home = () => {
     }
   `;
 
-  const { data } = useQuery(siteDataQuery)
+  const { data, loading, error, client } = useQuery(vulcanSiteDataQuery);
 
+  let content;
+  if (loading) {
+    content = `Connecting to your graphQL backend...`; // on ${client.name}`
+  } else if (error) {
+    if (error.networkError?.message === "Failed to fetch") {
+      content = `No graphQL backend is running.`;
+    } else {
+      content = `Couldn't connect to your graphQL backend (${error}).`;
+    }
+  } else if (data) {
+    content = `Successfully connected to your graphQL backend.\n Data: ${JSON.stringify(
+      data,
+      null,
+      4
+    )}`;
+  }
   // const { error, data } = useQuery(gql`
   //   query current {
   //     currentUser {
@@ -59,7 +72,7 @@ const Home = () => {
   return (
     <div className="container">
       <main>
-        {JSON.stringify(data)}
+        {content}
 
         {/* {!!error && (
           <div>
@@ -102,7 +115,7 @@ const Home = () => {
         } */}
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
