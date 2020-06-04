@@ -48,6 +48,8 @@ You can write JavaScript tests and still enjoy auto-completion of custom command
 
 You may want your Cypress code to be as powerful as your app code. For this, we are enhancing the Cypress webpack config with the same features as in the app.
 
+[Example from Cypress with TS + Webpack](https://github.com/cypress-io/cypress-webpack-preprocessor/tree/master/examples/use-ts-loader)
+
 ### Code coverage
 
 ### No screenshot/videos as a default
