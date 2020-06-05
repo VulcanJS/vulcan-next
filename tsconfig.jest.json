@@ -4,5 +4,6 @@
     // Jest tests runs into a Node environment
     "target": "ES2018" // https://github.com/microsoft/TypeScript/wiki/Node-Target-Mapping
   },
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["cypress"]
 }

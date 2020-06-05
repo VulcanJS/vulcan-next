@@ -15,4 +15,8 @@ describe("basic (vanilla JavaScript test file)", () => {
   it("loads an helper from src/", () => {
     expect(helper()).to.equal("foobar");
   });
+  it("uses a React Testing command", () => {
+    cy.visit("http://localhost:3000");
+    cy.findAllByText("Vulcan Next Starter").should("exist");
+  });
 });

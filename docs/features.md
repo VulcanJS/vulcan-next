@@ -70,9 +70,23 @@ We use `ts-loader`, with [`transpileOnly`](https://github.com/TypeStrong/ts-load
 
 ## Jest for unit testing
 
+### React Testing library
+
+We have preinstalled `react-hooks`
+
+## Unified testing patterns
+
+We strive to unify testing patterns between Cypress and Jest where it makes sense.
+
+First, we add Cypress queries in React Testing, and [React Testing queries into Cypress](https://github.com/testing-library/cypress-testing-library), so you can fetch elements with similar patterns.
+
+Then, we unify coverage computation.
+
 ## TODO
 
 Cleaner debug call (active only when DEBUG=1)
+
+Finish coverage unification
 
 i18n
 
@@ -87,17 +101,21 @@ Material UI
 Jest for the custom server
 Jest for the code
 
+Unified code coverage
+
+Code coverage Jest
+
+
+
+Separate Jest e2e tests (long to run) from fast unit tests
+
 Storybook
 Webpack bundle analysis
 Webpack bundle analysis for Storybook
 MDX support
 Prettier config
 Doc for the perfect VS Code setup
-TypeScript
 TypeScript/Eslint security rules
-Code coverage Jest
-Code coverage Cypress
-Unified code coverage
 Error boundary
 Redirection demo
 Up to data apollo
