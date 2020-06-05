@@ -1,3 +1,4 @@
+import React from "react";
 import "@vulcan/demo";
 
 const IS_PROD = process.env.NODE_ENV === "production";
