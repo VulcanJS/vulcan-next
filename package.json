@@ -13,6 +13,7 @@
     "start-node": "next start",
     "start:test": "cross-env NODE_ENV=test npm run start-node # Start app in test mode",
     "test:e2e": "npm run build && start-server-and-test start:test http://localhost:3000 'cypress:run'",
+    "test:unit": "jest",
     "type-check": "tsc",
     "lint-eslint": "eslint . --ext js,jsx,ts,tsx --max-warnings=0"
   },

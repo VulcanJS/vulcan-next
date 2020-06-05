@@ -4,7 +4,7 @@ import shell from "shelljs";
 import { spawn } from "child_process";
 
 const isDebug = !!process.env.DEBUG;
-const rootDir = path.resolve(__dirname, "../../");
+const rootDir = path.resolve(__dirname, "../../../");
 describe("code coverage", () => {
   beforeAll(() => {
     const res = shell.exec("COVERAGE=1 npm run build", {
