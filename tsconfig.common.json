@@ -22,7 +22,7 @@
     "skipLibCheck": true,
     "strict": false,
     "sourceMap": true,
-    "target": "esnext"
+    "target": "ESNext"
   },
   "exclude": ["node_modules"]
 }
