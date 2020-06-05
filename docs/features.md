@@ -52,13 +52,11 @@ You may want your Cypress code to be as powerful as your app code. For this, we 
 
 ### Code coverage
 
-See [Cypress Code Coverage example for TS](https://github.com/cypress-io/code-coverage/tree/master/examples/ts-example).
+See [Cypress Code Coverage example for TS](https://github.com/cypress-io/code-coverage/tree/master/examples/ts-example), [Cypress Next example](https://github.com/bahmutov/next-and-cypress-example), [Cypress TS example](https://github.com/lluia/cypress-typescript-coverage-example)...
 
-See [Cypress Next example](https://github.com/bahmutov/next-and-cypress-example)
+Note: [doc of NYC for TS](https://www.npmjs.com/package/@istanbuljs/nyc-config-typescript) has to be followed carefully (computing sourceMaps for TS code, installing all sibling packages...). The difficult part is instrumentation.
 
-See additional [Cypress TS example](https://github.com/lluia/cypress-typescript-coverage-example)
-
-Note: [doc of NYC for TS](https://www.npmjs.com/package/@istanbuljs/nyc-config-typescript) has to be followed carefully (computing sourceMaps for TS code, installing all sibling packages...)
+Code coverage is totally disabled client-side when simply running tests, using ["CYPRESS_coverage" variable](https://github.com/cypress-io/code-coverage#disable-plugin) (thanks @bahmutov for enhancing the doc on this point)
 
 ### No screenshot/videos as a default
 
@@ -69,6 +67,8 @@ For some reason, Cypress:run will automatically store videos of test run. We dis
 We use [Cypress Webpack Preprocessor](https://github.com/cypress-io/cypress-webpack-preprocessor), to enhance Cypress build with similar options as the actual app.
 
 We use `ts-loader`, with [`transpileOnly`](https://github.com/TypeStrong/ts-loader#transpileonly) option to fasten build. We expect your e2e tests typing to be correct at run time.
+
+## Jest for unit testing
 
 ## TODO
 
@@ -84,7 +84,9 @@ PErformance testing?
 
 Material UI
 
-Jest
+Jest for the custom server
+Jest for the code
+
 Storybook
 Webpack bundle analysis
 Webpack bundle analysis for Storybook

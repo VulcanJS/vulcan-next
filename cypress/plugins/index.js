@@ -22,8 +22,11 @@ module.exports = (on, config) => {
   // `config` is the resolved Cypress config
   const fileProcessors = [];
   fileProcessors.push(cypressTypeScriptPreprocessor);
-  if (process.env.COVERAGE) {
-    console.debug("adding coverage task in Cypress");
+  const hasCoverage = process.env.COVERAGE && process.env.COVERAGE !== "false";
+  const debug = require("debug")("coverage");
+  debug("hasCoverage " + hasCoverage + " " + process.env.COVERAGE);
+  if (hasCoverage) {
+    debug("adding coverage task in Cypress");
     fileProcessors.push(
       require("@cypress/code-coverage/use-browserify-istanbul")
       //require("@cypress/code-coverage/use-babelrc") // on the fly instrumentation

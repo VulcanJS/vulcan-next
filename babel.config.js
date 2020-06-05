@@ -1,7 +1,10 @@
-// We need babel for code instrumentation
 const plugins = [];
-if (process.env.COVERAGE) {
-  console.debug("Enabling istanbul plugin in babel"); // eslint-disable-line no-console
+
+// We need babel for code instrumentation
+const enableCoverage = process.env.COVERAGE && process.env.COVERAGE !== "false";
+if (enableCoverage) {
+  const debug = require("debug")("coverage");
+  debug("Enabling istanbul plugin in babel"); // eslint-disable-line no-console
   plugins.push("istanbul");
 }
 

@@ -44,7 +44,8 @@ module.exports = (nextConfig = {}) => {
       if (typeof nextConfig.webpack === "function") {
         return nextConfig.webpack(config, options);
       }
-      console.debug("extended config", config);
+      const debug = require("debug")("webpack");
+      debug("extended config", config);
 
       return config;
     },
