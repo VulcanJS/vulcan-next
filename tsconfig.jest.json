@@ -2,7 +2,8 @@
   "extends": "./tsconfig.common.json",
   "compilerOptions": {
     // Jest tests runs into a Node environment
-    "target": "ES2018" // https://github.com/microsoft/TypeScript/wiki/Node-Target-Mapping
+    "target": "ES2018", // https://github.com/microsoft/TypeScript/wiki/Node-Target-Mapping
+    "jsx": "react"
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["cypress"]
