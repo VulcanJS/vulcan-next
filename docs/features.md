@@ -78,7 +78,7 @@ We have preinstalled `react-hooks`
 
 We strive to unify testing patterns between Cypress and Jest where it makes sense.
 
-First, we add Cypress queries in React Testing, and [React Testing queries into Cypress](https://github.com/testing-library/cypress-testing-library), so you can fetch elements with similar patterns.
+First, add [React Testing queries into Cypress](https://github.com/testing-library/cypress-testing-library), so you can fetch elements with similar patterns. Check [React Testing docs for example of the reverse approach ](https://testing-library.com/docs/react-testing-library/setup#add-custom-queries) (data-cy in React Testing).
 
 Then, we unify coverage computation.
 
@@ -92,20 +92,12 @@ i18n
 
 Pure JS support (no TS), in cypress, in code, in storybook, in jest...
 
-
-
 PErformance testing?
 
 Material UI
 
 Jest for the custom server
-Jest for the code
-
 Unified code coverage
-
-Code coverage Jest
-
-
 
 Separate Jest e2e tests (long to run) from fast unit tests
 
@@ -122,8 +114,6 @@ Up to data apollo
 Debug routes
 Included docs, not bundled at build time
 Select pages bundled at build time?
-React testing
-React testing + Cypress
 Graphql
 TypeScript for dynamic component
 Error tracking with Sentry
@@ -136,6 +126,6 @@ Mock of next packages from storybook, in jest
 Efficient plug to Vulcan
 Vulcan package standard
 
-custm sever
+Custom sever
 
-Fullstack cypress testing of the custom server
+Fullstack cypress testing/coverage of the custom server
