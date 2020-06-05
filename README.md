@@ -20,8 +20,7 @@ meteor run --settings settings.json --port 3001
 Run Vulcan Next Starter development server:
 
 ```bash
-GRAPHQL_URL="your-vulcan-server-url" npm run dev
-# or
+# We favour Yarn over NPM for commands
 GRAPHQL_URL="your-vulcan-server-url" yarn dev
 ```
 
