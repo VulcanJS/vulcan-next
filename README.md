@@ -1,6 +1,6 @@
 # Vulcan Next Starter
 
-![vulcan-next-starter banner](/code/vulcan-next-starter/public/vulcan-next-starter-banner_800.png)
+![vulcan-next-starter banner](https://github.com/VulcanJS/vulcan-next-starter/tree/devel/public/vulcan-next-starter-banner_800.png)
 
 **WORK IN PROGRESS**
 
