@@ -82,6 +82,8 @@ Pure JS support (no TS), in cypress, in code, in storybook, in jest...
 
 PErformance testing?
 
+Material UI
+
 Jest
 Storybook
 Webpack bundle analysis
@@ -102,8 +104,6 @@ Included docs, not bundled at build time
 Select pages bundled at build time?
 React testing
 React testing + Cypress
-Cypress commands and typing example
-Material UI
 Graphql
 TypeScript for dynamic component
 Error tracking with Sentry
@@ -111,5 +111,11 @@ ES6 webpack config?
 Reproduction of various small issues
 Storybook serve public folder
 
+Mock of next packages from storybook, in jest
+
 Efficient plug to Vulcan
 Vulcan package standard
+
+custm sever
+
+Fullstack cypress testing of the custom server
