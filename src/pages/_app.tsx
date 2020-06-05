@@ -1,4 +1,3 @@
-import React from "react";
 import { AppProps } from "next/app";
 import { withVulcan } from "@vulcan/core";
 // import environment from '@vulcan/multi-env-demo';

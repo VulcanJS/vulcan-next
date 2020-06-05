@@ -1,7 +1,8 @@
+// No need to use ts-jest https://github.com/vercel/next.js/discussions/13528#discussioncomment-22933
 // Client-side Jest config
 // You might need to setup another config file for server tests
 module.exports = {
-  preset: "ts-jest",
+  // preset: "ts-jest",
   testEnvironment: "jsdom", // might need to change for Node on the server
   // All imported modules in your tests should be mocked automatically
   // automock: false,
@@ -76,11 +77,11 @@ module.exports = {
   // globalTeardown: undefined,
 
   // A set of global variables that need to be available in all test environments
-  globals: {
-    "ts-jest": {
-      tsConfig: "./tsconfig.jest.json",
-    },
-  },
+  //globals: {
+  //  "ts-jest": {
+  //    tsConfig: "./tsconfig.jest.json",
+  //  },
+  //},
 
   // The maximum amount of workers used to run your tests. Can be specified as % or a number. E.g. maxWorkers: 10% will use 10% of your CPU amount + 1 as the maximum worker number. maxWorkers: 2 will use a maximum of 2 workers.
   // maxWorkers: "50%",
@@ -189,7 +190,8 @@ module.exports = {
   // A map from regular expressions to paths to transformers
   // transform: undefined,
   transform: {
-    "^.+\\.[jt]sx?$": "ts-jest",
+    //"^.+\\.[jt]sx?$": "ts-jest",
+    "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation

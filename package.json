@@ -27,6 +27,7 @@
     "apollo-link-error": "^1.1.12",
     "apollo-link-http": "^1.5.16",
     "apollo-server-express": "^2.10.1",
+    "babel-jest": "^26.0.1",
     "babel-plugin-istanbul": "^6.0.0",
     "cross-env": "^7.0.2",
     "debug": "^4.1.1",
@@ -65,7 +66,6 @@
     "shelljs": "^0.8.4",
     "source-map-support": "^0.5.19",
     "start-server-and-test": "^1.11.0",
-    "ts-jest": "^26.1.0",
     "ts-loader": "^7.0.5",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.0"

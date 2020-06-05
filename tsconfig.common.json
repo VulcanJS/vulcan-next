@@ -22,7 +22,7 @@
     "skipLibCheck": true,
     "strict": false,
     "sourceMap": true,
-    "target": "ESNext"
+    "target": "ES2018"
   },
   "exclude": ["node_modules"]
 }
