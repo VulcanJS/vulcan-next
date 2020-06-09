@@ -1,7 +1,6 @@
 import React from "react";
-import { action } from "@storybook/addon-actions";
-import { Button } from "@storybook/react/demo";
-import Home from "../home";
+import Home from "~/components/home";
+// Testing a magic import ~
 
 export default {
   title: "VNS/Home",

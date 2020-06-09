@@ -1,7 +1,5 @@
-const extendWebpackConfig = require('./extendWebpackConfig')
-const extendNextConfig = require('./extendNextConfig')
+const extendWebpackConfig = require("./extendWebpackConfig");
 
 module.exports = {
-    extendWebpackConfig,
-    extendNextConfig
-}
+  extendWebpackConfig,
+};
