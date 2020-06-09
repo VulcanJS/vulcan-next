@@ -96,27 +96,32 @@ We followed awesome [recommandations from Bahmutov](https://github.com/bahmutov/
 
 [More insights with Cypress](https://glebbahmutov.com/blog/combined-end-to-end-and-unit-test-coverage/)
 
+## Storybook
+
+### Same import as in Next
+
+We reuse our Webpack config extension function, so you can enjoy magic imports and isomorphic imports in Storybook too.
+
+### Styling with Styled JSX and CSS Modules
+
+Note: CSS modules are currently not appearing correctly in Storybook, see https://github.com/VulcanJS/vulcan-next-starter/issues/20
+
+### Public folder
+
+Storybook is aware of the `public` folder, so it will display images accordingly.
+
 ## TODO
 
-Finish coverage unification
-
+Document contribution process
 Cleaner debug call (active only when DEBUG=1)
-
 MUI and i18n in Storybook
-
 i18n
-
 Pure JS support (no TS), in cypress, in code, in storybook, in jest...
-
 PErformance testing?
-
 Material UI
-
 Jest for the custom server
 Unified code coverage with server
-
 A way to debug which files are built in TypeScript
-
 Webpack bundle analysis
 Webpack bundle analysis for Storybook
 MDX support
@@ -127,22 +132,15 @@ Error boundary
 Redirection demo
 Up to data apollo
 Debug routes,eg for SSR
-
 Included docs, not bundled at build time
 Select pages bundled at build time?
 Graphql
 TypeScript for dynamic component
 Error tracking with Sentry
-ES6 webpack config?
+USe ES6 in webpack configs (see electron-react-boilerplate for a demo)
 Reproduction of various small issues
-
-Storybook serve public folder
-
 Mock of next packages from storybook, in jest
-
 Efficient plug to Vulcan
 Vulcan package standard
-
-Custom sever
-
+Custom SSR server? to be avoided if possible
 Fullstack cypress testing/coverage of the custom server
