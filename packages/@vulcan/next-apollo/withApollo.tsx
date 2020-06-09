@@ -1,6 +1,6 @@
 // lib/withApollo.js
 import withApollo from 'next-with-apollo';
-import { ApolloProvider } from '@apollo/react-hooks';
+import { ApolloProvider } from "@apollo/client"
 import createApolloClient from "./apolloClient"
 // import { NextPageContext } from 'next';
 import {

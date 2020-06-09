@@ -6,6 +6,12 @@
 
 [Relevant Next doc](https://nextjs.org/docs/basic-features/typescript)
 
+## Apollo
+
+https://github.com/vercel/next.js/issues/9542
+
+https://github.com/apollographql/react-apollo/issues/3251
+
 ## Code architecture and build
 
 ### Code in `src`
@@ -124,6 +130,11 @@ Run `yarn run analyze-bundle` to get insight on your Webpack build.
 
 ## TODO
 
+Error boundary
+Redirection demo
+Up to data apollo
+Debug routes,eg for SSR
+
 Document contribution process
 Cleaner debug call (active only when DEBUG=1)
 MUI and i18n in Storybook
@@ -138,10 +149,6 @@ MDX support
 Prettier config
 Doc for the perfect VS Code setup
 TypeScript/Eslint security rules
-Error boundary
-Redirection demo
-Up to data apollo
-Debug routes,eg for SSR
 Included docs, not bundled at build time
 Select pages bundled at build time?
 Graphql
