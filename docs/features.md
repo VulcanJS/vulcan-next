@@ -110,9 +110,15 @@ Note: CSS modules are currently not appearing correctly in Storybook, see https:
 
 Storybook is aware of the `public` folder, so it will display images accordingly.
 
+### Webpack bundle analyzer
+
+There is nothing worse than a slow Storybook build, you can debug your Webpack bundle using `yarn run analyze-bundle:storybook`
+
 ## Debugging
 
 ### Webpack bundle analyzer
+
+Run `yarn run analyze-bundle` to get insight on your Webpack build.
 
 ​	
 
@@ -128,8 +134,6 @@ Material UI
 Jest for the custom server
 Unified code coverage with server
 A way to debug which files are built in TypeScript
-Webpack bundle analysis
-Webpack bundle analysis for Storybook
 MDX support
 Prettier config
 Doc for the perfect VS Code setup
