@@ -5,6 +5,9 @@
   "scripts": {
     "coverage:e2e": "cross-env COVERAGE=1 npm run build && start-server-and-test start:test http://localhost:3000 'COVERAGE=1 cypress run'",
     "coverage:unit": "jest --coverage",
+    "precoverage": "rm -rf .nyc_output || true # delete previous nyx instrumentation",
+    "coverage": "npm run coverage:unit && npm run coverage:e2e",
+    "postcoverage": "npm run report:combined # combine jest and cypress coverage reports",
     "cypress:open": "cross-env CYPRESS_coverage=false cypress open",
     "cypress:run": "cross-env CYPRESS_coverage=false cypress run --headless",
     "dev": "next",
@@ -15,7 +18,14 @@
     "test:e2e": "npm run build && start-server-and-test start:test http://localhost:3000 'cypress:run'",
     "test:unit": "jest",
     "type-check": "tsc",
-    "lint-eslint": "eslint . --ext js,jsx,ts,tsx --max-warnings=0"
+    "lint-eslint": "eslint . --ext js,jsx,ts,tsx --max-warnings=0",
+    "mkdir:reports": "rm -Rf reports && mkdir reports || true # intermediate script",
+    "precopy:reports": "npm run mkdir:reports # intermediate script",
+    "copy:reports": "cp coverage-e2e/coverage-final.json reports/from-cypress.json && cp coverage-unit/coverage-final.json reports/from-jest.json # intermediate scripts",
+    "precombine:reports": "npm run copy:reports && rm -Rf .nyc_output && mkdir .nyc_output || true # intermediate script",
+    "combine:reports": "nyc merge reports && mv coverage.json .nyc_output/out.json # intermediate script",
+    "prereport:combined": "npm run combine:reports # intermediate script",
+    "report:combined": "nyc report --reporter lcov --report-dir coverage | exit 0 # intermediate script"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",

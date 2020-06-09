@@ -80,13 +80,21 @@ We strive to unify testing patterns between Cypress and Jest where it makes sens
 
 First, add [React Testing queries into Cypress](https://github.com/testing-library/cypress-testing-library), so you can fetch elements with similar patterns. Check [React Testing docs for example of the reverse approach ](https://testing-library.com/docs/react-testing-library/setup#add-custom-queries) (data-cy in React Testing).
 
-Then, we unify coverage computation.
+### Unified test coverage
+
+We followed awesome [recommandations from Bahmutov](https://github.com/bahmutov/cypress-and-jest) to unify Cypress and Jest coverage. This is crucial to have a clearer vision of what is correctly tested in your application, whatever the test method is. For instance, e2e tests provides a huge coverage for React components, while unit tests are more efficient for helpers, hooks and functions.
+
+`yarn run coverage` will run tests and compute the unified report in `coverage`.
+
+`yarn run reports:combined` will compute the combined report without running tests.
+
+[More insights with Cypress](https://glebbahmutov.com/blog/combined-end-to-end-and-unit-test-coverage/)
 
 ## TODO
 
-Cleaner debug call (active only when DEBUG=1)
-
 Finish coverage unification
+
+Cleaner debug call (active only when DEBUG=1)
 
 i18n
 
