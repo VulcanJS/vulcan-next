@@ -3,7 +3,7 @@ import { action } from "@storybook/addon-actions";
 import { Button } from "@storybook/react/demo";
 
 export default {
-  title: "TypeScript",
+  title: "VNS/TypeScript",
   component: Button,
 };
 
