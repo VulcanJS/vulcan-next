@@ -27,7 +27,7 @@
     "combine:reports": "nyc merge reports && mv coverage.json .nyc_output/out.json # intermediate script",
     "prereport:combined": "npm run combine:reports # intermediate script",
     "report:combined": "nyc report --reporter lcov --report-dir coverage | exit 0 # intermediate script",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -s ./public -p 6006",
     "build-storybook": "build-storybook"
   },
   "dependencies": {
