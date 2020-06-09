@@ -38,6 +38,7 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 - [Next Right Now](https://github.com/UnlyEd/next-right-now) (a complete Next Starter, relying on Prisma cloud solutions for the backend)
 - [Blitz](https://blitzjs.com/) (fullstack Next without GraphQL)
 - [Next react Graphql Apollo Bootstrap](https://github.com/Sebastp/Next-react-graphql-apollo_Boostrap)
+- [Next advanced starter](https://github.com/borisowsky/next-advanced-starter)
 
 # About Next
 
