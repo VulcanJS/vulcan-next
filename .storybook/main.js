@@ -1,4 +1,12 @@
 const { extendWebpackConfig } = require("../packages/@vulcan/webpack"); // TODO: load from @vulcan/webpack NPM package
+
+const plugins = [];
+if (process.env.ANALYZE === "true") {
+  console.log("Enabling bundle analysis for Storybook"); // eslint-disable-line no-console
+  const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+    .BundleAnalyzerPlugin;
+  plugins.push(new BundleAnalyzerPlugin());
+}
 module.exports = {
   stories: [
     "../stories/**/*.stories.@(js|ts|jsx|tsx)",
@@ -9,6 +17,10 @@ module.exports = {
   webpackFinal: async (config, { configType }) => {
     // add magic imports and isomorphic imports to Storybook
     const withVulcan = extendWebpackConfig("client")(config);
+
+    // add bundle analyzer
+    withVulcan.plugins = (withVulcan.plugins || []).concat(plugins);
+
     return withVulcan;
   },
 };

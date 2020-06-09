@@ -32,3 +32,4 @@ coverage-e2e/
 .nyc_output/
 coverage-unit
 reports/
+storybook-static

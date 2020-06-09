@@ -110,6 +110,12 @@ Note: CSS modules are currently not appearing correctly in Storybook, see https:
 
 Storybook is aware of the `public` folder, so it will display images accordingly.
 
+## Debugging
+
+### Webpack bundle analyzer
+
+​	
+
 ## TODO
 
 Document contribution process
@@ -144,3 +150,4 @@ Efficient plug to Vulcan
 Vulcan package standard
 Custom SSR server? to be avoided if possible
 Fullstack cypress testing/coverage of the custom server
+Write Storybook stories for full pages?
