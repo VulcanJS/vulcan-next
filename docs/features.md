@@ -74,6 +74,12 @@ We use `ts-loader`, with [`transpileOnly`](https://github.com/TypeStrong/ts-load
 
 We have preinstalled `react-hooks`
 
+### Tests for Vulcan Next Starter (for contributors only)
+
+We have a unit tests for some key features and scripts of VNS, through the `tests/vns` folder. 
+
+This folder is ignored when running `yarn run test:unit`, to avoid bloating your own tests.
+
 ## Unified testing patterns
 
 We strive to unify testing patterns between Cypress and Jest where it makes sense.
