@@ -102,6 +102,8 @@ Finish coverage unification
 
 Cleaner debug call (active only when DEBUG=1)
 
+MUI and i18n in Storybook
+
 i18n
 
 Pure JS support (no TS), in cypress, in code, in storybook, in jest...
@@ -111,11 +113,10 @@ PErformance testing?
 Material UI
 
 Jest for the custom server
-Unified code coverage
+Unified code coverage with server
 
-Separate Jest e2e tests (long to run) from fast unit tests
+A way to debug which files are built in TypeScript
 
-Storybook
 Webpack bundle analysis
 Webpack bundle analysis for Storybook
 MDX support
@@ -125,7 +126,8 @@ TypeScript/Eslint security rules
 Error boundary
 Redirection demo
 Up to data apollo
-Debug routes
+Debug routes,eg for SSR
+
 Included docs, not bundled at build time
 Select pages bundled at build time?
 Graphql
@@ -133,6 +135,7 @@ TypeScript for dynamic component
 Error tracking with Sentry
 ES6 webpack config?
 Reproduction of various small issues
+
 Storybook serve public folder
 
 Mock of next packages from storybook, in jest
