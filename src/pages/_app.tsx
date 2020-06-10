@@ -9,7 +9,7 @@ import { getDataFromTree } from "@apollo/react-ssr";
 // import environment from '@vulcan/multi-env-demo';
 // console.log('imported environment', environment); // should display "server"/"client" depending on the environment, just a test
 
-const IS_PROD = process.env.NODE_ENV === "production";
+import "@vulcan/react-i18n"; // enable i18n
 
 function MyApp({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />;

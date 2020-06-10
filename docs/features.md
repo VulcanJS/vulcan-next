@@ -147,7 +147,9 @@ Run `yarn run analyze-bundle` to get insight on your Webpack build.
 ## TODO
 
 i18n
+Material UI
 Error boundary
+Graphql code generator
 Redirection demo for private pages
 Remove debug routes from bundle
 Document contribution process
@@ -155,7 +157,6 @@ Cleaner debug call (active only when DEBUG=1)
 MUI and i18n in Storybook
 Pure JS support (no TS), in cypress, in code, in storybook, in jest...
 PErformance testing?
-Material UI
 Jest for the custom server
 Unified code coverage with server
 A way to debug which files are built in TypeScript
