@@ -1,4 +1,4 @@
-import { useQuery /*, useMutation*/ } from "@apollo/client";
+import { useQuery /*, useMutation*/ } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import Home from "~/components/home";
 //import { useForm } from "react-hook-form";
@@ -6,7 +6,7 @@ import Home from "~/components/home";
 const HomePage = () => {
   const vulcanSiteDataQuery = gql`
     query getSiteData {
-      SiteData {
+      siteData {
         url
         title
         sourceVersion

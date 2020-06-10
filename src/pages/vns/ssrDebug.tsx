@@ -1,11 +1,11 @@
-import { useQuery /*, useMutation*/ } from "@apollo/client";
+import { useQuery /*, useMutation*/ } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 //import { useForm } from "react-hook-form";
 
 const SsrDebugPage = () => {
   const vulcanSiteDataQuery = gql`
     query getSiteData {
-      SiteData {
+      siteData {
         url
         title
         sourceVersion
@@ -18,17 +18,13 @@ const SsrDebugPage = () => {
 
   let content = "";
   if (loading) {
-    content = "loading"; // on ${client.name}`
+    content = "loading";
   } else if (error) {
-    content = "error"
+    content = "error"; // NOTE: when encountering a fatal error in "getDataFromTree", app will be rendered in loading state instead
   } else if (data) {
-    content = "data"
+    content = "data";
   }
-  return (
-    <div>
-      {content}
-    </div>
-  );
+  return <div>{content}</div>;
 };
 
 export default SsrDebugPage;

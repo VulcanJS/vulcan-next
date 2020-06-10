@@ -8,9 +8,17 @@
 
 ## Apollo
 
-https://github.com/vercel/next.js/issues/9542
+### Optional SSR
 
-https://github.com/apollographql/react-apollo/issues/3251
+If you want SSR only for some page,
+
+### NOT Apollo v3/4
+
+We currently use Apollo Client v2. At the time of writing, v3 is still in beta. But what really blocks the update is [the following issue with SSR](https://github.com/apollographql/react-apollo/issues/3251)
+
+## )
+
+https://github.com/vercel/next.js/issues/9542
 
 ## Code architecture and build
 

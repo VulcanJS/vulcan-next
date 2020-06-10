@@ -1,25 +1,26 @@
 // lib/withApollo.js
-import withApollo from 'next-with-apollo';
-import { ApolloProvider } from "@apollo/client"
-import createApolloClient from "./apolloClient"
+import withApollo from "next-with-apollo";
+import createApolloClient from "./apolloClient";
 // import { NextPageContext } from 'next';
-import {
-    NormalizedCacheObject
-} from "@apollo/client";
+//import {
+//    ApolloProvider,
+//    NormalizedCacheObject
+//} from "@apollo/client";
+import { ApolloProvider } from "@apollo/react-hooks";
+import { NormalizedCacheObject } from "apollo-cache-inmemory";
 
-export default ({ graphqlUri }) => withApollo<NormalizedCacheObject>(
-    // TODO: next-with-apollo still use apollo-client v2 typings, we need to wait for v3 update (@apollo/client)
-    // @ts-ignore 
+export default ({ graphqlUri }) =>
+  withApollo<NormalizedCacheObject>(
     ({ initialState, ctx }) => {
-        return createApolloClient(graphqlUri, initialState, ctx)
+      return createApolloClient(graphqlUri, initialState, ctx);
     },
     {
-        render: ({ Page, props }) => {
-            return (
-                <ApolloProvider client={props.apollo} >
-                    <Page {...props} />
-                </ApolloProvider>
-            );
-        }
+      render: ({ Page, props }) => {
+        return (
+          <ApolloProvider client={props.apollo}>
+            <Page {...props} />
+          </ApolloProvider>
+        );
+      },
     }
-);
+  );
