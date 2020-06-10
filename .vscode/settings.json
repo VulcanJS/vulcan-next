@@ -4,5 +4,8 @@
     "javascriptreact",
     "typescript",
     "typescriptreact"
-  ]
+  ],
+  "search.exclude": {
+    "cypress/examples/": true
+  }
 }

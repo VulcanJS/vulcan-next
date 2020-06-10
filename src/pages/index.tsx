@@ -2,6 +2,7 @@ import { useQuery /*, useMutation*/ } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import Home from "~/components/home";
 //import { useForm } from "react-hook-form";
+import { withApollo } from "@vulcan/next-apollo";
 
 const HomePage = () => {
   const vulcanSiteDataQuery = gql`
@@ -120,4 +121,8 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+// export default withApollo({ graphqlUri })(MyApp, { getDataFromTree });
+
+export default withApollo(HomePage, {
+  ssr: true,
+});

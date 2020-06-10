@@ -2,7 +2,7 @@
   "build": {
     "env": {
       "ROOT_URL": "https://vulcan-next-starter.now.sh",
-      "GRAPHQL_URL": "https://vulcan-next-starter.now.sh/api/graphql"
+      "NEXT_PUBLIC_GRAPHQL_URI": "https://vulcan-next-starter.now.sh/api/graphql"
     }
   }
 }

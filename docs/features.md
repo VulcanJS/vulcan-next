@@ -8,17 +8,21 @@
 
 ## Apollo
 
-### Optional SSR
+### Optional, per-page Apollo Provider and SSR
 
-If you want SSR only for some page,
+We extend [`next-with-apollo`](https://github.com/lfades/next-with-apollo) with a simpler API. Apollo SSR is enabled page per page, for a granular optimization.
+
+```js
+withApollo(MyPage) // add ApolloProvider with the default apollo client, but no SSR
+withApollo(MyPage, {ssr: true}) // will fetch data during server-side render automatically
+MyPage // no SSR, no Apollo Provider
+```
+
+With have a non-regression test for SSR, so no surprise with component that suddenly appear in loading state.
 
 ### NOT Apollo v3/4
 
-We currently use Apollo Client v2. At the time of writing, v3 is still in beta. But what really blocks the update is [the following issue with SSR](https://github.com/apollographql/react-apollo/issues/3251)
-
-## )
-
-https://github.com/vercel/next.js/issues/9542
+We currently use Apollo Client v2. At the time of writing, v3 is still in beta.
 
 ## Code architecture and build
 
@@ -47,6 +51,12 @@ Relative imports are a huge mess to support. A relative import should never go f
 
 We allow folders and packages to contain an `index.client` or `index.server` file, that will be used at build time depending on the environment.
 /!\ You still need to have a bare `index` file alongside those environment specific file. Otherwise TypeScript will complain (see the "Failures and learnings" documentation for more details).
+
+### Env variables in .env
+
+We demo Next.js 9.4 new feature, `.env` file support. Open `.env.development` to see the default development variables.
+
+[Official doc.](https://nextjs.org/docs/basic-features/environment-variables)
 
 ## Cypress for e2e testing
 
@@ -134,19 +144,15 @@ There is nothing worse than a slow Storybook build, you can debug your Webpack b
 
 Run `yarn run analyze-bundle` to get insight on your Webpack build.
 
-​	
-
 ## TODO
 
+i18n
 Error boundary
-Redirection demo
-Up to data apollo
-Debug routes,eg for SSR
-
+Redirection demo for private pages
+Remove debug routes from bundle
 Document contribution process
 Cleaner debug call (active only when DEBUG=1)
 MUI and i18n in Storybook
-i18n
 Pure JS support (no TS), in cypress, in code, in storybook, in jest...
 PErformance testing?
 Material UI
@@ -159,7 +165,6 @@ Doc for the perfect VS Code setup
 TypeScript/Eslint security rules
 Included docs, not bundled at build time
 Select pages bundled at build time?
-Graphql
 TypeScript for dynamic component
 Error tracking with Sentry
 USe ES6 in webpack configs (see electron-react-boilerplate for a demo)

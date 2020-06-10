@@ -3,6 +3,8 @@ import fs from "fs";
 import shell from "shelljs";
 import { spawn } from "child_process";
 
+const basicSpec = "cypress/integration/vns/basic.spec.ts";
+
 const isDebug = !!process.env.DEBUG;
 const rootDir = path.resolve(__dirname, "../../");
 describe("code coverage", () => {
@@ -18,7 +20,7 @@ describe("code coverage", () => {
     shell.rm("-rf", ".nyc_output");
     const npmBin = path.resolve(rootDir, "node_modules/.bin");
     const runAppTestMode = "npm run start:test";
-    const runBasicTest = `COVERAGE=1 ${npmBin}/cypress run --spec cypress/integration/vulcan-next-starter/basic.spec.ts`;
+    const runBasicTest = `COVERAGE=1 ${npmBin}/cypress run --spec ${basicSpec}`;
     const rawCmd = `${npmBin}/start-server-and-test`;
     const args = [runAppTestMode, "http://localhost:3000", runBasicTest];
     //const cmdStr = `COVERAGE=1 ${rawCmd} ${args.join(" ")}`;
@@ -63,7 +65,7 @@ describe("code coverage", () => {
     shell.rm("-rf", ".nyc_output");
     const npmBin = path.resolve(rootDir, "node_modules/.bin");
     const runAppTestMode = "npm run start:test";
-    const runBasicTest = `${npmBin}/cypress run --spec cypress/integration/vulcan-next-starter/basic.spec.ts`;
+    const runBasicTest = `${npmBin}/cypress run --spec ${basicSpec}`;
     const rawCmd = `${npmBin}/start-server-and-test`;
     const args = [runAppTestMode, "http://localhost:3000", runBasicTest];
     const child = spawn(rawCmd, args, {

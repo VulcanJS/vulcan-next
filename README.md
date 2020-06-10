@@ -21,7 +21,7 @@ Run Vulcan Next Starter development server:
 
 ```bash
 # We favour Yarn over NPM for commands
-GRAPHQL_URL="your-vulcan-server-url" yarn dev
+NEXT_PUBLIC_GRAPHQL_URI="your-vulcan-server-url" yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

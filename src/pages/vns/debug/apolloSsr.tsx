@@ -1,6 +1,5 @@
 import { useQuery /*, useMutation*/ } from "@apollo/react-hooks";
 import gql from "graphql-tag";
-import { getDataFromTree } from "@apollo/react-ssr";
 import { withApollo } from "@vulcan/next-apollo";
 
 const SsrDebugPage = () => {
@@ -47,5 +46,5 @@ const SsrDebugPage = () => {
 // @see https://github.com/APIs-guru/graphql-apis
 // @see https://rickandmortyapi.com/documentation/#graphql
 const graphqlUri = "https://rickandmortyapi.com/graphql";
-export default withApollo({ graphqlUri })(SsrDebugPage, { getDataFromTree });
+export default withApollo(SsrDebugPage, { graphqlUri, ssr: true });
 //export default SsrDebugPage;
