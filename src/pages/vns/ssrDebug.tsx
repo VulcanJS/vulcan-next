@@ -1,8 +1,24 @@
 import { useQuery /*, useMutation*/ } from "@apollo/react-hooks";
 import gql from "graphql-tag";
-//import { useForm } from "react-hook-form";
+import { getDataFromTree } from "@apollo/react-ssr";
+import { withApollo } from "@vulcan/next-apollo";
 
 const SsrDebugPage = () => {
+  const mortyQuery = gql`
+    query {
+      character(id: 2) {
+        name
+      }
+    }
+  `;
+  /*
+  const vulcanRepoInfo = gql`
+    query vnsInfo($name: String!, $owner: String!) {
+      repository(name: $name, owner: $owner) {
+        nameWithOwner
+      }
+    }
+  `;
   const vulcanSiteDataQuery = gql`
     query getSiteData {
       siteData {
@@ -13,8 +29,9 @@ const SsrDebugPage = () => {
       }
     }
   `;
+  */
 
-  const { data, loading, error } = useQuery(vulcanSiteDataQuery);
+  const { data, loading, error } = useQuery(mortyQuery); //vulcanRepoInfo); //vulcanSiteDataQuery);
 
   let content = "";
   if (loading) {
@@ -27,4 +44,8 @@ const SsrDebugPage = () => {
   return <div>{content}</div>;
 };
 
-export default SsrDebugPage;
+// @see https://github.com/APIs-guru/graphql-apis
+// @see https://rickandmortyapi.com/documentation/#graphql
+const graphqlUri = "https://rickandmortyapi.com/graphql";
+export default withApollo({ graphqlUri })(SsrDebugPage, { getDataFromTree });
+//export default SsrDebugPage;

@@ -1,6 +1,6 @@
 import { AppProps } from "next/app";
-import { withApollo } from "@vulcan/next-apollo"
-import { getDataFromTree } from '@apollo/react-ssr';
+import { withApollo } from "@vulcan/next-apollo";
+import { getDataFromTree } from "@apollo/react-ssr";
 
 // import environment from '@vulcan/multi-env-demo';
 
@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 // export default withApollo({ graphqlUri })(MyApp) // uncomment to disable SSR of apollo queries
-export default withApollo({ graphqlUri })(MyApp, { getDataFromTree });
-
+// export default withApollo({ graphqlUri })(MyApp, { getDataFromTree });
+export default MyApp;
 
 //export default withVulcan({ ssr: true, graphqlUrl })(MyApp);

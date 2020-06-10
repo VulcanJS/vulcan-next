@@ -30,7 +30,6 @@ export default function createApolloClient(
   initialState: NormalizedCacheObject,
   ctx?: NextPageContext
 ) {
-  console.debug("creating apollo client", Boolean(ctx));
   // The `ctx` (NextPageContext) will only be present on the server.
   // use it to extract auth headers (ctx.req) or similar.
   return new ApolloClient({
