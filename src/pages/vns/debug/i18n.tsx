@@ -1,9 +1,26 @@
-import { useTranslation } from "react-i18next";
+import { i18n, useTranslation } from "~/lib/i18n";
+
+function toggleLanguage() {
+  i18n.changeLanguage(i18n.language === "en" ? "fr" : "en");
+}
 
 const I18nDebugPage = () => {
-  const { t } = useTranslation();
-  return <div>{t("__Debug message")}</div>;
+  const { t } = useTranslation("common"); // common namespace is important for SSR
+  return (
+    <div>
+      <div>{t("__Debug message")}</div>
+      <div>
+        <button id="language-toggle" onClick={() => toggleLanguage()}>
+          toggle language
+        </button>
+      </div>
+    </div>
+  );
 };
+
+I18nDebugPage.getInitialProps = async () => ({
+  namespacesRequired: ["common"],
+});
 
 // TODO: test with SSR
 export default I18nDebugPage;

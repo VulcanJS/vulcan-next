@@ -6,5 +6,9 @@ declare namespace Cypress {
      */
     dataCy(value: string): Chainable<Element>;
     openAlert(message: string): void;
+
+    // i18n commands
+    setLanguage(language: string): void;
+    resetDefaultLanguage(): void;
   }
 }

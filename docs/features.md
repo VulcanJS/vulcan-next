@@ -58,6 +58,16 @@ We demo Next.js 9.4 new feature, `.env` file support. Open `.env.development` to
 
 [Official doc.](https://nextjs.org/docs/basic-features/environment-variables)
 
+
+
+## Internationalization (i18n)
+
+We use next-i18next new serverless version (beta), as demoed in [this repo](https://github.com/borispoehland/next-i18next-boilerplate.git) from [borispoehland](https://github.com/borispoehland).
+
+IMPORTANT NOTE: [there is one last blocking issue with serverless deployment](https://github.com/vercel/next.js/issues/13624). To put it in a nutshell prevents your locale JSON to be deployed alongside your pages. 
+
+More broadly, it is related to the impossibility of [reading static files in Next when deployed to Vercel](https://github.com/vercel/next.js/issues/8251) at the moment.
+
 ## Cypress for e2e testing
 
 ### TypeScript and vanilla JS (+ESLint)
@@ -146,6 +156,9 @@ Run `yarn run analyze-bundle` to get insight on your Webpack build.
 
 ## TODO
 
+### i18n
+
+Automated translation extraction: https://react.i18next.com/guides/extracting-translations
 i18n
 Material UI
 Error boundary

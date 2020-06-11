@@ -26,3 +26,4 @@
 import "@testing-library/cypress/add-commands";
 
 import "./commands/example";
+import "./commands/i18n";

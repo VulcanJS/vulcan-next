@@ -2,18 +2,21 @@ const { extendNextConfig } = require("./packages/@vulcan/next"); // TODO: load f
 
 // @see https://nextjs.org/docs/api-reference/next.config.js/runtime-configuration
 module.exports = (nextConfig = {}) => {
-    let extendedConfig
-    extendedConfig = extendNextConfig(nextConfig)
+  let extendedConfig;
+  extendedConfig = extendNextConfig(nextConfig);
 
-    // Enable Webpack analyzer
-    if (process.env.ANALYZE && process.env.ANALYZE !== "false") {
-        const debug = require("debug")("webpack");
-        debug("Enabling Webpack bundle analyzer");
-        const withBundleAnalyzer = require("@next/bundle-analyzer")({
-            enabled: process.env.ANALYZE === "true"
-        });
-        extendedConfig = withBundleAnalyzer(extendedConfig)
-    }
+  extendNextConfig.serverRuntimeConfig = {};
+  extendNextConfig.publicRuntimeConfig = {};
 
-    return extendedConfig
+  // Enable Webpack analyzer
+  if (process.env.ANALYZE && process.env.ANALYZE !== "false") {
+    const debug = require("debug")("webpack");
+    debug("Enabling Webpack bundle analyzer");
+    const withBundleAnalyzer = require("@next/bundle-analyzer")({
+      enabled: process.env.ANALYZE === "true",
+    });
+    extendedConfig = withBundleAnalyzer(extendedConfig);
+  }
+
+  return extendedConfig;
 };
