@@ -1,4 +1,5 @@
-import { AppProps } from "next/app";
+import App, { AppProps } from "next/app";
+// Comment if you don't need i18n
 import { appWithTranslation } from "~/lib/i18n";
 
 /*
@@ -13,10 +14,18 @@ import { getDataFromTree } from "@apollo/react-ssr";
 
 // import "@vulcan/react-i18n"; // enable i18n
 
-function MyApp({ Component, pageProps }: AppProps) {
+function VNSApp({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />;
 }
 
+// Neeeded for next-i18n next to work
+// Comment if you don't need i18n
+VNSApp.getInitialProps = async (appContext) => {
+  // calls page's `getInitialProps` and fills `appProps.pageProps`
+  const appProps = await App.getInitialProps(appContext);
+  return { ...appProps };
+};
+
 // export default withApollo()(MyApp) // uncomment to enable Apollo but without SSR
 // export default withApollo()(MyApp, { getDataFromTree }); // uncommant to enable Apollo and SSR
-export default appWithTranslation(MyApp);
+export default appWithTranslation(VNSApp);

@@ -20,6 +20,7 @@ const I18nDebugPage = () => {
 
 I18nDebugPage.getInitialProps = async () => ({
   namespacesRequired: ["common"],
+  hello: "world",
 });
 
 // TODO: test with SSR
