@@ -158,9 +158,16 @@ Run `yarn run analyze-bundle` to get insight on your Webpack build.
 
 ### i18n
 
+Custom error page (with i18n name space to remove warning)
+
 Automated translation extraction: https://react.i18next.com/guides/extracting-translations
-i18n
+
+### Material UI
+
 Material UI
+
+ ### Others
+
 Error boundary
 Graphql code generator
 Redirection demo for private pages

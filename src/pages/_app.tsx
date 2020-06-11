@@ -26,6 +26,6 @@ VNSApp.getInitialProps = async (appContext) => {
   return { ...appProps };
 };
 
-// export default withApollo()(MyApp) // uncomment to enable Apollo but without SSR
-// export default withApollo()(MyApp, { getDataFromTree }); // uncommant to enable Apollo and SSR
+// export default withApollo()(MyApp, { ssr: false }) // uncomment to enable Apollo but without SSR
+// export default withApollo()(MyApp); // uncomment to enable Apollo and SSR
 export default appWithTranslation(VNSApp);

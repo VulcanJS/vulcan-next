@@ -46,5 +46,5 @@ const SsrDebugPage = () => {
 // @see https://github.com/APIs-guru/graphql-apis
 // @see https://rickandmortyapi.com/documentation/#graphql
 const graphqlUri = "https://rickandmortyapi.com/graphql";
-export default withApollo(SsrDebugPage, { graphqlUri, ssr: true });
+export default withApollo(SsrDebugPage, { graphqlUri });
 //export default SsrDebugPage;

@@ -28,4 +28,4 @@ const NoSsrDebugPage = () => {
 // @see https://rickandmortyapi.com/documentation/#graphql
 // NOTE: will fail client-side, since we don't have CORS
 const graphqlUri = "https://rickandmortyapi.com/graphql";
-export default withApollo(NoSsrDebugPage, { graphqlUri }); // SSR is not activated
+export default withApollo(NoSsrDebugPage, { graphqlUri, ssr: false }); // SSR is not activated

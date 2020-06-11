@@ -123,6 +123,4 @@ const HomePage = () => {
 
 // export default withApollo({ graphqlUri })(MyApp, { getDataFromTree });
 
-export default withApollo(HomePage, {
-  ssr: true,
-});
+export default withApollo(HomePage);

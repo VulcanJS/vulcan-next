@@ -23,6 +23,7 @@ interface VulcanWithApolloOptions extends WithApolloOptions {
 }
 const defaultOptions: Partial<VulcanWithApolloOptions> = {
   graphqlUri: process.env.NEXT_PUBLIC_GRAPHQL_URI,
+  ssr: true,
 };
 const initApolloClient = (graphqlUri: string) => ({ initialState, ctx }) => {
   return createApolloClient(graphqlUri, initialState, ctx);
