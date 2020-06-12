@@ -47,7 +47,7 @@
     "apollo-link": "1.2.14",
     "apollo-link-error": "^1.1.13",
     "apollo-link-http": "1.5.17",
-    "apollo-server-express": "2.10.1",
+    "apollo-server-express": "2.14.2",
     "babel-jest": "26.0.1",
     "babel-plugin-istanbul": "6.0.0",
     "cross-env": "7.0.2",
