@@ -2,6 +2,7 @@ import I18N from "next-i18next";
 import getConfig from "next/config";
 
 const { publicRuntimeConfig } = getConfig();
+console.log("config", getConfig(), publicRuntimeConfig);
 const { localeSubpaths = {} } = publicRuntimeConfig;
 
 const i18nInstance = new I18N({

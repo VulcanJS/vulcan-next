@@ -58,7 +58,9 @@ We demo Next.js 9.4 new feature, `.env` file support. Open `.env.development` to
 
 [Official doc.](https://nextjs.org/docs/basic-features/environment-variables)
 
+### Auto-changelog
 
+Run `yarn auto-changelog` to compute a new changelog. Works best in combination with `yarn version` (to create git version tags automatically) and `git merge --no-ff your-feature` (to get merge commits).
 
 ## Internationalization (i18n)
 
