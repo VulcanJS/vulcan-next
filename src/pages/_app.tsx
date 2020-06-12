@@ -1,6 +1,11 @@
 import App, { AppProps } from "next/app";
 // Comment if you don't need i18n
 import { appWithTranslation } from "~/lib/i18n";
+// Comment if you don't need Material UI
+import { ThemeProvider } from "@material-ui/core/styles";
+import { useMuiApp } from "@vulcan/next-material-ui";
+import defaultTheme from "~/lib/material-ui/defaultTheme";
+import Head from "next/head";
 
 /*
 // Uncomment to enable app-wide Apollo SSR
@@ -15,7 +20,21 @@ import { getDataFromTree } from "@apollo/react-ssr";
 // import "@vulcan/react-i18n"; // enable i18n
 
 function VNSApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  useMuiApp(); // comment to disable Material UI
+  return (
+    <>
+      <Head>
+        <title>Vulcan Next Starter</title>
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width"
+        />
+      </Head>
+      <ThemeProvider theme={defaultTheme}>
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </>
+  );
 }
 
 // Neeeded for next-i18n next to work

@@ -156,6 +156,14 @@ There is nothing worse than a slow Storybook build, you can debug your Webpack b
 
 Run `yarn run analyze-bundle` to get insight on your Webpack build.
 
+## Material UI
+
+Initial setup based on [official Next example](https://github.com/mui-org/material-ui/tree/master/examples/nextjs).
+
+We try to reduce the foot print of Material UI for an easy remove. In next iterations, we'll try to make it fully pluggable, like in Vulcan Meteor, so you can easily swap your UI system.
+
+
+
 ## TODO
 
 ### i18n
@@ -171,13 +179,16 @@ Material UI
  ### Others
 
 Error boundary
+HTML language in custom document
+NPM package.json version in custom document
+	Switch between MUI and Tailwind
+MUI and i18n in Storybook
+Redirection demo for private pages => demo a page that is not available for example, and redirect to home with an HTTP request
 Graphql code generator
-Redirection demo for private pages
 Remove debug routes from bundle
 Document contribution process
 Cleaner debug call (active only when DEBUG=1)
 Storybook static build
-MUI and i18n in Storybook
 Pure JS support (no TS), in cypress, in code, in storybook, in jest...
 PErformance testing?
 Jest for the custom server
