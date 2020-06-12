@@ -8,7 +8,7 @@ describe("i18n", () => {
       cy.visit("/vns/debug/i18n");
       cy.contains("Bonjour", { matchCase: false }).should("exist");
     });
-    it("should render text in French", () => {
+    it("should render text in English", () => {
       cy.setLanguage("en");
       cy.visit("/vns/debug/i18n");
       cy.contains("Hi", { matchCase: false }).should("exist"); // TODO: should "NEVER" exist
@@ -25,7 +25,7 @@ describe("i18n", () => {
       cy.visit("/vns/debug/i18n");
       cy.contains("Bonjour", { matchCase: false, timeout: 0 }).should("exist");
     });
-    it("should render text in French", () => {
+    it("should render text in English", () => {
       cy.setLanguage("en");
       cy.visit("/vns/debug/i18n");
       cy.contains("Hi", { matchCase: false, timeout: 0 }).should("exist"); // TODO: should "NEVER" exist

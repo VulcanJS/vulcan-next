@@ -1,4 +1,4 @@
-## Features from Next
+# Features
 
 ## TypeScript
 
@@ -174,6 +174,7 @@ Redirection demo for private pages
 Remove debug routes from bundle
 Document contribution process
 Cleaner debug call (active only when DEBUG=1)
+Storybook static build
 MUI and i18n in Storybook
 Pure JS support (no TS), in cypress, in code, in storybook, in jest...
 PErformance testing?
