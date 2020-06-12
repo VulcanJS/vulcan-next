@@ -15,7 +15,7 @@ const { extendWebpackConfig } = require("../webpack"); // TODO: load from @vulca
 // }
 
 module.exports = (nextConfig = {}) => {
-  return Object.assign({}, nextConfig, {
+  const vulcanNextConfig = {
     // Use .env instead
     //env: {
     //  ROOT_URL: process.env.ROOT_URL || "http://localhost:3000",
@@ -39,5 +39,7 @@ module.exports = (nextConfig = {}) => {
 
       return config;
     },
-  });
+  };
+
+  return Object.assign({}, nextConfig, vulcanNextConfig);
 };

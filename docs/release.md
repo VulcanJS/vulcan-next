@@ -14,6 +14,8 @@ rm -Rf node_modules && yarn install # no missing module surprise
 yarn run dev
 # Check production run
 yarn run build && yarn run start # test the production app
+# Check static run
+yarn run build:static && yarn run start:static
 # Run tests
 yarn run test
 # Run tests specific to Vulcan Next Starter (longer)

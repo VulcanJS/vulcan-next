@@ -1,12 +1,13 @@
 const { extendNextConfig } = require("./packages/@vulcan/next"); // TODO: load from @vulcan/next when it's on NPM
+const debug = require("debug")("next");
 
 // @see https://nextjs.org/docs/api-reference/next.config.js/runtime-configuration
-module.exports = (nextConfig = {}) => {
+module.exports = (phase, { defaultConfig }) => {
   let extendedConfig;
-  extendedConfig = extendNextConfig(nextConfig);
+  extendedConfig = extendNextConfig(defaultConfig);
 
-  extendNextConfig.serverRuntimeConfig = {};
-  extendNextConfig.publicRuntimeConfig = {};
+  extendedConfig.serverRuntimeConfig = {};
+  extendedConfig.publicRuntimeConfig = {};
 
   // Enable Webpack analyzer
   if (process.env.ANALYZE && process.env.ANALYZE !== "false") {
@@ -17,6 +18,8 @@ module.exports = (nextConfig = {}) => {
     });
     extendedConfig = withBundleAnalyzer(extendedConfig);
   }
+
+  debug("Extended next config FINAL " + JSON.stringify(extendedConfig));
 
   return extendedConfig;
 };
