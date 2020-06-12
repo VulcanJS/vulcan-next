@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "test": "npm run test:unit && npm run test:e2e",
+    "clean": "rm -Rf ./dist # clean various build folders",
     "postinstall": "cp -n .env.development.sample .env.development # initialize dev config after first install",
+    "build:static": "next build && next export",
+    "start:static": "serve ./out",
     "start:test": "cross-env NODE_ENV=test npm run start # Start app in test mode",
     "test:e2e": "npm run build && start-server-and-test start:test http://localhost:3000 'cypress:run'",
     "test:unit": "jest --testPathIgnorePatterns=tests/vns",
@@ -31,7 +34,9 @@
     "type-check": "tsc",
     "lint-eslint": "eslint . --ext js,jsx,ts,tsx --max-warnings=0",
     "storybook": "start-storybook -s ./public -p 6006",
-    "build-storybook": "build-storybook"
+    "build:storybook": "build-storybook",
+    "start:storybook-static": "serve storybook-static",
+    "auto-changelog": "auto-changelog -u"
   },
   "dependencies": {
     "@apollo/react-hooks": "3.1.3",
