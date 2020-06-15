@@ -34,7 +34,7 @@ export default function createApolloClient(
   // use it to extract auth headers (ctx.req) or similar.
   return new ApolloClient({
     name: "default-client",
-    connectToDevTools: Boolean(ctx),
+    connectToDevTools: !Boolean(ctx),
     ssrMode: Boolean(ctx),
     link: from([errorLink, httpLink(graphqlUri)]),
     cache: new InMemoryCache().restore(initialState),
