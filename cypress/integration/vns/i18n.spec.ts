@@ -31,7 +31,7 @@ describe("i18n", () => {
       cy.contains("Hi", { matchCase: false, timeout: 0 }).should("exist"); // TODO: should "NEVER" exist
     });
   });
-  describe.only("document", () => {
+  describe("document", () => {
     beforeEach(() => {
       (cy as any).state("document").write("");
       cy.resetDefaultLanguage();
@@ -44,7 +44,9 @@ describe("i18n", () => {
       cy.visitAsHtml("/vns/debug/i18n");
       cy.get("html").should("have.attr", "lang", "fr");
     });
-    it("should add en as language and pass correct language direction", () => {
+    // FIXME: https://github.com/VulcanJS/vulcan-next-starter/issues/40
+    // Only one test can run correctly
+    it.skip("should add en as language and pass correct language direction", () => {
       cy.setLanguage("en");
       cy.visitAsHtml("/vns/debug/i18n");
       //cy.visit("/vns/debug/i18n");
