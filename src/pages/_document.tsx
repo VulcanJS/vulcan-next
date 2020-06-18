@@ -9,11 +9,16 @@ import Document, {
 } from "next/document";
 import theme from "~/lib/material-ui/defaultTheme";
 import { getMuiDocumentInitialProps } from "@vulcan/next-material-ui";
+import { i18nPropsFromRes, DocumentLanguageProps } from "~/lib/i18n";
 
-export default class MyDocument extends Document {
+interface VNSDocumentProps {
+  i18nDocumentProps: Partial<DocumentLanguageProps>;
+}
+export default class MyDocument extends Document<VNSDocumentProps> {
   render() {
+    const { i18nDocumentProps } = this.props;
     return (
-      <Html lang="en">
+      <Html {...i18nDocumentProps}>
         <Head>
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
@@ -38,7 +43,10 @@ MyDocument.getInitialProps = async (ctx) => {
     ctx
   );
 
+  const i18nDocumentProps = i18nPropsFromRes(ctx.res);
+
   return {
     ...muiAndDocumentInitialProps,
+    i18nDocumentProps,
   };
 };
