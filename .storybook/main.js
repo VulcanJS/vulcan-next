@@ -1,8 +1,10 @@
 const { extendWebpackConfig } = require("../packages/@vulcan/webpack"); // TODO: load from @vulcan/webpack NPM package
+const debug = require("debug");
+const debugWebpack = debug("vns:webpack");
 
 const plugins = [];
 if (process.env.ANALYZE === "true") {
-  console.log("Enabling bundle analysis for Storybook"); // eslint-disable-line no-console
+  debugWebpack("Enabling bundle analysis for Storybook"); // eslint-disable-line no-console
   const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
     .BundleAnalyzerPlugin;
   plugins.push(new BundleAnalyzerPlugin());

@@ -36,7 +36,7 @@ describe("i18n", () => {
       cy.resetDefaultLanguage();
     });
     // @see https://glebbahmutov.com/blog/ssr-e2e/ for testing recipes
-    it("should add fr as language and pass correct language direction", () => {
+    it.only("should add fr as language and pass correct language direction", () => {
       cy.setLanguage("fr");
       // request instead of visit prevents client rehydratation, we just test the static code
       // => faster test when we don't need to test rehydration

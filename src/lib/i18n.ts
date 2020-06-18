@@ -39,6 +39,7 @@ interface HtmlLanguageProps {
 interface ServerResponseWithLocals extends ServerResponse {
   locals?: DocumentLanguageProps;
 }
+// @see https://github.com/isaachinman/next-i18next/issues/20#issuecomment-558799264
 export const i18nPropsFromRes = (
   res?: ServerResponseWithLocals
 ): Partial<HtmlLanguageProps> => {
