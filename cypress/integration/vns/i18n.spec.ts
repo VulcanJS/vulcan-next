@@ -31,4 +31,25 @@ describe("i18n", () => {
       cy.contains("Hi", { matchCase: false, timeout: 0 }).should("exist"); // TODO: should "NEVER" exist
     });
   });
+  describe.only("document", () => {
+    beforeEach(() => {
+      (cy as any).state("document").write("");
+      cy.resetDefaultLanguage();
+    });
+    // @see https://glebbahmutov.com/blog/ssr-e2e/ for testing recipes
+    it("should add fr as language and pass correct language direction", () => {
+      cy.setLanguage("fr");
+      // request instead of visit prevents client rehydratation, we just test the static code
+      // => faster test when we don't need to test rehydration
+      cy.visitAsHtml("/vns/debug/i18n");
+      cy.get("html").should("have.attr", "lang", "fr");
+    });
+    it("should add en as language and pass correct language direction", () => {
+      cy.setLanguage("en");
+      cy.visitAsHtml("/vns/debug/i18n");
+      //cy.visit("/vns/debug/i18n");
+      cy.get("html").should("have.attr", "lang", "en");
+      //.should("have.attr", "dir", "ltr");
+    });
+  });
 });

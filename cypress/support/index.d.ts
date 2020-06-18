@@ -10,5 +10,7 @@ declare namespace Cypress {
     // i18n commands
     setLanguage(language: string): void;
     resetDefaultLanguage(): void;
+
+    visitAsHtml(route: string): void;
   }
 }
