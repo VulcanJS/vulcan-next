@@ -64,11 +64,17 @@ Run `yarn auto-changelog` to compute a new changelog. Works best in combination 
 
 ## Internationalization (i18n)
 
+### i18n without custom server
+
 We use next-i18next new serverless version (beta), as demoed in [this repo](https://github.com/borispoehland/next-i18next-boilerplate.git) from [borispoehland](https://github.com/borispoehland).
 
-IMPORTANT NOTE: [there is one last blocking issue with serverless deployment](https://github.com/vercel/next.js/issues/13624). To put it in a nutshell prevents your locale JSON to be deployed alongside your pages. 
+IMPORTANT NOTE: [there is one last blocking issue with serverless deployment on Vercel](https://github.com/vercel/next.js/issues/13624). To put it in a nutshell prevents your locale JSON to be deployed alongside your pages. 
 
 More broadly, it is related to the impossibility of [reading static files in Next when deployed to Vercel](https://github.com/vercel/next.js/issues/8251) at the moment.
+
+### Lang in the custom _document
+
+`lang` attribute is set automatically on `<html>` during server-render
 
 ## Cypress for e2e testing
 
@@ -103,6 +109,12 @@ For some reason, Cypress:run will automatically store videos of test run. We dis
 We use [Cypress Webpack Preprocessor](https://github.com/cypress-io/cypress-webpack-preprocessor), to enhance Cypress build with similar options as the actual app.
 
 We use `ts-loader`, with [`transpileOnly`](https://github.com/TypeStrong/ts-loader#transpileonly) option to fasten build. We expect your e2e tests typing to be correct at run time.
+
+### Pure SSR testing 
+
+The `cy.visitAsHtml()` command allow to check the pure HTML render of a page. It will disable JS in the the page automatically.
+
+Note: at the time of writing (2020/06) [there is an open issue when needing this command in multiple tests](https://github.com/VulcanJS/vulcan-next-starter/issues/40)
 
 ## Jest for unit testing
 
@@ -179,9 +191,8 @@ Material UI
  ### Others
 
 Error boundary
-HTML language in custom document
 NPM package.json version in custom document
-	Switch between MUI and Tailwind
+Switch between MUI and Tailwind
 MUI and i18n in Storybook
 Redirection demo for private pages => demo a page that is not available for example, and redirect to home with an HTTP request
 Graphql code generator
