@@ -18,7 +18,10 @@ export default class MyDocument extends Document<VNSDocumentProps> {
   render() {
     const { i18nDocumentProps } = this.props;
     return (
-      <Html {...i18nDocumentProps}>
+      <Html
+        {...i18nDocumentProps}
+        data-app-version={process.env.NEXT_PUBLIC_PKGINFO_VERSION}
+      >
         <Head>
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />

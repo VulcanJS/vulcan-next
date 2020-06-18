@@ -33,7 +33,6 @@ describe("i18n", () => {
   });
   describe("document", () => {
     beforeEach(() => {
-      (cy as any).state("document").write("");
       cy.resetDefaultLanguage();
     });
     // @see https://glebbahmutov.com/blog/ssr-e2e/ for testing recipes

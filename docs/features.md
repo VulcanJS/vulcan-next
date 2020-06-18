@@ -62,6 +62,14 @@ We demo Next.js 9.4 new feature, `.env` file support. Open `.env.development` to
 
 Run `yarn auto-changelog` to compute a new changelog. Works best in combination with `yarn version` (to create git version tags automatically) and `git merge --no-ff your-feature` (to get merge commits).
 
+## Various
+
+### Passing package.json info to the client app
+
+In `next.config.js`, you'll find a demonstration of how to **safely** inject informations from your `package.json` into your Next application.
+
+For example, we use it to inject current version into the `html` tag for better deployment tracking.
+
 ## Internationalization (i18n)
 
 ### i18n without custom server
@@ -174,36 +182,56 @@ Initial setup based on [official Next example](https://github.com/mui-org/materi
 
 We try to reduce the foot print of Material UI for an easy remove. In next iterations, we'll try to make it fully pluggable, like in Vulcan Meteor, so you can easily swap your UI system.
 
+## To be done
 
+### Storybook
 
-## TODO
+Write Storybook stories for full pages
+MUI in storybook (pass theme etc.)
+i18n in Storybook
+Storybook static build (currently broken)
 
 ### i18n
 
-Custom error page (with i18n name space to remove warning)
-
+Add custom error page with i18n name space to remove warning
 Automated translation extraction: https://react.i18next.com/guides/extracting-translations
 
 ### Material UI
 
 Material UI
 
- ### Others
+Easy switch between MUI, Bootstrap, and probably Tailwind
+
+### Error and logs
 
 Error boundary
-NPM package.json version in custom document
-Switch between MUI and Tailwind
-MUI and i18n in Storybook
-Redirection demo for private pages => demo a page that is not available for example, and redirect to home with an HTTP request
-Graphql code generator
-Remove debug routes from bundle
-Document contribution process
 Cleaner debug call (active only when DEBUG=1)
-Storybook static build
+Setup debug client side programmatically based on DEBUG environemnt variable
+Error tracking with Sentry?
+
+### Cypress
+
+Demo after and before hooks
+Automatically enable debug in Cypress
+
+### GraphQL
+
+Graphql code generator
+
+### Demo custom server?
+
+NOTE: Using a custom server to serve Next pages is not recommended. We may choose not to support this feature.
+
+ts-node, nodemon to have hot reload
+Jest for the custom server
+Fullstack cypress testing/coverage of the custom server
+
+ ### Others
+
+Redirection demo for private pages => demo a page that is not available for Example, and redirect to home with an HTTP request
+Remove debug routes from bundle
 Pure JS support (no TS), in cypress, in code, in storybook, in jest...
 PErformance testing?
-Jest for the custom server
-Unified code coverage with server
 A way to debug which files are built in TypeScript
 MDX support
 Prettier config
@@ -211,13 +239,9 @@ Doc for the perfect VS Code setup
 TypeScript/Eslint security rules
 Included docs, not bundled at build time
 Select pages bundled at build time?
-TypeScript for dynamic component
-Error tracking with Sentry
-USe ES6 in webpack configs (see electron-react-boilerplate for a demo)
+Demo TypeScript for dynamic component
+USe ES6 in webpack configs, next.config (see electron-react-boilerplate for a demo)
 Reproduction of various small issues
 Mock of next packages from storybook, in jest
 Efficient plug to Vulcan
-Vulcan package standard
-Custom SSR server? to be avoided if possible
-Fullstack cypress testing/coverage of the custom server
-Write Storybook stories for full pages?
+Define Vulcan package standard
