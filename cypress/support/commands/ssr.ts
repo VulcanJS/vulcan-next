@@ -9,8 +9,12 @@ Cypress.Commands.add("visitAsHtml", (route: string) => {
     .its("body")
     .then((html) => {
       // remove the application code JS bundle
-      // TODO: remove JS from Next
-      // html = html.replace('<script src="/bundle.js"></script>', "");
+      html = html.replace(
+        /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
+        ""
+      );
+      // FIXME: https://github.com/VulcanJS/vulcan-next-starter/issues/40
+      // https://github.com/vercel/next.js/discussions/11379
       // https://github.com/cypress-io/cypress/issues/4771
       // @see https://github.com/cypress-io/cypress-documentation/issues/108
       // cy.state is not currently documented nor typed
