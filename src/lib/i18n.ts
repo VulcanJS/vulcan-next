@@ -36,15 +36,14 @@ interface HtmlLanguageProps {
   dir: string;
   lang: string;
 }
-// We except a middleware to enhance the server response
+
+// i18next-http-middleware is in charge of enhancing the req object
 interface IncomingMessageWithI18n extends IncomingMessage {
   language?: string;
   i18n: any;
 }
 export const i18nPropsFromCtx = (
   ctx: NextPageContext
-  //req?: Inc
-  //res?: ServerResponseWithLocals
 ): Partial<HtmlLanguageProps> => {
   if (!(ctx && ctx.req && (ctx.req as IncomingMessageWithI18n).language))
     return {};
