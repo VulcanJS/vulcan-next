@@ -1,5 +1,7 @@
 # Release process
 
+## Create a release branch
+
 ```sh
 ### To the right branch
 git checkout devel && git pull
@@ -7,6 +9,12 @@ cat package.json | grep version # to get the current version
 git checkout -b release/<next-version>
 git merge master # get hot fixes if any
 rm -Rf node_modules && yarn install # no missing module surprise
+
+```
+
+## Run the app,  run tests
+
+```sh
 
 ### Test process
 # Fix any problem that occur during those tests
@@ -29,6 +37,11 @@ yarn run build:storybook && yarn run start:storybook-static # test storybook  st
 yarn run auto-changelog 
 # Complete the migrating documentation if there are breaking changes
 yarn version <level> # patch or minor or major depending on the situation
+```
+
+## Deploy
+
+```sh
 
 ### Deploy
 git checkout master && git merge release/<next-version>
@@ -38,4 +51,3 @@ git push
 git checkout develop && git pull && git merge master && git push
 
 ```
-
