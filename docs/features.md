@@ -6,7 +6,7 @@
 
 [Relevant Next doc](https://nextjs.org/docs/basic-features/typescript)
 
-## Apollo
+## Apollo Client
 
 ### Optional, per-page Apollo Provider and SSR
 
@@ -23,6 +23,22 @@ With have a non-regression test for SSR, so no surprise with component that sudd
 ### NOT Apollo v3/4
 
 We currently use Apollo Client v2. At the time of writing, v3 is still in beta.
+
+## Apollo Server
+
+### Demo of a simple server
+
+See `src/pages/api/graphql` for a demo server built with Apollo and Express
+
+**NOTE:** Expect drastic enhancement of the way the server is set up, thanks to [VulcanJS](http://vulcanjs.org/) declarative approach.
+
+### GraphQL Playground
+
+GraphQL Playground is available on `api/graphql`. All API routes of Next are located in the `src/pages/api` folder, hence the `api` prefix.
+
+### Graphql Voyager
+
+Open `api/debug/graphql-voyager` and explore your API visually.
 
 ## Code architecture and build
 
@@ -217,14 +233,19 @@ Automatically enable debug in Cypress
 ### GraphQL
 
 Graphql code generator
+Demo support of multiple graphQL API using Link split
 
-### Demo custom server?
+### Demo custom server for SSR
 
 NOTE: Using a custom server to serve Next pages is not recommended. We may choose not to support this feature.
 
 ts-node, nodemon to have hot reload
 Jest for the custom server
 Fullstack cypress testing/coverage of the custom server
+
+### Apollo server
+
+Demo a Mongodb connection with Mongoose (maybe we could find a demo database online?)
 
  ### Others
 
