@@ -41,7 +41,6 @@ interface IncomingMessageWithI18n extends IncomingMessage {
   language?: string;
   i18n: any;
 }
-// @see https://github.com/isaachinman/next-i18next/issues/20#issuecomment-558799264
 export const i18nPropsFromCtx = (
   ctx: NextPageContext
   //req?: Inc
