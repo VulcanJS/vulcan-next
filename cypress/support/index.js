@@ -22,3 +22,7 @@ import "./commands";
 // code coverage
 // NOTE: this file is passed to the browser => we can't access process.env.COVERAGE
 import "@cypress/code-coverage/support";
+
+// code run before/after all tests
+import "./before";
+import "./after";
