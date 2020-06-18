@@ -20,6 +20,20 @@ module.exports = {
     // add magic imports and isomorphic imports to Storybook
     const withVulcan = extendWebpackConfig("client")(config);
 
+    // add mdx support
+    // @see https://mdxjs.com/getting-started/webpack
+    withVulcan.module.rules.push({
+      test: /\.mdx?$/,
+      use: ["babel-loader", "@mdx-js/loader"],
+    });
+    // Bypass interference with Storybook doc, which already set a conflicting rule for .md import
+    // @see https://github.com/storybookjs/storybook/issues/7644#issuecomment-592536159
+    withVulcan.module.rules = [
+      ...withVulcan.module.rules.filter(
+        (rule) => rule.test.source !== "\\.md$"
+      ),
+    ];
+
     // add bundle analyzer
     withVulcan.plugins = (withVulcan.plugins || []).concat(plugins);
 

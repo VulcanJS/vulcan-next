@@ -100,6 +100,14 @@ More broadly, it is related to the impossibility of [reading static files in Nex
 
 `lang` attribute is set automatically on `<html>` during server-render
 
+## MDX support
+
+Get started by reading [MDXJS official doc](https://mdxjs.com/).
+
+### MD and MDX import in React
+
+### Loading MD/MDX in Storybook
+
 ## Cypress for e2e testing
 
 ### TypeScript and vanilla JS (+ESLint)
@@ -250,11 +258,13 @@ Demo a Mongodb connection with Mongoose (maybe we could find a demo database onl
  ### Others
 
 Redirection demo for private pages => demo a page that is not available for Example, and redirect to home with an HTTP request
+Cookies during server render
 Remove debug routes from bundle
 Pure JS support (no TS), in cypress, in code, in storybook, in jest...
 PErformance testing?
 A way to debug which files are built in TypeScript
-MDX support
+Default styling for MDX, using Material UI
+Easy opt out of MDX
 Prettier config
 Doc for the perfect VS Code setup
 TypeScript/Eslint security rules

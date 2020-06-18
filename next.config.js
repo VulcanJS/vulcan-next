@@ -1,5 +1,7 @@
-const flowRight = require("lodash/flowRight");
 const { extendNextConfig } = require("./packages/@vulcan/next"); // TODO: load from @vulcan/next when it's on NPM
+const withMDX = require("@next/mdx")({ extension: /\.mdx?$/ });
+
+const flowRight = require("lodash/flowRight");
 const debug = require("debug")("vns:next");
 
 // fooBar => FOO_BAR
@@ -53,8 +55,11 @@ module.exports = (phase, { defaultConfig }) => {
     extendedConfig = withBundleAnalyzer(extendedConfig);
   }
 
+  // To support markdown import
+  extendedConfig.pageExtensions = ["js", "jsx", "md", "mdx", "ts", "tsx"];
   extendedConfig = flowRight([
     withPkgInfo,
+    withMDX,
     // add other wrappers here
   ])(extendedConfig);
 
