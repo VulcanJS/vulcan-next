@@ -41,7 +41,9 @@ describe("i18n", () => {
       // request instead of visit prevents client rehydratation, we just test the static code
       // => faster test when we don't need to test rehydration
       cy.visitAsHtml("/vns/debug/i18n");
-      cy.get("html").should("have.attr", "lang", "fr");
+      cy.get("html")
+        .should("have.attr", "lang", "fr")
+        .should("have.attr", "dir", "ltr");
     });
     // FIXME: https://github.com/VulcanJS/vulcan-next-starter/issues/40
     // Only one test can run correctly
@@ -49,8 +51,9 @@ describe("i18n", () => {
       cy.setLanguage("en");
       cy.visitAsHtml("/vns/debug/i18n");
       //cy.visit("/vns/debug/i18n");
-      cy.get("html").should("have.attr", "lang", "en");
-      //.should("have.attr", "dir", "ltr");
+      cy.get("html")
+        .should("have.attr", "lang", "en")
+        .should("have.attr", "dir", "ltr");
     });
   });
 });

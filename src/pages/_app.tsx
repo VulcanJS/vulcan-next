@@ -42,12 +42,6 @@ function VNSApp({ Component, pageProps }: AppProps) {
 // Comment if you don't need i18n
 VNSApp.getInitialProps = async (appContext) => {
   // calls page's `getInitialProps` and fills `appProps.pageProps`
-  // Res.locals is expected by some Express like middlewares, but does not seem to be set in production for some reason
-  // @see https://github.com/i18next/i18next-http-middleware/issues/15
-  // @see https://github.com/isaachinman/next-i18next/pull/738
-  if (appContext.ctx && appContext.ctx.res && !appContext.ctx.res.locals) {
-    appContext.ctx.res.locals = {};
-  }
   const appProps = await App.getInitialProps(appContext);
   return { ...appProps };
 };

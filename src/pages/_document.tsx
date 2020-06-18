@@ -9,7 +9,7 @@ import Document, {
 } from "next/document";
 import theme from "~/lib/material-ui/defaultTheme";
 import { getMuiDocumentInitialProps } from "@vulcan/next-material-ui";
-import { i18nPropsFromRes, DocumentLanguageProps } from "~/lib/i18n";
+import { i18nPropsFromCtx, DocumentLanguageProps } from "~/lib/i18n";
 
 interface VNSDocumentProps {
   i18nDocumentProps: Partial<DocumentLanguageProps>;
@@ -46,7 +46,7 @@ MyDocument.getInitialProps = async (ctx) => {
     ctx
   );
 
-  const i18nDocumentProps = i18nPropsFromRes(ctx.res);
+  const i18nDocumentProps = i18nPropsFromCtx(ctx);
 
   return {
     ...muiAndDocumentInitialProps,

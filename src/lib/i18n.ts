@@ -1,6 +1,7 @@
 import I18N from "next-i18next";
 import getConfig from "next/config";
-import { ServerResponse } from "http";
+import { IncomingMessage } from "http";
+import { NextPageContext } from "next";
 
 // NOTE: publicRuntimeConfig can be undefined if you just provide an empty object
 // @see https://github.com/vercel/next.js/issues/6249#issuecomment-643259623
@@ -36,18 +37,21 @@ interface HtmlLanguageProps {
   lang: string;
 }
 // We except a middleware to enhance the server response
-interface ServerResponseWithLocals extends ServerResponse {
-  locals?: DocumentLanguageProps;
+interface IncomingMessageWithI18n extends IncomingMessage {
+  language?: string;
+  i18n: any;
 }
 // @see https://github.com/isaachinman/next-i18next/issues/20#issuecomment-558799264
-export const i18nPropsFromRes = (
-  res?: ServerResponseWithLocals
+export const i18nPropsFromCtx = (
+  ctx: NextPageContext
+  //req?: Inc
+  //res?: ServerResponseWithLocals
 ): Partial<HtmlLanguageProps> => {
-  if (!res) return {};
-  const { locals } = res;
-  if (!locals) return {}; // locals won't exist in a static build
+  if (!(ctx && ctx.req && (ctx.req as IncomingMessageWithI18n).language))
+    return {};
+  const req = ctx.req as IncomingMessageWithI18n;
   return {
-    dir: locals.languageDirection,
-    lang: locals.language,
+    lang: req.language,
+    dir: req.i18n && req.i18n.dir(req.language),
   };
 };
