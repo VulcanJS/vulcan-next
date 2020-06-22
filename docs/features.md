@@ -220,6 +220,7 @@ Write Storybook stories for full pages
 MUI in storybook (pass theme etc.)
 i18n in Storybook
 Storybook static build (currently broken)
+Example mocks for next/router
 
 ### i18n
 

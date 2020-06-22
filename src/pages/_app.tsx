@@ -2,13 +2,12 @@ import App, { AppProps } from "next/app";
 // Comment if you don't need i18n
 import { appWithTranslation } from "~/lib/i18n";
 // Comment if you don't need Material UI
-import { ThemeProvider } from "@material-ui/core/styles";
 import { useMuiApp } from "@vulcan/next-material-ui";
-import defaultTheme from "~/lib/material-ui/defaultTheme";
+import { MuiProvider } from "~/components/provider";
 import Head from "next/head";
 
 import debug from "debug";
-import AppLayout from "~/components/layouts/AppLayout";
+import AppLayout from "~/components/layout/AppLayout";
 const debugPerf = debug("vns:perf");
 // @see https://nextjs.org/docs/advanced-features/measuring-performance
 export function reportWebVitals(metric) {
@@ -37,11 +36,11 @@ function VNSApp({ Component, pageProps }: AppProps) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
-      <ThemeProvider theme={defaultTheme}>
+      <MuiProvider>
         <AppLayout>
           <Component {...pageProps} />
         </AppLayout>
-      </ThemeProvider>
+      </MuiProvider>
     </>
   );
 }

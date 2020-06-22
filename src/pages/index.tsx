@@ -3,7 +3,7 @@ import gql from "graphql-tag";
 import Home from "~/components/home";
 //import { useForm } from "react-hook-form";
 import { withApollo } from "@vulcan/next-apollo";
-import MDXMuiLayout from "~/components/layouts/MDXMuiLayout";
+import MDXMuiLayout from "~/components/layout/MDXMuiLayout";
 
 const HomePage = () => {
   const vulcanSiteDataQuery = gql`

@@ -1,6 +1,7 @@
 const { extendWebpackConfig } = require("../packages/@vulcan/webpack"); // TODO: load from @vulcan/webpack NPM package
 const debug = require("debug");
 const debugWebpack = debug("vns:webpack");
+const path = require("path");
 
 const plugins = [];
 if (process.env.ANALYZE === "true") {
@@ -34,7 +35,14 @@ module.exports = {
       ),
     ];
 
-    // add bundle analyzer
+    // add mocks for NPM imports, eg next/router and next/config
+    withVulcan.resolve.alias = {
+      ...(withVulcan.resolve.alias || {}),
+      "next/config": path.join(__dirname, "./mocks/packages/next-config.js"),
+      "next/router": path.join(__dirname, "./mocks/packages/next-router.js"),
+    };
+
+    // load optional plugins (eg bundle analyzer)
     withVulcan.plugins = (withVulcan.plugins || []).concat(plugins);
 
     return withVulcan;
