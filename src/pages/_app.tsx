@@ -8,6 +8,7 @@ import defaultTheme from "~/lib/material-ui/defaultTheme";
 import Head from "next/head";
 
 import debug from "debug";
+import AppLayout from "~/components/layouts/AppLayout";
 const debugPerf = debug("vns:perf");
 // @see https://nextjs.org/docs/advanced-features/measuring-performance
 export function reportWebVitals(metric) {
@@ -37,7 +38,9 @@ function VNSApp({ Component, pageProps }: AppProps) {
         />
       </Head>
       <ThemeProvider theme={defaultTheme}>
-        <Component {...pageProps} />
+        <AppLayout>
+          <Component {...pageProps} />
+        </AppLayout>
       </ThemeProvider>
     </>
   );

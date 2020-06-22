@@ -3,6 +3,7 @@ import gql from "graphql-tag";
 import Home from "~/components/home";
 //import { useForm } from "react-hook-form";
 import { withApollo } from "@vulcan/next-apollo";
+import MDXMuiLayout from "~/components/layouts/MDXMuiLayout";
 
 const HomePage = () => {
   const vulcanSiteDataQuery = gql`
@@ -35,12 +36,12 @@ const HomePage = () => {
     )}`;
   }
   return (
-    <div className="container">
+    <MDXMuiLayout>
       <main>
         <Home />
         {content}
       </main>
-    </div>
+    </MDXMuiLayout>
   );
 };
 

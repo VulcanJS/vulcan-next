@@ -86,6 +86,12 @@ In `next.config.js`, you'll find a demonstration of how to **safely** inject inf
 
 For example, we use it to inject current version into the `html` tag for better deployment tracking.
 
+### Performance debugging
+
+[See official doc](https://nextjs.org/docs/advanced-features/measuring-performance).
+
+`DEBUG=vns:perf npm run dev`
+
 ## Internationalization (i18n)
 
 ### i18n without custom server
