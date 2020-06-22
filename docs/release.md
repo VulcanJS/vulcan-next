@@ -12,7 +12,7 @@ rm -Rf node_modules && yarn install # no missing module surprise
 
 ```
 
-## Run the app,  run tests
+## Run the app, run tests
 
 ```sh
 
@@ -34,9 +34,9 @@ yarn run storybook
 yarn run build:storybook && yarn run start:storybook-static # test storybook  static export
 
 ### Versionning
-yarn run auto-changelog 
 # Complete the migrating documentation if there are breaking changes
 yarn version <level> # patch or minor or major depending on the situation
+yarn run auto-changelog # update changelog
 ```
 
 ## Deploy
