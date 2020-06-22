@@ -6,8 +6,13 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import { useMuiApp } from "@vulcan/next-material-ui";
 import defaultTheme from "~/lib/material-ui/defaultTheme";
 import Head from "next/head";
-import app from "./api/graphql";
 
+import debug from "debug";
+const debugPerf = debug("vns:perf");
+// @see https://nextjs.org/docs/advanced-features/measuring-performance
+export function reportWebVitals(metric) {
+  debugPerf(metric); // The metric object ({ id, name, startTime, value, label }) is logged to the console
+}
 /*
 // Uncomment to enable app-wide Apollo SSR
 // Otherwise you'll need to call withApollo on each page

@@ -6,7 +6,7 @@
 
 [Relevant Next doc](https://nextjs.org/docs/basic-features/typescript)
 
-## Apollo Client
+## Apollo Client for GraphQL API consumption
 
 ### Optional, per-page Apollo Provider and SSR
 
