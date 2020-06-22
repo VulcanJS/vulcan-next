@@ -40,6 +40,22 @@ GraphQL Playground is available on `api/graphql`. All API routes of Next are loc
 
 Open `api/debug/graphql-voyager` and explore your API visually.
 
+## MongoDB
+
+### Lambda safe connection
+
+Relevant docs:
+
+[Official tutorial without mongoose](https://developer.mongodb.com/how-to/nextjs-building-modern-applications)
+
+[Best practice for Mongo in AWS Lambda](https://docs.atlas.mongodb.com/best-practices-connecting-to-aws-lambda/)
+
+### Mongoose for schema modelling
+
+### Conversion between GraphQL ID and Mongoose ID types
+
+https://github.com/apollographql/apollo-server/issues/1633
+
 ## Code architecture and build
 
 ### Code in `src`

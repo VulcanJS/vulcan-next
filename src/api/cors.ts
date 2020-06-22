@@ -1,4 +1,6 @@
 import { parseEnvVariableArray } from "~/lib/utils";
+import debug from "debug";
+const debugCors = debug("vns:cors");
 
 const corsWhitelist = parseEnvVariableArray(
   process.env.APOLLO_SERVER_CORS_WHITELIST
@@ -9,6 +11,7 @@ const corsWhitelist = parseEnvVariableArray(
  */
 const corsOptions = {
   origin: function (origin, callback) {
+    debugCors("Origin is", origin, "Allowed origins are ", corsWhitelist);
     if (!origin) {
       // same origin
       callback(null, true);

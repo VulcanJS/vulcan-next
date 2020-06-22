@@ -1,8 +1,10 @@
 import express from "express";
 import cors from "cors";
-import corsOptions from "~/lib/api/cors";
+import mongoose from "mongoose";
+import corsOptions from "~/api/cors";
 import { ApolloServer, gql } from "apollo-server-express";
 import { makeExecutableSchema } from "graphql-tools";
+import mongoConnection from "~/api/middlewares/mongoConnection";
 
 /**
  * Sample, naive, Apollo server. You can move this code in `src/server`
@@ -14,8 +16,13 @@ import { makeExecutableSchema } from "graphql-tools";
 const typeDefs = gql`
   type Query {
     users: [User!]!
+    restaurants: [Restaurant]
   }
   type User {
+    name: String
+  }
+  type Restaurant {
+    _id: ID!
     name: String
   }
 `;
@@ -23,6 +30,17 @@ const resolvers = {
   Query: {
     users() {
       return [{ name: "Rick" }, { name: "Morty" }];
+    },
+    // Demo with mongoose
+    // Expected the database to be setup with the demo "restaurant" API from mongoose
+    async restaurants() {
+      const db = mongoose.connection;
+      const restaurants = await db
+        .collection("restaurants")
+        .find(null, null)
+        .limit(5)
+        .toArray();
+      return restaurants;
     },
   },
 };
@@ -47,8 +65,11 @@ const app = express();
 app.set("trust proxy", true);
 
 const gqlPath = "/api/graphql";
+// setup cors
 app.use(gqlPath, cors(corsOptions));
-// You could init the db connection here too
+// init the db
+app.use(gqlPath, mongoConnection());
+
 server.applyMiddleware({ app, path: "/api/graphql" });
 
 export default app;
