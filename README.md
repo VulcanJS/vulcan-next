@@ -9,9 +9,8 @@
 ## Install and run
 
 ```
+git clone https://github.com/VulcanJS/vulcan-next-starter.git
 yarn
-cp .env.development.sample .env.development
-cp .env.development.sample .env.production
 yarn run dev
 ```
 
