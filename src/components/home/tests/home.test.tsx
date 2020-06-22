@@ -5,7 +5,7 @@ import Home from "../home";
 
 describe("components/home", () => {
   test("renders home with React Testing", () => {
-    const { getByRole } = render(<Home />);
-    expect(getByRole("heading")).toHaveTextContent("Vulcan Next Starter");
+    const { queryByText } = render(<Home />);
+    expect(queryByText("Vulcan Next Starter")).not.toBeNull();
   });
 });

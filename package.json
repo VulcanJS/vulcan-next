@@ -8,7 +8,7 @@
     "start": "next start",
     "test": "npm run test:unit && npm run test:e2e",
     "clean": "rm -Rf ./dist # clean various build folders",
-    "postinstall": "cp -n .env.development.sample .env.development # initialize dev config after first install",
+    "postinstall": "",
     "build:static": "next build && next export",
     "start:static": "serve ./out",
     "start:test": "cross-env NODE_ENV=test npm run start # Start app in test mode",
@@ -67,7 +67,7 @@
     "isomorphic-unfetch": "3.0.0",
     "lodash": "^4.17.15",
     "mongoose": "^5.9.19",
-    "next": "9.4.0",
+    "next": "^9.4.4",
     "next-i18next": "5.0.0-beta.2",
     "next-with-apollo": "5.0.1",
     "react": "16.13.0",
@@ -97,6 +97,7 @@
     "@types/shelljs": "^0.8.8",
     "@typescript-eslint/eslint-plugin": "^2.21.0",
     "@typescript-eslint/parser": "^2.21.0",
+    "add": "^2.0.6",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "cypress": "4.8.0",
@@ -105,12 +106,14 @@
     "eslint-plugin-react-hooks": "^2.5.0",
     "graphql-voyager": "^1.0.0-rc.31",
     "jest": "^26.0.1",
+    "jest-transformer-mdx": "2.2.0",
     "nyc": "^15.1.0",
     "shelljs": "^0.8.4",
     "source-map-support": "^0.5.19",
     "start-server-and-test": "^1.11.0",
     "ts-loader": "^7.0.5",
     "ts-node": "^8.10.2",
-    "typescript": "^3.9.0"
+    "typescript": "^3.9.0",
+    "yarn": "^1.22.4"
   }
 }

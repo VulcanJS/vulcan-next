@@ -11,40 +11,43 @@ import mongoose from "mongoose";
 // Import mongoose models here
 import "~/api/mongoose/models";
 
-/*
-async function closeDbConnection() {
+export async function closeDbConnection() {
   try {
     await mongoose.connection.close();
   } catch (err) {
     // Catch locally error
+    console.error(err);
   }
 }
-*/
 
 import debug from "debug";
 const debugMongo = debug("vns:mongo");
 
 // trigger the initial connection on app startup
-export const connectToDb = async () => {
+export const connectToDb = async (mongoUri: string) => {
   if (![1, 2].includes(mongoose.connection.readyState)) {
     debugMongo("Call mongoose connect");
-    return await mongoose.connect(process.env.MONGO_URI, {
+    return await mongoose.connect(mongoUri, {
       useNewUrlParser: true,
+      useUnifiedTopology: true,
     });
   }
   debugMongo("Ran connectToDb, already connected or connecting to Mongo");
+  return false;
 };
 
 const mongoConnectionMiddleware = () => {
+  const mongoUri = process.env.MONGO_URI;
+  if (!mongoUri) throw new Error("MONGO_URI env variable is not defined");
   // init the first database connection on server startup
-  connectToDb();
+  connectToDb(mongoUri);
   // mongoose.set("useFindAndModify", false);
 
   // then return a middleware that checks the connection on every call
   return async (req: Request, res: Response, next) => {
     try {
       // To debug the number of connections in Mongo client: db.serverStatus().connections
-      await connectToDb();
+      await connectToDb(mongoUri);
 
       // Do not forget to close connection on finish and close events
       // NOTE: actually we don't need this. Db connection close should happen on lambda destruction instead.

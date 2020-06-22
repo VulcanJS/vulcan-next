@@ -35,12 +35,9 @@ const resolvers = {
     // Expected the database to be setup with the demo "restaurant" API from mongoose
     async restaurants() {
       const db = mongoose.connection;
-      const restaurants = await db
-        .collection("restaurants")
-        .find(null, null)
-        .limit(5)
-        .toArray();
-      return restaurants;
+      const restaurants = await db.collection("restaurants");
+      const results = await restaurants.find(null, null).limit(5).toArray();
+      return results;
     },
   },
 };

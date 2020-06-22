@@ -192,6 +192,8 @@ module.exports = {
   transform: {
     //"^.+\\.[jt]sx?$": "ts-jest",
     "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
+    // MDX support
+    "^.+\\.(md|mdx)$": "jest-transformer-mdx",
   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation

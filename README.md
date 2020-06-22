@@ -6,6 +6,15 @@
 
 [Read the docs](./docs)
 
+## Install and run
+
+```
+yarn
+cp .env.development.sample .env.development
+cp .env.development.sample .env.production
+yarn run dev
+```
+
 ## Connect to a Vulcan backend
 
 [If you don't know the awesome GraphQL framework Vulcan, get started here](http://vulcanjs.org/)

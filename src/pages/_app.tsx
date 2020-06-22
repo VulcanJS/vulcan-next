@@ -23,8 +23,6 @@ import { getDataFromTree } from "@apollo/react-ssr";
 // import environment from '@vulcan/multi-env-demo';
 // console.log('imported environment', environment); // should display "server"/"client" depending on the environment, just a test
 
-// import "@vulcan/react-i18n"; // enable i18n
-
 function VNSApp({ Component, pageProps }: AppProps) {
   useMuiApp(); // comment to disable Material UI
   return (

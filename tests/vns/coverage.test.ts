@@ -2,6 +2,8 @@ import path from "path";
 import fs from "fs";
 import shell from "shelljs";
 import { spawn } from "child_process";
+import debug from "debug";
+const debugCoverage = debug("vns:coverage");
 
 const basicSpec = "cypress/integration/vns/basic.spec.ts";
 
@@ -36,10 +38,10 @@ describe("code coverage", () => {
       detached: true,
     });
     child.stdout.on("data", (data) => {
-      if (isDebug) console.log("STDOUT:", data.toString());
+      debugCoverage("STDOUT:", data.toString());
     });
     child.stderr.on("data", (data) => {
-      if (isDebug) console.log("STDERR:", data.toString());
+      debugCoverage("STDERR:", data.toString());
     });
     child.on("exit", (code) => {
       try {

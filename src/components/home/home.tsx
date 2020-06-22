@@ -1,5 +1,6 @@
 import "~/types/mdx.d.ts"; // TODO: load this automatically
 import Readme from "../../../README.md";
+
 export default () => (
   <div>
     <em>

@@ -184,6 +184,10 @@ We have a unit tests for some key features and scripts of VNS, through the `test
 
 This folder is ignored when running `yarn run test:unit`, to avoid bloating your own tests.
 
+### MDX parsing, magic imports with ~
+
+[jest-transformer-mdx](https://github.com/bitttttten/jest-transformer-mdx) allow importing .mdx also in Jest
+
 ## Unified testing patterns
 
 We strive to unify testing patterns between Cypress and Jest where it makes sense.
@@ -271,6 +275,10 @@ Error tracking with Sentry?
 Demo after and before hooks
 Automatically enable debug in Cypress
 
+### Jest
+
+Load dotenv config in Jest
+
 ### GraphQL
 
 Graphql code generator
@@ -290,10 +298,10 @@ Demo a Mongodb connection with Mongoose (maybe we could find a demo database onl
 
  ### Others
 
-
 Remove debug routes from bundle
 Pure JS support (no TS), in cypress, in code, in storybook, in jest...
-PErformance testing?
+
+Performance testing?
 A way to debug which files are built in TypeScript
 Default styling for MDX, using Material UI
 Easy opt out of MDX
