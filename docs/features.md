@@ -114,6 +114,8 @@ Get started by reading [MDXJS official doc](https://mdxjs.com/).
 
 ### Loading MD/MDX in Storybook
 
+Work out of the box. Will however disable default behaviour for ".md" import of Storybook, which is replaced by MDX behaviour.
+
 ## Cypress for e2e testing
 
 ### TypeScript and vanilla JS (+ESLint)
@@ -222,19 +224,22 @@ We try to reduce the foot print of Material UI for an easy remove. In next itera
 
 ## To be done
 
+### Authentication
+
+Redirection demo for private pages => demo a page that is not available for Example, and redirect to home with an HTTP request
+Cookies during server render
+
 ### Storybook
 
-Write Storybook stories for full pages
-MUI in storybook (pass theme etc.)
+Write Storybook stories for full pages (need Next mocks, maybe tree-shaking removing server imports like Next does)
 Storybook static build (currently broken)
-i18n
+
+### I18n
 
 Add custom error page with i18n name space to remove warning
 Automated translation extraction: https://react.i18next.com/guides/extracting-translations
 
 ### Material UI
-
-Material UI
 
 Easy switch between MUI, Bootstrap, and probably Tailwind
 
@@ -255,7 +260,7 @@ Automatically enable debug in Cypress
 Graphql code generator
 Demo support of multiple graphQL API using Link split
 
-### Demo custom server for SSR
+### Demo custom server for SSR?
 
 NOTE: Using a custom server to serve Next pages is not recommended. We may choose not to support this feature.
 
@@ -269,8 +274,7 @@ Demo a Mongodb connection with Mongoose (maybe we could find a demo database onl
 
  ### Others
 
-Redirection demo for private pages => demo a page that is not available for Example, and redirect to home with an HTTP request
-Cookies during server render
+
 Remove debug routes from bundle
 Pure JS support (no TS), in cypress, in code, in storybook, in jest...
 PErformance testing?
