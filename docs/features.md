@@ -196,9 +196,17 @@ Note: CSS modules are currently not appearing correctly in Storybook, see https:
 
 Storybook is aware of the `public` folder, so it will display images accordingly.
 
+### I18n
+
+We reuse the same i18n config as in the app, so your stories will be internationalized automatically.
+
 ### Webpack bundle analyzer
 
 There is nothing worse than a slow Storybook build, you can debug your Webpack bundle using `yarn run analyze-bundle:storybook`
+
+### Mock packages
+
+See `.storybook/mocks/packages` and `.storybook/main.js`, we use Webpack alias to load them. Thus, you can use components that rely on `next/router` and `next/config` for instance.
 
 ## Debugging
 
@@ -218,11 +226,8 @@ We try to reduce the foot print of Material UI for an easy remove. In next itera
 
 Write Storybook stories for full pages
 MUI in storybook (pass theme etc.)
-i18n in Storybook
 Storybook static build (currently broken)
-Example mocks for next/router
-
-### i18n
+i18n
 
 Add custom error page with i18n name space to remove warning
 Automated translation extraction: https://react.i18next.com/guides/extracting-translations
