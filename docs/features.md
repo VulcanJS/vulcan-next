@@ -316,3 +316,7 @@ Reproduction of various small issues
 Mock of next packages from storybook, in jest
 Efficient plug to Vulcan
 Define Vulcan package standard
+
+VS code debugging
+
+SSR disabling
