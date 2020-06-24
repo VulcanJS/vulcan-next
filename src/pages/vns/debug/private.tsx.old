@@ -1,0 +1,58 @@
+/**
+ * Demo an authenticated page
+ * @see https://spectrum.chat/next-js/general/redirect-the-right-way~6d1b6631-340d-4de3-9127-8cf08ec02bcc
+ * @see https://jasonraimondi.com/posts/secure-a-next-js-application-with-jwt-and-a-private-route-higher-order-component/#add-a-_privateroute_-higher-order-component-hoc-to-secure-the-app-from-unauthorized-access
+ */
+import Link from "next/link";
+import { NextPage, NextPageContext } from "next";
+import Router, { useRouter } from "next/router";
+import debug from "debug";
+import { useEffect } from "react";
+const debugNext = debug("vns:next");
+
+// @ssr-only
+export const redirectServer = (ctx: NextPageContext) => (pathname: string) => {
+  ctx.res.writeHead(302, { Location: pathname });
+  ctx.res.end();
+};
+
+const isServerSideRenderCtx = (ctx?: NextPageContext) => {
+  return !!(ctx && ctx.res && ctx.res.writeHead);
+};
+const isStaticRenderCtx = (ctx?: NextPageContext) => {
+  return !!(ctx && ctx.res && !ctx.res.writeHead);
+};
+const isClientRender = () => {
+  return typeof window !== undefined;
+};
+
+interface PrivatePageProps {
+  isAllowed: boolean;
+}
+const PrivatePage: NextPage<PrivatePageProps> = (props) => {
+  //const router = useRouter();
+  //const { isAllowed } = props;
+  //if (!isAllowed) {
+  //}
+  return (
+    <>
+      <h1>private</h1>
+      <div>Seeing a private page.</div>
+      <div>
+        <Link href="/vns/debug/public">
+          <a>Back to public page</a>
+        </Link>
+      </div>
+    </>
+  );
+};
+
+export const getServerSideProps = async (ctx: NextPageContext) => {
+  const isAllowed = !!ctx.query.allowed; // demo
+  if (!isAllowed) {
+    debugNext("Redirecting (dynamic server render)", ctx.req.url);
+    redirectServer(ctx)("/vns/debug/public");
+  }
+  return { props: { isAllowed } };
+};
+export default PrivatePage;

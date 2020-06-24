@@ -5,3 +5,5 @@ export const isServerRenderCtx = (ctx?: NextPageContext) =>
 
 export const isStaticExportCtx = (ctx?: NextPageContext) =>
   !!(ctx && ctx.req && !ctx.req.headers);
+
+export const isClientRender = () => typeof window !== "undefined";

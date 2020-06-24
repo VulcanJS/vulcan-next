@@ -1,17 +1,14 @@
 describe("private pages", () => {
   describe("server side", () => {
     it("redirects when accessing private page", () => {
-      cy.request("/vns/debug/private").then((res) => {
-        // you won't see the 302 in Cypress, only the end result of the redirection
-        expect(res.status).to.equal(200);
-        expect(res.body).to.include("<h1>public</h1>");
-      });
+      cy.visit("/vns/debug/private");
+      cy.get("h1").contains("public", { timeout: 0 }).should("exist");
+      cy.get("h1").contains("private", { timeout: 0 }).should("not.exist");
     });
     it("do not redirect when accessing allowed private page", () => {
-      cy.request("/vns/debug/private?allowed=true").then((res) => {
-        expect(res.status).to.equal(200);
-        expect(res.body).to.include("<h1>private</h1>");
-      });
+      cy.visit("/vns/debug/private?allowed=true");
+      cy.get("h1").contains("public", { timeout: 0 }).should("not.exist");
+      cy.get("h1").contains("private", { timeout: 0 }).should("exist");
     });
   });
   describe("client side", () => {
