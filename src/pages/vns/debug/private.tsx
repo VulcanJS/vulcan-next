@@ -38,6 +38,7 @@ const PrivatePage: NextPage<PrivatePageProps> = (props) => {
   });
   // Renders nothing in this this case
   const { isStaticExport } = props;
+  console.log("props", props);
   if (isStaticExport) {
     debugNext(
       "We render nothing during static export, this is a private page (only rendered client side)"
@@ -57,10 +58,12 @@ const PrivatePage: NextPage<PrivatePageProps> = (props) => {
     </>
   );
 };
+
 // NOTE: we use getInitialProps to demo redirect, in order to keep things consistent
 // with _app, that do not support getServerSideProps and getStaticProps at the time of writing (Next 9.4)
 // When redirecting in a page, you could achieve a cleaner setup using getServerSideProps (not demonstrated here)
 PrivatePage.getInitialProps = async (ctx?: NextPageContext) => {
+  //throw new Error("STATIC");
   debugNext("Running page getInitialProps");
   const namespacesRequired = ["common"]; // i18n
   // We simulate private connexion
