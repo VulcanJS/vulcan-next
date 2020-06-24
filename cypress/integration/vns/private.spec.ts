@@ -30,4 +30,20 @@ describe("private pages", () => {
       cy.get("h1").contains("private").should("exist");
     });
   });
+  describe("shallow", () => {
+    it("redirects back to public page when accessing private page", () => {
+      cy.visit("/vns/debug/public");
+      cy.get(".private-shallow").click();
+      cy.url().should("not.match", /private/);
+      cy.url().should("match", /public/);
+      cy.get("h1").contains("public").should("exist");
+    });
+    it("do not redirect when accessing allowed  private page", () => {
+      cy.visit("/vns/debug/public");
+      cy.get(".private-allowed-shallow").click();
+      cy.url().should("not.match", /public/);
+      cy.url().should("match", /private/);
+      cy.get("h1").contains("private").should("exist");
+    });
+  });
 });

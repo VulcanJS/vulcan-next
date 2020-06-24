@@ -5,9 +5,8 @@
  */
 import Link from "next/link";
 import { NextPage, NextPageContext } from "next";
-import Router, { useRouter } from "next/router";
+import Router from "next/router";
 import debug from "debug";
-import { useEffect } from "react";
 const debugNext = debug("vns:next");
 
 // @ssr-only
@@ -25,18 +24,9 @@ const isStaticRenderCtx = (ctx?: NextPageContext) => {
 const isClientRender = () => {
   return typeof window !== undefined;
 };
-
-interface PrivatePageProps {
-  isAllowed: boolean;
-}
-const PrivatePage: NextPage<PrivatePageProps> = (props) => {
-  //const router = useRouter();
-  //const { isAllowed } = props;
-  //if (!isAllowed) {
-  //}
+const PrivatePage: NextPage = () => {
   return (
     <>
-      <h1>private</h1>
       <div>Seeing a private page.</div>
       <div>
         <Link href="/vns/debug/public">
@@ -46,13 +36,35 @@ const PrivatePage: NextPage<PrivatePageProps> = (props) => {
     </>
   );
 };
-
-export const getServerSideProps = async (ctx: NextPageContext) => {
+// NOTE: we use getInitialProps to demo redirect, in order to keep things consistent
+// with _app, that do not support getServerSideProps and getStaticProps at the time of writing (Next 9.4)
+// When redirecting in a page, you could achieve a cleaner setup using getServerSideProps (not demonstrated here)
+PrivatePage.getInitialProps = async (ctx?: NextPageContext) => {
+  debugNext("Running page getInitialProps");
+  const namespacesRequired = ["common"]; // i18n
+  // We simulate private connexion
   const isAllowed = !!ctx.query.allowed; // demo
-  if (!isAllowed) {
-    debugNext("Redirecting (dynamic server render)", ctx.req.url);
-    redirectServer(ctx)("/vns/debug/public");
+  const pageProps = { namespacesRequired, isAllowed };
+  if (isAllowed) {
+    return { ...pageProps, isAllowed };
   }
-  return { props: { isAllowed } };
+  if (isStaticRenderCtx(ctx)) {
+    debugNext("Detected static render, not doing anything");
+    // Scenario 1: we are in a static export
+    // We do not do anything
+  } else if (isServerSideRenderCtx(ctx)) {
+    // Scenario 2: we are in a server-side render
+    debugNext("Detected dynamic server-side rendering");
+    debugNext("Redirecting (dynamic server render)");
+
+    redirectServer(ctx)("/vns/debug/public");
+  } else if (isClientRender()) {
+    // Scenario 3: we are client-side
+    debugNext("Detected client render");
+    debugNext("Redirecting (client-side)");
+
+    Router.push("/vns/debug/public");
+  }
+  return pageProps;
 };
 export default PrivatePage;
