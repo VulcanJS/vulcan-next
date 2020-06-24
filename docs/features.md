@@ -20,9 +20,21 @@ MyPage // no SSR, no Apollo Provider
 
 With have a non-regression test for SSR, so no surprise with component that suddenly appear in loading state.
 
+### Pass cookies to Apollo client during server render
+
 ### NOT Apollo v3/4
 
 We currently use Apollo Client v2. At the time of writing, v3 is still in beta.
+
+## Authentication
+
+### Demonstration of redirection
+
+See `src/pages/vns/debug/private`.
+
+NOTE: redirections during server side rendering will create conflict if you also want a static export of your app.
+
+https://github.com/vercel/next.js/discussions/14531
 
 ## Apollo Server
 
@@ -244,10 +256,7 @@ We try to reduce the foot print of Material UI for an easy remove. In next itera
 
 ## To be done
 
-### Authentication
 
-Redirection demo for private pages => demo a page that is not available for Example, and redirect to home with an HTTP request
-Cookies during server render
 
 ### Storybook
 
@@ -272,8 +281,7 @@ Error tracking with Sentry?
 
 ### Cypress
 
-Demo after and before hooks
-Automatically enable debug in Cypress
+We are good :)
 
 ### Jest
 
@@ -292,15 +300,11 @@ ts-node, nodemon to have hot reload
 Jest for the custom server
 Fullstack cypress testing/coverage of the custom server
 
-### Apollo server
-
-Demo a Mongodb connection with Mongoose (maybe we could find a demo database online?)
-
  ### Others
 
 Remove debug routes from bundle
+Remove private route during static export
 Pure JS support (no TS), in cypress, in code, in storybook, in jest...
-
 Performance testing?
 A way to debug which files are built in TypeScript
 Default styling for MDX, using Material UI
@@ -316,7 +320,5 @@ Reproduction of various small issues
 Mock of next packages from storybook, in jest
 Efficient plug to Vulcan
 Define Vulcan package standard
-
 VS code debugging
-
 SSR disabling
