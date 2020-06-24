@@ -24,21 +24,19 @@ export const redirectServer = (ctx: NextPageContext) => (pathname: string) => {
 interface PrivatePageProps {
   isStaticExport?: boolean;
   isServerRender?: boolean;
-  isAllowed?: boolean;
+  isAllowedDuringSSR?: boolean;
 }
 const PrivatePage: NextPage<PrivatePageProps> = (props) => {
   // SCENARIO 1: handle redirection purely client-side after static export
   const router = useRouter();
   useEffect(() => {
     if (!router.query.allowed) {
-      debugNext("Redirecting client-side");
+      debugNext("Redirecting client-side", "router.query:", router.query);
       router.push("/vns/debug/public");
-      //return <>"Redirecting..."</>;
     }
   });
   // Renders nothing in this this case
   const { isStaticExport } = props;
-  console.log("props", props);
   if (isStaticExport) {
     debugNext(
       "We render nothing during static export, this is a private page (only rendered client side)"
@@ -68,7 +66,7 @@ PrivatePage.getInitialProps = async (ctx?: NextPageContext) => {
   const namespacesRequired = ["common"]; // i18n
   // We simulate private connexion
   const isAllowed = !!ctx.query.allowed; // demo
-  const pageProps = { namespacesRequired, isAllowed };
+  const pageProps = { namespacesRequired, isAllowedDuringSSR: isAllowed };
   // SCENARIO 2: we are doing dynamic SSR
   // We redirect using HTTP
   if (isServerRenderCtx(ctx)) {
