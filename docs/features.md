@@ -310,7 +310,7 @@ Fullstack cypress testing/coverage of the custom server
 Remove debug routes from bundle during build
 Remove private route during static export?
 
- ### Others
+### Others
 
 Pure JS support (no TS), in cypress, in code, in storybook, in jest...
 Performance testing?
