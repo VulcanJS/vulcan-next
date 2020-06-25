@@ -26,7 +26,7 @@ With have a non-regression test for SSR, so no surprise with component that sudd
 
 We currently use Apollo Client v2. At the time of writing, v3 is still in beta.
 
-## Authentication
+## Authentication
 
 ### Demonstration of redirection
 
