@@ -4,7 +4,7 @@
 
 **WORK IN PROGRESS**
 
-[Read the docs](./docs)
+[Read the docs](https://github.com/VulcanJS/vulcan-next-starter/tree/devel/docs)
 
 ## Install and run
 

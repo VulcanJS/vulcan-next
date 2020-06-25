@@ -2,9 +2,9 @@
 
 ## TypeScript
 
-### TS config
-
 [Relevant Next doc](https://nextjs.org/docs/basic-features/typescript)
+
+We use TypeScript extensively, and try to enable it wherever possible (sources, Jest, Cypress, Storybook...)
 
 ## Apollo Client for GraphQL API consumption
 
@@ -30,11 +30,7 @@ We currently use Apollo Client v2. At the time of writing, v3 is still in beta.
 
 ### Demonstration of redirection
 
-See `src/pages/vns/debug/private`.
-
-NOTE: redirections during server side rendering will create conflict if you also want a static export of your app.
-
-https://github.com/vercel/next.js/discussions/14531
+See `src/pages/vns/debug/private`. You can use `withPrivateAccess` HOC to make a page private and handle redirections correctly in all situations (server-side, client-side, in the context of a static export etc.).
 
 ## Apollo Server
 
@@ -62,11 +58,11 @@ Relevant docs:
 
 [Best practice for Mongo in AWS Lambda](https://docs.atlas.mongodb.com/best-practices-connecting-to-aws-lambda/)
 
-### Mongoose for schema modelling
+### Mongoose for schema-based modeling
 
 ### Conversion between GraphQL ID and Mongoose ID types
 
-https://github.com/apollographql/apollo-server/issues/1633
+[See relevant issue](https://github.com/apollographql/apollo-server/issues/1633)
 
 ## Code architecture and build
 
@@ -80,10 +76,10 @@ This folder structure is officially supported by Next. It is relevant when you h
 
 The structure of a plugin system of Next is still [under discussion](https://github.com/vercel/next.js/discussions/9133). In the meantime, we strive to provide code as clean as possible, structured in package, so you can easily remove prebundled features.
 
-To do so, we currently use a Webpack config so folders in `packages/@vulcan` can be imported the same way as `node_modules`. `packages/@vulcan/core` can be imported as `import "@vulcan/core"`.
+To do so, we currently use a Webpack config so folders in `packages/@vulcan` can be imported the same way as `node_modules`. For instance, `packages/@vulcan/next-utils` can be imported as `import "@vulcan/next-utils"` in your code.
 You can reproduce the same behaviour with any other prefix by changing `tsconfig.common.json`
 
-You are not forced to structure your own code as packages though.
+However, you are **not** forced to structure your own code as packages.
 
 ### Magic src imports with `~`
 
@@ -94,17 +90,13 @@ Relative imports are a huge mess to support. A relative import should never go f
 ### Quasi-imorphism
 
 We allow folders and packages to contain an `index.client` or `index.server` file, that will be used at build time depending on the environment.
-/!\ You still need to have a bare `index` file alongside those environment specific file. Otherwise TypeScript will complain (see the "Failures and learnings" documentation for more details).
+/!\ You still need to have a bare `index` file alongside those environment specific file. Otherwise TypeScript will complain (see the "Learnings" documentation for more details).
 
 ### Env variables in .env
 
 We demo Next.js 9.4 new feature, `.env` file support. Open `.env.development` to see the default development variables.
 
 [Official doc.](https://nextjs.org/docs/basic-features/environment-variables)
-
-### Auto-changelog
-
-Run `yarn auto-changelog` to compute a new changelog. Works best in combination with `yarn version` (to create git version tags automatically) and `git merge --no-ff your-feature` (to get merge commits).
 
 ## Various
 
@@ -120,11 +112,15 @@ For example, we use it to inject current version into the `html` tag for better 
 
 `DEBUG=vns:perf npm run dev`
 
-## Internationalization (i18n)
+### Auto-changelog
+
+Run `yarn auto-changelog` to compute a new changelog. Works best in combination with `yarn version` (to create git version tags automatically) and `git merge --no-ff your-feature` (to get merge commits).
+
+## Serverless internationalization
 
 ### i18n without custom server
 
-We use next-i18next new serverless version (beta), as demoed in [this repo](https://github.com/borispoehland/next-i18next-boilerplate.git) from [borispoehland](https://github.com/borispoehland).
+We use next-i18next new serverless version (beta), as demoed in [this repo](https://github.com/borispoehland/next-i18next-boilerplate.git) from [@borispoehland](https://github.com/borispoehland).
 
 IMPORTANT NOTE: [there is one last blocking issue with serverless deployment on Vercel](https://github.com/vercel/next.js/issues/13624). To put it in a nutshell prevents your locale JSON to be deployed alongside your pages. 
 
@@ -136,7 +132,7 @@ More broadly, it is related to the impossibility of [reading static files in Nex
 
 ## MDX support
 
-Get started by reading [MDXJS official doc](https://mdxjs.com/).
+Get started by reading [MDXJS official doc](https://mdxjs.com/). If you want to write a blog with fancy interactive blocks, you'll fall in love with this feature.
 
 ### MD and MDX import in React
 
@@ -166,7 +162,7 @@ See [Cypress Code Coverage example for TS](https://github.com/cypress-io/code-co
 
 Note: [doc of NYC for TS](https://www.npmjs.com/package/@istanbuljs/nyc-config-typescript) has to be followed carefully (computing sourceMaps for TS code, installing all sibling packages...). The difficult part is instrumentation.
 
-Code coverage is totally disabled client-side when simply running tests, using ["CYPRESS_coverage" variable](https://github.com/cypress-io/code-coverage#disable-plugin) (thanks @bahmutov for enhancing the doc on this point)
+Code coverage is totally disabled client-side when simply running tests, using ["CYPRESS_coverage" variable](https://github.com/cypress-io/code-coverage#disable-plugin) (thanks [@bahmutov](https://github.com/bahmutov)).
 
 ### No screenshot/videos as a default
 
@@ -188,7 +184,7 @@ Note: at the time of writing (2020/06) [there is an open issue when needing this
 
 ### React Testing library
 
-We have preinstalled `react-hooks`
+We have preinstalled [React Testing Library](https://testing-library.com/docs/react-testing-library/intro) and [React Testing Hooks](https://github.com/testing-library/react-hooks-testing-library).
 
 ### Tests for Vulcan Next Starter (for contributors only)
 
@@ -224,7 +220,7 @@ We reuse our Webpack config extension function, so you can enjoy magic imports a
 
 ### Styling with Styled JSX and CSS Modules
 
-Note: CSS modules are currently not appearing correctly in Storybook, see https://github.com/VulcanJS/vulcan-next-starter/issues/20
+Note: CSS modules are currently not appearing correctly in Storybook, see [vulcan-next-starter/issues/20](https://github.com/VulcanJS/vulcan-next-starter/issues/20)
 
 ### Public folder
 
@@ -254,9 +250,18 @@ Initial setup based on [official Next example](https://github.com/mui-org/materi
 
 We try to reduce the foot print of Material UI for an easy remove. In next iterations, we'll try to make it fully pluggable, like in Vulcan Meteor, so you can easily swap your UI system.
 
-## To be done
+## Deployment
 
+### Dockerfile for production
 
+See `build:docker` command.
+
+### Dockerfile for Cypress
+
+Running Cypress in Docker makes it easier to run your tests locally, while you keep coding.
+You can also use this file for your CI/CD process.
+
+## Not yet implemented:
 
 ### Storybook
 
@@ -267,29 +272,29 @@ Storybook static build (currently broken)
 
 Add custom error page with i18n name space to remove warning
 Automated translation extraction: https://react.i18next.com/guides/extracting-translations
+Remove annoying warnings when getInitialProps is not set
 
-### Material UI
+### Material UI and friends
 
-Easy switch between MUI, Bootstrap, and probably Tailwind
+Easy switch between MUI, Bootstrap, and probably Tailwind, Styled Components, Emotion...
 
 ### Error and logs
 
-Error boundary
-Cleaner debug call (active only when DEBUG=1)
-Setup debug client side programmatically based on DEBUG environemnt variable
-Error tracking with Sentry?
+Global _app error boundary
+Sentry demo
+Setup debug client side programmatically based on DEBUG environment variable
 
 ### Cypress
 
-We are good :)
+Splitting tests in folders?
 
 ### Jest
 
-Load dotenv config in Jest
+Load .env development config automatically in Jest
 
 ### GraphQL
 
-Graphql code generator
+Graphql code generator for better autocompletion
 Demo support of multiple graphQL API using Link split
 
 ### Demo custom server for SSR?
@@ -300,25 +305,26 @@ ts-node, nodemon to have hot reload
 Jest for the custom server
 Fullstack cypress testing/coverage of the custom server
 
+### Next
+
+Remove debug routes from bundle during build
+Remove private route during static export?
+
  ### Others
 
-Remove debug routes from bundle
-Remove private route during static export
 Pure JS support (no TS), in cypress, in code, in storybook, in jest...
 Performance testing?
-A way to debug which files are built in TypeScript
-Default styling for MDX, using Material UI
+A way to debug which files are transpiled by TypeScript/included in the build
 Easy opt out of MDX
+Easy opt out of i18n
 Prettier config
 Doc for the perfect VS Code setup
 TypeScript/Eslint security rules
-Included docs, not bundled at build time
-Select pages bundled at build time?
-Demo TypeScript for dynamic component
+Documentation page
+Demo TypeScript for dynamic component (Plotly for instance, Leaflet etc.)
 USe ES6 in webpack configs, next.config (see electron-react-boilerplate for a demo)
-Reproduction of various small issues
 Mock of next packages from storybook, in jest
 Efficient plug to Vulcan
-Define Vulcan package standard
 VS code debugging
 SSR disabling
+Slimer docker image/faster docker computation
