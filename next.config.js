@@ -1,4 +1,4 @@
-const { extendNextConfig } = require("./packages/@vulcan/next"); // TODO: load from @vulcan/next when it's on NPM
+const { extendNextConfig } = require("./packages/@vulcan/next-config"); // TODO: load from @vulcan/next when it's on NPM
 const withMDX = require("@next/mdx")({ extension: /\.mdx?$/ });
 
 const flowRight = require("lodash/flowRight");
