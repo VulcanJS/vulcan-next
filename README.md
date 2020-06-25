@@ -2,9 +2,7 @@
 
 ![vulcan-next-starter banner](https://raw.githubusercontent.com/VulcanJS/vulcan-next-starter/devel/public/vulcan-next-starter-banner_800.png)
 
-**WORK IN PROGRESS**
-
-[Read the docs](https://github.com/VulcanJS/vulcan-next-starter/tree/devel/docs)
+[Check the features](https://github.com/VulcanJS/vulcan-next-starter/tree/devel/docs/features.md)
 
 ## Install and run
 
@@ -36,7 +34,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-## References
+## They use or support Vulcan Next Starter
 
 ...To be completed.
 
@@ -48,6 +46,8 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 - [Next react Graphql Apollo Bootstrap](https://github.com/Sebastp/Next-react-graphql-apollo_Boostrap)
 - [Next advanced starter](https://github.com/borisowsky/next-advanced-starter),
 - [Next - Mongo](https://github.com/hoangvvo/nextjs-mongodb-app) (no Express, no GraphQL, just Next and Mongo)
+
+---
 
 # About Next
 
