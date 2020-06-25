@@ -32,7 +32,7 @@ const PrivatePage: NextPage<PrivatePageProps> = (props) => {
 //  return pageProps;
 //};
 export default withPrivateAccess({
-  isAllowedClient: (props, ctx) => {
+  isAllowedClient: async (props, ctx) => {
     /**
      * @client-only
      * Your logic to check if user is allowed, client-side

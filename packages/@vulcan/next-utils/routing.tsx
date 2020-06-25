@@ -29,21 +29,59 @@ interface PrivateAccessOptions {
     pageProps: any,
     ctx: NextPageContext
   ) => Promise<RedirectResult>; // return false if the user is allowed
-  isAllowedClient: (props: any, ctx?: NextPageContext) => RedirectResult; // return false if the user is not allowed
+  isAllowedClient: (
+    props: any,
+    ctx?: NextPageContext
+  ) => Promise<RedirectResult>; // return false if the user is not allowed
+  LoaderComponent: React.ComponentType; // Will be rendered during the client check. It's advised not to use this, you risk to have some annoying flash
 }
+
+// relevant defaults so you don't accidentally show a private page
+const defaultOptions: PrivateAccessOptions = {
+  defaultRedirection: "/",
+  LoaderComponent: () => <></>,
+  isAllowedClient: async () => ({
+    isAllowed: false,
+  }),
+  isAllowedServer: async () => ({
+    isAllowed: false,
+  }),
+};
 interface PrivatePageProps {
   isStaticExport?: boolean;
   isServerRender?: boolean;
   isAllowedDuringSSR?: boolean;
 }
 /**
+ * Makes a page private.
+ *
+ * You can pass default options or page options, they will be merged automatically.
+ * For example:
+ * const customWithPrivateAccess = withPrivateAccess(myDefaultOptions) // reuse for all your pages
+ * ...
+ * export default customWithPrivateAccess(MyPrivatePage, myPageSpecificOptions)
+ *
+ * or simply
+ *
+ * export default MyPrivatePage = withPrivateAccess()(MyPage, myPageSpecificOptions)
+ *
  * TODO: update on Vulcan AccessControl component
  */
 export const withPrivateAccess = (
-  hocOptions: Partial<PrivateAccessOptions>
+  hocOptions?: Partial<PrivateAccessOptions>
 ) => (Page: NextPage, pageOptions?: Partial<PrivateAccessOptions>) => {
-  const options: PrivateAccessOptions = _merge({}, hocOptions, pageOptions);
-  const { isAllowedClient, isAllowedServer, defaultRedirection } = options;
+  const options: PrivateAccessOptions = _merge(
+    {},
+    defaultOptions,
+    hocOptions || {},
+    pageOptions || {}
+  );
+  const {
+    isAllowedClient,
+    isAllowedServer,
+    defaultRedirection,
+    LoaderComponent,
+  } = options;
 
   const PrivatePage: NextPage<PrivatePageProps> = (props) => {
     // SCENARIO 1: handle redirection and rendering purely client-side, after static export or during a client-side redirect
@@ -51,13 +89,16 @@ export const withPrivateAccess = (
     const [isAllowedState, setAllowedState] = useState(false); // use state to avoid the flash
     const { isAllowedDuringSSR } = props;
     useEffect(() => {
-      const { isAllowed, redirection } = isAllowedClient(props);
-      if (!isAllowed) {
-        debugNext("Redirecting client-side");
-        router.push(redirection || defaultRedirection);
-      } else {
-        setAllowedState(true);
-      }
+      const checkAccess = async () => {
+        const { isAllowed, redirection } = await isAllowedClient(props);
+        if (!isAllowed) {
+          debugNext("Redirecting client-side");
+          router.push(redirection || defaultRedirection);
+        } else {
+          setAllowedState(true);
+        }
+      };
+      checkAccess();
     }, [router, props]);
     // SCENARIO 1.1: static export (rendering server side at build time)
     const { isStaticExport } = props;
@@ -74,7 +115,7 @@ export const withPrivateAccess = (
         "We render nothing if user is not allowed or a redirect is happening or we simply wait for the effect to run"
       );
       // we render nothing when waiting for a redirect or to check that we are allowed or not being auth (avoids a flash)
-      return <></>;
+      return <LoaderComponent />;
     }
     debugNext("Rendering private page");
 
@@ -130,7 +171,7 @@ export const withPrivateAccess = (
       // SCENARIO 3: getInitialProps is called by a page change client side, we redirect directly here to avoid page flash
     } else if (isClientRender()) {
       debugNext("Detected client render");
-      const { isAllowed, redirection, authProps = {} } = isAllowedClient(
+      const { isAllowed, redirection, authProps = {} } = await isAllowedClient(
         pageInitialProps,
         ctx
       );
