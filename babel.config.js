@@ -10,7 +10,16 @@ if (enableCoverage) {
 
 module.exports = {
   // we also need next/babel preset to work with Next
-  presets: ["next/babel"],
+  presets: [
+    [
+      "next/babel",
+      {
+        "styled-jsx": {
+          plugins: ["styled-jsx-plugin-postcss"],
+        },
+      },
+    ],
+  ],
   plugins,
   babelrc: false,
 };

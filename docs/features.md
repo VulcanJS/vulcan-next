@@ -13,9 +13,9 @@ We use TypeScript extensively, and try to enable it wherever possible (sources, 
 We extend [`next-with-apollo`](https://github.com/lfades/next-with-apollo) with a simpler API. Apollo SSR is enabled page per page, for a granular optimization.
 
 ```js
-withApollo(MyPage) // add ApolloProvider with the default apollo client, but no SSR
-withApollo(MyPage, {ssr: true}) // will fetch data during server-side render automatically
-MyPage // no SSR, no Apollo Provider
+withApollo(MyPage); // add ApolloProvider with the default apollo client, but no SSR
+withApollo(MyPage, { ssr: true }); // will fetch data during server-side render automatically
+MyPage; // no SSR, no Apollo Provider
 ```
 
 With have a non-regression test for SSR, so no surprise with component that suddenly appear in loading state.
@@ -122,11 +122,11 @@ Run `yarn auto-changelog` to compute a new changelog. Works best in combination 
 
 We use next-i18next new serverless version (beta), as demoed in [this repo](https://github.com/borispoehland/next-i18next-boilerplate.git) from [@borispoehland](https://github.com/borispoehland).
 
-IMPORTANT NOTE: [there is one last blocking issue with serverless deployment on Vercel](https://github.com/vercel/next.js/issues/13624). To put it in a nutshell prevents your locale JSON to be deployed alongside your pages. 
+IMPORTANT NOTE: [there is one last blocking issue with serverless deployment on Vercel](https://github.com/vercel/next.js/issues/13624). To put it in a nutshell prevents your locale JSON to be deployed alongside your pages.
 
 More broadly, it is related to the impossibility of [reading static files in Next when deployed to Vercel](https://github.com/vercel/next.js/issues/8251) at the moment.
 
-### Lang in the custom _document
+### Lang in the custom \_document
 
 `lang` attribute is set automatically on `<html>` during server-render
 
@@ -174,7 +174,7 @@ We use [Cypress Webpack Preprocessor](https://github.com/cypress-io/cypress-webp
 
 We use `ts-loader`, with [`transpileOnly`](https://github.com/TypeStrong/ts-loader#transpileonly) option to fasten build. We expect your e2e tests typing to be correct at run time.
 
-### Pure SSR testing 
+### Pure SSR testing
 
 The `cy.visitAsHtml()` command allow to check the pure HTML render of a page. It will disable JS in the the page automatically.
 
@@ -188,7 +188,7 @@ We have preinstalled [React Testing Library](https://testing-library.com/docs/re
 
 ### Tests for Vulcan Next Starter (for contributors only)
 
-We have a unit tests for some key features and scripts of VNS, through the `tests/vns` folder. 
+We have a unit tests for some key features and scripts of VNS, through the `tests/vns` folder.
 
 This folder is ignored when running `yarn run test:unit`, to avoid bloating your own tests.
 
@@ -250,6 +250,12 @@ Initial setup based on [official Next example](https://github.com/mui-org/materi
 
 We try to reduce the foot print of Material UI for an easy remove. In next iterations, we'll try to make it fully pluggable, like in Vulcan Meteor, so you can easily swap your UI system.
 
+### PostCSS for easier override using Next
+
+In VNS, we favour out-of-the-box solutions from Next to style the app, so basically [styled-jsx](https://github.com/vercel/styled-jsx) and CSS modules.
+However, [usage with Material UI and more broadly override of child components is not very elegant.](https://github.com/vercel/styled-jsx/issues/142)
+We include PostCSS with the "nesting" plugin to allow a cleaner syntax.
+
 ## Deployment
 
 ### Dockerfile for production
@@ -280,7 +286,7 @@ Easy switch between MUI, Bootstrap, and probably Tailwind, Styled Components, Em
 
 ### Error and logs
 
-Global _app error boundary
+Global \_app error boundary
 Sentry demo
 Setup debug client side programmatically based on DEBUG environment variable
 
@@ -310,7 +316,7 @@ Fullstack cypress testing/coverage of the custom server
 Remove debug routes from bundle during build
 Remove private route during static export?
 
- ### Others
+### Others
 
 Pure JS support (no TS), in cypress, in code, in storybook, in jest...
 Performance testing?

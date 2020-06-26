@@ -74,10 +74,12 @@
     "next": "^9.4.4",
     "next-i18next": "5.0.0-beta.2",
     "next-with-apollo": "5.0.1",
+    "postcss-nested": "^4.2.1",
     "react": "16.13.0",
     "react-dom": "16.13.0",
     "react-hook-form": "4.9.8",
-    "react-i18next": "^11.5.0"
+    "react-i18next": "^11.5.0",
+    "styled-jsx-plugin-postcss": "^2.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",

@@ -39,8 +39,17 @@ const HomePage = () => {
     <MDXMuiLayout>
       <main>
         <Home />
-        {content}
+        {/*content*/}
       </main>
+      <style jsx>{`
+        main {
+          border-left: 72px solid;
+          padding-left: 24px;
+          border-image-source: linear-gradient(10deg, #e1009855, #3f77fa55);
+          border-image-slice: 1;
+          border-color: #3f77fa;
+        }
+      `}</style>
     </MDXMuiLayout>
   );
 };
