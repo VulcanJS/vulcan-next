@@ -1,5 +1,5 @@
-//import React from "react";
 import StyledJsx from "../styledJsx";
+import StyledJsxPostcss from "../styledJsxPostcss";
 
 export default {
   title: "VNS/StyledJSX",
@@ -14,3 +14,5 @@ export const withNonStyled = () => (
     <h1>I am not red</h1>
   </div>
 );
+
+export const withPostCss = () => <StyledJsxPostcss />;

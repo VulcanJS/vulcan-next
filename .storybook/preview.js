@@ -5,6 +5,7 @@ import { addDecorator } from "@storybook/react";
 import MuiProvider from "~/components/provider/MuiProvider";
 import { I18nextProvider } from "react-i18next";
 import { i18n } from "~/lib/i18n";
+import { AppLayout } from "~/components/layout";
 
 // If you need to mock apollo queries
 //import { MockedProvider } from "@apollo/react-testing";
@@ -22,10 +23,13 @@ const withI18n = (storyFn) => (
     <I18nextProvider i18n={i18n}>{storyFn()}</I18nextProvider>
   </React.Suspense>
 );
+
+const withAppLayout = (storyFn) => <AppLayout>{storyFn()}</AppLayout>;
 [
   // @see https://gist.github.com/justincy/c1075650b1d5ba448c50eaf83cbb4ffe
 
   /*withApolloMockProvider*/
   withMui,
   withI18n,
+  withAppLayout,
 ].forEach(addDecorator);
