@@ -20,9 +20,15 @@ rm -Rf node_modules && yarn install # no missing module surprise
 # Fix any problem that occur during those tests
 # Check devel run
 yarn run dev
+```
+
+```sh
 # Check production run
 yarn run build && yarn run start # test the production app
-# Check static run
+```
+
+```sh
+# Check static build and run
 yarn run build:static && yarn run start:static
 # Run tests
 yarn run test
@@ -31,11 +37,22 @@ yarn run test:vns
 # Test storybook
 yarn run storybook
 # Test storybook static build
-yarn run build:storybook && yarn run start:storybook-static # test storybook  static export
+# NOTE: currently broken (v0.0.5)...
+# yarn run build:storybook && yarn run start:storybook-static # test storybook  static export
 
+# Optionnaly test Docker version (takes a lot of time + not very useful as they don't change often)
+# yarn run build:docker
+# yarn run build:test:docker
+# yarn run start:docker
+# yarn run test:docker
+```
+
+```sh
 ### Versionning
 # Complete the migrating documentation if there are breaking changes
-yarn version <level> # patch or minor or major depending on the situation
+npm version patch # patch or minor or major depending on the situation
+# yarn version --new-version <level>  # command for yarn v1
+# yarn version patch # works only with yarn v2 @see https://github.com/yarnpkg/yarn/issues/5367
 yarn run auto-changelog # update changelog
 ```
 
