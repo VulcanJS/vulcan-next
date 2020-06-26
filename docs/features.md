@@ -261,7 +261,7 @@ See `build:docker` command.
 Running Cypress in Docker makes it easier to run your tests locally, while you keep coding.
 You can also use this file for your CI/CD process.
 
-## Not yet implemented:
+## Not yet implemented:
 
 ### Storybook
 
