@@ -11,6 +11,12 @@ git clone https://github.com/VulcanJS/vulcan-next-starter.git
 yarn
 yarn run dev
 ```
+### Setup your own git
+
+```
+# Rename "origin" to "upstream", so you can use your own git repository as the main origin and VNS official repo as "upstream"
+git remote rename origin upstream
+```
 
 ## Connect to a Vulcan backend
 
