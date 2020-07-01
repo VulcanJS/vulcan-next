@@ -11,6 +11,7 @@ git clone https://github.com/VulcanJS/vulcan-next-starter.git
 yarn
 yarn run dev
 ```
+
 ### Setup your own git
 
 ```
@@ -40,9 +41,36 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-## They use or support Vulcan Next Starter
+## They support Vulcan Next Starter and Vulcan
 
-...To be completed.
+### Contributors
+
+This project exists thanks to all the people who contribute.
+
+<a href="https://github.com/VulcanJS/vulcan-next-starter/graphs/contributors"><img src="https://opencollective.com/vulcan/contributors.svg?width=890&button=false" /></a>
+
+### Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/vulcan#contribute)]
+
+<a href="https://opencollective.com/vulcan#contributors" target="_blank"><img src="https://opencollective.com/vulcan/backers.svg?width=890"></a>
+
+### Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/vulcan#contribute)]
+
+<a href="https://opencollective.com/vulcan#contributors" target="_blank"><img src="https://opencollective.com/vulcan/sponsors.svg?width=890"></a>
+
+### Technical supports
+
+They give time and share knowledge to support the project.
+
+<a href="https://aplines.com" target="_blank" rel="noopener noreferrer">
+<img src="https://aplines.com/img/logo_aplines_450x150.png" alt="aplines" height="75">
+</a>
+<a href="https://www.lbke.fr" target="_blank" rel="noopener noreferrer">
+<img src="https://www.lbke.fr/img/logo-md.png" height="75" alt="lbke" />
+</a>
 
 ## Other cool Next stuff
 
