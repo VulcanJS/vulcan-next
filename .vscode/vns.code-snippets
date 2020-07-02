@@ -20,5 +20,30 @@
     "scope": "typescriptreact,javascriptreact", // tsx, jsx
     "body": ["<style jsx>{`\n\t$1\n`}</style>"],
     "description": "Local Styled JSX tag"
+  },
+  "Storybook story": {
+    "scope": "typescriptreact",
+    "prefix": "story",
+    "body": [
+      "import React from \"react\"",
+      "import { $1 } from \"../$1\"",
+      "// import { action } from \"@storybook/addon-actions\";",
+      "",
+      "const defaultProps= {",
+      "}",
+      "",
+      "export default {",
+      "  title: \"$2/$1\",",
+      "  component: $1",
+      "//  decoractors: [(storyFn) => <div>{storyFn()}</div>",
+      "};",
+      "",
+      "export const basic = () => (<$1 {...defaultProps} />)",
+      "basic.story = {",
+      "  name: \"default props\"",
+      "  // decorators: [...],",
+      "  // parameters: {...}",
+      "};"
+    ]
   }
 }
