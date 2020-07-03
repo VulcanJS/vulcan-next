@@ -28,7 +28,7 @@ interface ButtonProps extends MuiButtonProps {
 export const Button = (props: ButtonProps) => {
   const { preferredTechnology, ...muiButtonProps } = props;
   return (
-    <div>
+    <span>
       <MuiButton
         {...muiButtonProps}
         className={clsx("vns-button", props.className)}
@@ -42,7 +42,7 @@ export const Button = (props: ButtonProps) => {
           }
         `}
       </style>
-    </div>
+    </span>
   );
 };
 export default Button;
