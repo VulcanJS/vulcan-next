@@ -1,6 +1,8 @@
 /**
  * Demo of a button with some custom style,
  * combining styled-jsx and material-ui
+ *
+ * NOTE: if you use Material UI, we advise to use Styled Components instead
  */
 // NOTE: you don't need to import React, it will be added at build time by Babel/Next
 

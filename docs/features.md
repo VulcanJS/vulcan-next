@@ -244,13 +244,23 @@ See `.storybook/mocks/packages` and `.storybook/main.js`, we use Webpack alias t
 
 Run `yarn run analyze-bundle` to get insight on your Webpack build.
 
-## Material UI
+## Styling
+
+### Alternative 1: Material UI and Styled Components
 
 Initial setup based on [official Next example](https://github.com/mui-org/material-ui/tree/master/examples/nextjs).
 
-We try to reduce the foot print of Material UI for an easy remove. In next iterations, we'll try to make it fully pluggable, like in Vulcan Meteor, so you can easily swap your UI system.
+We try to reduce the footprint of Material UI for an easy remove. In next iterations, we'll try to make it fully pluggable, like in Vulcan Meteor, so you can easily swap your UI system.
 
-### PostCSS for easier override using Next
+We also include Styled Components. Why not using CSS-in-JS solution of Material UI? [Read this issue to get answers.](https://github.com/VulcanJS/vulcan-next-starter/issues/53)
+
+We will also try to make Styled Components easier to remove in future updates.
+
+### Alternative 2: Styled-jsx and PostCSS (+ your CSS framework of choice)
+
+[Styled-jsx is the builtin styling solution of Next](https://nextjs.org/docs/basic-features/built-in-css-support).
+
+#### PostCSS for easier override using Next
 
 In VNS, we favour out-of-the-box solutions from Next to style the app, so basically [styled-jsx](https://github.com/vercel/styled-jsx) and CSS modules.
 However, [usage with Material UI and more broadly override of child components is not very elegant.](https://github.com/vercel/styled-jsx/issues/142)

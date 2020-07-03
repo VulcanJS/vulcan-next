@@ -79,6 +79,7 @@
     "react-dom": "16.13.0",
     "react-hook-form": "4.9.8",
     "react-i18next": "^11.5.0",
+    "styled-components": "^5.1.1",
     "styled-jsx-plugin-postcss": "^2.0.1"
   },
   "devDependencies": {
@@ -101,11 +102,13 @@
     "@types/react": "^16.9.23",
     "@types/react-dom": "^16.9.5",
     "@types/shelljs": "^0.8.8",
+    "@types/styled-components": "^5.1.0",
     "@typescript-eslint/eslint-plugin": "^2.21.0",
     "@typescript-eslint/parser": "^2.21.0",
     "add": "^2.0.6",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
+    "babel-plugin-styled-components": "^1.10.7",
     "cypress": "4.8.0",
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.18.3",

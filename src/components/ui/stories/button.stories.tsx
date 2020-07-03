@@ -1,26 +1,38 @@
 import React from "react";
-import { Button } from "../Button";
+import StyledComponentsButton from "../StyledComponentsButton";
+import StyledJSXButton from "../StyledJsxButton";
 // import { action } from "@storybook/addon-actions";
 
 const defaultProps = {};
 
 export default {
   title: "vns/design-system/Button",
-  component: Button,
   //  decoractors: [(storyFn) => <div>{storyFn()}</div>
 };
 
-export const basic = () => <Button {...defaultProps}>Click me</Button>;
-export const dynamicStyleFromProps = () => (
+export const styledJSX = () => (
   <div>
-    <Button {...defaultProps}>None</Button>
-    <Button preferredTechnology="react">React</Button>
-    <Button preferredTechnology="vulcan">Vulcan</Button>
-    <Button preferredTechnology="graphql">GraphQL</Button>
+    <StyledJSXButton {...defaultProps}>None</StyledJSXButton>
+    <StyledJSXButton preferredTechnology="react">React</StyledJSXButton>
+    <StyledJSXButton preferredTechnology="vulcan">Vulcan</StyledJSXButton>
+    <StyledJSXButton preferredTechnology="graphql">GraphQL</StyledJSXButton>
   </div>
 );
-basic.story = {
-  name: "default props",
-  // decorators: [...],
-  // parameters: {...}
-};
+styledJSX.storyName = "Styled JSX + MUI + Dynamic props";
+
+export const styledComponents = () => (
+  <div>
+    <StyledComponentsButton {...defaultProps}>None</StyledComponentsButton>
+    <StyledComponentsButton preferredTechnology="react">
+      React
+    </StyledComponentsButton>
+    <StyledComponentsButton preferredTechnology="vulcan">
+      Vulcan
+    </StyledComponentsButton>
+    <StyledComponentsButton preferredTechnology="graphql">
+      GraphQL
+    </StyledComponentsButton>
+  </div>
+);
+
+styledComponents.storyName = "Styled Components + MUI + Dynamic Props";
