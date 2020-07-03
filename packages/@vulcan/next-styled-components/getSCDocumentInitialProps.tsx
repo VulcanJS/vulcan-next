@@ -1,14 +1,8 @@
 import React from "react";
 import { ServerStyleSheet } from "styled-components";
+import { AppSheetsCollector } from "@vulcan/next-style-collector";
 
-// Generic type for libs that will collect styles
-interface AppSheetCollector {
-  sheets: { getStyleElement: Function };
-  enhanceApp: Function;
-  finally?: Function;
-}
-
-export const getAppEnhancer = (): AppSheetCollector => {
+export const getAppEnhancer = (): AppSheetsCollector => {
   const sheet = new ServerStyleSheet();
   const enhanceApp = (App) => (props) =>
     sheet.collectStyles(<App {...props} />);

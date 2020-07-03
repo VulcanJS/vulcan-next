@@ -18,6 +18,7 @@ import {
   //getSCDocumentInitialProps,
 } from "@vulcan/next-styled-components";
 import { i18nPropsFromCtx, DocumentLanguageProps } from "~/lib/i18n";
+import { ServerStyleSheets } from "@material-ui/core";
 
 interface VNSDocumentProps {
   i18nDocumentProps: Partial<DocumentLanguageProps>;
@@ -56,32 +57,38 @@ MyDocument.getInitialProps = async (ctx) => {
 
   // Enhance Next page renderer so it also applies MUI and Styled Components stylesheets collectors
   const originalRenderPage = ctx.renderPage;
-  ctx.renderPage = () =>
-    originalRenderPage({
-      enhanceApp: (App) => (props) => {
-        const enhanced = enhancers.reduce((_enhanced, enhancer) => {
-          return enhancer.enhanceApp(_enhanced);
-        }, App);
-        return enhanced(props);
-        //return scAppEnhancer.enhanceApp(muiAppEnhancer.enhanceApp(App))(props);
-      },
+  try {
+    ctx.renderPage = () =>
+      originalRenderPage({
+        enhanceApp: (App) => (props) => {
+          const enhanced = enhancers.reduce((_enhanced, enhancer) => {
+            return enhancer.enhanceApp(_enhanced);
+          }, App);
+          return enhanced(props);
+          //return scAppEnhancer.enhanceApp(muiAppEnhancer.enhanceApp(App))(props);
+        },
+      });
+
+    // Run the renderer
+    const initialProps = await Document.getInitialProps(ctx);
+
+    // i18n
+    const i18nDocumentProps = i18nPropsFromCtx(ctx);
+
+    return {
+      ...initialProps,
+      i18nDocumentProps,
+      // Stylesheets have been collected during the getInitialProps call, we can now get the styles
+      styles: (
+        <>
+          {initialProps.styles}
+          {enhancers.map((e) => e.sheets.getStyleElement())}
+        </>
+      ),
+    };
+  } finally {
+    enhancers.forEach((e) => {
+      if (e.finally) e.finally(); // for example will seal stylesheet for Styled Components
     });
-
-  // Run the renderer
-  const initialProps = await Document.getInitialProps(ctx);
-
-  // i18n
-  const i18nDocumentProps = i18nPropsFromCtx(ctx);
-
-  return {
-    ...initialProps,
-    i18nDocumentProps,
-    // Stylesheets have been collected during the getInitialProps call, we can now get the styles
-    styles: (
-      <>
-        {initialProps.styles}
-        {enhancers.map((e) => e.sheets.getStyleElement())}
-      </>
-    ),
-  };
+  }
 };

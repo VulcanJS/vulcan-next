@@ -1,14 +1,8 @@
 import React from "react";
 import { ServerStyleSheets } from "@material-ui/core/styles";
+import { AppSheetsCollector } from "@vulcan/next-style-collector";
 
-// Generic type for libs that will collect styles
-interface AppSheetCollector {
-  sheets: { getStyleElement: Function };
-  enhanceApp: Function;
-  finally?: Function;
-}
-
-export const getAppEnhancer = (): AppSheetCollector => {
+export const getAppEnhancer = (): AppSheetsCollector => {
   const sheets = new ServerStyleSheets();
   const enhanceApp = (App) => (props) => sheets.collect(<App {...props} />);
   return {
