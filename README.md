@@ -4,6 +4,8 @@
 
 [Check the features](https://github.com/VulcanJS/vulcan-next-starter/tree/devel/docs/features.md)
 
+[Read the introductory article](https://www.freecodecamp.org/news/how-to-replace-meteor-by-next-introducing-vulcan-next-starter/)
+
 ## Install and run
 
 ```
