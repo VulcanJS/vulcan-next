@@ -23,7 +23,7 @@ const MODAL_MODIFIERS: ModifiersConfig = {
 };
 
 interface WithModifiers {
-  modifiers: ModifierKeys;
+  modifiers?: ModifierKeys;
 }
 const ModalWrapper = styled.div<WithModifiers>`
   max-width: 800px;

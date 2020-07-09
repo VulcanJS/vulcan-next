@@ -35,7 +35,7 @@ function VNSApp({ Component, pageProps }: AppProps) {
         />
       </Head>
       <MuiThemeProvider>
-        <SCThemeProvider theme={{}}>
+        <SCThemeProvider>
           <AppLayout>
             <Component {...pageProps} />
           </AppLayout>
