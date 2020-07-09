@@ -246,6 +246,12 @@ Run `yarn run analyze-bundle` to get insight on your Webpack build.
 
 ## Styling
 
+### Polished
+
+We include [Polished](https://polished.js.org/), a kind of Lodash for styling supported by the Styled Components community.
+
+
+
 ### Alternative 1: Material UI and Styled Components
 
 Initial setup based on [official Next example](https://github.com/mui-org/material-ui/tree/master/examples/nextjs).
@@ -255,6 +261,14 @@ We try to reduce the footprint of Material UI for an easy remove. In next iterat
 We also include Styled Components. Why not using CSS-in-JS solution of Material UI? [Read this issue to get answers.](https://github.com/VulcanJS/vulcan-next-starter/issues/53)
 
 We will also try to make Styled Components easier to remove in future updates.
+
+#### Styled Components Modifiers
+
+We demo [Styled Components Modifiers](https://github.com/Decisiv/styled-components-modifiers), a powerful way to add modifiers props on your elements (options like "large", "warning", "dark"...).
+
+### Theme switch demo
+
+We demo a theme switch button, using React context. See `lib/providers` for sources and sample Storybook stories.
 
 ### Alternative 2: Styled-jsx and PostCSS (+ your CSS framework of choice)
 

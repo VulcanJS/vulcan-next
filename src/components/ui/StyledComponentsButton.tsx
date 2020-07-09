@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 import colors from "~/lib/style/colors";
 import styled from "styled-components";
+import { lighten } from "polished";
 
 const technologyToColor = {
   react: colors.lightBlueReact,
@@ -37,8 +38,24 @@ export const Button = (props: ButtonProps) => {
 const StyledButton = styled(Button)`
   &.MuiButton-root {
     /* The & is mandatory to have the correct specificity*/
-    color: ${(props) =>
+    background-color: ${(props) =>
       technologyToColor[props.preferredTechnology] || colors.blueNext};
+
+    transition: "background-color 0.2s linear";
+
+    &:hover {
+      background-color: ${colors.yellowVulcan};
+    }
+    &:focus {
+      outline: 2px solid ${colors.blueNext};
+      outline-offset: 1px;
+    }
+    &:active {
+      background-color: ${colors.darkOrangeVulcan};
+    }
+    &:disabled {
+      background-color: ${lighten(0.6, colors.greyVulcan)};
+    }
   }
 `;
 export default StyledButton;

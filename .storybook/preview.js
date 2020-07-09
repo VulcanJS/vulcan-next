@@ -2,7 +2,7 @@ import * as React from "react";
 // Globally in your .storybook/preview.js.
 import { addDecorator } from "@storybook/react";
 // import { withInfo } from "@storybook/addon-info";
-import MuiProvider from "~/components/provider/MuiProvider";
+import { MuiThemeProvider, SCThemeProvider } from "~/components/providers";
 import { I18nextProvider } from "react-i18next";
 import { i18n } from "~/lib/i18n";
 import { AppLayout } from "~/components/layout";
@@ -16,7 +16,8 @@ import { AppLayout } from "~/components/layout";
 //  </MockedProvider>
 //);
 
-const withMui = (storyFn) => <MuiProvider>{storyFn()}</MuiProvider>;
+const withMui = (storyFn) => <MuiThemeProvider>{storyFn()}</MuiThemeProvider>;
+const withSC = (storyFn) => <SCThemeProvider>{storyFn()}</SCThemeProvider>;
 
 const withI18n = (storyFn) => (
   <React.Suspense fallback={"Loading i18n..."}>
@@ -30,6 +31,7 @@ const withAppLayout = (storyFn) => <AppLayout>{storyFn()}</AppLayout>;
 
   /*withApolloMockProvider*/
   withMui,
+  withSC,
   withI18n,
   withAppLayout,
 ].forEach(addDecorator);

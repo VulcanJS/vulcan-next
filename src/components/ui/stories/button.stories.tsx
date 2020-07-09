@@ -36,3 +36,9 @@ export const styledComponents = () => (
 );
 
 styledComponents.storyName = "Styled Components + MUI + Dynamic Props";
+
+export const disabled = () => (
+  <StyledComponentsButton disabled {...defaultProps}>
+    Disabled
+  </StyledComponentsButton>
+);
