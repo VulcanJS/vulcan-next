@@ -116,6 +116,19 @@ For example, we use it to inject current version into the `html` tag for better 
 
 Run `yarn auto-changelog` to compute a new changelog. Works best in combination with `yarn version` (to create git version tags automatically) and `git merge --no-ff your-feature` (to get merge commits).
 
+### Design system best practices
+
+Based on [Emma Bostian's course on Frontend Masters](https://frontendmasters.com/courses/design-systems), we include basic examples and libraries to get you started writing a design system for your UI. This means:
+
+- An example of a styled button, with Material UI and Styled Components
+- A modal example
+- Animations with react-spring
+- A powerful Storybook configuration
+
+See `src/components/ui` for the code, and run Storybook to see the demos.
+
+No more excuses to make dull UIs, you have all the tools you need :)
+
 ## Serverless internationalization
 
 ### i18n without custom server

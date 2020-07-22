@@ -80,6 +80,7 @@
     "react-dom": "16.13.0",
     "react-hook-form": "4.9.8",
     "react-i18next": "^11.5.0",
+    "react-spring": "^8.0.27",
     "styled-components": "^5.1.1",
     "styled-components-modifiers": "^1.2.5",
     "styled-jsx-plugin-postcss": "^2.0.1"

@@ -1,5 +1,8 @@
 /**
- * Demo of a modal with styled-components-modifiers
+ * Demo of a modal
+ * - with styled-components-modifiers, which allows
+ * easy switch between different styles, based on props
+ * - with react-spring, for physics based animation
  */
 import colors from "~/lib/style/colors";
 import styled from "styled-components";
@@ -9,6 +12,7 @@ import {
   ModifiersProp,
   ModifierKeys,
 } from "styled-components-modifiers";
+import { useSpring, animated } from "react-spring";
 
 const MODAL_MODIFIERS: ModifiersConfig = {
   // TODO: not style autocompletion
@@ -22,10 +26,14 @@ const MODAL_MODIFIERS: ModifiersConfig = {
   `,
 };
 
+// This type should be included out-of-the bow in future versions of styled-components-modifiers
+// @see https://github.com/Decisiv/styled-components-modifiers/pull/52
+// @see https://github.com/Decisiv/styled-components-modifiers/pull/53/files
 interface WithModifiers {
   modifiers?: ModifierKeys;
 }
-const ModalWrapper = styled.div<WithModifiers>`
+
+const ModalWrapper = styled(animated.div)<WithModifiers>`
   max-width: 800px;
   height: 500px;
   box-shadow: 2px 2px 1px 4px ${colors.pinkGraphql};
@@ -40,8 +48,17 @@ const ModalWrapper = styled.div<WithModifiers>`
 interface ModalProps extends WithModifiers {
   children: React.ReactNode;
 }
-export const Modal = ({ children, modifiers }: ModalProps) => (
-  <ModalWrapper modifiers={modifiers}>{children}</ModalWrapper>
-);
+export const Modal = ({ children, modifiers }: ModalProps) => {
+  const animation = useSpring({
+    opacity: 1,
+    transform: "scale3d(1,1,1)",
+    from: { opacity: 0, transform: "scale3d(1, 0, 1)" },
+  });
+  return (
+    <ModalWrapper style={animation} modifiers={modifiers}>
+      {children}
+    </ModalWrapper>
+  );
+};
 
 export default Modal;
