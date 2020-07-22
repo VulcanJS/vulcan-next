@@ -304,6 +304,16 @@ See `build:docker` command.
 Running Cypress in Docker makes it easier to run your tests locally, while you keep coding.
 You can also use this file for your CI/CD process.
 
+### 3rd party tooling as optional dependencies
+
+As a default, Jest, Cypress, Storybook and any other 3rd party tooling is installed as optional dependencies.
+
+- "dependencies" is what your app need to run
+- "devDependencies" is what your app need to be built
+- "optionalDependencies" is everything else
+
+Package.json naming  convention are not intuitive and do not allow for a clean, environment-based distinction between packages. So that's the best we could do! 
+
 ## Not yet implemented:
 
 ### Storybook

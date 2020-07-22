@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . /app
 
-RUN yarn install --frozen-lockfile
+RUN yarn install --ignore-optional --pure-lockfile
 # If you want to reduce the bundle size
 # RUN yarn cache clean
 
