@@ -12,19 +12,26 @@ if (process.env.ANALYZE === "true") {
 }
 module.exports = {
   stories: [
-    "../stories/**/*.stories.@(js|ts|jsx|tsx)",
-    "../src/**/*.stories.@(js|ts|jsx|tsx)",
+    "../stories/**/*.stories.@(js|ts|jsx|tsx|mdx)",
+    "../src/**/*.stories.@(js|ts|jsx|tsx|mdx)",
   ],
-  addons: ["@storybook/addon-actions", "@storybook/addon-links"],
+  addons: [
+    "@storybook/addon-actions",
+    "@storybook/addon-links",
+    "@storybook/addon-docs", // it seems that MDX is enabled as a default
+    // "@storybook/addon-contexts", // TODO: waiting for v6.0.0 to be released
+    "@storybook/addon-backgrounds",
+  ],
   // https://github.com/storybookjs/storybook/blob/next/docs/src/pages/configurations/custom-webpack-config/index.md#debug-the-default-webpack-config
   webpackFinal: async (config, { configType }) => {
     // add magic imports and isomorphic imports to Storybook
     const withVulcan = extendWebpackConfig("client")(config);
 
-    // add mdx support
+    // add mdx support, in components
     // @see https://mdxjs.com/getting-started/webpack
     withVulcan.module.rules.push({
       test: /\.mdx?$/,
+      exclude: /\.stories.mdx?$/, // ignore stories themselves, that should be handled by addon-docs
       use: ["babel-loader", "@mdx-js/loader"],
     });
     // Bypass interference with Storybook doc, which already set a conflicting rule for .md import

@@ -1,11 +1,21 @@
 import * as React from "react";
 // Globally in your .storybook/preview.js.
-import { addDecorator } from "@storybook/react";
+import { addDecorator, addParameters } from "@storybook/react";
 // import { withInfo } from "@storybook/addon-info";
 import { MuiThemeProvider, SCThemeProvider } from "~/components/providers";
 import { I18nextProvider } from "react-i18next";
 import { i18n } from "~/lib/i18n";
 import { AppLayout } from "~/components/layout";
+
+// import { withContexts } from "@storybook/addon-contexts/react"
+// import  { contexts } from "./contexts"
+
+import { backgrounds } from "./backgrounds";
+export const parameters = {
+  // FIXME: for some reason the extension stop working when we set custom backgrounds
+  backgrounds,
+  // ...withContext(contexts)
+};
 
 // If you need to mock apollo queries
 //import { MockedProvider } from "@apollo/react-testing";
