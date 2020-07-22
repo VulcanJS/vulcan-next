@@ -1,6 +1,6 @@
 import * as React from "react";
 // Globally in your .storybook/preview.js.
-import { addDecorator, addParameters } from "@storybook/react";
+import { withKnobs } from "@storybook/addon-knobs";
 // import { withInfo } from "@storybook/addon-info";
 import { MuiThemeProvider, SCThemeProvider } from "~/components/providers";
 import { I18nextProvider } from "react-i18next";
@@ -36,12 +36,13 @@ const withI18n = (storyFn) => (
 );
 
 const withAppLayout = (storyFn) => <AppLayout>{storyFn()}</AppLayout>;
-[
-  // @see https://gist.github.com/justincy/c1075650b1d5ba448c50eaf83cbb4ffe
 
+export const decorators = [
+  // @see https://gist.github.com/justincy/c1075650b1d5ba448c50eaf83cbb4ffe
   /*withApolloMockProvider*/
   withMui,
   withSC,
   withI18n,
   withAppLayout,
-].forEach(addDecorator);
+  withKnobs,
+];

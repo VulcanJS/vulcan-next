@@ -1,9 +1,17 @@
 import React from "react";
 import StyledComponentsButton from "../StyledComponentsButton";
 import StyledJSXButton from "../StyledJsxButton";
-// import { action } from "@storybook/addon-actions";
+import { action } from "@storybook/addon-actions";
+import { boolean } from "@storybook/addon-knobs";
 
-const defaultProps = {};
+const defaultProps = {
+  onClick: () => {
+    // FIXME: We currently need not to pass the event
+    // Will probably be fixed in official v6 release
+    // @see https://github.com/storybookjs/storybook/issues/6471
+    action("You clicked a button")();
+  },
+};
 
 export default {
   title: "vns/design-system/Button",
@@ -12,10 +20,21 @@ export default {
 
 export const styledJSX = () => (
   <div>
-    <StyledJSXButton {...defaultProps}>None</StyledJSXButton>
-    <StyledJSXButton preferredTechnology="react">React</StyledJSXButton>
-    <StyledJSXButton preferredTechnology="vulcan">Vulcan</StyledJSXButton>
-    <StyledJSXButton preferredTechnology="graphql">GraphQL</StyledJSXButton>
+    <StyledJSXButton
+      {...defaultProps}
+      disabled={boolean("Disabled None button", false)}
+    >
+      None
+    </StyledJSXButton>
+    <StyledJSXButton {...defaultProps} preferredTechnology="react">
+      React
+    </StyledJSXButton>
+    <StyledJSXButton {...defaultProps} preferredTechnology="vulcan">
+      Vulcan
+    </StyledJSXButton>
+    <StyledJSXButton {...defaultProps} preferredTechnology="graphql">
+      GraphQL
+    </StyledJSXButton>
   </div>
 );
 styledJSX.storyName = "Styled JSX + MUI + Dynamic props";
@@ -23,13 +42,13 @@ styledJSX.storyName = "Styled JSX + MUI + Dynamic props";
 export const styledComponents = () => (
   <div>
     <StyledComponentsButton {...defaultProps}>None</StyledComponentsButton>
-    <StyledComponentsButton preferredTechnology="react">
+    <StyledComponentsButton {...defaultProps} preferredTechnology="react">
       React
     </StyledComponentsButton>
-    <StyledComponentsButton preferredTechnology="vulcan">
+    <StyledComponentsButton {...defaultProps} preferredTechnology="vulcan">
       Vulcan
     </StyledComponentsButton>
-    <StyledComponentsButton preferredTechnology="graphql">
+    <StyledComponentsButton {...defaultProps} preferredTechnology="graphql">
       GraphQL
     </StyledComponentsButton>
   </div>
@@ -38,7 +57,7 @@ export const styledComponents = () => (
 styledComponents.storyName = "Styled Components + MUI + Dynamic Props";
 
 export const disabled = () => (
-  <StyledComponentsButton disabled {...defaultProps}>
+  <StyledComponentsButton {...defaultProps} disabled>
     Disabled
   </StyledComponentsButton>
 );
