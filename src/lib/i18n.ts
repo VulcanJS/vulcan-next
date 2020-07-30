@@ -1,4 +1,5 @@
 import I18N from "next-i18next";
+import path from "path";
 import getConfig from "next/config";
 import { IncomingMessage } from "http";
 import { NextPageContext } from "next";
@@ -8,10 +9,12 @@ import { NextPageContext } from "next";
 const { publicRuntimeConfig = {} } = getConfig();
 const { localeSubpaths = {} } = publicRuntimeConfig;
 
+console.log(__dirname, path.resolve(__dirname, "../../public/locales"));
 const i18nInstance = new I18N({
   defaultLanguage: "en",
   otherLanguages: ["fr"],
   localeSubpaths,
+  localePath: path.resolve("./public/locales"),
 });
 
 // reexport everything
