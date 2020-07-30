@@ -2,7 +2,7 @@ import React from "react";
 import { Modal } from "../Modal";
 import { Typography } from "@material-ui/core";
 // import { action } from "@storybook/addon-actions";
-import { text } from "@storybook/addon-knobs";
+// Prefer addon-control
 
 const defaultProps = {};
 
@@ -12,12 +12,10 @@ export default {
   //  decoractors: [(storyFn) => <div>{storyFn()}</div>
 };
 
-export const basic = () => (
-  <Modal {...defaultProps}>
+export const basic = (args) => (
+  <Modal {...defaultProps} {...args}>
     <div>
-      <Typography>
-        {text("content", "I am an humble modal content.")}
-      </Typography>
+      <Typography>"I am an humble modal content.</Typography>
     </div>
   </Modal>
 );
@@ -30,9 +28,7 @@ basic.story = {
 export const vulcan = () => (
   <Modal modifiers={["vulcan"]} {...defaultProps}>
     <div>
-      <Typography>
-        {text("content", "I am a Vulcan modal, very orange.")}
-      </Typography>
+      <Typography>"I am a Vulcan modal, very orange."</Typography>
     </div>
   </Modal>
 );

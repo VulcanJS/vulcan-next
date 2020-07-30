@@ -2,7 +2,8 @@ import React from "react";
 import StyledComponentsButton from "../StyledComponentsButton";
 import StyledJSXButton from "../StyledJsxButton";
 import { action } from "@storybook/addon-actions";
-import { boolean } from "@storybook/addon-knobs";
+// Prefer addons-control
+// import { boolean } from "@storybook/addon-knobs";
 
 const defaultProps = {
   onClick: () => {
@@ -20,12 +21,7 @@ export default {
 
 export const styledJSX = () => (
   <div>
-    <StyledJSXButton
-      {...defaultProps}
-      disabled={boolean("Disabled None button", false)}
-    >
-      None
-    </StyledJSXButton>
+    <StyledJSXButton {...defaultProps}>None</StyledJSXButton>
     <StyledJSXButton {...defaultProps} preferredTechnology="react">
       React
     </StyledJSXButton>

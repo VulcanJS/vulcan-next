@@ -24,6 +24,7 @@ module.exports = {
     // "@storybook/addon-knobs", // Knob is not installed as a default anymore, we prefer to use the more intuitive "controls" addon
     // @see https://medium.com/storybookjs/storybook-controls-ce82af93e430
     "@storybook/addon-controls",
+    "@storybook/addon-a11y",
   ],
   // https://github.com/storybookjs/storybook/blob/next/docs/src/pages/configurations/custom-webpack-config/index.md#debug-the-default-webpack-config
   webpackFinal: async (config, { configType }) => {
