@@ -62,15 +62,18 @@ const AppLayout = ({ children }: AppLayoutProps) => (
         /* Text spacing */
         p,
         p.MuiTypography-root {
-          margin-bottom: 1em;
+          margin-bottom: 0.6em;
         }
         h1,
-        h2,
         h3,
         h4,
         h5,
         h6 {
           margin-top: 32px;
+          margin-bottom: 16px;
+        }
+        h2 {
+          margin-top: 48px;
           margin-bottom: 16px;
         }
       }

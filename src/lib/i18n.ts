@@ -1,18 +1,18 @@
 import I18N from "next-i18next";
 import path from "path";
-import getConfig from "next/config";
+// import getConfig from "next/config";
 import { IncomingMessage } from "http";
 import { NextPageContext } from "next";
 
 // NOTE: publicRuntimeConfig can be undefined if you just provide an empty object
 // @see https://github.com/vercel/next.js/issues/6249#issuecomment-643259623
-const { publicRuntimeConfig = {} } = getConfig();
-const { localeSubpaths = {} } = publicRuntimeConfig;
-
+// @see https://github.com/VulcanJS/vulcan-next-starter/issues/62
+//const { publicRuntimeConfig = {} } = getConfig();
+//const { localeSubpaths = {} } = publicRuntimeConfig;
 const i18nInstance = new I18N({
   defaultLanguage: "en",
   otherLanguages: ["fr"],
-  localeSubpaths,
+  localeSubpaths: {},
   localePath: path.resolve("./public/locales"),
 });
 
