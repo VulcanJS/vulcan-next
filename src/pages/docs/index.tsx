@@ -1,38 +1,27 @@
-import Link from "next/link";
-import fsSync, { promises as fs } from "fs";
-import path from "path";
-const DocIndex = ({ mdFiles = [] }) => (
-  <ul>
-    {mdFiles.map(({ fileName, pageName }) => (
-      <li key={pageName}>
-        <Link href={`/docs/${fileName}`}>{pageName}</Link>
-      </li>
-    ))}
-  </ul>
+import { Link } from "@vulcan/next-material-ui"; // "next/link";
+import { List, ListItem, Typography } from "@material-ui/core";
+import entries from "../../../docs/entries";
+
+const DocIndex = ({ pages = [] }) => (
+  <div style={{ margin: "32px auto", maxWidth: "1200px" }}>
+    <Typography variant="h1">VNS Documentation</Typography>
+    <List>
+      {pages.map((pageName) => (
+        <Link href={`/docs/${pageName}`}>
+          <ListItem button key={pageName}>
+            <Typography style={{ textTransform: "capitalize" }}>
+              {pageName}
+            </Typography>
+          </ListItem>
+        </Link>
+      ))}
+    </List>
+  </div>
 );
 
 export const getStaticProps = async () => {
-  const docsDir = path.resolve("./docs"); // relative to the project root
-  const fileNames = await fs.readdir(docsDir);
-  const files = fileNames.map((fileName) => ({
-    relativePath: path.join(docsDir, fileName),
-    fileName,
-  }));
-
-  let mdFiles = [];
-  let folders = [];
-  files.forEach((file) => {
-    if (file.fileName.match(/.mdx?$/)) {
-      const mdFile = {
-        ...file,
-        pageName: file.fileName.split(".").slice(0, -1).join("."),
-      };
-      mdFiles.push(mdFile);
-    } else if (fsSync.lstatSync(file.relativePath).isDirectory()) {
-      folders.push(file);
-    }
-  });
-  return { props: { mdFiles } };
+  const pages = Object.keys(entries);
+  return { props: { pages } };
 };
 
 export default DocIndex;

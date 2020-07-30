@@ -7,6 +7,7 @@ import {
   TableCell,
   TableRow,
   Link,
+  List,
 } from "@material-ui/core";
 
 interface MDXLayoutProps {
@@ -24,8 +25,16 @@ const components = {
   //thematicBreak: Typography,
   //blockquote: Typography,
   //ul: List,
-  //ol: ListItem,
-  //li: ListItem,
+  ol: (props) => (
+    <p>
+      - <Typography component={"span"} variant="body2" {...props} />
+    </p>
+  ),
+  li: (props) => (
+    <p>
+      - <Typography component={"span"} variant="body2" {...props} />
+    </p>
+  ),
   table: Table,
   thead: TableHead,
   tbody: TableBody,

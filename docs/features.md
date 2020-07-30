@@ -66,7 +66,7 @@ Relevant docs:
 
 ## Code architecture and build
 
-### Code in `src`
+### Code in `src`
 
 All your code should go into the `/src` directory ([doc](https://nextjs.org/docs/advanced-features/src-directory)).
 
@@ -92,7 +92,7 @@ Relative imports are a huge mess to support. A relative import should never go f
 We allow folders and packages to contain an `index.client` or `index.server` file, that will be used at build time depending on the environment.
 /!\ You still need to have a bare `index` file alongside those environment specific file. Otherwise TypeScript will complain (see the "Learnings" documentation for more details).
 
-### Env variables in .env
+#### Env variables in .env
 
 We demo Next.js 9.4 new feature, `.env` file support. Open `.env.development` to see the default development variables.
 
@@ -263,8 +263,6 @@ Run `yarn run analyze-bundle` to get insight on your Webpack build.
 
 We include [Polished](https://polished.js.org/), a kind of Lodash for styling supported by the Styled Components community.
 
-
-
 ### Alternative 1: Material UI and Styled Components
 
 Initial setup based on [official Next example](https://github.com/mui-org/material-ui/tree/master/examples/nextjs).
@@ -312,7 +310,7 @@ As a default, Jest, Cypress, Storybook and any other 3rd party tooling is instal
 - "devDependencies" is what your app need to be built
 - "optionalDependencies" is everything else
 
-Package.json naming  convention are not intuitive and do not allow for a clean, environment-based distinction between packages. So that's the best we could do! 
+Package.json naming convention are not intuitive and do not allow for a clean, environment-based distinction between packages. So that's the best we could do!
 
 ## Not yet implemented:
 
