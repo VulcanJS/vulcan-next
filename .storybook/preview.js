@@ -1,6 +1,6 @@
 import * as React from "react";
 // Globally in your .storybook/preview.js.
-import { withKnobs } from "@storybook/addon-knobs";
+// import { withKnobs } from "@storybook/addon-knobs"; // We don't install Knobs as a default anymore, favouring Controls instead
 // import { withInfo } from "@storybook/addon-info";
 import { MuiThemeProvider, SCThemeProvider } from "~/components/providers";
 import { I18nextProvider } from "react-i18next";
@@ -44,5 +44,5 @@ export const decorators = [
   withSC,
   withI18n,
   withAppLayout,
-  withKnobs,
+  //withKnobs,
 ];

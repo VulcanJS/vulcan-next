@@ -61,3 +61,19 @@ export const disabled = () => (
     Disabled
   </StyledComponentsButton>
 );
+
+export const addonControl = (args) => (
+  <StyledComponentsButton {...defaultProps} {...args} />
+);
+addonControl.args = {
+  ...defaultProps,
+  children: "Tweak me in the Control tab!",
+};
+addonControl.argTypes = {
+  preferredTechnology: {
+    control: {
+      type: "select",
+      options: ["react", "vulcan", "graphql"],
+    },
+  },
+};

@@ -21,7 +21,9 @@ module.exports = {
     "@storybook/addon-docs", // it seems that MDX is enabled as a default
     // "@storybook/addon-contexts", // TODO: waiting for v6.0.0 to be released
     "@storybook/addon-backgrounds",
-    "@storybook/addon-knobs",
+    // "@storybook/addon-knobs", // Knob is not installed as a default anymore, we prefer to use the more intuitive "controls" addon
+    // @see https://medium.com/storybookjs/storybook-controls-ce82af93e430
+    "@storybook/addon-controls",
   ],
   // https://github.com/storybookjs/storybook/blob/next/docs/src/pages/configurations/custom-webpack-config/index.md#debug-the-default-webpack-config
   webpackFinal: async (config, { configType }) => {
