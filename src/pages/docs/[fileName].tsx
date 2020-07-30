@@ -47,8 +47,8 @@ export const getStaticPaths = async () => {
   //  relativePath: path.join(docsDir, fileName),
   //  fileName,
   //}));
-  const mdFileNames = mdFiles.map((f) => f.fileName);
-  return mdFileNames;
+  const mdFileRoutes = mdFiles.map((f) => `/docs/${f.fileName}`);
+  return { paths: mdFileRoutes, fallback: false };
 };
 
 export default DocPage;
