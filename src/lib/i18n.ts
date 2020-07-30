@@ -9,7 +9,6 @@ import { NextPageContext } from "next";
 const { publicRuntimeConfig = {} } = getConfig();
 const { localeSubpaths = {} } = publicRuntimeConfig;
 
-console.log(__dirname, path.resolve(__dirname, "../../public/locales"));
 const i18nInstance = new I18N({
   defaultLanguage: "en",
   otherLanguages: ["fr"],
