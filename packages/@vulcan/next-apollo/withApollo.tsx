@@ -17,7 +17,7 @@ import { NormalizedCacheObject } from "apollo-cache-inmemory";
 import { getDataFromTree as getDataFromTreeDefault } from "@apollo/react-ssr";
 
 // support the same options as next-with-apollo, but also additional client config + ssr activation
-interface VulcanWithApolloOptions extends WithApolloOptions {
+export interface VulcanWithApolloOptions extends WithApolloOptions {
   graphqlUri?: string;
   ssr?: boolean;
 }
@@ -35,7 +35,7 @@ const renderWithApolloProvider = ({ Page, props }) => {
     </ApolloProvider>
   );
 };
-export default (Page: NextPage, options: VulcanWithApolloOptions = {}) => {
+const vulcanWithApollo = (Page: NextPage, options: VulcanWithApolloOptions = {}) => {
   const mergedOptions = { ...defaultOptions, ...options };
   const {
     graphqlUri,
@@ -53,3 +53,5 @@ export default (Page: NextPage, options: VulcanWithApolloOptions = {}) => {
     render: renderWithApolloProvider,
   })(Page, withApolloOptions);
 };
+
+export default vulcanWithApollo;

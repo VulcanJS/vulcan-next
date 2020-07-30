@@ -41,7 +41,7 @@ const components = {
   a: Link,
   //img: Typography,
 };
-export default ({ children }: MDXLayoutProps) => {
+const MDXMuiLayout = ({ children }: MDXLayoutProps) => {
   return (
     <MDXProvider components={components}>
       <div className="MDXProvider root">{children}</div>
@@ -54,3 +54,4 @@ export default ({ children }: MDXLayoutProps) => {
     </MDXProvider>
   );
 };
+export default MDXMuiLayout;
