@@ -33,3 +33,6 @@ coverage-e2e/
 coverage-unit
 reports/
 storybook-static
+
+# mdx enhanced
+.mdx-data

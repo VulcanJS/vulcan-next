@@ -6,7 +6,7 @@ import Document, {
   Head,
   Main,
   NextScript,
-  DocumentInitialProps,
+  //DocumentInitialProps,
 } from "next/document";
 import theme from "~/lib/material-ui/defaultTheme";
 import {
@@ -18,7 +18,6 @@ import {
   //getSCDocumentInitialProps,
 } from "@vulcan/next-styled-components";
 import { i18nPropsFromCtx, DocumentLanguageProps } from "~/lib/i18n";
-import { ServerStyleSheets } from "@material-ui/core";
 
 interface VNSDocumentProps {
   i18nDocumentProps: Partial<DocumentLanguageProps>;

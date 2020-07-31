@@ -7,7 +7,6 @@ import {
   TableCell,
   TableRow,
   Link,
-  List,
 } from "@material-ui/core";
 
 interface MDXLayoutProps {
@@ -57,7 +56,7 @@ const MDXMuiLayout = ({ children }: MDXLayoutProps) => {
       <style jsx>{`
         .MDXProvider.root {
           margin: 32px auto;
-          max-width: 1200px;
+          max-width: 1000px;
         }
       `}</style>
     </MDXProvider>
