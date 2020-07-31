@@ -1,6 +1,6 @@
-import { /*fsSync, */ promises as fs } from "fs";
 import path from "path";
 import { Link } from "@vulcan/next-material-ui"; // "next/link";
+import { listMdxFiles } from "@vulcan/mdx";
 import { List, ListItem, Typography } from "@material-ui/core";
 
 const DocIndex = ({ pages = [] }) => (
@@ -24,6 +24,10 @@ const DocIndex = ({ pages = [] }) => (
           </ListItem>
         </Link>
       ))}
+      <hr></hr>
+      <Link href="/">
+        <Typography>Back to home</Typography>
+      </Link>
     </List>
   </div>
 );
@@ -34,25 +38,11 @@ export const getStaticProps = async () => {
   // NOTE: if frontMatter is needed, an alternative would be using https://github.com/jescalan/babel-plugin-import-glob-array
   // to import all frontMatters
   const docsDir = path.resolve("./src/pages/docs"); // relative to the project root
-  const fileNames = await fs.readdir(docsDir);
-  const files = fileNames.map((fileName) => ({
-    relativePath: path.join(docsDir, fileName),
-    fileName,
-  }));
-  let mdFiles = [];
-  //let folders = [];
-  files.forEach((file) => {
-    if (file.fileName.match(/.mdx?$/)) {
-      const mdFile = {
-        ...file,
-        pageName: file.fileName.split(".").slice(0, -1).join("."),
-      };
-      mdFiles.push(mdFile);
-    } /*else if (fsSync.lstatSync(file.relativePath).isDirectory()) {
-      folders.push(file);
-    }*/
-  });
-  const pages = mdFiles.map((f) => f.pageName).sort();
+  const files = await listMdxFiles({ dir: docsDir });
+  const pageNames = files.map((f) =>
+    f.fileName.split(".").slice(0, -1).join(".")
+  );
+  const pages = pageNames.sort();
   return { props: { pages } };
 };
 

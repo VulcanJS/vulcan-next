@@ -14,6 +14,9 @@ yarn
 yarn run dev
 ```
 
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+You can then access the live docs on [http://localhost:3000/docs](http://localhost:3000/docs).
+
 ### Setup your own git
 
 ```

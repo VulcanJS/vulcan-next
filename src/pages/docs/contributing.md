@@ -2,11 +2,7 @@
 
 ## Dev environment
 
-### Setup VS Code with Prettier
-
-TODO
-
-### Use the same Node version
+### Get the right Node version
 
 The `.nvmrc` contains the Node version we use in VNS. Usually, higher up versions will also work, but may introduce unexpected breaking changes.
 
@@ -16,9 +12,9 @@ We recommend to install Node using [NVM for Linux/Mac](https://github.com/nvm-sh
 
 We follow the Git Flow model.
 
-- Master is the current live version.
-- Bugfixes branches should start from master.
-- Devel is the next version.
-- Features branches should start from master.
-- support/x.x.x is for bugfixes for a specific version.
+- `master`: is the current live version.
+- `bugfix/*`: Bugfixes branches should start from master.
+- `devel`: Devel is the next version.
+- `feature/*`: features branches should start from master.
+- `support/*x.x.x*`: is for bugfixes for a specific version.
 - Tags allow to easily find the commit corresponding to a deployed versions.

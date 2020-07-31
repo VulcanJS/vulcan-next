@@ -317,7 +317,7 @@ As a default, Jest, Cypress, Storybook and any other 3rd party tooling is instal
 
 Package.json naming convention are not intuitive and do not allow for a clean, environment-based distinction between packages. So that's the best we could do!
 
-## Not yet implemented:
+## NOT YET IMPLEMENTED:
 
 ### Storybook
 
@@ -342,7 +342,7 @@ Setup debug client side programmatically based on DEBUG environment variable
 
 ### Cypress
 
-Splitting tests in folders?
+Splitting tests in folders? In order to differentiate real e2e tests from integration testing
 
 ### Jest
 
@@ -364,7 +364,6 @@ Fullstack cypress testing/coverage of the custom server
 ### Next
 
 Remove debug routes from bundle during build
-Remove private route during static export?
 
 ### Others
 
@@ -376,11 +375,9 @@ Easy opt out of i18n
 Prettier config
 Doc for the perfect VS Code setup
 TypeScript/Eslint security rules
-Documentation page
 Demo TypeScript for dynamic component (Plotly for instance, Leaflet etc.)
 USe ES6 in webpack configs, next.config (see electron-react-boilerplate for a demo)
 Mock of next packages from storybook, in jest
 Efficient plug to Vulcan
 VS code debugging
 SSR disabling
-Slimer docker image/faster docker computation
