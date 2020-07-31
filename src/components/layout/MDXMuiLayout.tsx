@@ -24,8 +24,16 @@ const components = {
   //thematicBreak: Typography,
   //blockquote: Typography,
   //ul: List,
-  //ol: ListItem,
-  //li: ListItem,
+  ol: (props) => (
+    <p>
+      - <Typography component={"span"} variant="body2" {...props} />
+    </p>
+  ),
+  li: (props) => (
+    <p>
+      - <Typography component={"span"} variant="body2" {...props} />
+    </p>
+  ),
   table: Table,
   thead: TableHead,
   tbody: TableBody,
@@ -41,16 +49,17 @@ const components = {
   a: Link,
   //img: Typography,
 };
-export default ({ children }: MDXLayoutProps) => {
+const MDXMuiLayout = ({ children }: MDXLayoutProps) => {
   return (
     <MDXProvider components={components}>
       <div className="MDXProvider root">{children}</div>
       <style jsx>{`
         .MDXProvider.root {
           margin: 32px auto;
-          max-width: 1200px;
+          max-width: 1000px;
         }
       `}</style>
     </MDXProvider>
   );
 };
+export default MDXMuiLayout;

@@ -1,11 +1,22 @@
 import * as React from "react";
 // Globally in your .storybook/preview.js.
-import { addDecorator } from "@storybook/react";
+// import { withKnobs } from "@storybook/addon-knobs"; // We don't install Knobs as a default anymore, favouring Controls instead
 // import { withInfo } from "@storybook/addon-info";
-import MuiProvider from "~/components/provider/MuiProvider";
+import { withA11y } from "@storybook/addon-a11y";
+import { MuiThemeProvider, SCThemeProvider } from "~/components/providers";
 import { I18nextProvider } from "react-i18next";
 import { i18n } from "~/lib/i18n";
 import { AppLayout } from "~/components/layout";
+
+// import { withContexts } from "@storybook/addon-contexts/react"
+// import  { contexts } from "./contexts"
+
+import { backgrounds } from "./backgrounds";
+export const parameters = {
+  // FIXME: for some reason the extension stop working when we set custom backgrounds
+  backgrounds,
+  // ...withContext(contexts)
+};
 
 // If you need to mock apollo queries
 //import { MockedProvider } from "@apollo/react-testing";
@@ -16,7 +27,8 @@ import { AppLayout } from "~/components/layout";
 //  </MockedProvider>
 //);
 
-const withMui = (storyFn) => <MuiProvider>{storyFn()}</MuiProvider>;
+const withMui = (storyFn) => <MuiThemeProvider>{storyFn()}</MuiThemeProvider>;
+const withSC = (storyFn) => <SCThemeProvider>{storyFn()}</SCThemeProvider>;
 
 const withI18n = (storyFn) => (
   <React.Suspense fallback={"Loading i18n..."}>
@@ -25,11 +37,14 @@ const withI18n = (storyFn) => (
 );
 
 const withAppLayout = (storyFn) => <AppLayout>{storyFn()}</AppLayout>;
-[
-  // @see https://gist.github.com/justincy/c1075650b1d5ba448c50eaf83cbb4ffe
 
+export const decorators = [
+  // @see https://gist.github.com/justincy/c1075650b1d5ba448c50eaf83cbb4ffe
   /*withApolloMockProvider*/
   withMui,
+  withSC,
   withI18n,
   withAppLayout,
-].forEach(addDecorator);
+  withA11y,
+  //withKnobs,
+];

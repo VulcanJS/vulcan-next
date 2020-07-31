@@ -1,8 +1,19 @@
 import React from "react";
-import Document, { DocumentContext } from "next/document";
 import { ServerStyleSheets } from "@material-ui/core/styles";
+import { AppSheetsCollector } from "@vulcan/next-style-collector";
+
+export const getAppEnhancer = (): AppSheetsCollector => {
+  const sheets = new ServerStyleSheets();
+  const enhanceApp = (App) => (props) => sheets.collect(<App {...props} />);
+  return {
+    sheets,
+    enhanceApp,
+  };
+};
 
 // @see https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_document.js
+// This function do not generalize when you have another lib collecting stylesheets (eg Styled Components)
+/*
 const getMuiDocumentInitialProps = async (ctx: DocumentContext) => {
   // Resolution order
   //
@@ -49,3 +60,4 @@ const getMuiDocumentInitialProps = async (ctx: DocumentContext) => {
   };
 };
 export default getMuiDocumentInitialProps;
+*/

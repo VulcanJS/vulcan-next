@@ -1,5 +1,6 @@
 const { extendNextConfig } = require("./packages/@vulcan/next-config"); // TODO: load from @vulcan/next when it's on NPM
-const withMDX = require("@next/mdx")({ extension: /\.mdx?$/ });
+//const withMDX = require("@next/mdx")({ extension: /\.mdx?$/ });
+const withMDXEnhanced = require("next-mdx-enhanced");
 
 const flowRight = require("lodash/flowRight");
 const debug = require("debug")("vns:next");
@@ -35,6 +36,22 @@ const withPkgInfo = (nextConfig = {}) => {
 
   return nextConfig;
 };
+
+const withMDX = withMDXEnhanced({
+  layoutPath: "src/components/layout/mdx", // allow to select layouts in the MD page
+  defaultLayout: true,
+  fileExtensions: ["mdx", "md"],
+  extendFrontMatter: {
+    process: (content, rawFrontMatter) => {
+      // we guess the layout based on the file folder
+      let layout = undefined;
+      if (!!rawFrontMatter.__resourcePath.match(/docs/)) {
+        layout = "doc-page";
+      }
+      return { layout };
+    },
+  },
+});
 
 // @see https://nextjs.org/docs/api-reference/next.config.js/runtime-configuration
 module.exports = (phase, { defaultConfig }) => {

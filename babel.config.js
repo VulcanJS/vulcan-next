@@ -8,6 +8,16 @@ if (enableCoverage) {
   plugins.push("istanbul");
 }
 
+// Add support of styled components
+plugins.push([
+  "styled-components",
+  {
+    ssr: true,
+    displayName: true,
+    preprocess: false,
+  },
+]);
+
 module.exports = {
   // we also need next/babel preset to work with Next
   presets: [

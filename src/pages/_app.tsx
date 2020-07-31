@@ -3,7 +3,7 @@ import App, { AppProps } from "next/app";
 import { appWithTranslation } from "~/lib/i18n";
 // Comment if you don't need Material UI
 import { useMuiApp } from "@vulcan/next-material-ui";
-import { MuiProvider } from "~/components/provider";
+import { SCThemeProvider, MuiThemeProvider } from "~/components/providers";
 import Head from "next/head";
 
 import debug from "debug";
@@ -34,11 +34,13 @@ function VNSApp({ Component, pageProps }: AppProps) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
-      <MuiProvider>
-        <AppLayout>
-          <Component {...pageProps} />
-        </AppLayout>
-      </MuiProvider>
+      <MuiThemeProvider>
+        <SCThemeProvider>
+          <AppLayout>
+            <Component {...pageProps} />
+          </AppLayout>
+        </SCThemeProvider>
+      </MuiThemeProvider>
     </>
   );
 }

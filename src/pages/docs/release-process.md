@@ -4,6 +4,7 @@
 
 ```sh
 ### To the right branch
+git checkout master && git pull
 git checkout devel && git pull
 cat package.json | grep version # to get the current version
 git checkout -b release/<next-version>
@@ -24,7 +25,8 @@ yarn run dev
 
 ```sh
 # Check production run
-yarn run build && yarn run start # test the production app
+yarn run build
+yarn run start # test the production app
 ```
 
 ```sh

@@ -1,4 +1,4 @@
-# Failures & learnings
+# Learnings (and failures!)
 
 ## Isomorphic packages in TypeScript
 

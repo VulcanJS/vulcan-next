@@ -66,7 +66,7 @@ Relevant docs:
 
 ## Code architecture and build
 
-### Code in `src`
+### Code in `src`
 
 All your code should go into the `/src` directory ([doc](https://nextjs.org/docs/advanced-features/src-directory)).
 
@@ -92,7 +92,7 @@ Relative imports are a huge mess to support. A relative import should never go f
 We allow folders and packages to contain an `index.client` or `index.server` file, that will be used at build time depending on the environment.
 /!\ You still need to have a bare `index` file alongside those environment specific file. Otherwise TypeScript will complain (see the "Learnings" documentation for more details).
 
-### Env variables in .env
+#### Env variables in .env
 
 We demo Next.js 9.4 new feature, `.env` file support. Open `.env.development` to see the default development variables.
 
@@ -116,6 +116,19 @@ For example, we use it to inject current version into the `html` tag for better 
 
 Run `yarn auto-changelog` to compute a new changelog. Works best in combination with `yarn version` (to create git version tags automatically) and `git merge --no-ff your-feature` (to get merge commits).
 
+### Design system best practices
+
+Based on [Emma Bostian's course on Frontend Masters](https://frontendmasters.com/courses/design-systems), we include basic examples and libraries to get you started writing a design system for your UI. This means:
+
+- An example of a styled button, with Material UI and Styled Components
+- A modal example
+- Animations with react-spring
+- A powerful Storybook configuration
+
+See `src/components/ui` for the code, and run Storybook to see the demos.
+
+No more excuses to make dull UIs, you have all the tools you need :)
+
 ## Serverless internationalization
 
 ### i18n without custom server
@@ -133,6 +146,11 @@ More broadly, it is related to the impossibility of [reading static files in Nex
 ## MDX support
 
 Get started by reading [MDXJS official doc](https://mdxjs.com/). If you want to write a blog with fancy interactive blocks, you'll fall in love with this feature.
+
+### Next-mdx-enhanced
+
+Thanks to [next-mdx-enhanced](https://github.com/hashicorp/next-mdx-enhanced), you can easily use markdown files as your CMS.
+Check the `/docs` page when running the app to see the live documentation.
 
 ### MD and MDX import in React
 
@@ -244,13 +262,35 @@ See `.storybook/mocks/packages` and `.storybook/main.js`, we use Webpack alias t
 
 Run `yarn run analyze-bundle` to get insight on your Webpack build.
 
-## Material UI
+## Styling
+
+### Polished
+
+We include [Polished](https://polished.js.org/), a kind of Lodash for styling supported by the Styled Components community.
+
+### Alternative 1: Material UI and Styled Components
 
 Initial setup based on [official Next example](https://github.com/mui-org/material-ui/tree/master/examples/nextjs).
 
-We try to reduce the foot print of Material UI for an easy remove. In next iterations, we'll try to make it fully pluggable, like in Vulcan Meteor, so you can easily swap your UI system.
+We try to reduce the footprint of Material UI for an easy remove. In next iterations, we'll try to make it fully pluggable, like in Vulcan Meteor, so you can easily swap your UI system.
 
-### PostCSS for easier override using Next
+We also include Styled Components. Why not using CSS-in-JS solution of Material UI? [Read this issue to get answers.](https://github.com/VulcanJS/vulcan-next-starter/issues/53)
+
+We will also try to make Styled Components easier to remove in future updates.
+
+#### Styled Components Modifiers
+
+We demo [Styled Components Modifiers](https://github.com/Decisiv/styled-components-modifiers), a powerful way to add modifiers props on your elements (options like "large", "warning", "dark"...).
+
+### Theme switch demo
+
+We demo a theme switch button, using React context. See `lib/providers` for sources and sample Storybook stories.
+
+### Alternative 2: Styled-jsx and PostCSS (+ your CSS framework of choice)
+
+[Styled-jsx is the builtin styling solution of Next](https://nextjs.org/docs/basic-features/built-in-css-support).
+
+#### PostCSS for easier override using Next
 
 In VNS, we favour out-of-the-box solutions from Next to style the app, so basically [styled-jsx](https://github.com/vercel/styled-jsx) and CSS modules.
 However, [usage with Material UI and more broadly override of child components is not very elegant.](https://github.com/vercel/styled-jsx/issues/142)
@@ -267,7 +307,17 @@ See `build:docker` command.
 Running Cypress in Docker makes it easier to run your tests locally, while you keep coding.
 You can also use this file for your CI/CD process.
 
-## Not yet implemented:
+### 3rd party tooling as optional dependencies
+
+As a default, Jest, Cypress, Storybook and any other 3rd party tooling is installed as optional dependencies.
+
+- "dependencies" is what your app need to run
+- "devDependencies" is what your app need to be built
+- "optionalDependencies" is everything else
+
+Package.json naming convention are not intuitive and do not allow for a clean, environment-based distinction between packages. So that's the best we could do!
+
+## NOT YET IMPLEMENTED:
 
 ### Storybook
 
@@ -292,7 +342,7 @@ Setup debug client side programmatically based on DEBUG environment variable
 
 ### Cypress
 
-Splitting tests in folders?
+Splitting tests in folders? In order to differentiate real e2e tests from integration testing
 
 ### Jest
 
@@ -314,7 +364,6 @@ Fullstack cypress testing/coverage of the custom server
 ### Next
 
 Remove debug routes from bundle during build
-Remove private route during static export?
 
 ### Others
 
@@ -326,11 +375,9 @@ Easy opt out of i18n
 Prettier config
 Doc for the perfect VS Code setup
 TypeScript/Eslint security rules
-Documentation page
 Demo TypeScript for dynamic component (Plotly for instance, Leaflet etc.)
 USe ES6 in webpack configs, next.config (see electron-react-boilerplate for a demo)
 Mock of next packages from storybook, in jest
 Efficient plug to Vulcan
 VS code debugging
 SSR disabling
-Slimer docker image/faster docker computation
