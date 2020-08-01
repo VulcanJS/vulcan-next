@@ -11,7 +11,7 @@ export default {
 export const ToStorybook = () => {
   return (
     <div>
-      <Typography variant="h2"> Welcome to Storybook - VNS Edition</Typography>
+      <Typography variant="h2"> Welcome to Storybook - VN Edition</Typography>
       <Typography variant="body1">
         Explore existing stories using the left menu, or{" "}
         <a

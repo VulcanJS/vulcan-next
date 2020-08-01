@@ -204,7 +204,7 @@ Note: at the time of writing (2020/06) [there is an open issue when needing this
 
 We have preinstalled [React Testing Library](https://testing-library.com/docs/react-testing-library/intro) and [React Testing Hooks](https://github.com/testing-library/react-hooks-testing-library).
 
-### Tests for Vulcan Next Starter (for contributors only)
+### Tests for Vulcan Next (for contributors only)
 
 We have a unit tests for some key features and scripts of VNS, through the `tests/vns` folder.
 

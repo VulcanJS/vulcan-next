@@ -43,12 +43,12 @@ const withMDX = withMDXEnhanced({
   fileExtensions: ["mdx", "md"],
   extendFrontMatter: {
     process: (content, rawFrontMatter) => {
+      const frontMatterExtension = {};
       // we guess the layout based on the file folder
-      let layout = undefined;
       if (!!rawFrontMatter.__resourcePath.match(/docs/)) {
-        layout = "doc-page";
+        frontMatterExtension.layout = "doc-page";
       }
-      return { layout };
+      return frontMatterExtension;
     },
   },
 });

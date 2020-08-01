@@ -14,7 +14,7 @@
 
 The JavaScript ecosystem is converging toward a more static approach. It means that we gradually replace "runtime" patterns by "buidtime" pattern, when that makes sense.
 
-For example: `addResolver` will register a new GraphQL resolver. Then, during app startup, we use this resolver to init our Apollo server. 
+For example: `addResolver` will register a new GraphQL resolver. Then, during app startup, we use this resolver to init our Apollo server.
 
 In the future, instead, we will expect the user to export the resolver, using a traditional ES6 import: it means that we will be able to know all resolvers at runtime, even before the app startup (better perfs, better code management etc.).
 
@@ -34,7 +34,7 @@ Vulcan core components are extremely powerful when it comes to automatically gen
 
 Their limitation is the lack of flexibility : what if you want to add a specific field in a specific form, that was not previously included in your schema? Something as simple as an helper message? Or define input groups on the fly.
 
-The best tradeoff might come from using Hooks. See experiments such as [react-table](<https://github.com/tannerlinsley/react-table>) or [react-hook-form](<https://react-hook-form.com/>). In the future, Vulcan will still provide you a set of default, smart components. But also more tools to help you creating your own custom components: iterating intuitively on schema fields, managing the state for a precise field, etc. when your need grows out of those smart compoments.
+The best tradeoff might come from using Hooks. See experiments such as [react-table](https://github.com/tannerlinsley/react-table) or [react-hook-form](https://react-hook-form.com/). In the future, Vulcan will still provide you a set of default, smart components. But also more tools to help you creating your own custom components: iterating intuitively on schema fields, managing the state for a precise field, etc. when your need grows out of those smart compoments.
 
 ### Alternative
 
@@ -42,7 +42,7 @@ When you schema is more mature, you may write fully custom components to display
 
 This is ok to use "non-declarative" patterns, because your schema is probably more stable at this point so you know how your data is structured.
 
-Investigate Hook based solutions such as [react-table](<https://github.com/tannerlinsley/react-table>) or [react-hook-form](<https://react-hook-form.com/>)
+Investigate Hook based solutions such as [react-table](https://github.com/tannerlinsley/react-table) or [react-hook-form](https://react-hook-form.com/)
 
 ## Avoid `registerComponent`
 
@@ -91,12 +91,12 @@ In Meteor, you can already define REST endpoints outside Vulcan's graphQL system
 Also, a nice doc to connect to MongoDB in Next:
 https://developer.mongodb.com/how-to/nextjs-building-modern-applications
 
-## Assess whether you need Meteor, Vulcan Meteor Starter (v1), or Vulcan Next Starter (v2)
+## Assess whether you need Meteor, Vulcan Meteor, or Vulcan Next
 
 - Reason to use Meteor: gaining traction again after being bought by Tiny in late 2019. Mature, robust, productivity focused framework. Easy to learn.
 - Reason to use Vulcan Meteor (v1): GraphQL is more suited for multi-clients communication (having a mobile app, a web app not based on Meteor etc. communicating with the backend). Plus the ton of productivity oriented features. Can still use existing Meteor packages. Can allow a smoother transition toward the rest of the JS ecosystem if you come from Meteor.
 - Reason to use Vulcan Next (v2): Next is extremely versatile and infinitely more scalable than Meteor. Vulcan provides the missing parts to build fullstack app with high productivity. Closer to the usual JS ecosystem. JAMStack ready, but also fullstack ready.
 
 - Reason NOT to use Meteor: poor performances, ecosystem lock-in
-- Reason NOT to use Vulcan Meteor Starter: if you want to use Meteor core features. Vulcan mostly relies on Apollo GraphQL at this point.
-- Reason NOT to use Vulcan Next Starter: most complex approach of the 3. Can't use Meteor features at all.
+- Reason NOT to use Vulcan Meteor: if you want to use Meteor core features. Vulcan mostly relies on Apollo GraphQL at this point.
+- Reason NOT to use Vulcan Next: most complex approach of the 3. Can't use Meteor features at all.

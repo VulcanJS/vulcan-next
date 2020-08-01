@@ -34,7 +34,7 @@ yarn run start # test the production app
 yarn run build:static && yarn run start:static
 # Run tests
 yarn run test
-# Run tests specific to Vulcan Next Starter (longer)
+# Run tests specific to Vulcan Next (longer)
 yarn run test:vns
 # Test storybook
 yarn run storybook

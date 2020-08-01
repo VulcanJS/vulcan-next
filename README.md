@@ -1,4 +1,4 @@
-# Vulcan Next Starter
+# Vulcan Next
 
 ![vulcan-next-starter banner](https://raw.githubusercontent.com/VulcanJS/vulcan-next-starter/devel/public/vulcan-next-starter-banner_800.png)
 
@@ -20,7 +20,7 @@ You can then access the live docs on [http://localhost:3000/docs](http://localho
 ### Setup your own git
 
 ```
-# Rename "origin" to "upstream", so you can use your own git repository as the main origin and VNS official repo as "upstream"
+# Rename "origin" to "upstream", so you can use your own git repository as the main origin and VN official repo as "upstream"
 git remote rename origin upstream
 ```
 
@@ -35,7 +35,7 @@ cd SomeVulcanApp
 meteor run --settings settings.json --port 3001
 ```
 
-Run Vulcan Next Starter development server:
+Run Vulcan Next development server:
 
 ```bash
 # We favour Yarn over NPM for commands
@@ -46,7 +46,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-## They support Vulcan Next Starter and Vulcan
+## They support Vulcan Next and Vulcan Meteor
 
 ### Contributors
 

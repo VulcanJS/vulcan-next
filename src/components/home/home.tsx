@@ -6,7 +6,7 @@ export default () => (
   <div>
     <Typography>
       <em>
-        Below, find Vulcan Next Starter Readme loaded from an MD file using{" "}
+        Below, find Vulcan Next Readme loaded from an MD file using{" "}
         <a href="https://mdxjs.com/">MDXJS</a>
       </em>
     </Typography>
