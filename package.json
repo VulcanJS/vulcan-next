@@ -34,7 +34,7 @@
     "prereport:combined": "npm run combine:reports # intermediate script",
     "report:combined": "nyc report --reporter lcov --report-dir coverage | exit 0 # intermediate script",
     "analyze-bundle": "cross-env ANALYZE=true npm run build",
-    "analyze-bundle:storybook": "cross-env ANALYZE=true npm run build-storybook",
+    "analyze-bundle:storybook": "cross-env ANALYZE=true yarn run build:storybook",
     "type-check": "tsc",
     "lint-eslint": "eslint . --ext js,jsx,ts,tsx --max-warnings=0",
     "storybook": "start-storybook -s ./public -p 6006",
