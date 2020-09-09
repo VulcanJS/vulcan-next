@@ -84,6 +84,7 @@
     "react-spring": "^8.0.27",
     "styled-components": "^5.1.1",
     "styled-components-modifiers": "^1.2.5",
+    "styled-jsx": "^3.3.0",
     "styled-jsx-plugin-postcss": "^2.0.1"
   },
   "devDependencies": {
@@ -133,5 +134,9 @@
     "jest-transformer-mdx": "2.2.0",
     "nyc": "^15.1.0",
     "start-server-and-test": "^1.11.0"
+  },
+  "resolutions": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   }
 }
