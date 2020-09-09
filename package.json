@@ -37,10 +37,11 @@
     "analyze-bundle:storybook": "cross-env ANALYZE=true yarn run build:storybook",
     "type-check": "tsc",
     "lint-eslint": "eslint . --ext js,jsx,ts,tsx --max-warnings=0",
-    "storybook": "start-storybook -s ./public -p 6006",
+    "storybook": "start-storybook -p 6006",
     "build:storybook": "build-storybook -s ./public",
     "start:storybook-static": "serve storybook-static",
-    "auto-changelog": "auto-changelog -u"
+    "auto-changelog": "auto-changelog -u",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@apollo/react-hooks": "3.1.3",
@@ -77,8 +78,8 @@
     "next-with-apollo": "5.0.1",
     "polished": "^3.6.5",
     "postcss-nested": "^4.2.1",
-    "react": "16.13.0",
-    "react-dom": "16.13.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-hook-form": "4.9.8",
     "react-i18next": "^11.5.0",
     "react-spring": "^8.0.27",
@@ -89,6 +90,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
+    "@storybook/addon-essentials": "^6.0.21",
     "@types/mongoose": "^5.7.27",
     "@types/node": "^13.7.6",
     "@types/react": "^16.9.23",
@@ -104,6 +106,7 @@
     "eslint-plugin-react": "^7.18.3",
     "eslint-plugin-react-hooks": "^2.5.0",
     "graphql-voyager": "^1.0.0-rc.31",
+    "react-is": "^16.13.1",
     "shelljs": "^0.8.4",
     "source-map-support": "^0.5.19",
     "ts-loader": "^7.0.5",

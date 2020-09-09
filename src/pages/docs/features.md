@@ -321,8 +321,7 @@ Package.json naming convention are not intuitive and do not allow for a clean, e
 
 ### Storybook
 
-Write Storybook stories for full pages (need Next mocks, maybe tree-shaking removing server imports like Next does)
-Storybook static build (currently broken)
+Demo a story for a full page
 
 ### I18n
 
