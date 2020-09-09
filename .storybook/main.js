@@ -18,6 +18,7 @@ module.exports = {
   addons: [
     "@storybook/addon-actions",
     "@storybook/addon-links",
+    "@storybook/addon-essentials",
     "@storybook/addon-docs", // it seems that MDX is enabled as a default
     // "@storybook/addon-contexts", // TODO: waiting for v6.0.0 to be released
     "@storybook/addon-backgrounds",

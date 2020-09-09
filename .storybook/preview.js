@@ -16,6 +16,7 @@ export const parameters = {
   // FIXME: for some reason the extension stop working when we set custom backgrounds
   backgrounds,
   // ...withContext(contexts)
+  actions: { argTypesRegex: "^on[A-Z].*" },
 };
 
 // If you need to mock apollo queries
