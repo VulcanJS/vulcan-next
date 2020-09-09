@@ -14,13 +14,11 @@ const indexLink = (
 );
 // The layout is a function that returns a React component,
 // with the frontMatter as a closure
-const MDXDocPageLayout = (frontMatter) => {
-  return ({ children }) => (
-    <div>
-      {indexLink}
-      <MDXMuiLayout>{children}</MDXMuiLayout>
-      {indexLink}
-    </div>
-  );
-};
+const MDXDocPageLayout = ({ children, frontMatter }) => (
+  <div>
+    {indexLink}
+    <MDXMuiLayout>{children}</MDXMuiLayout>
+    {indexLink}
+  </div>
+);
 export default MDXDocPageLayout;

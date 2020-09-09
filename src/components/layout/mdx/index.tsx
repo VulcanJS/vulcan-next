@@ -3,7 +3,5 @@ import MDXMuiLayout from "../MDXMuiLayout";
 
 // The layout is a function that returns a React component,
 // with the frontMatter as a closure
-const MDXDefaultLayout = (frontMatter) => {
-  return MDXMuiLayout;
-};
+const MDXDefaultLayout = MDXMuiLayout;
 export default MDXDefaultLayout;
