@@ -4,6 +4,7 @@
  * - you can pass "ssr: true" instead of directly passing "getDataFromTree"
  * - you can change the graphqlUri
  */
+import React from "react";
 import withApollo, { WithApolloOptions } from "next-with-apollo";
 import createApolloClient from "./apolloClient";
 import { NextPage } from "next";
@@ -12,9 +13,9 @@ import { NextPage } from "next";
 //    ApolloProvider,
 //    NormalizedCacheObject
 //} from "@apollo/client";
-import { ApolloProvider } from "@apollo/react-hooks";
-import { NormalizedCacheObject } from "apollo-cache-inmemory";
-import { getDataFromTree as getDataFromTreeDefault } from "@apollo/react-ssr";
+import { ApolloProvider } from "@apollo/client";
+import { NormalizedCacheObject } from "@apollo/client/cache";
+import { getDataFromTree as getDataFromTreeDefault } from "@apollo/client/react/ssr";
 
 // support the same options as next-with-apollo, but also additional client config + ssr activation
 export interface VulcanWithApolloOptions extends WithApolloOptions {
@@ -26,7 +27,7 @@ const defaultOptions: Partial<VulcanWithApolloOptions> = {
   ssr: true,
 };
 const initApolloClient = (graphqlUri: string) => ({ initialState, ctx }) => {
-  return createApolloClient(graphqlUri, initialState, ctx);
+  return createApolloClient({ graphqlUri, initialState, ctx });
 };
 const renderWithApolloProvider = ({ Page, props }) => {
   return (
@@ -35,7 +36,10 @@ const renderWithApolloProvider = ({ Page, props }) => {
     </ApolloProvider>
   );
 };
-const vulcanWithApollo = (Page: NextPage, options: VulcanWithApolloOptions = {}) => {
+const vulcanWithApollo = (
+  Page: NextPage,
+  options: VulcanWithApolloOptions = {}
+) => {
   const mergedOptions = { ...defaultOptions, ...options };
   const {
     graphqlUri,
@@ -49,6 +53,8 @@ const vulcanWithApollo = (Page: NextPage, options: VulcanWithApolloOptions = {})
 
   const withApolloOptions = { getDataFromTree, renderFromOption };
 
+  // next-with-apollo is using typings from Apollo v2, we need to ignore the error until it's updated 2654
+  // @ts-ignore
   return withApollo<NormalizedCacheObject>(initApolloClient(graphqlUri), {
     render: renderWithApolloProvider,
   })(Page, withApolloOptions);

@@ -20,7 +20,7 @@ export const parameters = {
 };
 
 // If you need to mock apollo queries
-//import { MockedProvider } from "@apollo/react-testing";
+//import { MockedProvider } from "@apollo/react/testing";
 //import mocks from "add path to your graphql mocks here"
 //const withApolloMockProvider = (storyFn) => (
 //  <MockedProvider mocks={mocks} addTypename={false}>
