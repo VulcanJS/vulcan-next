@@ -8,8 +8,8 @@ import {
   NormalizedCacheObject
 } from "@apollo/client";
 */
-import { ApolloClient } from "apollo-client";
-import { InMemoryCache, NormalizedCacheObject } from "apollo-cache-inmemory";
+import { ApolloClient } from "@apollo/client";
+import { InMemoryCache, NormalizedCacheObject } from "@apollo/client/cache";
 import { createHttpLink } from "apollo-link-http";
 import { from } from "apollo-link";
 import fetch from "isomorphic-unfetch";
