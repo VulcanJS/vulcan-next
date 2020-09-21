@@ -17,7 +17,7 @@ export function reportWebVitals(metric) {
 // Uncomment to enable app-wide Apollo SSR
 // Otherwise you'll need to call withApollo on each page
 import { withApollo } from "@vulcan/next-apollo";
-import { getDataFromTree } from "@apollo/react-ssr";
+import { getDataFromTree } from "@apollo/client/react/ssr";
 */
 
 // import environment from '@vulcan/multi-env-demo';

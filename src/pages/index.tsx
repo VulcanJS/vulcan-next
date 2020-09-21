@@ -1,4 +1,4 @@
-import { useQuery /*, useMutation*/ } from "@apollo/react-hooks";
+import { useQuery /*, useMutation*/ } from "@apollo/client";
 import gql from "graphql-tag";
 import Home from "~/components/home";
 //import { useForm } from "react-hook-form";
