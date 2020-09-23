@@ -18,3 +18,16 @@ We follow the Git Flow model.
 - `feature/*`: features branches should start from master.
 - `support/*x.x.x*`: is for bugfixes for a specific version.
 - Tags allow to easily find the commit corresponding to a deployed versions.
+
+## Vulcan NPM local installation
+
+If you want to use the bleeding edge version of Vulcan, you'll need to install the Vulcan NPM packages locally.
+Vulcan NPM is relying on Lerna
+
+### Troubleshoot
+
+#### Issues with hooks due to multiple version of React
+
+This is an open issue with Yarn workspaces, it is difficult not to duplicate packages used both by your NPM packages and your local app.
+Easiest solution is to force Vulcan Next to use the packages from Vulcan NPM. See relevant scripts in both Vulcan NPM (to activate the link)
+and Vulcan Next (to use linked versions).
