@@ -1,4 +1,4 @@
-const { extendWebpackConfig } = require("../webpack"); // TODO: load from @vulcan/webpack NPM package
+const { extendWebpackConfig } = require("../webpack"); // TODO: load from @vulcanjs/webpack NPM package
 
 // type NextConfig = {
 //   webpack?: Object | Function

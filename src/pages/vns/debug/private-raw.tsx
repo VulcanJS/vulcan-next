@@ -11,7 +11,7 @@ import {
   isServerRenderCtx,
   isClientRender,
   isStaticExportCtx,
-} from "@vulcan/next-utils";
+} from "@vulcanjs/next-utils";
 import debug from "debug";
 import { useEffect, useState } from "react";
 const debugNext = debug("vns:next");

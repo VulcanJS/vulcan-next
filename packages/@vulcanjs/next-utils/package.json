@@ -1,7 +1,7 @@
 {
-  "name": "@vulcan/next-style-collector",
+  "name": "@vulcanjs/next-utils",
   "version": "0.0.1",
-  "description": "Vulcan stylesheets collecting for SSR (Material UI, Styled Components)",
+  "description": "Vulcan Next related helpers",
   "main": "./dist/index.js",
   "author": "eric-burel <eb@lebrun-burel.com>",
   "homepage": "https://github.com/VulcanJS/vulcan-npm#readme",
@@ -16,5 +16,8 @@
   },
   "bugs": {
     "url": "https://github.com/VulcanJS/vulcan-npm/issues"
+  },
+  "dependencies": {
+    "react": "^16.13.1"
   }
 }

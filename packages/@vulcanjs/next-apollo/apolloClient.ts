@@ -15,7 +15,7 @@ import { InMemoryCache, NormalizedCacheObject } from "@apollo/client/cache";
 // next-with-apollo depends on it already internally, so we had to add a Webpack alias too to bypass it
 import fetch from "cross-fetch";
 import { NextPageContext } from "next";
-import { isServerRenderCtx } from "@vulcan/next-utils";
+import { isServerRenderCtx } from "@vulcanjs/next-utils";
 import debug from "debug";
 const debugApollo = debug("vn:apollo");
 

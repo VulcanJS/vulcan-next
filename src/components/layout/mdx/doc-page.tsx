@@ -1,6 +1,6 @@
 // import Link from "next/link";
 // We have a custom link for material UI + next
-import { Link } from "@vulcan/next-material-ui";
+import { Link } from "@vulcanjs/next-material-ui";
 import { Typography } from "@material-ui/core";
 // Default layout for MDX files
 import MDXMuiLayout from "../MDXMuiLayout";

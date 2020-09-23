@@ -1,6 +1,6 @@
 import { useQuery /*, useMutation*/ } from "@apollo/client";
 import gql from "graphql-tag";
-import { withApollo } from "@vulcan/next-apollo";
+import { withApollo } from "@vulcanjs/next-apollo";
 
 const NoSsrDebugPage = () => {
   const mortyQuery = gql`

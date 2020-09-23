@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Button, Typography, Container } from "@material-ui/core"; // Next has tree shaking
-import { Link } from "@vulcan/next-material-ui";
+import { Link } from "@vulcanjs/next-material-ui";
 
 export default function MuiPage() {
   return (

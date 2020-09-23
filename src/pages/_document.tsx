@@ -12,11 +12,11 @@ import theme from "~/lib/material-ui/defaultTheme";
 import {
   getAppEnhancer as getMuiAppEnhancer,
   //getMuiDocumentInitialProps,
-} from "@vulcan/next-material-ui";
+} from "@vulcanjs/next-material-ui";
 import {
   getAppEnhancer as getSCAppEnhancer,
   //getSCDocumentInitialProps,
-} from "@vulcan/next-styled-components";
+} from "@vulcanjs/next-styled-components";
 import { i18nPropsFromCtx, DocumentLanguageProps } from "~/lib/i18n";
 
 interface VNSDocumentProps {

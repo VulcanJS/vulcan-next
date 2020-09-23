@@ -2,7 +2,7 @@ import { useQuery /*, useMutation*/ } from "@apollo/client";
 import gql from "graphql-tag";
 import Home from "~/components/home";
 //import { useForm } from "react-hook-form";
-import { withApollo } from "@vulcan/next-apollo";
+import { withApollo } from "@vulcanjs/next-apollo";
 import MDXMuiLayout from "~/components/layout/MDXMuiLayout";
 
 const HomePage = () => {

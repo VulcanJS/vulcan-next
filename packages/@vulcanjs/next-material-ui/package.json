@@ -1,7 +1,7 @@
 {
-  "name": "@vulcan/next-styled-components",
+  "name": "@vulcanjs/next-material-ui",
   "version": "0.0.1",
-  "description": "Vulcan Next Styled Components bindings",
+  "description": "Vulcan Next Material UI binding",
   "main": "./dist/index.js",
   "author": "eric-burel <eb@lebrun-burel.com>",
   "homepage": "https://github.com/VulcanJS/vulcan-npm#readme",
@@ -18,7 +18,9 @@
     "url": "https://github.com/VulcanJS/vulcan-npm/issues"
   },
   "dependencies": {
-    "react": "^16.13.1",
-    "styled-components": "^5.2.0"
+    "@material-ui/core": "^4.11.0",
+    "clsx": "^1.1.1",
+    "next": "^9.5.3",
+    "react-dom": "^16.13.1"
   }
 }

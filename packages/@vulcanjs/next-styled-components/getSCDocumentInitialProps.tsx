@@ -1,6 +1,6 @@
 import React from "react";
 import { ServerStyleSheet } from "styled-components";
-import { AppSheetsCollector } from "@vulcan/next-style-collector";
+import { AppSheetsCollector } from "@vulcanjs/next-style-collector";
 
 export const getAppEnhancer = (): AppSheetsCollector => {
   const sheet = new ServerStyleSheet();

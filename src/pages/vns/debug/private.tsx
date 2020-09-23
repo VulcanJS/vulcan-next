@@ -6,7 +6,7 @@
  */
 import Link from "next/link";
 import { NextPage } from "next";
-import { withPrivateAccess } from "@vulcan/next-utils";
+import { withPrivateAccess } from "@vulcanjs/next-utils";
 //import debug from "debug";
 // const debugNext = debug("vns:next");
 

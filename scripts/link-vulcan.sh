@@ -1,24 +1,24 @@
 #! /bin/bash
-yarn link @vulcan/core
-yarn link @vulcan/demo
-yarn link @vulcan/graphql
-yarn link @vulcan/mdx
-yarn link @vulcan/meteor-legacy
-yarn link @vulcan/model
-yarn link @vulcan/mongo
-yarn link @vulcan/multi-env-demo
+yarn link @vulcanjs/core
+yarn link @vulcanjs/demo
+yarn link @vulcanjs/graphql
+yarn link @vulcanjs/mdx
+yarn link @vulcanjs/meteor-legacy
+yarn link @vulcanjs/model
+yarn link @vulcanjs/mongo
+yarn link @vulcanjs/multi-env-demo
 # Those packages are not published yet
 # @see https://github.com/VulcanJS/vulcan-npm/issues/6
-# yarn link @vulcan/next-apollo
-# yarn link @vulcan/next-config
-# yarn link @vulcan/next-material-ui
-# yarn link @vulcan/next-style-collector
-# yarn link @vulcan/next-styled-components
-# yarn link @vulcan/next-utils
-# yarn link @vulcan/next-webpack
-yarn link @vulcan/react-hooks
-yarn link @vulcan/schema
-yarn link @vulcan/utils
+# yarn link @vulcanjs/next-apollo
+# yarn link @vulcanjs/next-config
+# yarn link @vulcanjs/next-material-ui
+# yarn link @vulcanjs/next-style-collector
+# yarn link @vulcanjs/next-styled-components
+# yarn link @vulcanjs/next-utils
+# yarn link @vulcanjs/next-webpack
+yarn link @vulcanjs/react-hooks
+yarn link @vulcanjs/schema
+yarn link @vulcanjs/utils
 
 # Link other packages that we don't want to duplicate when using Lerna
 # yarn link react

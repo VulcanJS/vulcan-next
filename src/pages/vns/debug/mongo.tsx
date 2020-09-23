@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
-import { withApollo } from "@vulcan/next-apollo";
+import { withApollo } from "@vulcanjs/next-apollo";
 const MongoDebugPage = () => {
   const { data, loading, error } = useQuery(
     gql`

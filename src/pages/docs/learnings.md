@@ -14,7 +14,7 @@ multi-env-demo
 |   index.server.ts
 ```
 
-At build time, we added some Webpack magic so that `import "@vulcan/multi-env-demo` is replaced by `import "@vulcan/multi-env-demo/index.client"` in the browser, and `index.server` in the server build.
+At build time, we added some Webpack magic so that `import "@vulcanjs/multi-env-demo` is replaced by `import "@vulcanjs/multi-env-demo/index.client"` in the browser, and `index.server` in the server build.
 
 ### The problem
 
@@ -34,7 +34,7 @@ Magic isomorphism is when you actually want to load a different piece of code de
 
 Muggle isomorphsim is when you write code that is perfectly working on both the server and the client.
 
-So, with the same example, if you need a client side only import, do `import "@vulcan/multi-env-demo/client"` (resp. server). If you have shared code, do create an `index` file in your `multi-env-demo` packager and `import "@vulcan/multi-env-demo"`. No magic, make things explicit.
+So, with the same example, if you need a client side only import, do `import "@vulcanjs/multi-env-demo/client"` (resp. server). If you have shared code, do create an `index` file in your `multi-env-demo` packager and `import "@vulcanjs/multi-env-demo"`. No magic, make things explicit.
 
 ### But it works in Blitz?
 

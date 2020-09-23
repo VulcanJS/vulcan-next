@@ -1,6 +1,6 @@
 import path from "path";
-import { Link } from "@vulcan/next-material-ui"; // "next/link";
-import { listMdxFiles } from "@vulcan/mdx";
+import { Link } from "@vulcanjs/next-material-ui"; // "next/link";
+import { listMdxFiles } from "@vulcanjs/mdx";
 import { List, ListItem, Typography } from "@material-ui/core";
 
 const DocIndex = ({ pages = [] }) => (

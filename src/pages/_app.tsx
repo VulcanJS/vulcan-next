@@ -2,7 +2,7 @@ import App, { AppProps } from "next/app";
 // Comment if you don't need i18n
 import { appWithTranslation } from "~/lib/i18n";
 // Comment if you don't need Material UI
-import { useMuiApp } from "@vulcan/next-material-ui";
+import { useMuiApp } from "@vulcanjs/next-material-ui";
 import { SCThemeProvider, MuiThemeProvider } from "~/components/providers";
 import Head from "next/head";
 
@@ -16,11 +16,11 @@ export function reportWebVitals(metric) {
 /*
 // Uncomment to enable app-wide Apollo SSR
 // Otherwise you'll need to call withApollo on each page
-import { withApollo } from "@vulcan/next-apollo";
+import { withApollo } from "@vulcanjs/next-apollo";
 import { getDataFromTree } from "@apollo/client/react/ssr";
 */
 
-// import environment from '@vulcan/multi-env-demo';
+// import environment from '@vulcanjs/multi-env-demo';
 // console.log('imported environment', environment); // should display "server"/"client" depending on the environment, just a test
 
 function VNSApp({ Component, pageProps }: AppProps) {
