@@ -39,8 +39,7 @@ yarn run test:vns
 # Test storybook
 yarn run storybook
 # Test storybook static build
-# NOTE: currently broken (v0.0.5)...
-# yarn run build:storybook && yarn run start:storybook-static # test storybook  static export
+yarn run build:storybook && yarn run start:storybook-static # test storybook  static export
 
 # Optionnaly test Docker version (takes a lot of time + not very useful as they don't change often)
 # yarn run build:docker
