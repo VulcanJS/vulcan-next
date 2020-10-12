@@ -129,7 +129,7 @@ export const withPrivateAccess = (
 
   // Initial Props
 
-  const pageGetInitialProps = PrivatePage.getInitialProps;
+  const pageGetInitialProps = Page.getInitialProps;
   /**
    * At the time of writing, using getServerSideProps would be cleaner, but would disable
    * static export.
