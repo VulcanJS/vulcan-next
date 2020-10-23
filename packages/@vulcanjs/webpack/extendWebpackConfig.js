@@ -10,7 +10,7 @@ const path = require("path");
 const withMagicImports = (config = {}) => {
   if (!config.resolve) config.resolve = {};
   config.resolve.alias = {
-    ...config.resolve.alias,
+    ...(config.resolve.alias || {}),
     "~": path.join(__dirname, "../../../", "src"),
   };
   config.resolve.modules = [
