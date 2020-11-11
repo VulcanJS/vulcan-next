@@ -49,6 +49,8 @@
     "@mdx-js/loader": "^1.6.6",
     "@mdx-js/react": "^1.6.13",
     "@next/mdx": "^9.4.4",
+    "@vulcanjs/demo": "^0.0.7",
+    "@vulcanjs/mdx": "^0.0.7",
     "apollo-server-express": "2.14.2",
     "babel-jest": "26.0.1",
     "babel-plugin-istanbul": "6.0.0",

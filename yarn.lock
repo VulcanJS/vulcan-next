@@ -3723,6 +3723,16 @@
     semver "^7.3.2"
     tsutils "^3.17.1"
 
+"@vulcanjs/demo@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/demo/-/demo-0.0.7.tgz#4a57f286ee856beb20fb262aae291e2571265982"
+  integrity sha512-IaSXmTtVxE10UI9uQfr9bB0CpJ+VbBomrgwuOglkUeDJeV5t03WP4KZXma8CalXQnX/W38/3p9Z0VZ7Hixbrvg==
+
+"@vulcanjs/mdx@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/mdx/-/mdx-0.0.7.tgz#c00b636f3ac2a9679bdc05f7524e849129c4c85f"
+  integrity sha512-2MzEJjX4V6WfwrVQ7UqhSKV/YkTTQdvlXxYtkH0MUv7t1oFrAtGJ7HGqzEdsGNwnI1n+jxqzjE+NKFhtk69sJQ==
+
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.9.0.tgz#bd850604b4042459a5a41cd7d338cbed695ed964"
