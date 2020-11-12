@@ -1,4 +1,4 @@
-const { extendWebpackConfig } = require("../packages/@vulcanjs/webpack"); // TODO: load from @vulcanjs/webpack NPM package
+const { extendWebpackConfig } = require("../packages/@vulcanjs/webpack");
 const debug = require("debug");
 const debugWebpack = debug("vns:webpack");
 const path = require("path");

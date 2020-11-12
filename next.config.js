@@ -1,4 +1,4 @@
-const { extendNextConfig } = require("./packages/@vulcanjs/next-config"); // TODO: load from @vulcanjs/next when it's on NPM
+const { extendNextConfig } = require("./packages/@vulcanjs/next-config");
 //const withMDX = require("@next/mdx")({ extension: /\.mdx?$/ });
 const withMDXEnhanced = require("next-mdx-enhanced");
 

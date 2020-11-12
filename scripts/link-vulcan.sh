@@ -21,5 +21,5 @@ yarn link @vulcanjs/schema
 yarn link @vulcanjs/utils
 
 # Link other packages that we don't want to duplicate when using Lerna
-# yarn link react
-# yarn link react-dom
+yarn link react
+yarn link react-dom
