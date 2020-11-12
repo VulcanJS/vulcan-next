@@ -13,18 +13,18 @@ const debugPerf = debug("vns:perf");
 export function reportWebVitals(metric) {
   debugPerf(metric); // The metric object ({ id, name, startTime, value, label }) is logged to the console
 }
-/*
-// Uncomment to enable app-wide Apollo SSR
-// Otherwise you'll need to call withApollo on each page
-import { withApollo } from "@vulcanjs/next-apollo";
-import { getDataFromTree } from "@apollo/client/react/ssr";
-*/
+
+import { ApolloProvider } from "@apollo/client";
+import { useApollo } from "@vulcanjs/next-apollo";
 
 // import environment from '@vulcanjs/multi-env-demo';
-// console.log('imported environment', environment); // should display "server"/"client" depending on the environment, just a test
+// console.log('imported environment', environment); // should display "server"/"client" depending on the environment, this is just a test
 
-function VNSApp({ Component, pageProps }: AppProps) {
+function VNApp({ Component, pageProps }: AppProps) {
   useMuiApp(); // comment to disable Material UI
+  const apolloClient = useApollo(pageProps.initialApolloState, {
+    graphqlUri: "http://localhost:3000/api/graphql",
+  }); // you can also easily setup ApolloProvider on a per-page basis
   return (
     <>
       <Head>
@@ -36,9 +36,11 @@ function VNSApp({ Component, pageProps }: AppProps) {
       </Head>
       <MuiThemeProvider>
         <SCThemeProvider>
-          <AppLayout>
-            <Component {...pageProps} />
-          </AppLayout>
+          <ApolloProvider client={apolloClient}>
+            <AppLayout>
+              <Component {...pageProps} />
+            </AppLayout>
+          </ApolloProvider>
         </SCThemeProvider>
       </MuiThemeProvider>
     </>
@@ -47,12 +49,10 @@ function VNSApp({ Component, pageProps }: AppProps) {
 
 // Neeeded for next-i18n next to work
 // Comment if you don't need i18n
-VNSApp.getInitialProps = async (appContext) => {
+VNApp.getInitialProps = async (appContext) => {
   // calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(appContext);
   return { ...appProps };
 };
 
-// export default withApollo()(MyApp, { ssr: false }) // uncomment to enable Apollo but without SSR
-// export default withApollo()(MyApp); // uncomment to enable Apollo and SSR
-export default appWithTranslation(VNSApp);
+export default appWithTranslation(VNApp);

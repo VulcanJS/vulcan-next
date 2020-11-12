@@ -1,23 +1,27 @@
 import { useQuery /*, useMutation*/ } from "@apollo/client";
+import { createApolloClient } from "@vulcanjs/next-apollo";
 import gql from "graphql-tag";
-import { withApollo } from "@vulcanjs/next-apollo";
 
-const NoSsrDebugPage = () => {
-  const mortyQuery = gql`
-    query {
-      character(id: 2) {
-        name
-      }
+const graphqlUri = "https://rickandmortyapi.com/graphql";
+const client = createApolloClient({ graphqlUri });
+// Create a new Apollo client and rehydrate
+const mortyQuery = gql`
+  query {
+    character(id: 2) {
+      name
     }
-  `;
+  }
+`;
+const NoSsrDebugPage = () => {
+  console.log("rendering");
 
-  const { data, loading, error } = useQuery(mortyQuery); //vulcanRepoInfo); //vulcanSiteDataQuery);
+  const { data, loading, error } = useQuery(mortyQuery, { client }); //vulcanRepoInfo); //vulcanSiteDataQuery);
 
   let content = "";
   if (loading) {
     content = "loading";
   } else if (error) {
-    content = "error"; // NOTE: when encountering a fatal error in "getDataFromTree", app will be rendered in loading state instead
+    content = "error";
   } else if (data) {
     content = "data";
   }
@@ -26,6 +30,4 @@ const NoSsrDebugPage = () => {
 
 // @see https://github.com/APIs-guru/graphql-apis
 // @see https://rickandmortyapi.com/documentation/#graphql
-// NOTE: will fail client-side, since we don't have CORS
-const graphqlUri = "https://rickandmortyapi.com/graphql";
-export default withApollo(NoSsrDebugPage, { graphqlUri, ssr: false }); // SSR is not activated
+export default NoSsrDebugPage; // SSR is not activated

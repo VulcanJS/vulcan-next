@@ -1,91 +1,85 @@
-/*
-v3 syntax
-import {
-  ApolloClient,
-  from,
-  createHttpLink,
-  InMemoryCache,
-  NormalizedCacheObject
-} from "@apollo/client";
-*/
-import { IncomingHttpHeaders } from "http";
-import { ApolloClient, from, createHttpLink } from "@apollo/client";
-import { InMemoryCache, NormalizedCacheObject } from "@apollo/client/cache";
-// TODO: Isomorphic-unfetch will produce a window not defined after a Webpack build for unknow reason "isomorphic-unfetch";
-// next-with-apollo depends on it already internally, so we had to add a Webpack alias too to bypass it
-import fetch from "cross-fetch";
-import { NextPageContext } from "next";
-import { isServerRenderCtx } from "@vulcanjs/next-utils";
-import debug from "debug";
-const debugApollo = debug("vn:apollo");
-
-import errorLink from "./links/error";
-
-const httpLink = (graphqlUri: string, ctx?: NextPageContext) =>
-  createHttpLink({
-    uri: graphqlUri, // (must be absolute)
-    credentials: "include", // Additional fetch() options like `credentials` or `headers`
-    headers: isServerRenderCtx(ctx)
-      ? { Cookie: ctx.req.headers.cookie }
-      : undefined,
-    fetch, // pass our custom fetch (here we need an isomorphic call)
-  });
-
-export interface CreateApolloClientArgs {
-  graphqlUri: string;
-  ctx?: NextPageContext;
-  initialState?: NormalizedCacheObject;
-  headers?: IncomingHttpHeaders;
-}
-
-// graphqlUri must be specified at apollo client initialization
-export default function createApolloClient({
-  graphqlUri,
-  initialState,
-  ctx,
-}: CreateApolloClientArgs) {
-  // The `ctx` (NextPageContext) will only be present on the server.
-  // use it to extract auth headers (ctx.req) or similar.
-  debugApollo("Creating an Apollo client");
-  const client = new ApolloClient({
-    name: "default-client",
-    connectToDevTools: !Boolean(ctx),
-    ssrMode: Boolean(ctx),
-    link: from([errorLink, httpLink(graphqlUri, ctx)]),
-    cache: new InMemoryCache().restore(initialState),
-  });
-  if (!ctx) {
-    // client-side, store the Apollo client as the default upon creation
-    debugApollo("Storing new Apollo client as the default client");
-    if (!defaultApolloClient) {
-      defaultApolloClient = client;
-    } else {
-      debugApollo("Default apollo client already initialized, doing nothing");
-    }
-  }
-  return client;
-}
-
-// Create client-side Apollo client once
-// We want this initialization to happen once for all
-let defaultApolloClient;
+// import debug from "debug";
+// const debugApollo = debug("vn:apollo");
 
 /**
- * Get apollo client, either in the context of SSR rendering
- * or client side
- * @param params
+ * @see https://github.com/vercel/next.js/examples/with-apollo/lib/apolloClient.js
  */
-export const getApolloClient = (params?: CreateApolloClientArgs) => {
-  if (params && isServerRenderCtx(params.ctx)) {
-    // TODO: get client from request if any instead of creating it systematically
-    return createApolloClient(params);
+import { useMemo } from "react";
+import { ApolloClient, HttpLink, InMemoryCache, from } from "@apollo/client";
+// import { concatPagination } from "@apollo/client/utilities";
+import errorLink from "./links/error";
+import merge from "deepmerge";
+
+const isClient = typeof window !== "undefined";
+
+// Create client-side Apollo client once only
+let apolloClient;
+
+export interface CreateApolloClientOptions {
+  graphqlUri?: string;
+}
+export function createApolloClient({ graphqlUri }: CreateApolloClientOptions) {
+  return new ApolloClient({
+    ssrMode: !isClient,
+    connectToDevTools: isClient,
+    // TODO: we can pass cookies here to authenticate from the server
+    link: from([
+      errorLink,
+      new HttpLink({
+        uri: graphqlUri, // Server URL (must be absolute)
+        credentials: "same-origin", // Additional fetch() options like `credentials` or `headers`
+      }),
+    ]),
+    cache: new InMemoryCache(/*{
+      typePolicies: {
+        Query: {
+          fields: {
+            allPosts: concatPagination(),
+          },
+        },
+      },
+    }*/),
+  });
+}
+
+export const rehydrateApolloInitialState = (
+  apolloClient: ApolloClient<any>,
+  initialState?: any
+) => {
+  if (initialState) {
+    // Get existing cache, loaded during client side data fetching
+    const existingCache = apolloClient.extract();
+
+    // Merge the existing cache into data passed from getStaticProps/getServerSideProps
+    const data = merge(initialState, existingCache);
+
+    // Restore the cache with the merged data
+    apolloClient.cache.restore(data);
   }
-  // default apolloClient, note that it won't have any caching
-  // to be used in services for example, outside of React
-  if (!defaultApolloClient) {
-    throw new Error(
-      "Apollo client not initialized, did you wrap your page with `withApollo?`"
-    );
-  }
-  return defaultApolloClient;
 };
+
+export function initializeApollo(
+  initialState = null,
+  options: CreateApolloClientOptions
+) {
+  const _apolloClient = apolloClient ?? createApolloClient(options);
+
+  // If your page has Next.js data fetching methods that use Apollo Client, the initial state
+  // gets hydrated here
+  rehydrateApolloInitialState(_apolloClient, initialState);
+
+  // For SSG and SSR always create a new Apollo Client
+  if (!isClient) return _apolloClient;
+  // Create the Apollo Client once in the client
+  if (!apolloClient) apolloClient = _apolloClient;
+
+  return _apolloClient;
+}
+
+export function useApollo(initialState, options: CreateApolloClientOptions) {
+  const store = useMemo(() => initializeApollo(initialState, options), [
+    initialState,
+    options,
+  ]);
+  return store;
+}

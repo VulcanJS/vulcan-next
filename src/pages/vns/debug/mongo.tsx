@@ -1,6 +1,5 @@
 import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
-import { withApollo } from "@vulcanjs/next-apollo";
 const MongoDebugPage = () => {
   const { data, loading, error } = useQuery(
     gql`
@@ -33,6 +32,4 @@ const MongoDebugPage = () => {
     </div>
   );
 };
-export default withApollo(MongoDebugPage, {
-  graphqlUri: "http://localhost:3000/api/graphql",
-});
+export default MongoDebugPage;

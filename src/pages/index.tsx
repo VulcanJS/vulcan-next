@@ -2,7 +2,6 @@ import { useQuery /*, useMutation*/ } from "@apollo/client";
 import gql from "graphql-tag";
 import Home from "~/components/home";
 //import { useForm } from "react-hook-form";
-import { withApollo } from "@vulcanjs/next-apollo";
 import MDXMuiLayout from "~/components/layout/MDXMuiLayout";
 
 const HomePage = () => {
@@ -54,6 +53,4 @@ const HomePage = () => {
   );
 };
 
-// export default withApollo({ graphqlUri })(MyApp, { getDataFromTree });
-
-export default withApollo(HomePage);
+export default HomePage;

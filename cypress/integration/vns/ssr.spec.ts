@@ -16,9 +16,7 @@ describe("ssr", () => {
     it("does server-side render in loading state", () => {
       cy.visit("/vns/debug/noApolloSsr");
       cy.contains("loading", { timeout: 0 }).should("exist");
-      // NOTE: the query will fail client-side, since we don't have CORS
-      // It's normal
-      cy.contains("error").should("exist");
+      cy.contains("loading").should("not.exist");
     });
   });
 });

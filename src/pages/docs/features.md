@@ -8,7 +8,18 @@ We use TypeScript extensively, and try to enable it wherever possible (sources, 
 
 ## Apollo Client for GraphQL API consumption
 
-### Optional, per-page Apollo Provider and SSR
+### Apollo Client setup based on official with-apollo example
+
+See [official example](https://github.com/vercel/next.js/blob/canary/examples/with-apollo)
+
+### Deprecated isomorphic setup
+
+See branch `example/apollo-ssr-and-server-redirect` for a previous setup of Apollo. It demoes a powerful setup that can handle Apollo with SSR and authentication.
+However, this architecture led to a HUGE increase of complexity for a very low perceived values.
+We dropped it in favour in an "opt-in" approach of Apollo SSR and a client-only pattern for authentication management similar to Vercel's dashboard architecture.
+See [Public is the new private ticket](https://github.com/VulcanJS/vulcan-next/issues/71) for more details.
+
+#### Optional, per-page Apollo Provider and SSR
 
 We extend [`next-with-apollo`](https://github.com/lfades/next-with-apollo) with a simpler API. Apollo SSR is enabled page per page, for a granular optimization.
 
@@ -20,11 +31,9 @@ MyPage; // no SSR, no Apollo Provider
 
 With have a non-regression test for SSR, so no surprise with component that suddenly appear in loading state.
 
-### Pass cookies to Apollo client during server render
+#### Pass cookies to Apollo client during server render
 
-### NOT Apollo v3/4
-
-We currently use Apollo Client v2. At the time of writing, v3 is still in beta.
+This allow to make authenticated calls
 
 ## Authentication
 

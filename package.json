@@ -70,7 +70,6 @@
     "next": "^9.4.4",
     "next-i18next": "^5.1.0",
     "next-mdx-enhanced": "^4.0.0",
-    "next-with-apollo": "5.0.1",
     "polished": "^3.6.5",
     "postcss-nested": "^4.2.1",
     "react": "^16.13.1",

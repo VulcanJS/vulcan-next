@@ -1,2 +1,1 @@
-export { default as withApollo } from "./withApollo";
-export { getApolloClient } from "./apolloClient";
+export * from "./apolloClient";
