@@ -1,5 +1,34 @@
 # Prepare the migration from Vulcan 1 (Meteor) to Vulcan 2 (Next+NPM)
 
+## Connect to an existing Vulcan Meteor backend
+
+If you already own a Vulcan Meteor app, you can use Vulcan Next today as a frontend solution.
+
+In another terminal, run your Vulcan Meteor application on `localhost:3001`:
+
+```bash
+cd SomeVulcanApp
+meteor run --settings settings.json --port 3001
+```
+
+Run Vulcan Next development server:
+
+```bash
+# We favour Yarn over NPM for commands
+NEXT_PUBLIC_GRAPHQL_URI="your-vulcan-server-url" yarn dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+
+## Update your Vulcan Meteor backend to match Vulcan Next architecture
+
+In the long run, Vulcan Next will be considered as the standard and Vulcan Meteor as a legacy version.
+To make the migration easier, you can refactor your Vulcan Meteor application to progressively match the new architecture.
+
+Even if you don't plan to use Vulcan Next at all, this refactoring will make your application more scalable.
+
 ## What will stay the same
 
 - Features revolving around the Vulcan schema

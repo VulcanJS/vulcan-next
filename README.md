@@ -24,27 +24,29 @@ You can then access the live docs on [http://localhost:3000/docs](http://localho
 git remote rename origin upstream
 ```
 
-## Connect to a Vulcan backend
+### Roll your own Mongo database
 
-[If you don't know the awesome GraphQL framework Vulcan, get started here](http://vulcanjs.org/)
+As a default, Vulcan Next will connect to a sample read-only database owned by LBKE.
+To create your own application, you'll want to use your own databse.
 
-In another terminal, run a Vulcan application on `localhost:3001`:
+1. Run a Mongo server using Docker
 
-```bash
-cd SomeVulcanApp
-meteor run --settings settings.json --port 3001
+[**See Docker installation instruction for Ubuntu here**](https://docs.docker.com/engine/install/ubuntu/)
+
+```sh
+# It will run Mongo in your current terminal
+docker run -p 27017:27017 --name vulcan-mongodb mongo:4.0.4
 ```
 
-Run Vulcan Next development server:
+2. Configure your application to use your local database
 
-```bash
-# We favour Yarn over NPM for commands
-NEXT_PUBLIC_GRAPHQL_URI="your-vulcan-server-url" yarn dev
+In `.env.development` write:
+
+```
+MONGO_URI="mongodb://localhost:27017/vulcan-next-app"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+We advise to use [MongoDB Compass](https://www.mongodb.com/try/download/compass) to visualize your database content.
 
 ## They support Vulcan Next and Vulcan Meteor
 
