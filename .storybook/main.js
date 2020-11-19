@@ -12,8 +12,9 @@ if (process.env.ANALYZE === "true") {
 }
 module.exports = {
   stories: [
-    "../stories/**/*.stories.@(js|ts|jsx|tsx|mdx)",
-    "../src/**/*.stories.@(js|ts|jsx|tsx|mdx)",
+    "../stories/0-Welcome.stories.js",
+    // "../stories/**/*.stories.@(js|ts|jsx|tsx|mdx)",
+    // "../src/**/*.stories.@(js|ts|jsx|tsx|mdx)",
   ],
   addons: [
     "@storybook/addon-actions",
@@ -27,6 +28,21 @@ module.exports = {
     "@storybook/addon-controls",
     "@storybook/addon-a11y",
   ],
+  typescript: {
+    reactDocgen: false,
+  },
+  babel: async (config) => {
+    config.presets.push([
+      "next/babel",
+      {
+        "styled-jsx": {
+          plugins: ["styled-jsx-plugin-postcss"],
+        },
+      },
+    ]);
+    console.log(config);
+    return config;
+  },
   // https://github.com/storybookjs/storybook/blob/next/docs/src/pages/configurations/custom-webpack-config/index.md#debug-the-default-webpack-config
   webpackFinal: async (config, { configType }) => {
     // add magic imports and isomorphic imports to Storybook

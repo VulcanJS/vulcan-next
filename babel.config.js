@@ -20,16 +20,7 @@ plugins.push([
 
 module.exports = {
   // we also need next/babel preset to work with Next
-  presets: [
-    [
-      "next/babel",
-      {
-        "styled-jsx": {
-          plugins: ["styled-jsx-plugin-postcss"],
-        },
-      },
-    ],
-  ],
+  presets: [],
   plugins,
-  babelrc: false,
+  // babelrc: false,
 };
