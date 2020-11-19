@@ -133,9 +133,5 @@
     "nyc": "^15.1.0",
     "serve": "^11.3.2",
     "start-server-and-test": "^1.11.0"
-  },
-  "resolutions": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
   }
 }
