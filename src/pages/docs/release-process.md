@@ -6,9 +6,10 @@
 ### To the right branch
 git checkout master && git pull
 git checkout devel && git pull
-cat package.json | grep version # to get the current version
-git checkout -b release/<next-version>
+# cat package.json | grep version # to get the current version
+# git checkout -b release/<next-version>
 git merge master # get hot fixes if any
+git merge devel
 rm -Rf node_modules && yarn install # no missing module surprise
 
 ```
