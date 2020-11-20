@@ -3,7 +3,7 @@ import fs from "fs";
 import shell from "shelljs";
 import { spawn } from "child_process";
 import debug from "debug";
-const debugCoverage = debug("vns:coverage");
+const debugCoverage = debug("vn:coverage");
 
 const basicSpec = "cypress/integration/vns/basic.spec.ts";
 
