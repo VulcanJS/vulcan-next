@@ -17,10 +17,10 @@ const NextComposed = React.forwardRef(function NextComposed(
   props: LinkProps,
   ref: Ref<HTMLAnchorElement>
 ) {
-  const { as, href, ...other } = props;
+  const { href, ...other } = props;
 
   return (
-    <NextLink href={href} as={as}>
+    <NextLink href={href}>
       <a ref={ref} {...other} />
     </NextLink>
   );
