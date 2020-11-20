@@ -9,6 +9,9 @@ const path = require("path");
 
 const withMagicImports = (config = {}) => {
   if (!config.resolve) config.resolve = {};
+  // This is still needed for Storybook or 3rd party Webpack baseds tools
+  // However Next is able to resolve based just on the tsconfig.json
+  // @see https://github.com/vercel/next.js/issues/19345 for progress on this
   config.resolve.alias = {
     ...(config.resolve.alias || {}),
     "~": path.join(__dirname, "../../../", "src"),

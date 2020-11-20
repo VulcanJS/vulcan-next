@@ -26,6 +26,7 @@ module.exports = {
     // @see https://medium.com/storybookjs/storybook-controls-ce82af93e430
     "@storybook/addon-controls",
     "@storybook/addon-a11y",
+    // "@next/plugin-storybook",
   ],
   // https://github.com/storybookjs/storybook/blob/next/docs/src/pages/configurations/custom-webpack-config/index.md#debug-the-default-webpack-config
   webpackFinal: async (config, { configType }) => {
@@ -43,7 +44,8 @@ module.exports = {
     // @see https://github.com/storybookjs/storybook/issues/7644#issuecomment-592536159
     withVulcan.module.rules = [
       ...withVulcan.module.rules.filter(
-        (rule) => rule.test.source !== "\\.md$"
+        // rules do not necessarily have a test, it can be a "oneOf"
+        (rule) => !rule.test || rule.test.source !== "\\.md$"
       ),
     ];
 

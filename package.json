@@ -82,6 +82,7 @@
     "styled-jsx-plugin-postcss": "^3.0.2"
   },
   "devDependencies": {
+    "@next/plugin-storybook": "^10.0.2",
     "@babel/core": "^7.10.2",
     "@storybook/addon-essentials": "^6.1.0",
     "@types/mongoose": "^5.7.27",
