@@ -1,4 +1,4 @@
-export const StPostCSS () => (
+export const StPostCSS = () => (
   <div>
     <div className="yellow">
       <h1>I am yellow</h1>
@@ -14,4 +14,4 @@ export const StPostCSS () => (
     </style>
   </div>
 );
-export default StPostCSS
+export default StPostCSS;
