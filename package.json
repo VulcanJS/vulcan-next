@@ -67,7 +67,7 @@
     "isomorphic-unfetch": "3.0.0",
     "lodash": "^4.17.19",
     "mongoose": "^5.9.19",
-    "next": "^9.4.4",
+    "next": "^10.0.2",
     "next-i18next": "^5.1.0",
     "next-mdx-enhanced": "^4.0.0",
     "polished": "^3.6.5",
@@ -80,7 +80,7 @@
     "styled-components": "^5.1.1",
     "styled-components-modifiers": "^1.2.5",
     "styled-jsx": "^3.3.0",
-    "styled-jsx-plugin-postcss": "^2.0.1"
+    "styled-jsx-plugin-postcss": "^3.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
