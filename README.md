@@ -34,8 +34,8 @@ To create your own application, you'll want to use your own databse.
 [**See Docker installation instruction for Ubuntu here**](https://docs.docker.com/engine/install/ubuntu/)
 
 ```sh
-# It will run Mongo in your current terminal
-docker run -p 27017:27017 --name vulcan-mongodb mongo:4.0.4
+# It will run Mongo in your current terminal, or create and run a Mongo image if it's the first time your run the command
+docker start vulcan-mongodb || docker run -p 27017:27017 --name vulcan-mongodb mongo:4.0.4
 ```
 
 #### 2. Configure your application to use your local database
