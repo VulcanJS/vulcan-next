@@ -2946,10 +2946,10 @@
   resolved "https://registry.yarnpkg.com/@next/env/-/env-10.0.2.tgz#b0479a0d4d962f9f85a577298cee260c310dfa3f"
   integrity sha512-1fMsLplRXJjSmOfdaeP91fbTgnsbmZSvX6BjeKXSksccg5JT9W1XkOCerTrbQLpUNZIi0sVfwBrHrwJRMCqGBA==
 
-"@next/mdx@^9.4.4":
-  version "9.5.3"
-  resolved "https://registry.yarnpkg.com/@next/mdx/-/mdx-9.5.3.tgz#246fd65b2f0854894d7d80b27a7af1708ccceb49"
-  integrity sha512-r4C5bFG6bQ1WfCR8re/GUFgw2CmpMByOILMYAqKhrHE/Ota2mloxdqLQOR/fBMy3f3wvEMFvl7YdEtQPPA9oLg==
+"@next/mdx@^10.0.2":
+  version "10.0.2"
+  resolved "https://registry.yarnpkg.com/@next/mdx/-/mdx-10.0.2.tgz#7ab1452818b436ffaae6a56c3be3ad7d4d89488e"
+  integrity sha512-oMQmzAzz3LVWUHaH6ur+FLLcul/6Zrt73H9gRipG0a5k+H6ptKpKgKrL9/q+Gj12su6X7reImsWtyUqQxRPBQA==
 
 "@next/plugin-storybook@^10.0.2":
   version "10.0.2"

@@ -1,1 +1,2 @@
-export default () => "foobar";
+export const Foobar = () => "foobar";
+export default Foobar;
