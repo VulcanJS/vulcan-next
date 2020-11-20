@@ -35,12 +35,12 @@ To create your own application, you'll want to use your own databse.
 
 ```sh
 # It will run Mongo in your current terminal, or create and run a Mongo image if it's the first time your run the command
-docker start vulcan-mongodb || docker run -p 27017:27017 --name vulcan-mongodb mongo:4.0.4
+yarn run start:mongo
 ```
 
 #### 2. Configure your application to use your local database
 
-In `.env.development` write:
+In `.env.development` or `.env.development.local` use this URI for Mongo:
 
 ```
 MONGO_URI="mongodb://localhost:27017/vulcan-next-app"

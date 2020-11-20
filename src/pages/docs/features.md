@@ -35,6 +35,16 @@ With have a non-regression test for SSR, so no surprise with component that sudd
 
 This allow to make authenticated calls
 
+## Persistance with Mongo through Docker
+
+As easy as ABC:
+
+```
+yarn start:mongo
+```
+
+It will run an ephemeral Docker instance of Mongo v4. Data are stored in your project, in the `./.mongo` folder. The container is removed when stopped, but your data are persisted and will still be available on next run.
+
 ## Authentication
 
 ### Demonstration of redirection

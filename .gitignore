@@ -36,3 +36,4 @@ storybook-static
 
 # mdx enhanced
 .mdx-data
+.mongo
