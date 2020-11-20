@@ -24,11 +24,11 @@ const components = {
   //thematicBreak: Typography,
   //blockquote: Typography,
   //ul: List,
-  ol: (props) => (
-    <p>
-      - <Typography component={"span"} variant="body2" {...props} />
-    </p>
-  ),
+  // ol: (props) => (
+  //   <p>
+  //     - <Typography component={"span"} variant="body2" {...props} />
+  //   </p>
+  // ),
   li: (props) => (
     <p>
       - <Typography component={"span"} variant="body2" {...props} />

@@ -29,7 +29,7 @@ git remote rename origin upstream
 As a default, Vulcan Next will connect to a sample read-only database owned by LBKE.
 To create your own application, you'll want to use your own databse.
 
-1. Run a Mongo server using Docker
+#### 1. Run a Mongo server using Docker
 
 [**See Docker installation instruction for Ubuntu here**](https://docs.docker.com/engine/install/ubuntu/)
 
@@ -38,7 +38,7 @@ To create your own application, you'll want to use your own databse.
 docker run -p 27017:27017 --name vulcan-mongodb mongo:4.0.4
 ```
 
-2. Configure your application to use your local database
+#### 2. Configure your application to use your local database
 
 In `.env.development` write:
 
