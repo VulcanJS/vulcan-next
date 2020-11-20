@@ -26,13 +26,13 @@ module.exports = {
     // @see https://medium.com/storybookjs/storybook-controls-ce82af93e430
     "@storybook/addon-controls",
     "@storybook/addon-a11y",
+    // @see https://github.com/vercel/next.js/issues/19345
     // "@next/plugin-storybook",
   ],
   // https://github.com/storybookjs/storybook/blob/next/docs/src/pages/configurations/custom-webpack-config/index.md#debug-the-default-webpack-config
   webpackFinal: async (config, { configType }) => {
     // add magic imports and isomorphic imports to Storybook
     const withVulcan = extendWebpackConfig("client")(config);
-
     // add mdx support, in components
     // @see https://mdxjs.com/getting-started/webpack
     withVulcan.module.rules.push({

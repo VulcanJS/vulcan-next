@@ -11569,7 +11569,7 @@ jest-snapshot@^26.4.2:
     pretty-format "^26.4.2"
     semver "^7.3.2"
 
-jest-transformer-mdx@2.2.0:
+jest-transformer-mdx@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/jest-transformer-mdx/-/jest-transformer-mdx-2.2.0.tgz#644816348957272125f6d6d3c43b8cd77c47e639"
   integrity sha512-P9jzwK1xC5kEKoGL3eK0O7bvvNyZNtHkpyxc4gQDP2CK2EkazZnKGF7BRY6R8rKmBmo3++9OYT1oZ1QcegoM2w==
