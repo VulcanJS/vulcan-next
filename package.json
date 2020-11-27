@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next",
+    "debug": "NODE_OPTIONS='--inspect' next",
     "build": "next build",
     "start": "next start",
     "test": "npm run test:unit && npm run test:e2e",
