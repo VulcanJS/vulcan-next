@@ -1,3 +1,9 @@
+/**
+ * NOTE: this tests cover the "withPrivateAccess" hook
+ * which can be considered as deprecated
+ *
+ * See "auth.spec.ts" for a more recent test
+ */
 describe("private pages", () => {
   describe("server side", () => {
     it("redirects when accessing private page", () => {

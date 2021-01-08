@@ -1,14 +1,28 @@
 import Head from "next/head";
-import Footer from "~/components/layout/Footer";
 
 const Layout = (props) => (
   <>
     <Head>
-      <title>With Cookies</title>
+      <title>Auth</title>
     </Head>
 
     <main>
-      <div className="container">{props.children}</div>
+      <div className="container">
+        {process.env.NEXT_PUBLIC_IS_USING_DEMO_DATABASE ? (
+          <div>
+            <p>You are using LBKE read-only demo database.</p>
+            <p>
+              To enable authentication features, please setup your own local
+              database.
+            </p>
+            <p>
+              See <a href="/">home README </a> for relevant instructions.
+            </p>
+          </div>
+        ) : (
+          props.children
+        )}
+      </div>
     </main>
 
     {/*<Footer />*/}

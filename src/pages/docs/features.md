@@ -47,9 +47,15 @@ It will run an ephemeral Docker instance of Mongo v4. Data are stored in your pr
 
 ## Authentication
 
-### Demonstration of redirection
+### Passport authentication
 
-See `src/pages/vns/debug/private`. You can use `withPrivateAccess` HOC to make a page private and handle redirections correctly in all situations (server-side, client-side, in the context of a static export etc.).
+Access the See the home page footer to access signup, login, logout and profile page. Implementation is based on Next official example [with Passport and Next Connect](https://github.com/vercel/next.js/tree/canary/examples/with-passport-and-next-connect)
+
+### Experimental SSR redirection
+
+*This feature is experimental and not useful in most scenarios.* We advise to stick to client-side only patterns. [See relevant issue](https://github.com/VulcanJS/vulcan-next/issues/71).
+
+See `src/pages/vns/debug/private` for a demo. You can use `withPrivateAccess` HOC to make a page private and handle redirections correctly in all situations (server-side, client-side, in the context of a static export etc.).
 
 ## Apollo Server
 

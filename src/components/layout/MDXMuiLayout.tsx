@@ -47,7 +47,8 @@ const components = {
   //inlineCode: Typography,
   //hr: Typography,
   a: Link,
-  //img: Typography,
+  // TODO: didn't find a way to override image styling...
+  img: (props) => <img {...props} style={{ maxWidth: "100%" }} />,
 };
 const MDXMuiLayout = ({ children }: MDXLayoutProps) => {
   return (

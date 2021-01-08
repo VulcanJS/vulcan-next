@@ -14,7 +14,7 @@ export default async function signup(
     // we need to use it to ensure that we run all callbacks associated to the user collection
     const user = req.body;
     // TODO: check if this is ok to compute the context from a NextApiRequest like this
-    const context = await contextFromReq(req as unknown as Request)
+    const context = await contextFromReq((req as unknown) as Request);
     await createMutator({ model: User, data: user, context });
     res.status(200).send({ done: true });
   } catch (error) {
