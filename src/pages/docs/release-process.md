@@ -56,6 +56,7 @@ npm version patch # patch or minor or major depending on the situation
 # yarn version --new-version <level>  # command for yarn v1
 # yarn version patch # works only with yarn v2 @see https://github.com/yarnpkg/yarn/issues/5367
 yarn run auto-changelog # update changelog
+git commit -am "bump version"
 ```
 
 ## Deploy
