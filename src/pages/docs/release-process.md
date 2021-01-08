@@ -36,7 +36,7 @@ yarn run build:static && yarn run start:static
 # Run tests
 yarn run test
 # Run tests specific to Vulcan Next (longer)
-yarn run test:vns
+yarn run test:vn
 # Test storybook
 yarn run storybook
 # Test storybook static build

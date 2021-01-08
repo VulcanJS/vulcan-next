@@ -28,6 +28,22 @@ export const parameters = {
 //  </MockedProvider>
 //);
 
+// @see https://github.com/vercel/next.js/issues/16864#issuecomment-743743089
+// We already mock next-config using a webpack alias in storybook but
+// it does not seem to work in next/link
+import { RouterContext } from "next/dist/next-server/lib/router-context";
+const withStorybookSafePrefetch = (Story) => (
+  <RouterContext.Provider
+    value={{
+      push: () => Promise.resolve(),
+      replace: () => Promise.resolve(),
+      prefetch: () => Promise.resolve(),
+    }}
+  >
+    <Story />
+  </RouterContext.Provider>
+);
+
 const withMui = (storyFn) => <MuiThemeProvider>{storyFn()}</MuiThemeProvider>;
 const withSC = (storyFn) => <SCThemeProvider>{storyFn()}</SCThemeProvider>;
 
@@ -47,5 +63,6 @@ export const decorators = [
   withI18n,
   withAppLayout,
   withA11y,
+  withStorybookSafePrefetch,
   //withKnobs,
 ];
