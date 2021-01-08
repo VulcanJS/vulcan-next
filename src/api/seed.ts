@@ -9,6 +9,16 @@ const seed = (context) => {
     const count = await UserConnector.count({ isAdmin: true });
     if (count === 0) {
       console.log("No admin user found, seeding admin");
+      if (!process.env.ADMIN_EMAIL) {
+        throw new Error(
+          "ADMIN_EMAIL env variable not defined. Could not seed admin user"
+        );
+      }
+      if (!process.env.ADMIN_INITIAL_PASSWORD) {
+        throw new Error(
+          "ADMIN_INITIAL_PASSWORD env variable not defined. Could not seed admin user."
+        );
+      }
       const admin = {
         email: process.env.ADMIN_EMAIL,
         password: process.env.ADMIN_INITIAL_PASSWORD,

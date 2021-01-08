@@ -24,7 +24,7 @@ const MongoDebugPage = () => {
   return (
     <div>
       <h2>First 5 restaurants that comes to my mind:</h2>
-      <ul>
+      <ul className="restaurants">
         {restaurants.map(({ _id, name }) => (
           <li key={_id}>{name}</li>
         ))}
