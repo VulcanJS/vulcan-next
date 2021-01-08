@@ -64,7 +64,7 @@
     "cross-env": "7.0.2",
     "debug": "4.1.1",
     "express": "4.17.1",
-    "graphql": "14.6.0",
+    "graphql": "15.4.0",
     "graphql-tag": "2.10.3",
     "i18next": "^19.4.5",
     "i18next-browser-languagedetector": "^4.2.0",
