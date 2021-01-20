@@ -1,5 +1,7 @@
 # Vulcan Next
 
+Vulcan Next helps you build GraphQL-based applications with Next.js.
+
 ![vulcan-next-starter banner](https://raw.githubusercontent.com/VulcanJS/vulcan-next-starter/devel/public/img/vn-logo-full-1280-640.png)
 
 [Check the features](https://github.com/VulcanJS/vulcan-next-starter/tree/devel/src/pages/docs/features.md)
