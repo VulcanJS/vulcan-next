@@ -108,7 +108,6 @@
     "eslint-plugin-react-hooks": "^2.5.0",
     "graphql-voyager": "^1.0.0-rc.31",
     "react-is": "^16.13.1",
-    "shelljs": "^0.8.4",
     "source-map-support": "^0.5.19",
     "ts-loader": "^7.0.5",
     "ts-node": "^8.10.2",
@@ -140,6 +139,7 @@
     "jest": "^26.0.1",
     "jest-transformer-mdx": "^2.2.0",
     "nyc": "^15.1.0",
+    "shelljs": "^0.8.4",
     "serve": "^11.3.2",
     "start-server-and-test": "^1.11.0"
   }
