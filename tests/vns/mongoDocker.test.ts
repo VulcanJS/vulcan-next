@@ -52,6 +52,10 @@ describe("mongo docker", () => {
       try {
         //child.kill();
         process.kill(-child.pid); // kill subprocess too
+      } catch (err) {
+        // NOTE: this can happen if the db is already launched manually before we run the test,
+        // the process will fail immediately. That's not a problem.
+        console.warn(err);
       } finally {
         killedResolve();
       }
