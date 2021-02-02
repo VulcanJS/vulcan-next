@@ -1,5 +1,8 @@
 /**
  * Test the run of a local mongo database
+ *
+ * // @see https://jestjs.io/docs/en/next/configuration#testenvironment-string
+ * @jest-environment node
  */
 import {
   connectToDb,

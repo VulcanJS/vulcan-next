@@ -1,3 +1,7 @@
+/**
+ * // @see https://jestjs.io/docs/en/next/configuration#testenvironment-string
+ * @jest-environment node
+ */
 import {
   connectToDb,
   closeDbConnection,

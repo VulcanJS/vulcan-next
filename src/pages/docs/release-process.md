@@ -36,6 +36,8 @@ yarn run build:static && yarn run start:static
 # Run tests
 yarn run test
 # Run tests specific to Vulcan Next (longer)
+# /!\ need docker to run
+yarn run start:mongo
 yarn run test:vn
 # Test storybook
 yarn run storybook

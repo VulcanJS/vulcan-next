@@ -30,7 +30,7 @@ Handling connections to multiple graphQL APIs is the nightmare of the modern fro
 - Most documentations about schema stitching (client-side) assume that you own the schema (meaning you can get it locally), and that of course it's written in JS. But real frontend developers, most often, connect to APIs they don't own, probably written in a various set of languages...
 - You can do stitching of remote schemas, but documentation is rather terse.
 
-See  [GraphQL tools documentation](https://www.graphql-tools.com/docs/remote-schemas/) for more infos on remote schemas and stitching.
+See [GraphQL tools documentation](https://www.graphql-tools.com/docs/remote-schemas/) for more infos on remote schemas and stitching.
 
 ### Multiple Apollo clients?
 
@@ -74,9 +74,63 @@ And then you can swap the service like so:
 
 ```js
 // usage
-const { data, loading, error} = useQuery(MY_QUERY, { context: { service: "service1"}})
+const { data, loading, error } = useQuery(MY_QUERY, {
+  context: { service: "service1" },
+});
 ```
 
 **Main limitation is that you can call services only one by one.** This pattern is not the recommended way to call multiple APIs, it has clear limitations. But it does the trick , especially if you need to quickly connect to many 3rd party libraries in isolated parts of your app.
 
 Since we use the same client and only change a link, the Apollo cache is shared between services. DevTools should still work with this approach.
+
+## Test server-only code
+
+### Approach 1: change the `testEnvironment` on the fly
+
+`jsdom` (=client) is the default `testEnvironment` option for Jest. When testing your app server-specific code,
+you may want to use the `node` environment.
+
+You can do so for a specific test file by adding this at the top:
+
+```js
+/**
+ * // @see https://jestjs.io/docs/en/next/configuration#testenvironment-string
+ * @jest-environment node
+ */
+```
+
+Pro: no need to change the config
+Con: can become tedious, not easy to see server-only tests at first glances
+
+### Approach 2: use 2 separate configs
+
+Define `jest.config.server.ts` like this for example:
+
+```js
+const baseConfig = require("./jest.config");
+module.exports = {
+  ...baseConfig,
+  testEnvironment: "node",
+  testMatch: [
+    (testMatch: [
+      "**/__tests__/**/*.server.[jt]s?(x)",
+      "**/?(*.)+(spec|test).server.[tj]s?(x)"
+    ]),
+  ],
+};
+```
+
+Only tests named `foobar.test.server.js` (or ts, etc.) will be matched.
+
+Pro: clean, can handle files per folder or per name using a Regex.
+Cons: using 2 configs => using 2 commands, you need to name your server only test specifically,
+or to isolate them in a specific folder,
+more difficult to compute coverage, more configuration
+
+### Approach 3: use one config with the `projects` options
+
+With the `projects` options, you can use 2 different Jest config depending on the file name or location.
+So you can use one config for server tests and one for client tests.
+
+Pro: based on a core feature of Jest, will compute coverage correctly
+Cons: you need to name your server specifically or to isolate them in a specific folder
