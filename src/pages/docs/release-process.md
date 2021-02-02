@@ -17,6 +17,11 @@ rm -Rf node_modules && yarn install # no missing module surprise
 ## Run the app, run tests
 
 ```sh
+# Run mongo in a separate shell
+yarn run start:mongo
+```
+
+```sh
 
 ### Test process
 # Fix any problem that occur during those tests
@@ -36,8 +41,6 @@ yarn run build:static && yarn run start:static
 # Run tests
 yarn run test
 # Run tests specific to Vulcan Next (longer)
-# /!\ need docker to run
-yarn run start:mongo
 yarn run test:vn
 # Test storybook
 yarn run storybook

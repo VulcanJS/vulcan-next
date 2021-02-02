@@ -109,6 +109,7 @@
     "graphql-voyager": "^1.0.0-rc.31",
     "react-is": "^16.13.1",
     "source-map-support": "^0.5.19",
+    "storybook-css-modules-preset": "^1.0.5",
     "ts-loader": "^7.0.5",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.0"
@@ -139,8 +140,8 @@
     "jest": "^26.0.1",
     "jest-transformer-mdx": "^2.2.0",
     "nyc": "^15.1.0",
-    "shelljs": "^0.8.4",
     "serve": "^11.3.2",
+    "shelljs": "^0.8.4",
     "start-server-and-test": "^1.11.0"
   }
 }

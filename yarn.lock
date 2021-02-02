@@ -16324,6 +16324,11 @@ store2@^2.7.1:
   resolved "https://registry.yarnpkg.com/store2/-/store2-2.12.0.tgz#e1f1b7e1a59b6083b2596a8d067f6ee88fd4d3cf"
   integrity sha512-7t+/wpKLanLzSnQPX8WAcuLCCeuSHoWdQuh9SB3xD0kNOM38DNf+0Oa+wmvxmYueRzkmh6IcdKFtvTa+ecgPDw==
 
+storybook-css-modules-preset@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/storybook-css-modules-preset/-/storybook-css-modules-preset-1.0.5.tgz#8963bab91c42a66fc757610323d280d76a06d07b"
+  integrity sha512-NcGOdU7Woh1RMz7ftaDh6ThePRaW/5Cuh5AH5lK+5D9ue5X9cFxSvkWCZUswcGOS8Z6GNifeTx7UoH6nuWZPFg==
+
 stream-browserify@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/stream-browserify/-/stream-browserify-3.0.0.tgz#22b0a2850cdf6503e73085da1fc7b7d0c2122f2f"
