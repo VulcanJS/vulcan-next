@@ -87,7 +87,6 @@
     "react-spring": "^8.0.27",
     "styled-components": "^5.1.1",
     "styled-components-modifiers": "^1.2.5",
-    "styled-jsx": "^3.3.0",
     "styled-jsx-plugin-postcss": "^3.0.2",
     "swr": "^0.4.0"
   },
