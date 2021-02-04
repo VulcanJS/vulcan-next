@@ -131,6 +131,10 @@ In `next.config.js`, you'll find a demonstration of how to **safely** inject inf
 
 For example, we use it to inject current version into the `html` tag for better deployment tracking.
 
+### Sitemap.xml and Robots.txt with next-sitemap
+
+We use [next-sitemap](https://github.com/iamvishnusankar/next-sitemap#readme) to create both the `robots.txt` and `sitemap.xml` in the `postbuild` script.  Change `https://vulcan.next` to your root url in `/vulcan-next-sitemap.js`.  Here's more [configuration options](https://github.com/iamvishnusankar/next-sitemap#configuration-options). 
+
 ### Performance debugging
 
 [See official doc](https://nextjs.org/docs/advanced-features/measuring-performance).

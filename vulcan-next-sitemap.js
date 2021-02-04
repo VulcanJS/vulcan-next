@@ -8,6 +8,7 @@ module.exports = {
       {
         userAgent: '*',
         disallow: ['/vns/*', '/login', '/profile', '/signup', '/admin', '/auth'],
+        //allow: ['/','/docs/*'],
       },
     ]
   }

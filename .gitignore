@@ -37,3 +37,7 @@ storybook-static
 # mdx enhanced
 .mdx-data
 .mongo
+
+# next-sitemap
+/public/sitemap.xml
+/public/robots.txt
