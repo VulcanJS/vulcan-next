@@ -1,0 +1,14 @@
+# *
+User-agent: *
+Disallow: /vns/*
+Disallow: /login
+Disallow: /profile
+Disallow: /signup
+Disallow: /admin
+Disallow: /auth
+
+# Host
+Host: https://vulcan.next
+
+# Sitemaps
+Sitemap: https://vulcan.next/sitemap.xml
