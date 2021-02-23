@@ -23,7 +23,9 @@ import { useApollo } from "@vulcanjs/next-apollo";
 function VNApp({ Component, pageProps }: AppProps) {
   useMuiApp(); // comment to disable Material UI
   const apolloClient = useApollo(pageProps.initialApolloState, {
-    graphqlUri: "http://localhost:3000/api/graphql",
+    graphqlUri:
+      process.env.NEXT_PUBLIC_GRAPHQL_URI ??
+      "http://localhost:3000/api/graphql",
   }); // you can also easily setup ApolloProvider on a per-page basis
   return (
     <>
