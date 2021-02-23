@@ -18,8 +18,8 @@ Set relevant environment variables, based on the content of `.env.production.loc
 
 Examples:
 
-- `NEXT_PUBLIC_GRAPHQL_URI`: `https://twaikura.vercel.app/api/graphql` (NOTE: we need an absolute URL here)
-- `APOLLO_SERVER_CORS_WHITELIST`: `https://twaikura.vercel.app,https://www.twaikura.com` (beware of NOT adding a trailing backlash)
+- `NEXT_PUBLIC_GRAPHQL_URI`: `https://vulcan-next.vercel.app/api/graphql` (NOTE: we need an absolute URL here)
+- `APOLLO_SERVER_CORS_WHITELIST`: `https://vulcan-next.vercel.app,https://www.twaikura.com` (beware of NOT adding a trailing backlash)
 - `MONGO_URI`: `<your-mongo-db-url>`
 
 ### Vercel.json

@@ -1,3 +1,8 @@
+/**
+ * Demonstration of a Vulcan Meteor legacy connection
+ *
+ * Ignore if you don't use Vulcan Meteor
+ */
 import "@vulcanjs/demo";
 
 const IS_PROD = process.env.NODE_ENV === "production";

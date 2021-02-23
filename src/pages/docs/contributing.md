@@ -31,3 +31,9 @@ Vulcan NPM is relying on Lerna
 This is an open issue with Yarn workspaces, it is difficult not to duplicate packages used both by your NPM packages and your local app.
 Easiest solution is to force Vulcan Next to use the packages from Vulcan NPM. See relevant scripts in both Vulcan NPM (to activate the link)
 and Vulcan Next (to use linked versions).
+
+## Deployment of Vulcan Next demo on Vercel
+
+Vercel only provide a free-tier for personnal accounts. Therefore, `https://vulcan-next.vercel.app` is based on [eric-burel/vulcan-next fork](https://github.com/eric-burel/vulcan-next) instead of the main repo [VulcanJS/vulcan-next](https://github.com/VulcanJS/vulcan-next).
+
+[wei/pull](https://github.com/wei/pull) bot is used to automatically synchronize this fork with the main Vulcan Next repository. The application will be deployed automatically when Vulcan Next master branch is updated, but expect some latency because of this fork setup.
