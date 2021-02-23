@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2.1.5
-      - run: npm i -g yarn # Not necessary on Github but useful to test locally with `act`
+      - run: npm i -g yarn || true # Not necessary on Github but useful to test locally with `act`
       - run: yarn install --frozen-lockfile --check-files
 
       # This workflow contains a single job called "build"
