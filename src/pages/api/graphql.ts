@@ -43,6 +43,7 @@ const resolvers = {
         const results = await resultsCursor.toArray();
         return results;
       } catch (err) {
+        console.log("Could not fetch restaurants", err);
         throw err;
       }
     },
