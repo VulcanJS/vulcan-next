@@ -37,7 +37,7 @@ export const getStaticProps = async () => {
   // we suppose that the page name is always the file name without extension (no frontmatter URL customization)
   // NOTE: if frontMatter is needed, an alternative would be using https://github.com/jescalan/babel-plugin-import-glob-array
   // to import all frontMatters
-  const docsDir = path.resolve("./src/pages/docs"); // relative to the project root
+  const docsDir = path.resolve("./src/content/docs"); // relative to the project root
   const files = await listMdxFiles({ dir: docsDir });
   const pageNames = files.map((f) =>
     f.fileName.split(".").slice(0, -1).join(".")
