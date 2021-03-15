@@ -7,12 +7,11 @@ import hydrate from "next-mdx-remote/hydrate";
 import { muiMdComponents } from "~/components/layout/muiMdComponents";
 import { PageLayout } from "~/components/layout";
 
+// inject both the custom components + default components like h1, p, etc.
+const components = { ...muiMdComponents };
 const HomePage = ({ source }) => {
   const readMeContent = hydrate(source, {
-    components: {
-      // inject both the custom components + default components like h1, p, etc.
-      ...muiMdComponents,
-    },
+    components,
   }); //, { components });
   return (
     <PageLayout>
@@ -38,7 +37,7 @@ export async function getStaticProps() {
   const source = await fsPromises.readFile(filePath, { encoding: "utf8" });
   // MDX text - can be from a local file, database, anywhere
   // Does a server-render of the source and relevant React wrappers + allow to inject React components
-  const mdxSource = await renderToString(source); //, { components });
+  const mdxSource = await renderToString(source, { components });
   return { props: { source: mdxSource } };
 }
 
