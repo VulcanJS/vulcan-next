@@ -1,5 +1,4 @@
 import "~/types/mdx.d.ts"; // TODO: load this automatically
-import Readme from "../../../README.md";
 import { Typography } from "@material-ui/core";
 
 export const Home = () => (
@@ -18,7 +17,6 @@ export const Home = () => (
       </Typography>
       <Typography>Have fun!</Typography>
     </div>
-    <Readme />
     <style jsx>
       {`
         .welcome-message {

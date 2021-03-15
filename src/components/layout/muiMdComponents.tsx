@@ -1,19 +1,21 @@
-import { MDXProvider } from "@mdx-js/react";
+/**
+ * MDX Layout, to be used with markdown file known in advance, for instance README.md
+ *
+ * For dynamic content, use next-mdx-remote setup instead (see how docs are handled)
+ */
 import {
   Typography,
   Table,
   TableBody,
   TableHead,
-  TableCell,
+  // TableCell,
   TableRow,
   Link,
 } from "@material-ui/core";
 
-interface MDXLayoutProps {
-  children: React.ReactNode;
-}
 // @see https://mdxjs.com/table-of-components
-const components = {
+// NOTE: those components are also used by next-mdx-remote based pages
+export const muiMdComponents = {
   p: (props) => <Typography {...props} />,
   h1: (props) => <Typography variant="h1" {...props} />,
   h2: (props) => <Typography variant="h2" {...props} />,
@@ -38,7 +40,8 @@ const components = {
   thead: TableHead,
   tbody: TableBody,
   tr: TableRow,
-  "td/th": TableCell,
+  // th/td will give SyntaxError: Arg string terminates parameters early for unknown reasons
+  // "th/td": TableCell,
   // pre: Typography,
   // code: Typography,
   // em: Typography,
@@ -50,17 +53,3 @@ const components = {
   // TODO: didn't find a way to override image styling...
   img: (props) => <img {...props} style={{ maxWidth: "100%" }} />,
 };
-const MDXMuiLayout = ({ children }: MDXLayoutProps) => {
-  return (
-    <MDXProvider components={components}>
-      <div className="MDXProvider root">{children}</div>
-      <style jsx>{`
-        .MDXProvider.root {
-          margin: 32px auto;
-          max-width: 1000px;
-        }
-      `}</style>
-    </MDXProvider>
-  );
-};
-export default MDXMuiLayout;

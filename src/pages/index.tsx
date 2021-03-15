@@ -1,13 +1,24 @@
 import Home from "~/components/home";
 //import { useForm } from "react-hook-form";
-import MDXMuiLayout from "~/components/layout/MDXMuiLayout";
+import path from "path";
+import { promises as fsPromises } from "fs";
+import renderToString from "next-mdx-remote/render-to-string";
+import hydrate from "next-mdx-remote/hydrate";
+import { muiMdComponents } from "~/components/layout/muiMdComponents";
+import { PageLayout } from "~/components/layout";
 
-const HomePage = () => {
+const HomePage = ({ source }) => {
+  const readMeContent = hydrate(source, {
+    components: {
+      // inject both the custom components + default components like h1, p, etc.
+      ...muiMdComponents,
+    },
+  }); //, { components });
   return (
-    <MDXMuiLayout>
+    <PageLayout>
       <main>
         <Home />
-        {/*content*/}
+        {readMeContent}
       </main>
       <style jsx>{`
         main {
@@ -18,8 +29,17 @@ const HomePage = () => {
           border-color: #3f77fa;
         }
       `}</style>
-    </MDXMuiLayout>
+    </PageLayout>
   );
 };
+
+export async function getStaticProps() {
+  const filePath = path.resolve("./README.md");
+  const source = await fsPromises.readFile(filePath, { encoding: "utf8" });
+  // MDX text - can be from a local file, database, anywhere
+  // Does a server-render of the source and relevant React wrappers + allow to inject React components
+  const mdxSource = await renderToString(source); //, { components });
+  return { props: { source: mdxSource } };
+}
 
 export default HomePage;
