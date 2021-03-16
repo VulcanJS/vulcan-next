@@ -21,6 +21,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": false,
+    "strictNullChecks": true,
     "sourceMap": true,
     "target": "ES2018"
   },

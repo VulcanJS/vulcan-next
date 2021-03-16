@@ -8,7 +8,7 @@ const useMuiTheme = (): UseMuiThemeOutput => {
   return [muiTheme, setMuiTheme];
 };
 
-const MuiThemeContext = createContext<UseMuiThemeOutput>(undefined);
+const MuiThemeContext = createContext<UseMuiThemeOutput | undefined>(undefined);
 
 /**
  * Can be called anywhere, will provide current theme
@@ -16,7 +16,7 @@ const MuiThemeContext = createContext<UseMuiThemeOutput>(undefined);
  *
  * Internally use "useState" to remember the current theme.
  */
-export const useMuiThemeContext = (): UseMuiThemeOutput => {
+export const useMuiThemeContext = (): UseMuiThemeOutput | undefined => {
   return useContext(MuiThemeContext);
 };
 

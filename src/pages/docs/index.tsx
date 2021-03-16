@@ -3,7 +3,10 @@ import { Link } from "@vulcanjs/next-material-ui"; // "next/link";
 import { listMdxFiles } from "@vulcanjs/mdx";
 import { List, ListItem, Typography } from "@material-ui/core";
 
-const DocIndex = ({ pages = [] }) => (
+export interface DocIndexProps {
+  pages: Array<string>;
+}
+const DocIndex = ({ pages = [] }: DocIndexProps) => (
   <div style={{ margin: "32px auto", maxWidth: "1000px" }}>
     <Typography variant="h1">
       <img src="/img/vns-logo-96.png" style={{ marginRight: "32px" }} />

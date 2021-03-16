@@ -16,8 +16,11 @@ import debug from "debug";
 import { useEffect, useState } from "react";
 const debugNext = debug("vns:next");
 
+type SsrNextPageContext = Pick<Required<NextPageContext>, "res">;
 // @ssr-only
-export const redirectServer = (ctx: NextPageContext) => (pathname: string) => {
+export const redirectServer = (ctx: SsrNextPageContext) => (
+  pathname: string
+) => {
   ctx.res.writeHead(302, { Location: pathname });
   ctx.res.end();
 };
@@ -95,7 +98,7 @@ PrivatePage.getInitialProps = async (ctx?: NextPageContext) => {
   debugNext("Running page getInitialProps");
   const namespacesRequired = ["common"]; // i18n
   // We simulate private connexion
-  const isAllowed = !!ctx.query.allowed; // demo
+  const isAllowed = !!ctx?.query?.allowed; // demo
   const pageProps = { namespacesRequired, isAllowedDuringSSR: isAllowed };
   // SCENARIO 2: we are doing dynamic SSR
   // We redirect using HTTP
@@ -103,7 +106,7 @@ PrivatePage.getInitialProps = async (ctx?: NextPageContext) => {
     debugNext("Detected dynamic server-side rendering");
     if (!isAllowed) {
       debugNext("Redirecting (dynamic server render)");
-      redirectServer(ctx)("/vns/debug/public");
+      redirectServer(ctx as SsrNextPageContext)("/vns/debug/public");
     } else {
       return { ...pageProps, isServerRender: true, isStaticExport: false };
     }

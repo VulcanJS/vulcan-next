@@ -39,7 +39,9 @@ const StyledButton = styled(Button)`
   &.MuiButton-root {
     /* The & is mandatory to have the correct specificity*/
     background-color: ${(props) =>
-      technologyToColor[props.preferredTechnology] || colors.blueNext};
+      props.preferredTechnology
+        ? technologyToColor[props.preferredTechnology]
+        : colors.blueNext};
 
     transition: "background-color 0.2s linear";
 

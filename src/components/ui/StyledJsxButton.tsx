@@ -40,7 +40,9 @@ export const Button = (props: ButtonProps) => {
           /* @see https://github.com/vercel/styled-jsx#one-off-global-selectors */
           /* don't forget the & so the style stays scoped to the current button */
           & :global(.MuiButton-root) {
-            color: ${technologyToColor[preferredTechnology] || colors.blueNext};
+            color: ${preferredTechnology
+              ? technologyToColor[preferredTechnology]
+              : colors.blueNext};
           }
         `}
       </style>
