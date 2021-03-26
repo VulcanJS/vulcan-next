@@ -36,7 +36,7 @@ have to apply the updates by hand, comparing Vulcan Next latest version to your 
 # Get the latest version of Vulcan Next locally
 git fetch upstream
 # Merge to your own code (favouring your own code as a default in case of conflict)
-git merge -X ours
+git merge upstream/master -X ours
 ```
 
 ### Roll your own Mongo database

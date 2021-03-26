@@ -17,6 +17,10 @@ rm -Rf node_modules && yarn install # no missing module surprise
 ## Run the app, run tests
 
 ```sh
+yarn run typecheck
+```
+
+```sh
 # Run mongo in a separate shell
 yarn run start:mongo
 ```
