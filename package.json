@@ -19,6 +19,7 @@
     "start:docker": "docker run -p 3000:3000 --env-file .env.development -it vns:latest",
     "build:test:docker": "docker build -f ./docker/cypress.dockerfile -t vns-test .",
     "start:mongo": "docker run --rm -p 27017:27017 -v \"$(pwd)/.mongo:/data/db\" --label vulcan-mongodb mongo:4.0.4 # will start or create & start the image + store data locally in .mongo folder + remove the container when stopped",
+    "mongo": "yarn run start:mongo  # shortcut for start:mongo",
     "start:test": "cross-env NODE_ENV=test npm run start # Start app in test mode",
     "test:e2e": "npm run build && start-server-and-test start:test http://localhost:3000 'cypress:run'",
     "test:unit": "jest --testPathIgnorePatterns=tests/vns",

@@ -4,9 +4,23 @@ Vulcan Next helps you build GraphQL-based applications with Next.js.
 
 ![vulcan-next-starter banner](https://raw.githubusercontent.com/VulcanJS/vulcan-next-starter/devel/public/img/vn-logo-full-1280-640.png)
 
-[Check the features](https://github.com/VulcanJS/vulcan-next-starter/tree/devel/src/content/docs/features.md)
+## What's in the box?
+
+Vulcan Next provides:
+
+- A production-grade Next.js + Apollo GraphQL boilerplate. It includes development tooling such as Cypress, Jest, Storybook, MDX... and many others.
+- A GraphQL API endpoint set up with Apollo Server, so you can start coding back-end features immediately.
+- Schema-based helpers and hooks to quickly generate and consume your own GraphQL API. 
+
+[Check all the features](https://github.com/VulcanJS/vulcan-next-starter/tree/devel/src/content/docs/features.md)
 
 [Read the introductory article](https://www.freecodecamp.org/news/how-to-replace-meteor-by-next-introducing-vulcan-next-starter/)
+
+## A word about Vulcan.js aka Vulcan Meteor
+
+You can't teach an old dog new tricks! Vulcan Next is the successor of "Vulcan.js", the Meteor framework from [Sacha Greif](https://sachagreif.com/). It inherits years of experience, in a modernized architecture that replaces Meteor by Next.js.
+
+---
 
 ## Install and run
 
@@ -19,17 +33,21 @@ yarn run dev
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 You can then access the live docs on [http://localhost:3000/docs](http://localhost:3000/docs).
 
-### Setup your own git
+### Setup your own git repository
 
 #### Initialization
+
+Rename "origin" to "upstream", so you can use your own git repository as the main origin and VN official repo as "upstream".
+
 ```sh
-# Rename "origin" to "upstream", so you can use your own git repository as the main origin and VN official repo as "upstream"
 git remote rename origin upstream
+# Then do what you need to create your own origin remote
+# git remote add origin <your-own-git-repository-url>
 ```
 
 #### Update
 
-You can update your Vulcan Next install. Beware: Vulcan Next is a boilerplate, the possibility to update automatically is not guaranteed. You may
+**Beware:** Vulcan Next is a boilerplate, the possibility to update automatically is not guaranteed. You may
 have to apply the updates by hand, comparing Vulcan Next latest version to your own code.
 
 ```sh
@@ -46,12 +64,14 @@ To create your own application, you'll want to use your own databse.
 
 #### 1. Run a Mongo server using Docker
 
-[**See Docker installation instruction for Ubuntu here**](https://docs.docker.com/engine/install/ubuntu/)
+
+It will run Mongo in your current terminal, or create and run a Mongo image if it's the first time your run the command.
 
 ```sh
-# It will run Mongo in your current terminal, or create and run a Mongo image if it's the first time your run the command
 yarn run start:mongo
 ```
+
+[**See Docker installation instruction for Ubuntu here**](https://docs.docker.com/engine/install/ubuntu/) if you don't have Docker yet.
 
 #### 2. Configure your application to use your local database
 
@@ -62,6 +82,8 @@ MONGO_URI="mongodb://localhost:27017/vulcan-next-app"
 ```
 
 We advise to use [MongoDB Compass](https://www.mongodb.com/try/download/compass) to visualize your database content.
+
+---
 
 ## They support Vulcan Next and Vulcan Meteor
 
