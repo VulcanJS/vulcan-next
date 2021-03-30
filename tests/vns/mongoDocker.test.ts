@@ -25,8 +25,8 @@ describe("mongo docker", () => {
     //   async: true,
     // });
   });
-  afterEach(() => {
-    closeDbConnection();
+  afterEach(async () => {
+    await closeDbConnection();
   });
   test("connects to local mongo db", async () => {
     // most of the complexity comes from running yarn run start:mongo in the background, then killing it in order to have a clean test

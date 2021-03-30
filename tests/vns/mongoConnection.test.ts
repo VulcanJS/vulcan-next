@@ -14,8 +14,8 @@ if (!process.env.MONGO_URI) {
 }
 
 describe("api/middlewares/mongoConnection", () => {
-  afterEach(() => {
-    closeDbConnection();
+  afterEach(async () => {
+    await closeDbConnection();
   });
   it("connects to mongo db", async () => {
     await connectToDb(process.env.MONGO_URI); // you can define a .env.test to configure this
