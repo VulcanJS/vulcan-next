@@ -10,7 +10,7 @@ Vulcan Next provides:
 
 - A production-grade Next.js + Apollo GraphQL boilerplate. It includes development tooling such as Cypress, Jest, Storybook, MDX... and many others.
 - A GraphQL API endpoint set up with Apollo Server, so you can start coding back-end features immediately.
-- Schema-based helpers and hooks to quickly generate and consume your own GraphQL API. 
+- Schema-based helpers and hooks to quickly generate and consume your own GraphQL API.
 
 [Check all the features](https://github.com/VulcanJS/vulcan-next-starter/tree/devel/src/content/docs/features.md)
 
@@ -18,13 +18,13 @@ Vulcan Next provides:
 
 ## A word about Vulcan.js aka Vulcan Meteor
 
-You can't teach an old dog new tricks! Vulcan Next is the successor of "Vulcan.js", the Meteor framework from [Sacha Greif](https://sachagreif.com/). It inherits years of experience, in a modernized architecture that replaces Meteor by Next.js.
+You can't teach an old dog new tricks! Vulcan Next is the successor of "Vulcan.js", the Meteor framework from [Sacha Greif](https://sachagreif.com/). It inherits years of experience, with a modernized architecture that replaces Meteor by Next.js.
 
 ---
 
 ## Install and run
 
-```
+```sh
 git clone https://github.com/VulcanJS/vulcan-next-starter.git
 yarn
 yarn run dev
@@ -64,7 +64,6 @@ To create your own application, you'll want to use your own databse.
 
 #### 1. Run a Mongo server using Docker
 
-
 It will run Mongo in your current terminal, or create and run a Mongo image if it's the first time your run the command.
 
 ```sh
@@ -77,7 +76,7 @@ yarn run start:mongo
 
 In `.env.development` or `.env.development.local` use this URI for Mongo:
 
-```
+```sh
 MONGO_URI="mongodb://localhost:27017/vulcan-next-app"
 ```
 
