@@ -18,12 +18,12 @@ describe("api/middlewares/mongoConnection", () => {
     closeDbConnection();
   });
   it("connects to mongo db", async () => {
-    const res = await connectToDb(process.env.MONGO_URI); // you can define a .env.test to configure this
-    expect(res).toBeTruthy();
+    await connectToDb(process.env.MONGO_URI); // you can define a .env.test to configure this
+    expect(true).toBe(true);
   });
   it("connects only one if already connecting", async () => {
-    await connectToDb(process.env.MONGO_URI); // you can define a .env.test to configure this
-    const newConnection = await connectToDb(process.env.MONGO_URI); // you can define a .env.test to configure this
-    expect(newConnection).toBe(false);
+    const promise = connectToDb(process.env.MONGO_URI); // you can define a .env.test to configure this
+    const newPromise = connectToDb(process.env.MONGO_URI); // you can define a .env.test to configure this
+    expect(promise).toEqual(newPromise);
   });
 });

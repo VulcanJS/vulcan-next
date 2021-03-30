@@ -59,8 +59,8 @@ describe("mongo docker", () => {
         killedResolve();
       }
     });
-    const res = await connectToDb(MONGO_LOCAL_URI); // you can define a .env.test to configure this
-    expect(res).toBeTruthy();
+    await connectToDb(MONGO_LOCAL_URI); // you can define a .env.test to configure this
+    expect(true).toBe(true);
     child.kill();
     await killedChild;
   });

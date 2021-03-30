@@ -17,6 +17,7 @@ export async function closeDbConnection() {
     await mongoose.connection.close();
   } catch (err) {
     // Catch locally error
+    console.error("Could not close mongoose connection");
     console.error(err);
   }
 }
