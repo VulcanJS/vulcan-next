@@ -8,9 +8,8 @@ import {
   connectToDb,
   closeDbConnection,
 } from "../../src/api/middlewares/mongoConnection";
+import { debugMongo } from "../../src/lib/debuggers";
 import { spawn } from "child_process";
-import debug from "debug";
-const debugMongo = debug("vn:mongo");
 // TODO: setup dotenv like in Next
 // @see https://github.com/VulcanJS/vulcan-next-starter/issues/47
 if (!process.env.MONGO_URI) {

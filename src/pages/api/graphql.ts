@@ -5,11 +5,14 @@ import { ApolloServer, gql } from "apollo-server-express";
 import { makeExecutableSchema, mergeSchemas } from "graphql-tools";
 import { buildApolloSchema } from "@vulcanjs/graphql";
 
-import mongoConnection from "~/api/middlewares/mongoConnection";
+import mongoConnection, {
+  connectToDb,
+} from "~/api/middlewares/mongoConnection";
 import corsOptions from "~/api/cors";
 import { contextBase, contextFromReq } from "~/api/context";
 import seedDatabase from "~/api/seed";
 import models from "~/models";
+import { debugMongo } from "~/lib/debuggers";
 
 /**
  * Example graphQL schema and resolvers generated using Vulcan declarative approach
@@ -53,28 +56,9 @@ const customSchema = makeExecutableSchema({ typeDefs, resolvers });
 // NOTE: schema stitching can cause a bad developer experience with errors
 const mergedSchema = mergeSchemas({ schemas: [vulcanSchema, customSchema] });
 
-// Seed
-// TODO: what is the best pattern to seed in a serverless context?
-// We pass the default graphql context to the seed function,
-// so it can access our models
-seedDatabase(contextBase);
-// also seed restaurant manually to demo a custom server
-const seedRestaurants = async () => {
-  const db = mongoose.connection;
-  const count = await db.collection("restaurants").countDocuments();
-  if (count === 0) {
-    db.collection("restaurants").insertMany([
-      {
-        name: "The Restaurant at the End of the Universe",
-      },
-      { name: "The Last Supper" },
-      { name: "Shoney's" },
-      { name: "Big Bang Burger" },
-      { name: "Fancy Eats" },
-    ]);
-  }
-};
-seedRestaurants();
+const mongoUri = process.env.MONGO_URI;
+if (!mongoUri) throw new Error("MONGO_URI env variable is not defined");
+const isLocalMongo = mongoUri.match(/localhost/);
 
 // Define the server (using Express for easier middleware usage)
 const server = new ApolloServer({
@@ -99,7 +83,7 @@ const gqlPath = "/api/graphql";
 // setup cors
 app.use(gqlPath, cors(corsOptions));
 // init the db
-app.use(gqlPath, mongoConnection());
+app.use(gqlPath, mongoConnection(mongoUri));
 
 server.applyMiddleware({ app, path: "/api/graphql" });
 
@@ -110,3 +94,45 @@ export const config = {
     bodyParser: false,
   },
 };
+
+// Seed in development
+// In production, we expect you to seed the database manually
+if (process.env.NODE_ENV === "development") {
+  connectToDb(mongoUri, {
+    serverSelectionTimeoutMS: isLocalMongo ? 3000 : undefined,
+  }) // fail the seed early during development
+    .then(() => {
+      debugMongo("Connected to db, seeding admin and restaurants");
+      // TODO: what is the best pattern to seed in a serverless context?
+      // We pass the default graphql context to the seed function,
+      // so it can access our models
+      seedDatabase(contextBase);
+      // also seed restaurant manually to demo a custom server
+      const seedRestaurants = async () => {
+        const db = mongoose.connection;
+        const count = await db.collection("restaurants").countDocuments();
+        if (count === 0) {
+          db.collection("restaurants").insertMany([
+            {
+              name: "The Restaurant at the End of the Universe",
+            },
+            { name: "The Last Supper" },
+            { name: "Shoney's" },
+            { name: "Big Bang Burger" },
+            { name: "Fancy Eats" },
+          ]);
+        }
+      };
+      seedRestaurants();
+    })
+    .catch((err) => {
+      console.error(
+        `\nCould not connect to Mongo database on URI ${mongoUri} during seed step.`
+      );
+      if (isLocalMongo) {
+        console.error("Did you forget to run 'yarn run start:mongo'?\n");
+      }
+      console.error(err);
+      process.exit(1);
+    });
+}
