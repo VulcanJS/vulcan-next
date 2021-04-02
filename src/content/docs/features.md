@@ -225,7 +225,7 @@ We use `ts-loader`, with [`transpileOnly`](https://github.com/TypeStrong/ts-load
 
 The `cy.visitAsHtml()` command allow to check the pure HTML render of a page. It will disable JS in the the page automatically.
 
-Note: at the time of writing (2020/06) [there is an open issue when needing this command in multiple tests](https://github.com/VulcanJS/vulcan-next-starter/issues/40)
+Note: at the time of writing (2020/06) [there is an open issue when needing this command in multiple tests](https://github.com/VulcanJS/vulcan-next/issues/40)
 
 ## Jest for unit testing
 
@@ -267,7 +267,7 @@ We reuse our Webpack config extension function, so you can enjoy magic imports a
 
 ### Styling with Styled JSX and CSS Modules
 
-Note: CSS modules are currently not appearing correctly in Storybook, see [vulcan-next-starter/issues/20](https://github.com/VulcanJS/vulcan-next-starter/issues/20)
+Note: CSS modules are currently not appearing correctly in Storybook, see [vulcan-next/issues/20](https://github.com/VulcanJS/vulcan-next/issues/20)
 
 ### Public folder
 
@@ -303,7 +303,7 @@ Initial setup based on [official Next example](https://github.com/mui-org/materi
 
 We try to reduce the footprint of Material UI for an easy remove. In next iterations, we'll try to make it fully pluggable, like in Vulcan Meteor, so you can easily swap your UI system.
 
-We also include Styled Components. Why not using CSS-in-JS solution of Material UI? [Read this issue to get answers.](https://github.com/VulcanJS/vulcan-next-starter/issues/53)
+We also include Styled Components. Why not using CSS-in-JS solution of Material UI? [Read this issue to get answers.](https://github.com/VulcanJS/vulcan-next/issues/53)
 
 We will also try to make Styled Components easier to remove in future updates.
 

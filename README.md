@@ -2,7 +2,7 @@
 
 Vulcan Next helps you build GraphQL-based applications with Next.js.
 
-![vulcan-next banner](https://raw.githubusercontent.com/VulcanJS/vulcan-next-starter/devel/public/img/vn-logo-full-1280-640.png)
+![vulcan-next banner](https://raw.githubusercontent.com/VulcanJS/vulcan-next/devel/public/img/vn-logo-full-1280-640.png)
 
 ## What's in the box?
 
@@ -14,7 +14,7 @@ Vulcan Next provides:
 
 [Join the Slack](http://slack.telescopeapp.org/)
 
-[Check all the features](https://github.com/VulcanJS/vulcan-next-starter/tree/devel/src/content/docs/features.md)
+[Check all the features](https://github.com/VulcanJS/vulcan-next/tree/devel/src/content/docs/features.md)
 
 [Read the introductory article](https://www.freecodecamp.org/news/how-to-replace-meteor-by-next-introducing-vulcan-next-starter/)
 
@@ -27,7 +27,7 @@ You can't teach an old dog new tricks! Vulcan Next is the successor of "Vulcan.j
 ## Install and run
 
 ```sh
-git clone https://github.com/VulcanJS/vulcan-next-starter.git
+git clone https://github.com/VulcanJS/vulcan-next.git
 yarn
 yarn run dev
 ```
@@ -92,7 +92,7 @@ We advise to use [MongoDB Compass](https://www.mongodb.com/try/download/compass)
 
 This project exists thanks to all the people who contribute.
 
-<a href="https://github.com/VulcanJS/vulcan-next-starter/graphs/contributors"><img src="https://opencollective.com/vulcan/contributors.svg?width=890&button=false" /></a>
+<a href="https://github.com/VulcanJS/vulcan-next/graphs/contributors"><img src="https://opencollective.com/vulcan/contributors.svg?width=890&button=false" /></a>
 
 ### Backers
 

@@ -45,7 +45,7 @@ describe("i18n", () => {
         .should("have.attr", "lang", "fr")
         .should("have.attr", "dir", "ltr");
     });
-    // FIXME: https://github.com/VulcanJS/vulcan-next-starter/issues/40
+    // FIXME: https://github.com/VulcanJS/vulcan-next/issues/40
     // Only one test can run correctly
     it.skip("should add en as language and pass correct language direction", () => {
       cy.setLanguage("en");

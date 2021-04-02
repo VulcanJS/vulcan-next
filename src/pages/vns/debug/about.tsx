@@ -15,7 +15,7 @@ const graphqlUrl = IS_PROD
 
 const About = () => (
   <div>
-    <h1>vulcan-next-starter</h1>
+    <h1>vulcan-next</h1>
     <p>IS_PROD: {JSON.stringify(IS_PROD)}</p>
     <p>rootUrl: {rootUrl}</p>
     <p>graphqlUrl: {graphqlUrl}</p>

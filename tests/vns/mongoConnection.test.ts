@@ -7,7 +7,7 @@ import {
   closeDbConnection,
 } from "../../src/api/middlewares/mongoConnection";
 // TODO: setup dotenv like in Next
-// @see https://github.com/VulcanJS/vulcan-next-starter/issues/47
+// @see https://github.com/VulcanJS/vulcan-next/issues/47
 if (!process.env.MONGO_URI) {
   process.env.MONGO_URI =
     "mongodb+srv://johnDoe:T74OcxqL15TRt7Zn@lbke-demo-ara2d.mongodb.net/sample_restaurants?retryWrites=true&w=majority";

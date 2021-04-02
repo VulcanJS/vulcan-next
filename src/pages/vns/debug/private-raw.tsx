@@ -1,7 +1,7 @@
 /**
  * Demo a private page
  *
- * @see https://github.com/VulcanJS/vulcan-next-starter/issues/49
+ * @see https://github.com/VulcanJS/vulcan-next/issues/49
  * @see https://github.com/vercel/next.js/discussions/14531
  */
 import Link from "next/link";

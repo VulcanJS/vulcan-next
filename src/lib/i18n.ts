@@ -6,7 +6,7 @@ import { NextPageContext } from "next";
 
 // NOTE: publicRuntimeConfig can be undefined if you just provide an empty object
 // @see https://github.com/vercel/next.js/issues/6249#issuecomment-643259623
-// @see https://github.com/VulcanJS/vulcan-next-starter/issues/62
+// @see https://github.com/VulcanJS/vulcan-next/issues/62
 //const { publicRuntimeConfig = {} } = getConfig();
 //const { localeSubpaths = {} } = publicRuntimeConfig;
 const i18nInstance = new I18N({

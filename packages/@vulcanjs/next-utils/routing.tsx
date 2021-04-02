@@ -5,7 +5,7 @@
  * This setup is working, but completely overkill. Favour a client-only approach for redirection,
  * except if you really need to use getServerSideProps.
  *
- * @see https://github.com/VulcanJS/vulcan-next-starter/issues/49
+ * @see https://github.com/VulcanJS/vulcan-next/issues/49
  * @see https://github.com/vercel/next.js/discussions/14531
  */
 import React from "react";
