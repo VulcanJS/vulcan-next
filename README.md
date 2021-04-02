@@ -68,6 +68,8 @@ To create your own application, you'll want to use your own databse.
 
 It will run Mongo in your current terminal, or create and run a Mongo image if it's the first time your run the command.
 
+**Note:** you should always start your database *before* you run the application.
+
 ```sh
 yarn run start:mongo
 ```
@@ -81,6 +83,8 @@ In `.env.development` or `.env.development.local` use this URI for Mongo:
 ```sh
 MONGO_URI="mongodb://localhost:27017/vulcan-next-app"
 ```
+
+You can then stop the server and start it again.
 
 We advise to use [MongoDB Compass](https://www.mongodb.com/try/download/compass) to visualize your database content.
 
