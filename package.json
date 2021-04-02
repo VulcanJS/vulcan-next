@@ -70,6 +70,7 @@
     "express": "4.17.1",
     "graphql": "15.4.0",
     "graphql-tag": "2.10.3",
+    "gray-matter": "^4.0.2",
     "i18next": "^19.4.5",
     "i18next-browser-languagedetector": "^4.2.0",
     "i18next-http-backend": "^1.0.15",
