@@ -6,7 +6,6 @@ import {
   buildDefaultMutationResolvers,
   buildDefaultQueryResolvers,
   createGraphqlModel,
-  VulcanGraphqlModel,
 } from "@vulcanjs/graphql";
 import { createMongooseConnector } from "@vulcanjs/mongo";
 
@@ -87,25 +86,18 @@ const handlePasswordUpdate = (data) => {
 };
 
 const schema: VulcanSchema = {
+  // _id, userId, and createdAT are basic field you may want to use in almost all schemas
   _id: {
     type: String,
     optional: true,
     canRead: ["guests"],
   },
-  // userId is equivalent to _id
-  // it guarantees that the user belongs to group "owners" for his own data
+  // userId is the _id of the owner of the document
+  // Here, it guarantees that the user belongs to group "owners" for his own data
   userId: {
     type: String,
     optional: true,
     canRead: ["guests"],
-  },
-  username: {
-    type: String,
-    optional: true,
-    canRead: ["guests"],
-    canUpdate: ["admins"],
-    canCreate: ["owners"],
-    searchable: true,
   },
   createdAt: {
     type: Date,
@@ -114,6 +106,14 @@ const schema: VulcanSchema = {
     onCreate: () => {
       return new Date();
     },
+  },
+  username: {
+    type: String,
+    optional: true,
+    canRead: ["guests"],
+    canUpdate: ["admins"],
+    canCreate: ["owners"],
+    searchable: true,
   },
   isAdmin: {
     type: Boolean,
@@ -214,6 +214,6 @@ export const User = createGraphqlModel({
     canDelete: ["owners", "admins"],
     canRead: ["members", "admins"],
   },
-}) as VulcanGraphqlModel;
+});
 
 export const UserConnector = createMongooseConnector<UserType>(User);
