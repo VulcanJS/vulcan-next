@@ -2,7 +2,7 @@
 import CSSModule from "../cssModule";
 
 export default {
-  title: "VNS/CSSModule",
+  title: "VN/CSSModule",
   component: CSSModule,
 };
 

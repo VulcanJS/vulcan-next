@@ -2,7 +2,7 @@ import StyledJsx from "../styledJsx";
 import StyledJsxPostcss from "../styledJsxPostcss";
 
 export default {
-  title: "VNS/StyledJSX",
+  title: "VN/StyledJSX",
   component: StyledJsx,
 };
 

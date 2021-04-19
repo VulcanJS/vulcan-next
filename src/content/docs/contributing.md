@@ -4,7 +4,7 @@
 
 ### Get the right Node version
 
-The `.nvmrc` contains the Node version we use in VNS. Usually, higher up versions will also work, but may introduce unexpected breaking changes.
+The `.nvmrc` contains the Node version we use in VN. Usually, higher up versions will also work, but may introduce unexpected breaking changes.
 
 We recommend to install Node using [NVM for Linux/Mac](https://github.com/nvm-sh/nvm) or [NVM for Windows](https://github.com/coreybutler/nvm-windows), especially if you need to maintain multiple projects.
 

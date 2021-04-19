@@ -44,7 +44,13 @@ export const connectToDb = async (
   mongoUri: string,
   options?: ConnectOptions
 ) => {
-  if (mongooseCache?.connectPromise) await mongooseCache.connectPromise;
+  if (mongooseCache?.connectPromise) {
+    debugMongo(
+      "Running connectToDb, already connected or connecting to Mongo, waiting for promise"
+    );
+
+    await mongooseCache.connectPromise;
+  }
   if (![1, 2].includes(mongoose.connection.readyState)) {
     debugMongo("Call mongoose connect");
     (mongooseCache as MongooseCache).connectPromise = mongoose.connect(
@@ -55,8 +61,9 @@ export const connectToDb = async (
         ...(options || {}),
       }
     );
+    // Wait for connection
+    await mongooseCache?.connectPromise;
   }
-  debugMongo("Ran connectToDb, already connected or connecting to Mongo");
 };
 
 const mongoConnectionMiddleware = (mongoUri: string) => {

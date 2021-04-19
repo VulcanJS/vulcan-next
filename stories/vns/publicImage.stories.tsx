@@ -4,7 +4,7 @@ import React from "react";
 // import importedImg from "../../public/vulcan-next-banner_800.png";
 
 export default {
-  title: "VNS/publicImage",
+  title: "VN/publicImage",
 };
 
 const MyPublicImage = () => <img src="vulcan-next-banner_800.png"></img>;

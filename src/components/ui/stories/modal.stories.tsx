@@ -7,7 +7,7 @@ import { Typography } from "@material-ui/core";
 const defaultProps = {};
 
 export default {
-  title: "VNS/design-system/Modal",
+  title: "VN/design-system/Modal",
   component: Modal,
   //  decoractors: [(storyFn) => <div>{storyFn()}</div>
 };

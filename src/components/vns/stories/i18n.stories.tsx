@@ -2,7 +2,7 @@
 import { useTranslation } from "react-i18next";
 
 export default {
-  title: "VNS/i18n",
+  title: "VN/i18n",
 };
 
 const Translated = () => {

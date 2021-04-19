@@ -3,7 +3,7 @@ import React from "react";
 import Home from "~/components/home";
 
 export default {
-  title: "VNS/Home",
+  title: "VN/Home",
   component: Home,
   // decorators: [],
 };

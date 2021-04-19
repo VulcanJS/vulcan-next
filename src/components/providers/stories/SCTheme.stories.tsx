@@ -8,7 +8,7 @@ import darkTheme from "~/lib/style/darkTheme";
 import defaultTheme from "~/lib/style/defaultTheme";
 
 export default {
-  title: "VNS/ThemeSwitch",
+  title: "VN/ThemeSwitch",
   //component: useSCThemeContext //  decoractors: [(storyFn) => <div>{storyFn()}</div>
 };
 

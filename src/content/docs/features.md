@@ -235,7 +235,7 @@ We have preinstalled [React Testing Library](https://testing-library.com/docs/re
 
 ### Tests for Vulcan Next (for contributors only)
 
-We have a unit tests for some key features and scripts of VNS, through the `tests/vns` folder.
+We have a unit tests for some key features and scripts of VN, through the `tests/vns` folder.
 
 This folder is ignored when running `yarn run test:unit`, to avoid bloating your own tests.
 
@@ -321,7 +321,7 @@ We demo a theme switch button, using React context. See `lib/providers` for sour
 
 #### PostCSS for easier override using Next
 
-In VNS, we favour out-of-the-box solutions from Next to style the app, so basically [styled-jsx](https://github.com/vercel/styled-jsx) and CSS modules.
+In VN, we favour out-of-the-box solutions from Next to style the app, so basically [styled-jsx](https://github.com/vercel/styled-jsx) and CSS modules.
 However, [usage with Material UI and more broadly override of child components is not very elegant.](https://github.com/vercel/styled-jsx/issues/142)
 We include PostCSS with the "nesting" plugin to allow a cleaner syntax.
 
