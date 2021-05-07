@@ -1,25 +1,24 @@
 #! /bin/bash
-yarn link @vulcanjs/core
-yarn link @vulcanjs/demo
-yarn link @vulcanjs/graphql
-yarn link @vulcanjs/mdx
-yarn link @vulcanjs/meteor-legacy
-yarn link @vulcanjs/model
-yarn link @vulcanjs/mongo
-yarn link @vulcanjs/multi-env-demo
-# Those packages are not published yet
-# @see https://github.com/VulcanJS/vulcan-npm/issues/6
-# yarn link @vulcanjs/next-apollo
-# yarn link @vulcanjs/next-config
-# yarn link @vulcanjs/next-material-ui
-# yarn link @vulcanjs/next-style-collector
-# yarn link @vulcanjs/next-styled-components
-# yarn link @vulcanjs/next-utils
-# yarn link @vulcanjs/next-webpack
-yarn link @vulcanjs/react-hooks
-yarn link @vulcanjs/schema
-yarn link @vulcanjs/utils
 
 # Link other packages that we don't want to duplicate when using Lerna
-yarn link react
-yarn link react-dom
+# yarn link react
+# yarn link react-dom
+
+# Use list-packages script from Vulcan NPM repo to update the list
+# We prefer yalc to yarn, because it has a more consistent behaviour regarding linking
+# => in particular it will use your local install of React instead of the install from Vulcan NPM
+# which prevents duplicating React and thus breaking the rule of hooks
+./node_modules/.bin/yalc link @vulcanjs/core
+./node_modules/.bin/yalc link @vulcanjs/demo
+./node_modules/.bin/yalc link @vulcanjs/graphql
+./node_modules/.bin/yalc link @vulcanjs/i18n
+./node_modules/.bin/yalc link @vulcanjs/mdx
+./node_modules/.bin/yalc link @vulcanjs/meteor-legacy
+./node_modules/.bin/yalc link @vulcanjs/model
+./node_modules/.bin/yalc link @vulcanjs/mongo
+./node_modules/.bin/yalc link @vulcanjs/multi-env-demo
+./node_modules/.bin/yalc link @vulcanjs/permissions
+./node_modules/.bin/yalc link @vulcanjs/react-components
+./node_modules/.bin/yalc link @vulcanjs/react-hooks
+./node_modules/.bin/yalc link @vulcanjs/schema
+./node_modules/.bin/yalc link @vulcanjs/utils

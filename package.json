@@ -7,6 +7,8 @@
     "debug": "NODE_OPTIONS='--inspect' next",
     "build": "next build",
     "start": "next start",
+    "link-vulcan": "./scripts/link-vulcan.sh # for linking a local copy of Vulcan NPM monorepo (don't forget to publish in Vulcan NPM first)",
+    "update-link-vulcan": "yalc update",
     "typecheck": "tsc --noEmit --p src/tsconfig.json # in case of error with @vulcanjs/* package, check that src/types (eg simpl-schema) are up-to-date with vulcan-npm",
     "typecheck-watch": "tsc --noEmit --p src/tsconfig.json -w",
     "postbuild": "next-sitemap --config vulcan-next-sitemap.js",
@@ -117,7 +119,8 @@
     "storybook-css-modules-preset": "^1.0.5",
     "ts-loader": "^7.0.5",
     "ts-node": "^8.10.2",
-    "typescript": "^3.9.0"
+    "typescript": "^3.9.0",
+    "yalc": "^1.0.0-pre.53"
   },
   "optionalDependencies": {
     "@cypress/code-coverage": "^3.8.1",

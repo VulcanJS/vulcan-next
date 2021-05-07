@@ -40,4 +40,6 @@ storybook-static
 
 # next-sitemap
 /public/sitemap.xml
-/public/robots.txt
+/public/robots.txt.yalc
+yalc.lock
+.yalc/
