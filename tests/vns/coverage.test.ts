@@ -9,7 +9,8 @@ const basicSpec = "cypress/integration/vns/basic.spec.ts";
 
 const isDebug = !!process.env.DEBUG;
 const rootDir = path.resolve(__dirname, "../../");
-describe("code coverage", () => {
+// Skipeed because it's way too slow, reneable if you have actual issues with coverage computation
+describe.skip("code coverage", () => {
   beforeAll(() => {
     const res = shell.exec("COVERAGE=1 npm run build", {
       async: false,
