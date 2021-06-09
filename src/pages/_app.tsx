@@ -26,6 +26,8 @@ function VNApp({ Component, pageProps }: AppProps) {
     graphqlUri:
       process.env.NEXT_PUBLIC_GRAPHQL_URI ??
       "http://localhost:3000/api/graphql",
+    crossDomainGraphqlUri:
+      !!process.env.NEXT_PUBLIC_CROSS_DOMAIN_GRAPHQL_URI || false,
   }); // you can also easily setup ApolloProvider on a per-page basis
   return (
     <>

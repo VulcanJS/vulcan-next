@@ -19,7 +19,7 @@ However, this architecture led to a HUGE increase of complexity for a very low p
 We dropped it in favour in an "opt-in" approach of Apollo SSR and a client-only pattern for authentication management similar to Vercel's dashboard architecture.
 See [Public is the new private ticket](https://github.com/VulcanJS/vulcan-next/issues/71) for more details.
 
-#### Optional, per-page Apollo Provider and SSR
+### Optional, per-page Apollo Provider and SSR
 
 We extend [`next-with-apollo`](https://github.com/lfades/next-with-apollo) with a simpler API. Apollo SSR is enabled page per page, for a granular optimization.
 
@@ -31,15 +31,22 @@ MyPage; // no SSR, no Apollo Provider
 
 With have a non-regression test for SSR, so no surprise with component that suddenly appear in loading state.
 
-#### Pass cookies to Apollo client during server render
+### Pass cookies to Apollo client during server render
 
 This allow to make authenticated calls
+
+### Cross-domain connection
+
+Enable NEXT_PUBLIC_CROSS_DOMAIN_GRAPHQL_URI=1 to connect to APIs from 3rd party applications. This is useful if you must connected
+to an existing Vulcan graphql API (a legacy Meteor API, another Vulcan Next application, or a Vulcan Express backend).
+
+In particular, this will enable crendentials inclusion so login cookie works as expected.
 
 ## Persistance with Mongo through Docker
 
 As easy as ABC:
 
-```
+```sh
 yarn start:mongo
 ```
 
@@ -123,6 +130,11 @@ We demo Next.js 9.4 new feature, `.env` file support. Open `.env.development` to
 
 [Official doc.](https://nextjs.org/docs/basic-features/environment-variables)
 
+## Transition from Vulcan Meteor
+
+If you were using Vulcan Meteor, check `https://github.com/VulcanJS/vulcan-meteor-next-transition` for a demonstration of using Vulcan Next for the frontend
+and an existing Vulcan Meteor app for the backend.
+
 ## Various
 
 ### Passing package.json info to the client app
@@ -133,7 +145,7 @@ For example, we use it to inject current version into the `html` tag for better 
 
 ### Sitemap.xml and Robots.txt with next-sitemap
 
-We use [next-sitemap](https://github.com/iamvishnusankar/next-sitemap#readme) to create both the `robots.txt` and `sitemap.xml` in the `postbuild` script.  Change `https://vulcan.next` to your root url in `/vulcan-next-sitemap.js`.  Here's more [configuration options](https://github.com/iamvishnusankar/next-sitemap#configuration-options). 
+We use [next-sitemap](https://github.com/iamvishnusankar/next-sitemap#readme) to create both the `robots.txt` and `sitemap.xml` in the `postbuild` script.  Change `https://vulcan.next` to your root url in `/vulcan-next-sitemap.js`.  Here's more [configuration options](https://github.com/iamvishnusankar/next-sitemap#configuration-options).
 
 ### Performance debugging
 

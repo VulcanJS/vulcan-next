@@ -17,8 +17,12 @@ let apolloClient;
 
 export interface CreateApolloClientOptions {
   graphqlUri?: string;
+  crossDomainGraphqlUri?: boolean;
 }
-export function createApolloClient({ graphqlUri }: CreateApolloClientOptions) {
+export function createApolloClient({
+  graphqlUri,
+  crossDomainGraphqlUri,
+}: CreateApolloClientOptions) {
   return new ApolloClient({
     ssrMode: !isClient,
     connectToDevTools: isClient,
@@ -27,7 +31,7 @@ export function createApolloClient({ graphqlUri }: CreateApolloClientOptions) {
       errorLink,
       new HttpLink({
         uri: graphqlUri, // Server URL (must be absolute)
-        credentials: "same-origin", // Additional fetch() options like `credentials` or `headers`
+        credentials: crossDomainGraphqlUri ? "include" : "same-origin", // Additional fetch() options like `credentials` or `headers`
       }),
     ]),
     cache: new InMemoryCache(/*{
