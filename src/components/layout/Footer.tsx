@@ -42,6 +42,7 @@ const Header = () => {
                   onClick={async () => {
                     await logout();
                     router.push("/");
+                    window.location.reload();
                   }}
                 >
                   Logout
