@@ -5,9 +5,20 @@ import { Typography } from "@material-ui/core";
 // Taken from Next Passport example
 import Link from "next/link";
 import { useUser } from "~/components/user/hooks";
+/**
+ * Version that uses Meteor backend
+ */
+import { VulcanMeteorHooks } from "@vulcanjs/meteor-legacy";
+import { useRouter } from "next/router";
+const { useLogout } = VulcanMeteorHooks;
 
 const Header = () => {
   const user = useUser();
+  /**
+   * Version that uses Meteor backend
+   */
+  const [logout] = useLogout();
+  const router = useRouter();
   return (
     <footer>
       <nav>
@@ -25,7 +36,16 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <a href="/api/logout">Logout</a>
+                {/* Version that uses Next backend <a href="/api/logout">Logout</a> */}
+                {/* Version that uses Meteor backend */}
+                <button
+                  onClick={async () => {
+                    await logout();
+                    router.push("/");
+                  }}
+                >
+                  Logout
+                </button>
               </li>
             </>
           ) : (

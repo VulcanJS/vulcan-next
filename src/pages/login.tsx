@@ -1,10 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUser } from "../components/user/hooks";
+/**
+ * Version that uses Meteor backend
+ */
+import { VulcanMeteorHooks } from "@vulcanjs/meteor-legacy";
+const { useAuthenticateWithPassword } = VulcanMeteorHooks;
+
 import Layout from "~/components/user/layout";
 import Form from "~/components/user/form";
 
 const Login = () => {
   useUser({ redirectTo: "/", redirectIfFound: true });
+  /**
+   * Version that uses Meteor backend
+   */
+  const [login] = useAuthenticateWithPassword();
 
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -19,11 +29,22 @@ const Login = () => {
     };
 
     try {
-      const res = await fetch("/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
+      /**
+       * Version that uses Next backend
+       */
+      // const res = await fetch("/api/login", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(body),
+      // });
+      /**
+       * Version that uses Meteor backend
+       */
+      const res = await login({
+        input: { email: body.username, password: body.password },
       });
+      res.status = 200; // mock an HTTP request, just so we get the same API as for Next
+
       if (res.status === 200) {
         // @see https://github.com/vercel/next.js/discussions/19601
         // This force SWR to update all queries subscribed to "api/user"

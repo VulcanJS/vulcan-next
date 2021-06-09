@@ -2,6 +2,8 @@ import { createMutator, getModelConnector } from "@vulcanjs/graphql";
 import { User } from "~/models/user";
 
 const seed = (context) => {
+  // SEED DISABLED FOR THIS DEMO (we connect to an existing Meteor backend)
+  return;
   // Add your seed functions here based on the example of users
   const UserConnector = getModelConnector(context, User);
 

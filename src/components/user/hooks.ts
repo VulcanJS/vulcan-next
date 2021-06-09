@@ -3,6 +3,11 @@
 import { useEffect } from "react";
 import Router from "next/router";
 import useSWR from "swr";
+/**
+ * Version that uses Meteor backend
+ */
+import { VulcanMeteorHooks } from "@vulcanjs/meteor-legacy";
+const { useCurrentUser } = VulcanMeteorHooks;
 
 const fetcher = (url) =>
   fetch(url)
@@ -18,8 +23,19 @@ export function useUser({
   redirectTo?: string;
   redirectIfFound?: boolean;
 } = {}) {
-  const { data, error } = useSWR("/api/user", fetcher);
-  const user = data?.user;
+  /**
+   * Version that uses Next backend
+   */
+  // const { data, error } = useSWR("/api/user", fetcher);
+  // const user = data?.user;
+  /**
+   * Version that uses Meteor backend
+   */
+  const currentUserResult = useCurrentUser();
+  const data = currentUserResult?.data;
+  const error = currentUserResult?.error;
+  const user = data?.currentUser;
+
   const finished = Boolean(data);
   const hasUser = Boolean(user);
 

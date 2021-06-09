@@ -3794,6 +3794,13 @@
     semver "^7.3.2"
     tsutils "^3.17.1"
 
+"@vulcanjs/core@^0.1.12":
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/core/-/core-0.1.12.tgz#228375fb64f9f926131ab37b25b09daf0eebc58e"
+  integrity sha512-Tso8AD8hgoRR3Ver9FwUOk4UJdKnC7Qg4oNJDbBOVdwQQSBGnTd57u9Ihz3Eal7jm/HlN1DHiLYf70t9oJ22WA==
+  dependencies:
+    "@vulcanjs/utils" "^0.1.12"
+
 "@vulcanjs/demo@^0.0.7":
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/@vulcanjs/demo/-/demo-0.0.7.tgz#4a57f286ee856beb20fb262aae291e2571265982"
@@ -3812,24 +3819,53 @@
     graphql-type-json "^0.3.2"
     simpl-schema "^1.10.2"
 
+"@vulcanjs/graphql@^0.1.12":
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/graphql/-/graphql-0.1.12.tgz#c72ba0a17b452d4644ffa5897ccd691a1a173020"
+  integrity sha512-nfXzibHfYOLubVZ9mTAsT3ZHWCv0zJchtkIzqPFCX5biXdV67cpTPAKGvW/Hd8m7eXpkvuV17QmkMqTloDXNNQ==
+  dependencies:
+    "@vulcanjs/core" "^0.1.12"
+    "@vulcanjs/model" "^0.1.12"
+    "@vulcanjs/permissions" "^0.1.12"
+    "@vulcanjs/schema" "^0.1.12"
+    "@vulcanjs/utils" "^0.1.12"
+    apollo-server "^2.18.2"
+    graphql-date "^1.0.3"
+    graphql-type-json "^0.3.2"
+    simpl-schema "^1.10.2"
+
 "@vulcanjs/mdx@^0.0.7":
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/@vulcanjs/mdx/-/mdx-0.0.7.tgz#c00b636f3ac2a9679bdc05f7524e849129c4c85f"
   integrity sha512-2MzEJjX4V6WfwrVQ7UqhSKV/YkTTQdvlXxYtkH0MUv7t1oFrAtGJ7HGqzEdsGNwnI1n+jxqzjE+NKFhtk69sJQ==
 
-"@vulcanjs/meteor-legacy@^0.1.8":
-  version "0.1.10"
-  resolved "https://registry.yarnpkg.com/@vulcanjs/meteor-legacy/-/meteor-legacy-0.1.10.tgz#fde420843e1b6a5082e55f66a6aee578c282fc38"
-  integrity sha512-Eh9VhPv/1uM1l6FP8UxLAkC0WnL8thQb0Izug4jMa0STaG3df+EA0rjrRlBDDzEB/YkaBl17GsaJ0NkEfN5gkQ==
+"@vulcanjs/meteor-legacy@^0.1.12":
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/meteor-legacy/-/meteor-legacy-0.1.12.tgz#603e2a4323c96a42131da31d6c1cf4dd327eee17"
+  integrity sha512-NfVg8bXxMvPpdfsyIhpxfsj+Xvk1j/aUJRJwulRZ2gM5R47Vakw6dACyELRa3l3ib/8O9WA3SFVdXQBaw9mOew==
   dependencies:
-    "@vulcanjs/graphql" "^0.1.10"
-    "@vulcanjs/model" "^0.1.10"
+    "@vulcanjs/core" "^0.1.12"
+    "@vulcanjs/graphql" "^0.1.12"
+    "@vulcanjs/model" "^0.1.12"
+    "@vulcanjs/schema" "^0.1.12"
+    "@vulcanjs/utils" "^0.1.12"
 
 "@vulcanjs/model@^0.1.10":
   version "0.1.10"
   resolved "https://registry.yarnpkg.com/@vulcanjs/model/-/model-0.1.10.tgz#1676dfd25bc9fcfe90af12a3ecf5a68d8d1f4f7a"
   integrity sha512-QXQuhrEccwxPwqeg94n6auyRVtWjX7x+FuRHAFjP1sqlPqXj5GL6hRtCZo43ESB8oggo6qtLteiKZDo/A52Izw==
   dependencies:
+    moment-timezone "^0.5.31"
+    simpl-schema "^1.10.1"
+
+"@vulcanjs/model@^0.1.12":
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/model/-/model-0.1.12.tgz#d7361bcb3a70ef7c598596f97aee32f31d391a82"
+  integrity sha512-fWyGPmgNTeHZJ7mpvCAtEzJVemX8ae27Pk8cVxw6EcX5uV58i2xiyAKztOIblmH5n70zqmyJFoVsjYJgMBJsdA==
+  dependencies:
+    "@vulcanjs/core" "^0.1.12"
+    "@vulcanjs/schema" "^0.1.12"
+    "@vulcanjs/utils" "^0.1.12"
     moment-timezone "^0.5.31"
     simpl-schema "^1.10.1"
 
@@ -3842,6 +3878,16 @@
     "@vulcanjs/model" "^0.1.10"
     "@vulcanjs/utils" "^0.1.9"
     lodash "^4.17.20"
+
+"@vulcanjs/permissions@^0.1.12":
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/permissions/-/permissions-0.1.12.tgz#cd6da3cb9140c1c4dacf5fcfca63a75b8649ac8d"
+  integrity sha512-yGAM5DU6pOppZ4lMrYs5FusXq1O7t7VoJfEzvRmHnVcss5H9CAHce95BLxgnPDVTAsK2S2pjMgCzZV6HSC3Ofg==
+  dependencies:
+    "@vulcanjs/model" "^0.1.12"
+    "@vulcanjs/schema" "^0.1.12"
+    "@vulcanjs/utils" "^0.1.12"
+    lodash "^4.17.21"
 
 "@vulcanjs/react-hooks@^0.1.8":
   version "0.1.10"
@@ -3857,6 +3903,19 @@
   version "0.1.10"
   resolved "https://registry.yarnpkg.com/@vulcanjs/schema/-/schema-0.1.10.tgz#3c7e9cc4bb75e79724a1c88074f272c02afda114"
   integrity sha512-PfL7v+5uu3D3Z6ydRHK7xQ1enlA/TjCKrCmJsFWQxiTm/TMJ7NuGaX+hCVkNiYQla6cOdaBNJcovpoRVy9Mc8A==
+
+"@vulcanjs/schema@^0.1.12":
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/schema/-/schema-0.1.12.tgz#9c6f27ca2ca97cd5269d25fb1c606a01235cdd6e"
+  integrity sha512-77z42nhZXMjSv/CDU6p2w+DfeCldxLcoRHxRboGzFQVG3NCni6Y+ac9O9O1HVBsQXZ5Fp2ofzNgeP8eOPaL7JA==
+  dependencies:
+    "@vulcanjs/core" "^0.1.12"
+    "@vulcanjs/utils" "^0.1.12"
+
+"@vulcanjs/utils@^0.1.12":
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/utils/-/utils-0.1.12.tgz#ff705d3bbe1321084272b21a972339bc6a9d34f1"
+  integrity sha512-VD8EeVm143R5vA4E/pgbitZrGDVNc2M9U6mAa9xUovSkJNo6dKAbEHMJwGpjDmym7UUVUEvXvKRcWtDVUN50Ww==
 
 "@vulcanjs/utils@^0.1.9":
   version "0.1.9"
