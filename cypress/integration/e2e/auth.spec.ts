@@ -2,8 +2,9 @@
  * We suppose that there is at least one admin user, with credential in .env,
  * and that it is seeded on app start
  *
- * NOTE: this is an e2e test
+ * NOTE: this is an e2e test, because login in is a critical part of the application
  * When writing an integration test, instead you should mock calls to the API and return a fake user
+ * For testing signup, a more advanced stategy would be required with database cleaning
  */
 describe("auth", () => {
   it("login", () => {
@@ -16,6 +17,5 @@ describe("auth", () => {
     cy.findByRole("button").click();
     cy.url().should("match", /\/$/);
   });
-  it.skip("signin", () => {});
   it.skip("logout", () => {});
 });

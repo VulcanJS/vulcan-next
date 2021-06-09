@@ -4,6 +4,7 @@ import { localStrategy } from "~/api/passport/password-local";
 import { encryptSession } from "~/api/passport/iron";
 import { setTokenCookie } from "~/api/passport/auth-cookies";
 import { NextApiRequest, NextApiResponse } from "next";
+import runSeed from "~/api/runSeed";
 
 const authenticate = (method, req, res): Promise<any> =>
   new Promise((resolve, reject) => {
@@ -37,3 +38,6 @@ export default nextConnect<NextApiRequest, NextApiResponse>()
       res.status(401).send(error.message);
     }
   });
+
+// Seed in development
+runSeed();

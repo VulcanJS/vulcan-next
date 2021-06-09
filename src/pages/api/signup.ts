@@ -5,6 +5,7 @@ import { User } from "~/models/user";
 
 // TODO: factor the context creation so we can reuse it for graphql and REST endpoints
 import { contextFromReq } from "~/api/context";
+import runSeed from "~/api/runSeed";
 export default async function signup(
   req: NextApiRequest,
   res: NextApiResponse
@@ -22,3 +23,6 @@ export default async function signup(
     res.status(500).end(error.message);
   }
 }
+
+// Seed in development if necessary
+runSeed();

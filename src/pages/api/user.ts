@@ -1,4 +1,5 @@
 import { getSession } from "~/api/passport/iron";
+import runSeed from "~/api/runSeed";
 import { UserConnector } from "~/models/user";
 
 export default async function user(req, res) {
@@ -9,3 +10,6 @@ export default async function user(req, res) {
     : null;
   res.status(200).json({ user: user || null });
 }
+
+// Seed in development if necessary
+runSeed();

@@ -38,7 +38,6 @@ module.exports = (on, config) => {
   on("file:preprocessor", ...fileProcessors);
 
   loadEnv(on, config);
-  console.log(config.env);
 
   return config;
 };

@@ -15,6 +15,5 @@ module.exports = async (on, config) => {
     // will load either from .env.development or .env.production
     process.env.NODE_ENV === "development"
   );
-  console.log("config", config.env, combinedEnv);
   config.env = { ...config.env, ...combinedEnv };
 };
