@@ -2,7 +2,7 @@
   "extends": "../tsconfig.common.json",
   "outDir": "./dist/",
   "compilerOptions": {
-    "types": ["cypress", "@types/testing-library__cypress"],
+    "types": ["cypress", "@testing-library/cypress"],
     "noEmit": false,
     "sourceMap": false,
     "isolatedModules": false

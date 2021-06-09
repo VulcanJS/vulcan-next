@@ -239,6 +239,12 @@ The `cy.visitAsHtml()` command allow to check the pure HTML render of a page. It
 
 Note: at the time of writing (2020/06) [there is an open issue when needing this command in multiple tests](https://github.com/VulcanJS/vulcan-next/issues/40)
 
+### Loads .env.development the same way next does
+
+We use a plugin that will in turn rely on Next.js dotenv loading capabilities.
+Used for instance to load the default admin user credentials in tests.
+As a default, it will use development values from `.env.development`.
+
 ## Jest for unit testing
 
 ### React Testing library

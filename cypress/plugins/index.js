@@ -10,6 +10,7 @@
 // ***********************************************************
 
 const cypressTypeScriptPreprocessor = require("./cy-webpack-preprocessor");
+const loadEnv = require("./load-env");
 
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
@@ -35,6 +36,9 @@ module.exports = (on, config) => {
   }
 
   on("file:preprocessor", ...fileProcessors);
+
+  loadEnv(on, config);
+  console.log(config.env);
 
   return config;
 };
