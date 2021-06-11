@@ -44,9 +44,9 @@ export interface SampleModelType extends VulcanDocument {
   someField: string;
 }
 
-const name = "Sample" // Change this value when creating your own model
-const typeName = name
-const multiTypeName = "Samples" // Change this value when creating your own model
+const name = "Sample"; // Change this value when creating your own model
+const typeName = name;
+const multiTypeName = "Samples"; // Change this value when creating your own model
 export const SampleModel = createGraphqlModel({
   name: "sample",
   schema,
