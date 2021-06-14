@@ -16,6 +16,7 @@ export function reportWebVitals(metric) {
 
 import { ApolloProvider } from "@apollo/client";
 import { useApollo } from "@vulcanjs/next-apollo";
+import { VulcanComponentsProvider } from "@vulcanjs/react-ui";
 
 // import environment from '@vulcanjs/multi-env-demo';
 // console.log('imported environment', environment); // should display "server"/"client" depending on the environment, this is just a test
@@ -67,9 +68,11 @@ function VNApp({ Component, pageProps }: AppProps) {
       <MuiThemeProvider>
         <SCThemeProvider>
           <ApolloProvider client={apolloClient}>
-            <AppLayout>
-              <Component {...pageProps} />
-            </AppLayout>
+            <VulcanComponentsProvider>
+              <AppLayout>
+                <Component {...pageProps} />
+              </AppLayout>
+            </VulcanComponentsProvider>
           </ApolloProvider>
         </SCThemeProvider>
       </MuiThemeProvider>

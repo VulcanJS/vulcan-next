@@ -165,12 +165,21 @@ const MeteorDemo = () => {
       <h2>useCreate</h2>
       <CreateDocument />
       <h2>Smart from - creation</h2>
-      <SmartForm model={VulcanResource} />
+      <SmartForm model={VulcanResource} currentUser={user} />
       <h2>useUpdate</h2>
       <UpdateDocument selectedDocumentId={selectedDocumentId} />
       <h2>Smart form - update</h2>
-      {selectedDocumentId && (
-        <SmartForm model={VulcanResource} documentId={selectedDocumentId} />
+      {selectedDocumentId ? (
+        <SmartForm
+          model={VulcanResource}
+          documentId={selectedDocumentId}
+          currentUser={user}
+        />
+      ) : (
+        <p>
+          Please create at least one document and then select a document in the
+          list
+        </p>
       )}
     </div>
   );
