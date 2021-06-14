@@ -62,6 +62,7 @@
     "@vulcanjs/meteor-legacy": "^0.1.13",
     "@vulcanjs/mongo": "^0.1.8",
     "@vulcanjs/react-hooks": "^0.1.8",
+    "@vulcanjs/react-ui": "^0.1.13",
     "apollo-server-express": "2.14.2",
     "babel-jest": "26.0.1",
     "babel-plugin-istanbul": "6.0.0",

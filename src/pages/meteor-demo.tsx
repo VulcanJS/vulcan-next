@@ -5,6 +5,7 @@ import {
   useSingle,
   useUpdate,
 } from "@vulcanjs/react-hooks";
+import { SmartForm } from "@vulcanjs/react-ui";
 import { useState } from "react";
 import { useUser } from "~/components/user/hooks";
 import { VulcanResource, VulcanResourceType } from "../models/vulcanResource";
@@ -164,9 +165,13 @@ const MeteorDemo = () => {
       <h2>useCreate</h2>
       <CreateDocument />
       <h2>Smart from - creation</h2>
+      <SmartForm model={VulcanResource} />
       <h2>useUpdate</h2>
       <UpdateDocument selectedDocumentId={selectedDocumentId} />
       <h2>Smart form - update</h2>
+      {selectedDocumentId && (
+        <SmartForm model={VulcanResource} documentId={selectedDocumentId} />
+      )}
     </div>
   );
 };

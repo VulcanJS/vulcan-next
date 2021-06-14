@@ -3916,7 +3916,7 @@
     "@vulcanjs/schema" "^0.1.13"
     lodash "^4.17.21"
 
-"@vulcanjs/react-hooks@^0.1.8":
+"@vulcanjs/react-hooks@^0.1.13", "@vulcanjs/react-hooks@^0.1.8":
   version "0.1.13"
   resolved "https://registry.yarnpkg.com/@vulcanjs/react-hooks/-/react-hooks-0.1.13.tgz#62c9df86459424fa9a922721be0885fb62e84b35"
   integrity sha512-/FjdwwVS/0ggDLI7nWiAorbsqP1UH6WwfjCjNcqc5HGWaXPA/BP4C6spB+UOzE6KlYEPwEi+JtNse7+PhBDTnw==
@@ -3927,6 +3927,24 @@
     graphql "^15.5.0"
     lodash "^4.17.20"
     mingo "^3.0.6"
+
+"@vulcanjs/react-ui@^0.1.13":
+  version "0.1.13"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/react-ui/-/react-ui-0.1.13.tgz#aabf6240d0f4b609275a4b58764b97913c85c031"
+  integrity sha512-gRgmyCee1zpJ3UJwEuxM9yiJt/P4iq1D8aywerNGaVH8tBHzfq7APNSbhfpsXHWOJcK789+1KD3mAHowGrit7Q==
+  dependencies:
+    "@vulcanjs/core" "^0.1.13"
+    "@vulcanjs/graphql" "^0.1.13"
+    "@vulcanjs/i18n" "^0.1.13"
+    "@vulcanjs/model" "^0.1.13"
+    "@vulcanjs/permissions" "^0.1.13"
+    "@vulcanjs/react-hooks" "^0.1.13"
+    "@vulcanjs/schema" "^0.1.13"
+    "@vulcanjs/utils" "^0.1.13"
+    classnames "^2.3.1"
+    debug "^4.3.1"
+    lodash "^4.17.21"
+    simpl-schema "^1.12.0"
 
 "@vulcanjs/schema@^0.1.13":
   version "0.1.13"
@@ -6130,6 +6148,11 @@ classnames@2.2.6, classnames@^2.2.5, classnames@^2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
+
+classnames@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
+  integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==
 
 clean-css@^4.2.3:
   version "4.2.3"
