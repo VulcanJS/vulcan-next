@@ -9,8 +9,9 @@ import { useState } from "react";
 import { useUser } from "~/components/user/hooks";
 import { VulcanResource, VulcanResourceType } from "../models/vulcanResource";
 
-const DocumentsList = ({ setSelectedDocumentId }) => {
+const DocumentsList = ({ setSelectedDocumentId, selectedDocumentId }) => {
   const { documents, loading, error } = useMulti({ model: VulcanResource });
+  const [deleteDocument] = useDelete({ model: VulcanResource });
   if (loading) return <p>Loading documents...</p>;
   if (error) return <p>Could not get documents {JSON.stringify(error)}</p>;
   if (!documents) return <p>Error, documents undefined</p>;
@@ -30,6 +31,18 @@ const DocumentsList = ({ setSelectedDocumentId }) => {
             Select
           </button>
           Document: {JSON.stringify(doc, null, 2)}
+          <button
+            onClick={async () => {
+              if (selectedDocumentId === doc._id) {
+                // unselect
+                setSelectedDocumentId(undefined);
+              }
+              await deleteDocument({ input: { id: doc._id } });
+            }}
+            aria-label={`Delete document ${doc._id}`}
+          >
+            X
+          </button>
         </li>
       ))}
     </ul>
@@ -141,14 +154,19 @@ const MeteorDemo = () => {
         </p>
       )}
       <p></p>
-      <h2>useMulti</h2>
-      <DocumentsList setSelectedDocumentId={setSelectedDocumentId} />
+      <h2>useMulti + useDelete</h2>
+      <DocumentsList
+        selectedDocumentId={selectedDocumentId}
+        setSelectedDocumentId={setSelectedDocumentId}
+      />
       <h2>useSingle</h2>
       <SelectedDocument selectedDocumentId={selectedDocumentId} />
       <h2>useCreate</h2>
       <CreateDocument />
+      <h2>Smart from - creation</h2>
       <h2>useUpdate</h2>
       <UpdateDocument selectedDocumentId={selectedDocumentId} />
+      <h2>Smart form - update</h2>
     </div>
   );
 };
