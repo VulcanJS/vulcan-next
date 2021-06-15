@@ -4,3 +4,6 @@
  *
  * Run for each test to guarantee a clean state
  */
+
+// @see https://github.com/testing-library/jest-dom
+import "@testing-library/jest-dom";
