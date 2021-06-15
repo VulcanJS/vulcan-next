@@ -247,13 +247,12 @@ As a default, it will use development values from `.env.development`.
 
 ## Jest for unit testing
 
-### Supporting server-only, client-only and isomorphic tests
+### Supporting server-only tests
 
-We support server, client and isomorphic (important for Server-Side Rendering) testing based on the following naming convention:
+We support server and client testing based on the following naming convention:
 
-- A test named `myTest.test.ts` will be executed twice, in a Node server environment and in a JSDOM environment (~ like a browser). Use as a default for React components and generic utility code.
-- A test named `myTest.test.server.ts` will be executed only in the server environment. Use to test your Graphql resolvers for instance.
-- A test named `myTest.test.client.ts` will be executed only in the client environment. Use to test your complex frontend components (Leaflet maps for instance, WebGL features etc.).
+- A test named `myTest.test.ts` will be executed in a JSDOM environment (~ like a browser). Use as a default for React components and generic utility code.
+- A test named `myTest.test.server.ts` will be executed only in the Node server environment. Use to test your Graphql resolvers for instance.
 
 ### React Testing library
 
