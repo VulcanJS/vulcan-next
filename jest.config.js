@@ -217,7 +217,7 @@ module.exports = {
         '**/!(*.server).test.[jt]s?(x)',
       ],
       // A list of paths to modules that run some code to configure or set up the testing framework before each test
-      setupFilesAfterEnv: ["./tests/setupTests.js"], modulePaths: ['<rootDir>'],
+      setupFilesAfterEnv: ["./tests/setupTests.ts"], modulePaths: ['<rootDir>'],
     },
     {
       ...commonConfig,
