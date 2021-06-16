@@ -1,7 +1,7 @@
 import renderToString from "next-mdx-remote/render-to-string";
 import hydrate from "next-mdx-remote/hydrate";
 import path from "path";
-import { listMdxFiles } from "@vulcanjs/mdx";
+import { listMdxFiles, getMdxPaths } from "@vulcanjs/mdx";
 import { promises as fsPromises } from "fs";
 import { Link, Typography } from "@material-ui/core";
 
@@ -47,22 +47,30 @@ export default function DocPage({ source, frontMatter /*, filePath*/ }) {
 
 export async function getStaticPaths() {
   const docsDir = path.resolve("./src/content/docs"); // relative to the project root
-  // TODO: doesn't handle nesting yet, we suppose the file are locaed at the root
-  const files = await listMdxFiles({ dir: docsDir });
+  const files = await getMdxPaths(docsDir);
   const pageNames = files.map((f) =>
-    f.fileName.split(".").slice(0, -1).join(".")
+    f.params.fileName.join('/')
   );
-  // path is the file without the extension
-  const paths = pageNames.map((name) => ({ params: { fileName: [name] } }));
+  // paths is the file without the extension, shaped as {fileName: [ 'subdirectory', 'file' ]}
+  const paths = pageNames.map((name) => ({ params: { fileName: name.split('/') } }));
+
   return {
     paths,
     fallback: false, // See the "fallback" section below
   };
 }
+
 export async function getStaticProps({ params }) {
-  const fileName = params.fileName[0];
+  const fileName = params.fileName[params.fileName.length - 1];
+  let filePath: string;
+  if (params.fileName.length > 1) {
+    const directoryName = params.fileName.slice(0, -1);
+    filePath = path.resolve("./src/content/docs/" + directoryName, fileName + ".md"); // get file
+  }
+  else {
+    filePath = path.resolve("./src/content/docs", fileName + ".md"); // get file
+  }
   // TODO: supports only .md at this point
-  const filePath = path.resolve("./src/content/docs", fileName + ".md"); // get file
   const source = await fsPromises.readFile(filePath, { encoding: "utf8" });
   // MDX text - can be from a local file, database, anywhere
   const { content, data } = matter(source);

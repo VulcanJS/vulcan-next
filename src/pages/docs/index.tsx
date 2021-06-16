@@ -1,6 +1,6 @@
 import path from "path";
 import { Link } from "@vulcanjs/next-material-ui"; // "next/link";
-import { listMdxFiles } from "@vulcanjs/mdx";
+import { getMdxPaths } from "@vulcanjs/mdx";
 import { List, ListItem, Typography } from "@material-ui/core";
 
 export interface DocIndexProps {
@@ -41,9 +41,9 @@ export const getStaticProps = async () => {
   // NOTE: if frontMatter is needed, an alternative would be using https://github.com/jescalan/babel-plugin-import-glob-array
   // to import all frontMatters
   const docsDir = path.resolve("./src/content/docs"); // relative to the project root
-  const files = await listMdxFiles({ dir: docsDir });
+  const files = await getMdxPaths(docsDir);
   const pageNames = files.map((f) =>
-    f.fileName.split(".").slice(0, -1).join(".")
+    f.params.fileName.join('/')
   );
   const pages = pageNames.sort();
   return { props: { pages } };
