@@ -56,6 +56,9 @@ const SelectedDocument = ({
 }) => {
   const { document, loading, error } = useSingle({
     model: VulcanResource,
+    input: {
+      id: selectedDocumentId
+    },
     queryOptions: {
       skip: !selectedDocumentId, // do not trigger if no document is selected
     },
