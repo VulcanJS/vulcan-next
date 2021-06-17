@@ -108,17 +108,12 @@ export async function getStaticPaths() {
   );
   // paths is the file without the extension, shaped as [{ params: { filePath: [ 'subdirectory', 'file' ] } } ]
   let paths: Array<PathsProps> = [{ params: { filePath: [''] } }];
-  for (let name of pageNames) {
+  pageNames.forEach(name => {
     const splittedName = name.split('/');
     for (let iNbSplit = 0; iNbSplit < splittedName.length; iNbSplit++) {
-      paths.push({ params: { filePath: [splittedName[0]] } }); // Add the first subfolder then modify because push directly the array doesn't work
-      if (iNbSplit > 0) {
-        for (let i = 1; i < iNbSplit + 1; i++) {
-          paths[paths.length - 1].params.filePath = paths[paths.length - 1].params.filePath.concat(splittedName[i])
-        }
-      }
+      paths.push({ params: { filePath: splittedName.slice(0, iNbSplit + 1) } });
     }
-  }
+  })
   return {
     paths,
     fallback: false,
