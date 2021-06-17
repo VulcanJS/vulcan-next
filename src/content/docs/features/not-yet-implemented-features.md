@@ -1,39 +1,39 @@
-## NOT YET IMPLEMENTED:
+# NOT YET IMPLEMENTED:
 
-### Storybook
+## Storybook
 
 Demo a story for a full page
 
-### I18n
+## I18n
 
 Add custom error page with i18n name space to remove warning
 Automated translation extraction: https://react.i18next.com/guides/extracting-translations
 Remove annoying warnings when getInitialProps is not set
 
-### Material UI and friends
+## Material UI and friends
 
 Easy switch between MUI, Bootstrap, and probably Tailwind, Styled Components, Emotion...
 
-### Error and logs
+## Error and logs
 
 Global \_app error boundary
 Sentry demo
 Setup debug client side programmatically based on DEBUG environment variable
 
-### Cypress
+## Cypress
 
 Splitting tests in folders? In order to differentiate real e2e tests from integration testing
 
-### Jest
+## Jest
 
 Load .env development config automatically in Jest
 
-### GraphQL
+## GraphQL
 
 Graphql code generator for better autocompletion
 Demo support of multiple graphQL API using Link split
 
-### Demo custom server for SSR?
+## Demo custom server for SSR?
 
 NOTE: Using a custom server to serve Next pages is not recommended. We may choose not to support this feature.
 
@@ -41,11 +41,11 @@ ts-node, nodemon to have hot reload
 Jest for the custom server
 Fullstack cypress testing/coverage of the custom server
 
-### Next
+## Next
 
 Remove debug routes from bundle during build
 
-### Others
+## Others
 
 Pure JS support (no TS), in cypress, in code, in storybook, in jest...
 Performance testing?
