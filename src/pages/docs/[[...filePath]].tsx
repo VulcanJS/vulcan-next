@@ -110,9 +110,9 @@ export async function getStaticPaths() {
   let paths: Array<PathsProps> = [{ params: { filePath: [''] } }];
   pageNames.forEach(name => {
     const splittedName = name.split('/');
-    for (let iNbSplit = 0; iNbSplit < splittedName.length; iNbSplit++) {
-      paths.push({ params: { filePath: splittedName.slice(0, iNbSplit + 1) } });
-    }
+    splittedName.forEach( (item, index, array) => {
+      paths.push({ params: { filePath: array.slice(0, index + 1) } });
+    })
   })
   return {
     paths,
