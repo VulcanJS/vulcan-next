@@ -106,8 +106,10 @@ export async function getStaticPaths() {
   const pageNames = files.map((f) =>
     f.params.fileName.join('/')
   );
-  // paths is the file without the extension, shaped as [{ params: { filePath: [ 'subdirectory', 'file' ] } } ]
-  let paths: Array<PathsProps> = [{ params: { filePath: [''] } }];
+  // paths is the file without the extension, shaped as [{ params: { filePath: [ 'subfolder', 'file' ] } } ]
+  const paths: Array<PathsProps> = [{ params: { filePath: [''] } }];
+  // add all subfolder paths
+  // example for the pageName "subfolder1/subfolder2/file", push to paths ["subfolder1"], ["subfolder1", "subfolder2"] and ["subfolder1", "subfolder2", "file"]
   pageNames.forEach(name => {
     const splittedName = name.split('/');
     splittedName.forEach( (item, index, array) => {
