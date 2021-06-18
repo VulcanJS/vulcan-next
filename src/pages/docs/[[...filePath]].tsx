@@ -1,7 +1,7 @@
 import renderToString from "next-mdx-remote/render-to-string";
 import hydrate from "next-mdx-remote/hydrate";
 import path from "path";
-import { getMdxPaths } from "@vulcanjs/mdx";
+import { getMdxPaths, MdxPath } from "@vulcanjs/mdx";
 import { Link as NextLink } from "@vulcanjs/next-material-ui";
 import { promises as fsPromises, lstatSync, existsSync } from "fs";
 import { List, ListItem, Link, Typography } from "@material-ui/core";
@@ -17,7 +17,7 @@ const components = {
 };
 
 const indexLink = (
-  <div style={{ margin: "32px auto", maxWidth: "1000px" }}>
+  <div style={{ maxWidth: "1000px" }}>
     <Link href="/docs">
       <Typography>Back to documentation index</Typography>
     </Link>
@@ -31,6 +31,29 @@ const homeLink = (
     </Link>
   </div>
 );
+
+const previousPageLink = (filePath: string) => {
+  let path = filePath;
+  // Delete the final '/' on the folder filePaths
+  if (path.slice(-1) === '/') {
+    path = path.slice(0, -1)
+  }
+  // If the previous page is /docs, doesn't return anything. See indexLink instead
+  if (path.split('/').length < 2) {
+    return (<>  </>);
+  }
+  else {
+    const url = "/docs/" + path.split('/').slice(0, -1).join('/');
+    return (
+      <div style={{ margin: "8px auto", maxWidth: "1000px" }}>
+        <Link href={url}>
+          <Typography>Previous page</Typography>
+        </Link>
+      </div>
+    );
+  }
+}
+  ;
 
 const header = <Typography variant="h1">
   <Link href="/">
@@ -52,8 +75,12 @@ export default function DocPage({ pages, filePath, source }: PageArguments) {
     return (
       <div className="MDXProvider root">
         {header}
+        {previousPageLink(filePath)}
         {indexLink}
+        <hr style={{ margin: "32px auto" }}></hr>
         {content}
+        <hr style={{ margin: "32px auto" }}></hr>
+        {previousPageLink(filePath)}
         {indexLink}
         <style jsx>{`
         .MDXProvider.root {
@@ -68,7 +95,7 @@ export default function DocPage({ pages, filePath, source }: PageArguments) {
     return (
       <div style={{ margin: "32px auto", maxWidth: "1000px" }}>
         {header}
-        <Typography style={{ textTransform: "capitalize" }} variant="h2"> {filePath} </Typography> {/* Print the subfolders we're in */}
+        <Typography style={{ margin: "32px auto", textTransform: "capitalize" }} variant="h2"> {filePath.slice(0, -1)} </Typography> {/* Print the subfolders we're in */}
         <List>
           {
             pages.map((pageName) => (
@@ -87,6 +114,7 @@ export default function DocPage({ pages, filePath, source }: PageArguments) {
             ))
           }
           <hr></hr>
+          {previousPageLink(filePath)}
           {filePath === '' /* Back home if we're in /docs, back to /docs if we're in a subfolder */
             ? homeLink
             : indexLink
@@ -98,28 +126,28 @@ export default function DocPage({ pages, filePath, source }: PageArguments) {
 }
 
 interface PathsProps {
-  params: { filePath: Array<string> }
+  params: { filePath: Array<String> } // Use String and not string to match vulcan-npm MdxPath syntax
 }
 export async function getStaticPaths() {
   const docsDir = path.resolve("./src/content/docs"); // relative to the project root
   const files = await getMdxPaths(docsDir);
-  const pageNames = files.map((f) =>
-    f.params.fileName.join('/')
-  );
   // paths is the file without the extension, shaped as [{ params: { filePath: [ 'subfolder', 'file' ] } } ]
-  const paths: Array<PathsProps> = [{ params: { filePath: [''] } }];
-  // add all subfolder paths
-  // example for the pageName "subfolder1/subfolder2/file", push to paths ["subfolder1"], ["subfolder1", "subfolder2"] and ["subfolder1", "subfolder2", "file"]
-  pageNames.forEach(name => {
-    const splittedName = name.split('/');
-    splittedName.forEach( (item, index, array) => {
-      paths.push({ params: { filePath: array.slice(0, index + 1) } });
-    })
-  })
+  const paths = fillPaths(files);
   return {
     paths,
     fallback: false,
   };
+}
+function fillPaths(files: MdxPath[]): PathsProps[] {
+  const paths: Array<PathsProps> = [{ params: { filePath: [''] } }];
+  // add all subfolder paths
+  // example for the fileName "["subfolder1", "subfolder2", "file"]", push to paths ["subfolder1"], ["subfolder1", "subfolder2"] and ["subfolder1", "subfolder2", "file"]
+  files.forEach(file => {
+    file.params.fileName.forEach((item, index, array) => {
+      paths.push({ params: { filePath: array.slice(0, index + 1) } });
+    });
+  });
+  return paths;
 }
 
 /**
