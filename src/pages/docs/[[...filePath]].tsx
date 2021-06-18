@@ -3,7 +3,7 @@ import hydrate from "next-mdx-remote/hydrate";
 import path from "path";
 import { getMdxPaths, MdxPath } from "@vulcanjs/mdx";
 import { Link as NextLink } from "@vulcanjs/next-material-ui";
-import { promises as fsPromises, lstatSync, existsSync } from "fs";
+import { promises as fsPromises } from "fs";
 import { List, ListItem, Link, Typography } from "@material-ui/core";
 import matter from "gray-matter";
 import { muiMdComponents } from "~/components/layout/muiMdComponents";
@@ -32,18 +32,14 @@ const homeLink = (
   </div>
 );
 
-const previousPageLink = (filePath: string) => {
-  let path = filePath;
-  // Delete the final '/' on the folder filePaths
-  if (path.slice(-1) === '/') {
-    path = path.slice(0, -1)
-  }
+function PreviousPageLink(props: { filePath: string }) {
+  const splittedPath = props.filePath.split("/").filter(Boolean);
   // If the previous page is /docs, doesn't return anything. See indexLink instead
-  if (path.split('/').length < 2) {
-    return (<>  </>);
+  if (splittedPath.length < 2) {
+    return null;
   }
   else {
-    const url = "/docs/" + path.split('/').slice(0, -1).join('/');
+    const url = "/docs/" + splittedPath.slice(0, -1).join('/');
     return (
       <div style={{ margin: "8px auto", maxWidth: "1000px" }}>
         <Link href={url}>
@@ -53,7 +49,6 @@ const previousPageLink = (filePath: string) => {
     );
   }
 }
-  ;
 
 const header = <Typography variant="h1">
   <Link href="/">
@@ -75,12 +70,12 @@ export default function DocPage({ pages, filePath, source }: PageArguments) {
     return (
       <div className="MDXProvider root">
         {header}
-        {previousPageLink(filePath)}
+        <PreviousPageLink filePath={filePath} />
         {indexLink}
         <hr style={{ margin: "32px auto" }}></hr>
         {content}
         <hr style={{ margin: "32px auto" }}></hr>
-        {previousPageLink(filePath)}
+        <PreviousPageLink filePath={filePath} />
         {indexLink}
         <style jsx>{`
         .MDXProvider.root {
@@ -114,7 +109,7 @@ export default function DocPage({ pages, filePath, source }: PageArguments) {
             ))
           }
           <hr></hr>
-          {previousPageLink(filePath)}
+          <PreviousPageLink filePath={filePath} />
           {filePath === '' /* Back home if we're in /docs, back to /docs if we're in a subfolder */
             ? homeLink
             : indexLink
@@ -132,13 +127,13 @@ export async function getStaticPaths() {
   const docsDir = path.resolve("./src/content/docs"); // relative to the project root
   const files = await getMdxPaths(docsDir);
   // paths is the file without the extension, shaped as [{ params: { filePath: [ 'subfolder', 'file' ] } } ]
-  const paths = fillPaths(files);
+  const paths = spreadPaths(files);
   return {
     paths,
     fallback: false,
   };
 }
-function fillPaths(files: MdxPath[]): PathsProps[] {
+function spreadPaths(files: MdxPath[]): PathsProps[] {
   const paths: Array<PathsProps> = [{ params: { filePath: [''] } }];
   // add all subfolder paths
   // example for the fileName "["subfolder1", "subfolder2", "file"]", push to paths ["subfolder1"], ["subfolder1", "subfolder2"] and ["subfolder1", "subfolder2", "file"]
@@ -161,10 +156,10 @@ export async function getStaticProps({ params }) {
   }
   else { // we're in a file or a subfolder
     let resolvedPath = path.resolve("./src/content/docs/" + params.filePath.join('/'));
-    if (existsSync(resolvedPath) && lstatSync(resolvedPath).isDirectory()) { // We're in a subfolder
+    try { // We're in a subfolder
+      await fsPromises.stat(resolvedPath);
       return (await getMdxPages(resolvedPath, params.filePath.join('/')));
-    }
-    else { // We're in a file
+    } catch { // We're in a file
       resolvedPath = resolvedPath + '.md'
       // TODO: handle no .md files
       const source = await fsPromises.readFile(resolvedPath, { encoding: "utf8" });
