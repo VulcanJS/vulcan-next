@@ -3,7 +3,7 @@ import hydrate from "next-mdx-remote/hydrate";
 import path from "path";
 import { getMdxPaths, MdxPath } from "@vulcanjs/mdx";
 import { Link as NextLink } from "@vulcanjs/next-material-ui";
-import { promises as fsPromises } from "fs";
+import { promises as fsPromises, lstatSync, existsSync } from "fs";
 import { List, ListItem, Link, Typography } from "@material-ui/core";
 import matter from "gray-matter";
 import { muiMdComponents } from "~/components/layout/muiMdComponents";
@@ -156,10 +156,10 @@ export async function getStaticProps({ params }) {
   }
   else { // we're in a file or a subfolder
     let resolvedPath = path.resolve("./src/content/docs/" + params.filePath.join('/'));
-    try { // We're in a subfolder
-      await fsPromises.stat(resolvedPath);
+    if (existsSync(resolvedPath) && lstatSync(resolvedPath).isDirectory()) { // We're in a subfolder
       return (await getMdxPages(resolvedPath, params.filePath.join('/')));
-    } catch { // We're in a file
+    }
+    else { // We're in a file
       resolvedPath = resolvedPath + '.md'
       // TODO: handle no .md files
       const source = await fsPromises.readFile(resolvedPath, { encoding: "utf8" });
@@ -174,6 +174,7 @@ export async function getStaticProps({ params }) {
 
 /**
  * list the .md(x) files in the docs folder
+ * 
  * /!\ Be sure that this function returns only two elements.
  */
 const getMdxPages = async (resolvedPath: string, filePath: string) => {
