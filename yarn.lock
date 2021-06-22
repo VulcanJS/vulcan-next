@@ -3906,10 +3906,10 @@
     prop-types "^15.7.2"
     simpl-schema "^1.12.0"
 
-"@vulcanjs/mdx@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@vulcanjs/mdx/-/mdx-0.0.7.tgz#c00b636f3ac2a9679bdc05f7524e849129c4c85f"
-  integrity sha512-2MzEJjX4V6WfwrVQ7UqhSKV/YkTTQdvlXxYtkH0MUv7t1oFrAtGJ7HGqzEdsGNwnI1n+jxqzjE+NKFhtk69sJQ==
+"@vulcanjs/mdx@^0.2.3-alpha.0":
+  version "0.2.3-alpha.0"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/mdx/-/mdx-0.2.3-alpha.0.tgz#fb85eb1ef378f0748860a08a94775da84d93b23b"
+  integrity sha512-7X2YVZLBNUmvT/7cYG9MJ3uYguaP9I5ydfoo9P4nV9jJdP3Dmj7BBV6fVElNd9YFWIHuDJUb7g/cDV61Q8meJA==
 
 "@vulcanjs/meteor-legacy@^0.1.8":
   version "0.1.13"

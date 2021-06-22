@@ -58,7 +58,7 @@
     "@mdx-js/react": "^1.6.13",
     "@next/mdx": "^10.0.2",
     "@vulcanjs/demo": "^0.0.7",
-    "@vulcanjs/mdx": "^0.0.7",
+    "@vulcanjs/mdx": "^0.2.3-alpha.0",
     "@vulcanjs/meteor-legacy": "^0.1.8",
     "@vulcanjs/mongo": "^0.1.8",
     "@vulcanjs/react-hooks": "^0.1.8",
