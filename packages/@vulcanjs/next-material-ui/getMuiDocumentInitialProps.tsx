@@ -1,5 +1,5 @@
 import React from "react";
-import { ServerStyleSheets } from "@material-ui/core/styles";
+import { ServerStyleSheets } from "@material-ui/styles";
 import { AppSheetsCollector } from "@vulcanjs/next-style-collector";
 
 export const getAppEnhancer = (): AppSheetsCollector => {
