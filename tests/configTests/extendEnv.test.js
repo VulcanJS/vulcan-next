@@ -3,6 +3,6 @@ describe('Can access to env variables', () => {
         expect(process.env.NEXT_PUBLIC_GRAPHQL_URI).toBeDefined()
     })
     test('access to derived variables', () => {
-        expect(process.env.NEXT_PUBLIC_IS_USING_LOCAL_DATABSE).toBeDefined()
+        expect(process.env.NEXT_PUBLIC_IS_USING_LOCAL_DATABASE).toBeDefined()
     })
 })
