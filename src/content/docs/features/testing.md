@@ -84,3 +84,8 @@ Note: at the time of writing (2020/06) [there is an open issue when needing this
 We use a plugin that will in turn rely on Next.js dotenv loading capabilities.
 Used for instance to load the default admin user credentials in tests.
 As a default, it will use development values from `.env.development`.
+
+## Lighthouse to test your pages
+
+We use lighthouse to have statistics about our pages. See the main page example in scripts/lighthouse/home-stats.js.
+To run: run the app, open the folder with a terminal an execute 'node home-stats.js', then open the lhreport.html file

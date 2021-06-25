@@ -115,6 +115,7 @@
     "eslint-plugin-react": "^7.18.3",
     "eslint-plugin-react-hooks": "^2.5.0",
     "graphql-voyager": "^1.0.0-rc.31",
+    "lighthouse": "^8.0.0",
     "react-is": "^16.13.1",
     "source-map-support": "^0.5.19",
     "storybook-css-modules-preset": "^1.0.5",
