@@ -55,7 +55,8 @@ yarn run build:storybook && yarn run start:storybook-static # test storybook  st
 
 # Optionnaly audit your page
 # Run the app
-# yarn run dev
+# yarn run build
+# yarn run start
 # While running, run the audit
 # yarn run audit
 

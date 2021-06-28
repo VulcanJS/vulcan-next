@@ -49,7 +49,7 @@
     "start:storybook-static": "serve storybook-static",
     "auto-changelog": "auto-changelog -u",
     "build-storybook": "build-storybook",
-    "audit": "cd scripts/lighthouse && node home-stats.js && xdg-open lhreport.html && cd ../../"
+    "audit": "node scripts/lighthouse/home-stats.js && xdg-open lhreport.html"
   },
   "dependencies": {
     "@apollo/client": "^3.2.0",

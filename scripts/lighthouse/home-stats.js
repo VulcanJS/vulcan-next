@@ -33,7 +33,7 @@ const chromeLauncher = require('chrome-launcher');
     console.log('Accessibility score was', runnerResult.lhr.categories.accessibility.score * 100);
     console.log('Best Practices score was', runnerResult.lhr.categories['best-practices'].score * 100);
     console.log('SEO score was', runnerResult.lhr.categories.seo.score * 100);
-    console.log('See the detailed results again by opening the lhreport.html file in /scripts/lighthouse\n');
+    console.log('See the detailed results again by opening the lhreport.html root file.\n');
   }
   await chrome.kill();
 })();
