@@ -48,7 +48,8 @@
     "build:storybook": "rm -Rf storybook-static && build-storybook -s ./public # TODO: we shouldn't need to remove, but Storybook 6.1 has a small bug and can't remove existing build automatically",
     "start:storybook-static": "serve storybook-static",
     "auto-changelog": "auto-changelog -u",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "audit": "cd scripts/lighthouse && node home-stats.js && xdg-open lhreport.html && cd ../../"
   },
   "dependencies": {
     "@apollo/client": "^3.2.0",

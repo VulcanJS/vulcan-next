@@ -53,6 +53,12 @@ yarn run storybook
 # Test storybook static build
 yarn run build:storybook && yarn run start:storybook-static # test storybook  static export
 
+# Optionnaly audit your page
+# Run the app
+# yarn run dev
+# While running, run the audit
+# yarn run audit
+
 # Optionnaly test Docker version (takes a lot of time + not very useful as they don't change often)
 # yarn run build:docker
 # yarn run build:test:docker
