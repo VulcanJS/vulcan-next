@@ -14,7 +14,7 @@ const chromeLauncher = require('chrome-launcher');
   const options = {
     // logLevel: 'info', // Detailed logs
     output: 'html',
-    maxWaitForLoad: 30000, // More time isn't useful for md files. An error will raise even with 5 minutes, without better result.
+    maxWaitForLoad: 30000,
     // onlyCategories: ['performance'], // Test only some things beetween performance/accessibility/best-practices/seo
     port: chrome.port
   };
