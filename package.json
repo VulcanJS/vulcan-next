@@ -48,7 +48,8 @@
     "build:storybook": "rm -Rf storybook-static && build-storybook -s ./public # TODO: we shouldn't need to remove, but Storybook 6.1 has a small bug and can't remove existing build automatically",
     "start:storybook-static": "serve storybook-static",
     "auto-changelog": "auto-changelog -u",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "audit": "node scripts/lighthouse/home-stats.js && xdg-open lhreport.html"
   },
   "dependencies": {
     "@apollo/client": "^3.2.0",
@@ -115,6 +116,7 @@
     "eslint-plugin-react": "^7.18.3",
     "eslint-plugin-react-hooks": "^2.5.0",
     "graphql-voyager": "^1.0.0-rc.31",
+    "lighthouse": "^8.0.0",
     "react-is": "^16.13.1",
     "source-map-support": "^0.5.19",
     "storybook-css-modules-preset": "^1.0.5",

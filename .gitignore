@@ -6,6 +6,7 @@ node_modules
 .pnp.js
 
 # testing
+lhreport.html
 /coverage
 
 # next.js
@@ -43,3 +44,6 @@ storybook-static
 /public/robots.txt.yalc
 yalc.lock
 .yalc/
+
+#vscode extension
+.vscode/snipsnap.code-snippets
