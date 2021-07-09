@@ -131,6 +131,7 @@ They give time and share knowledge to support the project.
 - [Next advanced starter](https://github.com/borisowsky/next-advanced-starter),
 - [Next - Mongo](https://github.com/hoangvvo/nextjs-mongodb-app) (no Express, no GraphQL, just Next and Mongo)
 - [Next and TypeScript from the maker of next-transpile-modules](https://github.com/martpie/monorepo-typescript-next-the-sane-way)
+- [A frontend performance oriented starter](https://github.com/ixartz/Next-js-Boilerplate)
 
 ---
 
