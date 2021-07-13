@@ -14,7 +14,7 @@ Vulcan Next provides:
 
 [Join the Slack](http://slack.telescopeapp.org/)
 
-[Check all the features](https://github.com/VulcanJS/vulcan-next/tree/devel/src/content/docs/features.md)
+[Check all the features](https://github.com/VulcanJS/vulcan-next/blob/devel/src/content/docs/features/all-features.md)
 
 [Read the introductory article](https://www.freecodecamp.org/news/how-to-replace-meteor-by-next-introducing-vulcan-next-starter/)
 
