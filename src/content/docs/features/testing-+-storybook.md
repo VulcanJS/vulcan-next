@@ -84,3 +84,29 @@ Note: at the time of writing (2020/06) [there is an open issue when needing this
 We use a plugin that will in turn rely on Next.js dotenv loading capabilities.
 Used for instance to load the default admin user credentials in tests.
 As a default, it will use development values from `.env.development`.
+
+## Storybook
+
+### Same import as in Next
+
+We reuse our Webpack config extension function, so you can enjoy magic imports and isomorphic imports in Storybook too.
+
+### Styling with Styled JSX and CSS Modules
+
+Note: CSS modules are currently not appearing correctly in Storybook, see [vulcan-next/issues/20](https://github.com/VulcanJS/vulcan-next/issues/20)
+
+### Public folder
+
+Storybook is aware of the `public` folder, so it will display images accordingly.
+
+### I18n
+
+We reuse the same i18n config as in the app, so your stories will be internationalized automatically.
+
+### Webpack bundle analyzer for storybook
+
+There is nothing worse than a slow Storybook build, you can debug your Webpack bundle using `yarn run analyze-bundle:storybook`
+
+### Mock packages
+
+See `.storybook/mocks/packages` and `.storybook/main.js`, we use Webpack alias to load them. Thus, you can use components that rely on `next/router` and `next/config` for instance.
