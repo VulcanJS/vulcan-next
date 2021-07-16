@@ -7,24 +7,24 @@ import { useRouter } from "next/router";
 import NextLink, { LinkProps as NextLinkProps } from "next/link";
 import MuiLink, { LinkProps as MuiLinkProps } from "@material-ui/core/Link";
 
-type LinkProps = NextLinkProps &
-  MuiLinkProps & {
-    activeClassName?: string;
-    naked?: boolean;
-  };
+interface NextComposedProps extends NextLinkProps {
+  anchorProps?: React.HTMLProps<HTMLAnchorElement>;
+}
 
-const NextComposed = React.forwardRef(function NextComposed(
-  props: LinkProps,
-  ref: Ref<HTMLAnchorElement>
-) {
-  const { href, ...other } = props;
+/**
+ * A Next Link with an inner <a> anchor + ref passing
+ */
+const NextComposed = React.forwardRef<HTMLAnchorElement, NextComposedProps>(
+  function NextComposed(props, ref) {
+    const { anchorProps = {}, children, ...other } = props;
 
-  return (
-    <NextLink href={href}>
-      <a ref={ref} {...other} />
-    </NextLink>
-  );
-});
+    return (
+      <NextLink {...other}>
+        <a ref={ref} {...anchorProps} children={children} />
+      </NextLink>
+    );
+  }
+);
 
 NextComposed.propTypes = {
   as: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
@@ -32,14 +32,32 @@ NextComposed.propTypes = {
   prefetch: PropTypes.bool,
 };
 
+type BaseLinkProps = {
+  activeClassName?: string;
+  children?: React.ReactNode;
+  naked?: boolean;
+} & Pick<MuiLinkProps<"a", NextComposedProps>, "className" | "ref">;
+
+// FIXME: this discriminated union doesn't work as expected based on the "naked" property
+/** Props when one wants a Next Link + a <a> tag, without using Material UI Link */
+// type NakedLinkProps = NextLinkProps & BaseLinkProps & { naked: true };
+// type MuiNextLinkProps = MuiLinkProps<"a", NextComposedProps> &
+//   BaseLinkProps & { naked?: false };
+// type LinkProps = MuiNextLinkProps | NakedLinkProps;
+type LinkProps = NextLinkProps &
+  MuiLinkProps<"a", NextComposedProps> &
+  BaseLinkProps;
+
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/#with-link
-function Link(props: LinkProps) {
+const Link: React.FC<LinkProps> = (props) => {
   const {
     href,
     activeClassName = "active",
     className: classNameProps,
-    innerRef,
+    // ref props from material ui
+    // NOTE: typings is currently wrong (07/2021), see https://github.com/mui-org/material-ui/issues/24901
+    ref,
     naked,
     ...other
   } = props;
@@ -53,8 +71,8 @@ function Link(props: LinkProps) {
   if (naked) {
     return (
       <NextComposed
-        className={className}
-        ref={innerRef}
+        anchorProps={{ className }}
+        ref={ref as Ref<HTMLAnchorElement>}
         href={href}
         {...other}
       />
@@ -65,24 +83,27 @@ function Link(props: LinkProps) {
     <MuiLink
       component={NextComposed}
       className={className}
-      ref={innerRef}
+      ref={ref}
+      // Next type href (that can be an object) is not accepted for some reason
       href={href}
       {...other}
     />
   );
-}
+};
 
+/*
 Link.propTypes = {
   activeClassName: PropTypes.string,
   as: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   className: PropTypes.string,
   href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  // innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   naked: PropTypes.bool,
   onClick: PropTypes.func,
   prefetch: PropTypes.bool,
 };
+*/
 
-export default React.forwardRef((props: LinkProps, ref) => (
-  <Link {...props} innerRef={ref} />
+export default React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => (
+  <Link {...props} ref={ref} />
 ));
