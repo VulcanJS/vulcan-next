@@ -6,7 +6,7 @@ const useMuiApp = () => {
     // Remove the server-side injected CSS on each render
     const jssStyles = document.querySelector("#jss-server-side");
     if (jssStyles) {
-      jssStyles.parentElement.removeChild(jssStyles);
+      jssStyles.parentElement?.removeChild(jssStyles);
     }
   }, []);
 };
