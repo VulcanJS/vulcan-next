@@ -12,10 +12,12 @@ export default {
   //component: useSCThemeContext //  decoractors: [(storyFn) => <div>{storyFn()}</div>
 };
 
-const ThemedDiv = styled("div")`
-  color: ${(props) => props.theme.palette.text.primary};
-  background-color: ${(props) => props.theme.palette.background.default};
-`;
+const ThemedDiv = styled("div")(
+  ({ theme }) => `
+  color: ${theme.palette.text.primary};
+  background-color: ${theme.palette.background.default};
+`
+);
 
 const ThemeSwitchDemo = () => {
   const [currentMuiTheme, setMuiTheme] = useMuiThemeContext();
@@ -31,7 +33,7 @@ const ThemeSwitchDemo = () => {
         <button onClick={toggleMuiTheme}>Switch Material UI theme</button>
       </div>
       <div>Current theme:</div>
-      <div>{JSON.stringify(currentMuiTheme, null, 2)}</div>
+      <ThemedDiv>{JSON.stringify(currentMuiTheme, null, 2)}</ThemedDiv>
     </ThemedDiv>
   );
 };
