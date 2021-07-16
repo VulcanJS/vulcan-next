@@ -2,36 +2,36 @@
  * Demo of a theme switch button
  */
 import React, { useState } from "react";
-import { useSCThemeContext } from "../SCThemeProvider";
-import styled from "styled-components";
+import { useMuiThemeContext } from "../MuiThemeProvider";
 import darkTheme from "~/lib/style/darkTheme";
 import defaultTheme from "~/lib/style/defaultTheme";
+import { styled } from "@material-ui/core/styles";
 
 export default {
   title: "VN/ThemeSwitch",
   //component: useSCThemeContext //  decoractors: [(storyFn) => <div>{storyFn()}</div>
 };
 
-const ThemedDiv = styled.div`
-  color: ${(props) => props.theme.color};
-  background-color: ${(props) => props.theme.backgroundColor};
+const ThemedDiv = styled("div")`
+  color: ${(props) => props.theme.palette.text.primary};
+  background-color: ${(props) => props.theme.palette.background.default};
 `;
 
 const ThemeSwitchDemo = () => {
-  const [currentSCTheme, setSCTheme] = useSCThemeContext();
+  const [currentMuiTheme, setMuiTheme] = useMuiThemeContext();
   const [isDark, setIsDark] = useState(false); // default is light
-  const toggleSCTheme = () => {
+  const toggleMuiTheme = () => {
     const nextTheme = isDark ? defaultTheme : darkTheme;
-    setSCTheme(nextTheme);
+    setMuiTheme(nextTheme);
     setIsDark(!isDark);
   };
   return (
     <ThemedDiv>
       <div>
-        <button onClick={toggleSCTheme}>Switch Styled Components theme</button>
+        <button onClick={toggleMuiTheme}>Switch Material UI theme</button>
       </div>
       <div>Current theme:</div>
-      <div>{JSON.stringify(currentSCTheme, null, 2)}</div>
+      <div>{JSON.stringify(currentMuiTheme, null, 2)}</div>
     </ThemedDiv>
   );
 };

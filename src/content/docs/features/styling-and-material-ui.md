@@ -12,10 +12,6 @@ We try to reduce the footprint of Material UI for an easy remove. In next iterat
 
 Previous version of Vulcan Next was already using Styled Components with Material UI v4. Material UI v5 uses Emotion out-of-the-box
 
-#### Styled Components Modifiers
-
-We demo [Styled Components Modifiers](https://github.com/Decisiv/styled-components-modifiers), a powerful way to add modifiers props on your elements (options like "large", "warning", "dark"...).
-
 ### Theme switch demo
 
 We demo a theme switch button, using React context. See `lib/providers` for sources and sample Storybook stories.

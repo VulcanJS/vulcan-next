@@ -3,11 +3,11 @@
 // FIXME: not yet tested, as we wait for Storybook v6.0.0 official release
 import darkTheme from "~/lib/style/darkTheme";
 import defaultTheme from "~/lib/style/defaultTheme";
-import { SCThemeProvider } from "~/src/components/providers/SCThemeProvider";
+import { MuiThemeProvider } from "~/src/components/providers/MuiThemeProvider";
 export const contexts = [
   {
     title: "Theme",
-    components: [SCThemeProvider],
+    components: [MuiThemeProvider],
     params: [
       {
         name: "Default theme",

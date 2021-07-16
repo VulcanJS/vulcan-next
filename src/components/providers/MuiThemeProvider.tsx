@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@material-ui/core/styles";
-import defaultTheme from "~/lib/material-ui/defaultTheme";
+import defaultTheme from "~/lib/style/defaultTheme";
 import React, { createContext, useContext, useState } from "react";
 
 type UseMuiThemeOutput = [Object, (newTheme: Object) => void];
@@ -8,7 +8,10 @@ const useMuiTheme = (): UseMuiThemeOutput => {
   return [muiTheme, setMuiTheme];
 };
 
-const MuiThemeContext = createContext<UseMuiThemeOutput | undefined>(undefined);
+const MuiThemeContext = createContext<UseMuiThemeOutput>([
+  defaultTheme,
+  () => {},
+]);
 
 /**
  * Can be called anywhere, will provide current theme
@@ -16,7 +19,7 @@ const MuiThemeContext = createContext<UseMuiThemeOutput | undefined>(undefined);
  *
  * Internally use "useState" to remember the current theme.
  */
-export const useMuiThemeContext = (): UseMuiThemeOutput | undefined => {
+export const useMuiThemeContext = (): UseMuiThemeOutput => {
   return useContext(MuiThemeContext);
 };
 

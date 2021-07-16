@@ -25,6 +25,7 @@ basic.story = {
   // parameters: {...}
 };
 
+/** deprecated: we no longer used styled-components modifiers library
 export const vulcan = () => (
   <Modal modifiers={["vulcan"]} {...defaultProps}>
     <div>
@@ -32,3 +33,4 @@ export const vulcan = () => (
     </div>
   </Modal>
 );
+*/

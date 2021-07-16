@@ -3,7 +3,7 @@ import App, { AppProps } from "next/app";
 import { appWithTranslation } from "~/lib/i18n";
 // Comment if you don't need Material UI
 import { useMuiApp } from "@vulcanjs/next-material-ui";
-import { SCThemeProvider, MuiThemeProvider } from "~/components/providers";
+import { MuiThemeProvider } from "~/components/providers";
 import Head from "next/head";
 
 import debug from "debug";
@@ -65,13 +65,11 @@ function VNApp({ Component, pageProps }: AppProps) {
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
       <MuiThemeProvider>
-        <SCThemeProvider>
-          <ApolloProvider client={apolloClient}>
-            <AppLayout>
-              <Component {...pageProps} />
-            </AppLayout>
-          </ApolloProvider>
-        </SCThemeProvider>
+        <ApolloProvider client={apolloClient}>
+          <AppLayout>
+            <Component {...pageProps} />
+          </AppLayout>
+        </ApolloProvider>
       </MuiThemeProvider>
     </>
   );

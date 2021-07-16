@@ -1,5 +1,5 @@
 import React from "react";
-import StyledComponentsButton from "../StyledComponentsButton";
+import StyledComponentsButton from "../EmotionButton";
 import StyledJSXButton from "../StyledJsxButton";
 import { action } from "@storybook/addon-actions";
 // Prefer addons-control
@@ -15,7 +15,7 @@ const defaultProps = {
 };
 
 export default {
-  title: "vns/design-system/Button",
+  title: "vn/design-system/Button",
   //  decoractors: [(storyFn) => <div>{storyFn()}</div>
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography, Container } from "@material-ui/core"; // Next has tree shaking
-import StyledComponentsButton from "~/components/ui/StyledComponentsButton";
+import EmotionButton from "~/components/ui/EmotionButton";
 
 export default function MuiSCPage() {
   return (
@@ -9,9 +9,9 @@ export default function MuiSCPage() {
         <Typography variant="h4" component="h1" gutterBottom>
           Material UI and Styled components
         </Typography>
-        <StyledComponentsButton preferredTechnology="vulcan">
+        <EmotionButton preferredTechnology="vulcan">
           I am an orange styled button
-        </StyledComponentsButton>
+        </EmotionButton>
       </Box>
     </Container>
   );

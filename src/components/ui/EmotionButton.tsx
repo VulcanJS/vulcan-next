@@ -1,6 +1,6 @@
 /**
  * Demo of a button with some custom style,
- * combining styled-components and material-ui
+ * combining emotion/styled and material-ui
  *
  */
 // NOTE: you don't need to import React, it will be added at build time by Babel/Next
@@ -10,7 +10,7 @@ import {
   ButtonProps as MuiButtonProps,
 } from "@material-ui/core";
 import colors from "~/lib/style/colors";
-import styled from "styled-components";
+import { styled } from "@material-ui/core/styles";
 import { lighten } from "polished";
 
 const technologyToColor = {

@@ -1,5 +1,4 @@
 // @see https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_document.js
-// @see https://github.com/MarchWorks/nextjs-with-material-ui-and-styled-components
 import React from "react";
 import Document, {
   Html,
@@ -8,15 +7,11 @@ import Document, {
   NextScript,
   //DocumentInitialProps,
 } from "next/document";
-import theme from "~/lib/material-ui/defaultTheme";
+import theme from "~/lib/style/defaultTheme";
 import {
   getAppEnhancer as getMuiAppEnhancer,
   //getMuiDocumentInitialProps,
 } from "@vulcanjs/next-material-ui";
-import {
-  getAppEnhancer as getSCAppEnhancer,
-  //getSCDocumentInitialProps,
-} from "@vulcanjs/next-styled-components";
 import { i18nPropsFromCtx, DocumentLanguageProps } from "~/lib/i18n";
 
 interface VNSDocumentProps {
@@ -51,8 +46,7 @@ export default class MyDocument extends Document<VNSDocumentProps> {
 // it's compatible with server-side generation (SSG).
 MyDocument.getInitialProps = async (ctx) => {
   const muiAppEnhancer = getMuiAppEnhancer();
-  const scAppEnhancer = getSCAppEnhancer();
-  const enhancers = [scAppEnhancer, muiAppEnhancer];
+  const enhancers = [muiAppEnhancer];
 
   // Enhance Next page renderer so it also applies MUI and Styled Components stylesheets collectors
   const originalRenderPage = ctx.renderPage;
