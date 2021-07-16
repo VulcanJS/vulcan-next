@@ -9,6 +9,7 @@ import MuiLink, { LinkProps as MuiLinkProps } from "@material-ui/core/Link";
 
 interface NextComposedProps extends NextLinkProps {
   anchorProps?: React.HTMLProps<HTMLAnchorElement>;
+  className?: string;
 }
 
 /**
