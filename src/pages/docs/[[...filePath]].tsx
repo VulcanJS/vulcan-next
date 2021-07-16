@@ -18,17 +18,17 @@ const components = {
 
 const indexLink = (
   <div style={{ maxWidth: "1000px" }}>
-    <Link href="/docs">
+    <NextLink href="/docs">
       <Typography>Back to documentation index</Typography>
-    </Link>
+    </NextLink>
   </div>
 );
 
 const homeLink = (
   <div style={{ margin: "32px auto", maxWidth: "1000px" }}>
-    <Link href="/">
+    <NextLink href="/">
       <Typography>Back to home</Typography>
-    </Link>
+    </NextLink>
   </div>
 );
 

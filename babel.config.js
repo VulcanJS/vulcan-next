@@ -9,6 +9,7 @@ if (enableCoverage) {
 }
 
 // Add support of styled components
+/*
 plugins.push([
   "styled-components",
   {
@@ -17,6 +18,7 @@ plugins.push([
     preprocess: false,
   },
 ]);
+*/
 
 // // Fixe for pragmaFrag issue @see https://github.com/vercel/next.js/issues/11230
 // plugins.push([

@@ -16,11 +16,16 @@ interface NextComposedProps extends NextLinkProps {
  */
 const NextComposed = React.forwardRef<HTMLAnchorElement, NextComposedProps>(
   function NextComposed(props, ref) {
-    const { anchorProps = {}, children, ...other } = props;
+    const { anchorProps = {}, children, className, ...other } = props;
 
     return (
       <NextLink {...other}>
-        <a ref={ref} {...anchorProps} children={children} />
+        <a
+          ref={ref}
+          {...anchorProps}
+          className={clsx(anchorProps.className, className)}
+          children={children}
+        />
       </NextLink>
     );
   }

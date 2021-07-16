@@ -15,6 +15,7 @@ Previous version of Vulcan Next was already using Styled Components with Materia
 ### Theme switch demo
 
 We demo a theme switch button, using React context. See `lib/providers` for sources and sample Storybook stories.
+NOTE: this is currently broken (07/2021) as we are using preview version of Material UI v5.
 
 ### Alternative 2: Styled-jsx and PostCSS (+ your CSS framework of choice)
 
