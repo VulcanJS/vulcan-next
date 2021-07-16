@@ -33,7 +33,7 @@ const ThemeSwitchDemo = () => {
         <button onClick={toggleMuiTheme}>Switch Material UI theme</button>
       </div>
       <div>Current theme:</div>
-      <ThemedDiv>{JSON.stringify(currentMuiTheme, null, 2)}</ThemedDiv>
+      <div>{JSON.stringify(currentMuiTheme, null, 2)}</div>
     </ThemedDiv>
   );
 };

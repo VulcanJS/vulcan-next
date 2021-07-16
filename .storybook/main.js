@@ -20,7 +20,6 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-docs", // it seems that MDX is enabled as a default
-    // "@storybook/addon-contexts", // TODO: waiting for v6.0.0 to be released
     "@storybook/addon-backgrounds",
     // "@storybook/addon-knobs", // Knob is not installed as a default anymore, we prefer to use the more intuitive "controls" addon
     // @see https://medium.com/storybookjs/storybook-controls-ce82af93e430
