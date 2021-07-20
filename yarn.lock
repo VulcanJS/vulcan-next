@@ -3991,6 +3991,15 @@
     debug "^4.3.1"
     lodash "^4.17.21"
 
+"@vulcanjs/core@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/core/-/core-0.2.0.tgz#8023f68e2056cd99f40853c3dda849d12e8e1e78"
+  integrity sha512-stNQAbs0slSvikXSpYh3yPEmHgdCsLPEkMUYVdDkDZyYwtu53ioWzxfPaUtxBu0oYz0rUyImyfQrkdcUJIS6UA==
+  dependencies:
+    "@vulcanjs/utils" "^0.2.0"
+    debug "^4.3.1"
+    lodash "^4.17.21"
+
 "@vulcanjs/demo@^0.0.7":
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/@vulcanjs/demo/-/demo-0.0.7.tgz#4a57f286ee856beb20fb262aae291e2571265982"
@@ -4014,6 +4023,24 @@
     graphql-type-json "^0.3.2"
     lodash "^4.17.21"
 
+"@vulcanjs/graphql@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/graphql/-/graphql-0.2.0.tgz#daa2a94754a9c21277a47a3d10d454353e677edc"
+  integrity sha512-WvlqthkVU89CAveEtP+d/BMQXNusQEX+vknxpmopbOxMDKrPcCqnPAAElZqQGZW6oHeA9sPXEI9M2H6eQRa50w==
+  dependencies:
+    "@vulcanjs/core" "^0.2.0"
+    "@vulcanjs/i18n" "^0.2.0"
+    "@vulcanjs/model" "^0.2.0"
+    "@vulcanjs/permissions" "^0.2.0"
+    "@vulcanjs/schema" "^0.2.0"
+    "@vulcanjs/utils" "^0.2.0"
+    apollo-server "^2.18.2"
+    debug "^4.3.1"
+    deepmerge "^4.2.2"
+    graphql-date "^1.0.3"
+    graphql-type-json "^0.3.2"
+    lodash "^4.17.21"
+
 "@vulcanjs/i18n@^0.1.13":
   version "0.1.13"
   resolved "https://registry.yarnpkg.com/@vulcanjs/i18n/-/i18n-0.1.13.tgz#bfb3f0b9f8ff879e39f02a0d5298dea40c59056b"
@@ -4021,6 +4048,16 @@
   dependencies:
     "@vulcanjs/schema" "^0.1.13"
     "@vulcanjs/utils" "^0.1.13"
+    prop-types "^15.7.2"
+    simpl-schema "^1.12.0"
+
+"@vulcanjs/i18n@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/i18n/-/i18n-0.2.0.tgz#59f4883eafd0c65db402fc5ed1797ec2c3184dcc"
+  integrity sha512-fNqyyEaLJZAR8xO7BQWa5ul4vbW8wZIzLwrimys8slNJMPi77SfZBB2t8dO1UsvGQ82rg4MePt6wBoxt499ZWA==
+  dependencies:
+    "@vulcanjs/schema" "^0.2.0"
+    "@vulcanjs/utils" "^0.2.0"
     prop-types "^15.7.2"
     simpl-schema "^1.12.0"
 
@@ -4044,6 +4081,13 @@
   dependencies:
     "@vulcanjs/schema" "^0.1.13"
 
+"@vulcanjs/model@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/model/-/model-0.2.0.tgz#fd1f17a2ee5c59d174a029262c0505f6d8e52399"
+  integrity sha512-9zixFTdT0UT05QwB/qInj7hCo91dyFhEdszGeqFa+yrA54uftVO+2Onjsn2W3qpxp9Zgnd2GpOxDhHxjfGBO9w==
+  dependencies:
+    "@vulcanjs/schema" "^0.2.0"
+
 "@vulcanjs/mongo@^0.1.13", "@vulcanjs/mongo@^0.1.8":
   version "0.1.13"
   resolved "https://registry.yarnpkg.com/@vulcanjs/mongo/-/mongo-0.1.13.tgz#e69a215be351851ef080dd6447a42829c38007b6"
@@ -4055,6 +4099,17 @@
     escape-string-regexp "4.0.0"
     lodash "^4.17.20"
 
+"@vulcanjs/mongo@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/mongo/-/mongo-0.2.0.tgz#103307d4eeb7c5bf943eac2e30a1dfecb6ad8f72"
+  integrity sha512-bVEx8uO2R0hR7tlTcY6yzF4WmQFqg71zRRHSZujo/P+q2+RPVKb/h1RqlgSmM0I69LNH4WdzIBfkQjF3zvi08w==
+  dependencies:
+    "@vulcanjs/graphql" "^0.2.0"
+    "@vulcanjs/model" "^0.2.0"
+    "@vulcanjs/utils" "^0.2.0"
+    escape-string-regexp "4.0.0"
+    lodash "^4.17.20"
+
 "@vulcanjs/permissions@^0.1.13":
   version "0.1.13"
   resolved "https://registry.yarnpkg.com/@vulcanjs/permissions/-/permissions-0.1.13.tgz#1580e2fb9a655f83e04e69877693a22bb685525b"
@@ -4062,6 +4117,15 @@
   dependencies:
     "@vulcanjs/model" "^0.1.13"
     "@vulcanjs/schema" "^0.1.13"
+    lodash "^4.17.21"
+
+"@vulcanjs/permissions@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/permissions/-/permissions-0.2.0.tgz#0bb02a55939c4641a89b446b109cad04060938a5"
+  integrity sha512-Wsq761DgnjCSFJwV6haRDSKKaEdnM1zcx0zypcGf1WcTRjEQ2yC+z9C+RVsdRCwg7oxiI8TARROfgsnOHT1tlQ==
+  dependencies:
+    "@vulcanjs/model" "^0.2.0"
+    "@vulcanjs/schema" "^0.2.0"
     lodash "^4.17.21"
 
 "@vulcanjs/react-hooks@^0.1.8":
@@ -4076,10 +4140,49 @@
     lodash "^4.17.20"
     mingo "^3.0.6"
 
+"@vulcanjs/react-hooks@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/react-hooks/-/react-hooks-0.2.1.tgz#dadde936f0d5d0f964f9baed7f390ceb3abaf2bc"
+  integrity sha512-IzywZ7tKMFSvISBd87OyOPrWw5JD4ZXypKDHNrD9vMYo2tsrK6vBAumMe6Ozv1XD4qCXaZSBv8xqniGIyjQh6A==
+  dependencies:
+    "@vulcanjs/graphql" "^0.2.0"
+    "@vulcanjs/mongo" "^0.2.0"
+    debug "^4.3.1"
+    graphql "^15.5.0"
+    lodash "^4.17.20"
+    mingo "^3.0.6"
+
+"@vulcanjs/react-ui@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/react-ui/-/react-ui-0.2.1.tgz#1b2ecff28235862db8352758f4707b90b2c8a9e0"
+  integrity sha512-E1A114cAB5SR1yzbNlRjcx3PYrlzLmCe0LSgaAUinKe0Zk+FdyS4lZHtrW1lr3Qq3p4hSEPXzFCSYUlZhpF9BQ==
+  dependencies:
+    "@vulcanjs/core" "^0.2.0"
+    "@vulcanjs/graphql" "^0.2.0"
+    "@vulcanjs/i18n" "^0.2.0"
+    "@vulcanjs/model" "^0.2.0"
+    "@vulcanjs/permissions" "^0.2.0"
+    "@vulcanjs/react-hooks" "^0.2.1"
+    "@vulcanjs/schema" "^0.2.0"
+    "@vulcanjs/utils" "^0.2.0"
+    classnames "^2.3.1"
+    debug "^4.3.1"
+    lodash "^4.17.21"
+    simpl-schema "^1.12.0"
+
 "@vulcanjs/schema@^0.1.13":
   version "0.1.13"
   resolved "https://registry.yarnpkg.com/@vulcanjs/schema/-/schema-0.1.13.tgz#b0f72cd9d58bbf4622b9062762f3784d26f5a5c6"
   integrity sha512-cquhex1yAN0N4klmNw6MrZrlGAHM3tGNMOMVKob7q7EjInpvFuBX0SHFaesA2y/8NMXrNDlHNK1IZk1VOiV9FA==
+  dependencies:
+    lodash "^4.17.21"
+    moment-timezone "^0.5.33"
+    simpl-schema "^1.12.0"
+
+"@vulcanjs/schema@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/schema/-/schema-0.2.0.tgz#24782306218eedc54baae05d563401e85656a06c"
+  integrity sha512-bGuaYTc3E7UcB87Bix+rDyehvNvIpDD5xrWLanY96XgooWFb6Z0pKn2Yi8J1E/V5/RUQl8jV2kSqHr+KHULMCw==
   dependencies:
     lodash "^4.17.21"
     moment-timezone "^0.5.33"
@@ -4091,6 +4194,15 @@
   integrity sha512-3kO+JtuQ6R9E21HD7ivMFYro0xEbWaD/A+bJhyGQc9pfsaIw3uv34d+prT/eR0c9qZhzi4/dav9APf9XqA/XHQ==
   dependencies:
     "@vulcanjs/model" "^0.1.13"
+    lodash "^4.17.21"
+
+"@vulcanjs/utils@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/utils/-/utils-0.2.0.tgz#b98f2c7593d22f82cb185b3e926b830226383e7f"
+  integrity sha512-N1xCOY9rGkN3cffD1Q3MaxV2B7fzhxIyCtUblOCJp99MEfTgzGYNvpe2u/GZp0/3y9aoGYVtmac1os0+s1nZCw==
+  dependencies:
+    "@vulcanjs/model" "^0.2.0"
+    debug "^4.3.1"
     lodash "^4.17.21"
 
 "@webassemblyjs/ast@1.9.0":
@@ -6172,7 +6284,7 @@ classnames@2.2.6:
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
 
-classnames@^2.2.5, classnames@^2.2.6:
+classnames@^2.2.5, classnames@^2.2.6, classnames@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
   integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==
