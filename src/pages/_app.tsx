@@ -5,6 +5,7 @@ import { appWithTranslation } from "~/lib/i18n";
 import { useMuiApp } from "@vulcanjs/next-material-ui";
 import { MuiThemeProvider } from "~/components/providers";
 import Head from "next/head";
+import { VulcanComponentsProvider } from "@vulcanjs/react-ui";
 
 import debug from "debug";
 import AppLayout from "~/components/layout/AppLayout";
@@ -30,7 +31,7 @@ function VNApp({ Component, pageProps }: AppProps) {
       !!process.env.NEXT_PUBLIC_CROSS_DOMAIN_GRAPHQL_URI || false,
   }); // you can also easily setup ApolloProvider on a per-page basis
   return (
-    <>
+    <VulcanComponentsProvider>
       <Head>
         <title>Vulcan Next</title>
         <meta
@@ -71,7 +72,7 @@ function VNApp({ Component, pageProps }: AppProps) {
           </AppLayout>
         </ApolloProvider>
       </MuiThemeProvider>
-    </>
+    </VulcanComponentsProvider>
   );
 }
 

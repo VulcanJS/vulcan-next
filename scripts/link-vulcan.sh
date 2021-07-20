@@ -18,7 +18,7 @@
 ./node_modules/.bin/yalc link @vulcanjs/mongo
 ./node_modules/.bin/yalc link @vulcanjs/multi-env-demo
 ./node_modules/.bin/yalc link @vulcanjs/permissions
-./node_modules/.bin/yalc link @vulcanjs/react-components
+./node_modules/.bin/yalc link @vulcanjs/react-ui
 ./node_modules/.bin/yalc link @vulcanjs/react-hooks
 ./node_modules/.bin/yalc link @vulcanjs/schema
 ./node_modules/.bin/yalc link @vulcanjs/utils
