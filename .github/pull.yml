@@ -1,0 +1,7 @@
+# Ensure forks main branch is updated for people using wei/pull
+# @see https://github.com/wei/pull#readme
+version: "1"
+rules:
+  - base: main # we need to specify the branch, because "main" is NOT the default (we use "devel")
+    upstream: VulcanJS:main
+    mergeMethod: hardreset
