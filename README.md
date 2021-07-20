@@ -27,7 +27,7 @@ You can't teach an old dog new tricks! Vulcan Next is the successor of "Vulcan.j
 ## Install and run in 5 minutes
 
 ```sh
-git clone https://github.com/VulcanJS/vulcan-next.git
+git clone -b main https://github.com/VulcanJS/vulcan-next
 yarn
 yarn run dev
 ```
@@ -56,7 +56,7 @@ have to apply the updates by hand, comparing Vulcan Next latest version to your 
 # Get the latest version of Vulcan Next locally
 git fetch upstream
 # Merge to your own code (favouring your own code as a default in case of conflict)
-git merge upstream/master -X ours
+git merge upstream/main -X ours
 ```
 
 ### Roll your own Mongo database

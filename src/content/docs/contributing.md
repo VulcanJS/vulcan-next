@@ -12,10 +12,10 @@ We recommend to install Node using [NVM for Linux/Mac](https://github.com/nvm-sh
 
 We follow the Git Flow model.
 
-- `master`: is the current live version.
-- `bugfix/*`: Bugfixes branches should start from master.
-- `devel`: Devel is the next version.
-- `feature/*`: features branches should start from master.
+- `devel`: Devel is the next version. **This is where you want to start for contribution**.
+- `main`: is the current live version.
+- `bugfix/*`: Bugfixes branches should start from main.
+- `feature/*`: features branches should start from devel.
 - `support/*x.x.x*`: is for bugfixes for a specific version.
 - Tags allow to easily find the commit corresponding to a deployed versions.
 

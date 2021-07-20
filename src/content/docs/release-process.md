@@ -4,11 +4,11 @@
 
 ```sh
 ### To the right branch
-git checkout master && git pull
+git checkout main && git pull
 git checkout devel && git pull
 # cat package.json | grep version # to get the current version
 # git checkout -b release/<next-version>
-git merge master # get hot fixes if any
+git merge main # get hot fixes if any
 git merge devel
 rm -Rf node_modules
 yarn install # no missing module surprise
@@ -75,10 +75,10 @@ git commit -am "bump version"
 ```sh
 
 ### Deploy
-git checkout master && git merge release/<next-version>
+git checkout main && git merge release/<next-version>
 git push
 
 ### Update devel branches with fixes
-git checkout develop && git pull && git merge master && git push
+git checkout develop && git pull && git merge main && git push
 
 ```
