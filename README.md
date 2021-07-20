@@ -14,7 +14,7 @@ Vulcan Next provides:
 
 [Join the Slack](http://slack.telescopeapp.org/)
 
-[Check all the features](https://github.com/VulcanJS/vulcan-next/blob/devel/src/content/docs/features/all-features.md)
+[Check all the features in our live app](https://vulcan-next.vercel.app/docs/features) or [directly on Github](https://github.com/VulcanJS/vulcan-next/tree/devel/src/content/docs/features)
 
 [Read the introductory article](https://www.freecodecamp.org/news/how-to-replace-meteor-by-next-introducing-vulcan-next-starter/)
 
@@ -24,7 +24,7 @@ You can't teach an old dog new tricks! Vulcan Next is the successor of "Vulcan.j
 
 ---
 
-## Install and run
+## Install and run in 5 minutes
 
 ```sh
 git clone https://github.com/VulcanJS/vulcan-next.git
