@@ -54,8 +54,11 @@ type LinkProps = NextLinkProps &
   MuiLinkProps<"a", NextComposedProps> &
   BaseLinkProps;
 
-// A styled version of the Next.js Link component:
-// https://nextjs.org/docs/#with-link
+/**
+ * Material UI Link + Next Link + an <a> anchor
+ *
+ * Use as a replacement for Material UI Link in Next.js applications
+ */
 const Link: React.FC<LinkProps> = (props) => {
   const {
     href,

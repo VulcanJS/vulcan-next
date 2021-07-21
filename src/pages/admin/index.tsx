@@ -1,29 +1,19 @@
 import React from "react";
-import { useMulti } from "@vulcanjs/react-hooks";
-import { User } from "~/models/user";
 import { useUser } from "~/components/user/hooks";
-import Link from "next/link";
+import { NextMuiLink } from "@vulcanjs/next-material-ui";
+import { Typography } from "@material-ui/core";
+import { PageLayout } from "~/components/layout";
 
 const AdminPage = () => {
   // TODO: this is an authenticated page, but we also would like to check the role
-  const user = useUser({ redirectTo: "/login" });
-  const usersResult = useMulti({ model: User });
-  const users = usersResult?.data?.vulcanUsers?.results || [];
+  /*const user = */ useUser({ redirectTo: "/login" });
   return (
-    <div>
-      <h1>Admin page</h1>
-      <h2>Users</h2>
-      <ul>
-        {users.map(({ _id, email }) => (
-          <li key={_id}>{email}</li>
-        ))}
-      </ul>
-      <h2>CRUD operations</h2>
-      <Link href="/admin/crud">
-        <a>Index page</a>
-      </Link>
-      <br /><br />
-    </div>
+    <PageLayout>
+      <Typography variant="h1">Admin area</Typography>
+      <NextMuiLink href="/admin/crud">
+        <Typography>Manage your models</Typography>
+      </NextMuiLink>
+    </PageLayout>
   );
 };
 
