@@ -8,7 +8,7 @@ const ModelsPage = () => {
             <h1>Admin page</h1>
             <ul>
                 {models.map((model) => (
-                    <li>
+                    <li key={model.name}>
                         <Link href={'/admin/crud/' + model.name}>
                             <a>{model.name}</a>
                         </Link>
