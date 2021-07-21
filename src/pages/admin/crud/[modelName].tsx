@@ -68,7 +68,7 @@ export default function CrudPage({ modelName }) {
                         {readFields.map((field) => (
                             result[field]
                                 ? <p key={result._id + field}> <strong>{field}:</strong> {result[field]} </p>
-                                : null
+                                : ''
                         ))}
                     </li>
                 ))}
@@ -133,7 +133,9 @@ export async function getStaticPaths() {
 function spreadPaths(): Array<PathsProps> {
     const paths: Array<PathsProps> = [];
     models.forEach(model => {
-        paths.push({ params: { modelName: model.name } });
+        if (!(model.name === 'VulcanUser')) {
+            paths.push({ params: { modelName: model.name } });
+        }
     });
     return paths;
 }
