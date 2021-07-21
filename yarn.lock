@@ -4023,10 +4023,10 @@
     graphql-type-json "^0.3.2"
     lodash "^4.17.21"
 
-"@vulcanjs/graphql@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@vulcanjs/graphql/-/graphql-0.2.0.tgz#daa2a94754a9c21277a47a3d10d454353e677edc"
-  integrity sha512-WvlqthkVU89CAveEtP+d/BMQXNusQEX+vknxpmopbOxMDKrPcCqnPAAElZqQGZW6oHeA9sPXEI9M2H6eQRa50w==
+"@vulcanjs/graphql@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/graphql/-/graphql-0.2.3.tgz#2147f43df144259377fa90bda0a79553db109404"
+  integrity sha512-ULq+hT7YgQZmdkOC5UaRO909F39VocE1lm4Y1Cy1RVZL5f+O/Ob23wroPfKggicGKjyJrt3z5zo8WN1PS4I+Tg==
   dependencies:
     "@vulcanjs/core" "^0.2.0"
     "@vulcanjs/i18n" "^0.2.0"
@@ -4088,7 +4088,7 @@
   dependencies:
     "@vulcanjs/schema" "^0.2.0"
 
-"@vulcanjs/mongo@^0.1.13", "@vulcanjs/mongo@^0.1.8":
+"@vulcanjs/mongo@^0.1.8":
   version "0.1.13"
   resolved "https://registry.yarnpkg.com/@vulcanjs/mongo/-/mongo-0.1.13.tgz#e69a215be351851ef080dd6447a42829c38007b6"
   integrity sha512-5SSMg4qa9hh2NAH2BkqxiHK8B2GUPj/xR0hz5wAqjYYrXwDLoUOFomtJY+qyx9bn7mbflPR27iEoARWlYwhS4A==
@@ -4099,12 +4099,12 @@
     escape-string-regexp "4.0.0"
     lodash "^4.17.20"
 
-"@vulcanjs/mongo@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@vulcanjs/mongo/-/mongo-0.2.0.tgz#103307d4eeb7c5bf943eac2e30a1dfecb6ad8f72"
-  integrity sha512-bVEx8uO2R0hR7tlTcY6yzF4WmQFqg71zRRHSZujo/P+q2+RPVKb/h1RqlgSmM0I69LNH4WdzIBfkQjF3zvi08w==
+"@vulcanjs/mongo@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/mongo/-/mongo-0.2.3.tgz#752ec230505815e108e5653ab68f075fc899debc"
+  integrity sha512-61bl8TQWQJ24kdTzScWWFDz/j7Vh/RE2in9CCbidp1bKZs88FA6Jqy/U1rVzXSAYzvDK1PuE3nhdGneFkMimwA==
   dependencies:
-    "@vulcanjs/graphql" "^0.2.0"
+    "@vulcanjs/graphql" "^0.2.3"
     "@vulcanjs/model" "^0.2.0"
     "@vulcanjs/utils" "^0.2.0"
     escape-string-regexp "4.0.0"
@@ -4128,41 +4128,29 @@
     "@vulcanjs/schema" "^0.2.0"
     lodash "^4.17.21"
 
-"@vulcanjs/react-hooks@^0.1.8":
-  version "0.1.13"
-  resolved "https://registry.yarnpkg.com/@vulcanjs/react-hooks/-/react-hooks-0.1.13.tgz#62c9df86459424fa9a922721be0885fb62e84b35"
-  integrity sha512-/FjdwwVS/0ggDLI7nWiAorbsqP1UH6WwfjCjNcqc5HGWaXPA/BP4C6spB+UOzE6KlYEPwEi+JtNse7+PhBDTnw==
+"@vulcanjs/react-hooks@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/react-hooks/-/react-hooks-0.2.3.tgz#b6bbfa9791aa90d8ccb579d9ef24bffd23f2e1f5"
+  integrity sha512-GlG5yBsk4QTl3iY428OQZxxbpceZIo18qN7+iS3vVNuFK486tiNcdRutbp+dHr/3wudaTTGhzTIPXr7zGsyDOA==
   dependencies:
-    "@vulcanjs/graphql" "^0.1.13"
-    "@vulcanjs/mongo" "^0.1.13"
+    "@vulcanjs/graphql" "^0.2.3"
+    "@vulcanjs/mongo" "^0.2.3"
     debug "^4.3.1"
     graphql "^15.5.0"
     lodash "^4.17.20"
     mingo "^3.0.6"
 
-"@vulcanjs/react-hooks@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@vulcanjs/react-hooks/-/react-hooks-0.2.1.tgz#dadde936f0d5d0f964f9baed7f390ceb3abaf2bc"
-  integrity sha512-IzywZ7tKMFSvISBd87OyOPrWw5JD4ZXypKDHNrD9vMYo2tsrK6vBAumMe6Ozv1XD4qCXaZSBv8xqniGIyjQh6A==
-  dependencies:
-    "@vulcanjs/graphql" "^0.2.0"
-    "@vulcanjs/mongo" "^0.2.0"
-    debug "^4.3.1"
-    graphql "^15.5.0"
-    lodash "^4.17.20"
-    mingo "^3.0.6"
-
-"@vulcanjs/react-ui@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@vulcanjs/react-ui/-/react-ui-0.2.1.tgz#1b2ecff28235862db8352758f4707b90b2c8a9e0"
-  integrity sha512-E1A114cAB5SR1yzbNlRjcx3PYrlzLmCe0LSgaAUinKe0Zk+FdyS4lZHtrW1lr3Qq3p4hSEPXzFCSYUlZhpF9BQ==
+"@vulcanjs/react-ui@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/react-ui/-/react-ui-0.2.3.tgz#59d163f614bd0215caa149364a81a15ae2131541"
+  integrity sha512-kGlTM14iZihAEUdRyE2LUX0X9LH4x7yLy/WDgRy80JEutXZGwW1RGm89UlJYGcEYSFpwZIQFiEjdZ6xzyE+14g==
   dependencies:
     "@vulcanjs/core" "^0.2.0"
-    "@vulcanjs/graphql" "^0.2.0"
+    "@vulcanjs/graphql" "^0.2.3"
     "@vulcanjs/i18n" "^0.2.0"
     "@vulcanjs/model" "^0.2.0"
     "@vulcanjs/permissions" "^0.2.0"
-    "@vulcanjs/react-hooks" "^0.2.1"
+    "@vulcanjs/react-hooks" "^0.2.3"
     "@vulcanjs/schema" "^0.2.0"
     "@vulcanjs/utils" "^0.2.0"
     classnames "^2.3.1"
