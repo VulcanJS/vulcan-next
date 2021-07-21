@@ -48,6 +48,8 @@ export default function UserCrudPage() {
       groups: e.currentTarget.groups.value || null,
     };
 
+    // TODO: instead use useCreate + hooks or any other pattern to send an email
+    // NOT SAFE FOR PRODUCTION, this is just a demo
     try {
       const res = await fetch("/api/signup", {
         method: "POST",
@@ -92,7 +94,6 @@ export default function UserCrudPage() {
     };
 
     await updateUser({ input });
-    Router.reload(); // reload to refresh the users list because useMulti doesn't update after user operations
   }
 
   // Delete
@@ -107,7 +108,6 @@ export default function UserCrudPage() {
       id,
     };
     await deleteUser({ input });
-    Router.reload(); // reload to refresh the users list because useMulti doesn't update after user operations
   };
 
   return (
@@ -118,6 +118,11 @@ export default function UserCrudPage() {
         (useCreate, useUpdate, useSingle, useMulti) to manage your model
       </Typography>
       <Typography variant="h2"> Create a new user </Typography>
+      <Typography variant="body1">
+        /!\ User creation is not yet safe for production! Do not use in real
+        app!
+      </Typography>
+      ;
       <form onSubmit={handleCreateSubmit}>
         <label>
           <span>Email</span>
@@ -137,7 +142,6 @@ export default function UserCrudPage() {
         </label>
         <button type="submit">Submit</button>
       </form>
-
       <Typography variant="h2"> Read </Typography>
       {
         <List>
@@ -148,9 +152,7 @@ export default function UserCrudPage() {
           ))}
         </List>
       }
-
       <hr />
-
       <Typography variant="h2">
         {" "}
         Select an user for edition/deletion{" "}
@@ -174,7 +176,6 @@ export default function UserCrudPage() {
           ))}
         </Select>
       </FormControl>
-
       {selectedUserId && (
         <div>
           <Typography variant="h2"> Update {selectedUserId} </Typography>

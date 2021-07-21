@@ -16,6 +16,7 @@ import {
   ListItem,
 } from "@material-ui/core";
 import { SmartForm } from "@vulcanjs/react-ui";
+import { VulcanGraphqlModel } from "@vulcanjs/graphql";
 import { ItemCard } from "~/components/vns/ItemCard";
 import { PageLayout } from "~/components/layout";
 import models from "~/models";
@@ -23,9 +24,13 @@ import models from "~/models";
 import { useUser } from "~/components/user/hooks";
 import { useMulti, useDelete } from "@vulcanjs/react-hooks";
 
-const getCurrentModel = (modelName: string) => {
+const modelsMap = models.reduce<{ [modelName: string]: VulcanGraphqlModel }>(
+  (asMap, model) => ({ ...asMap, [model.name]: model }),
+  {}
+);
+const getCurrentModel = (modelName: string): VulcanGraphqlModel => {
   // TODO: what about casing?
-  const model = models.find((model) => model.name === modelName);
+  const model = modelsMap[modelName];
   if (!model) {
     throw new Error(
       `No model found with name ${modelName}, but path exists. There might be an inconsistency in your getStaticPaths method.`
@@ -48,7 +53,9 @@ export default function CrudPage({ modelName }) {
   const documentsResult = documentsRawResult.documents || [];
 
   // Select
-  const [selectedDocumentId, setSelectedDocumentId] = React.useState("");
+  const [selectedDocumentId, setSelectedDocumentId] = React.useState<
+    string | undefined
+  >(undefined);
   const handleSelectDocumentChange = (event) => {
     setSelectedDocumentId(event.target.value);
   };
@@ -60,7 +67,7 @@ export default function CrudPage({ modelName }) {
       throw new Error("Trying to delete without id, this shouldn't happen");
     }
     const id = selectedDocumentId;
-    setSelectedDocumentId("");
+    setSelectedDocumentId(undefined);
     const input = {
       id,
     };

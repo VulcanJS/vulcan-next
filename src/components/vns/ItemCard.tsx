@@ -14,8 +14,7 @@ export const ItemCard = ({ document, model }) => {
       {readableFields.map((field) =>
         document[field] ? (
           <p key={document._id + field}>
-            {" "}
-            <strong>{field}:</strong> {document[field]}{" "}
+            <strong>{field}:</strong> {document[field]}
           </p>
         ) : null
       )}
