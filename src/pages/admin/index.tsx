@@ -2,6 +2,7 @@ import React from "react";
 import { useMulti } from "@vulcanjs/react-hooks";
 import { User } from "~/models/user";
 import { useUser } from "~/components/user/hooks";
+import Link from "next/link";
 
 const AdminPage = () => {
   // TODO: this is an authenticated page, but we also would like to check the role
@@ -17,6 +18,11 @@ const AdminPage = () => {
           <li key={_id}>{email}</li>
         ))}
       </ul>
+      <h2>CRUD operations</h2>
+      <Link href="/admin/crud">
+        <a>Index page</a>
+      </Link>
+      <br /><br />
     </div>
   );
 };
