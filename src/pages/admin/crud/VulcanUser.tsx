@@ -29,7 +29,7 @@ import { ItemCard } from "~/components/vns/ItemCard";
 
 export default function UserCrudPage() {
   // Auth
-  /*const user = */ useUser({ redirectTo: "/login" });
+  const user = useUser({ redirectTo: "/login" });
 
   // Create
   /* 
@@ -110,6 +110,26 @@ export default function UserCrudPage() {
     await deleteUser({ input });
   };
 
+  // Verify Email
+  async function handleVerifyEmailSubmit(e) {
+    e.preventDefault();
+    const body = {
+      email: e.currentTarget.verifyEmail.value,
+    };
+    try {
+      const res = await fetch("/api/sendVerificationEmail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      if (!(res.status === 200)) {
+        throw new Error(await res.text());
+      }
+    } catch (error) {
+      console.error("An unexpected error happened occurred:", error);
+    }
+  }
+
   return (
     <PageLayout>
       <Typography variant="h1"> Manage User</Typography>
@@ -122,7 +142,6 @@ export default function UserCrudPage() {
         /!\ User creation is not yet safe for production! Do not use in real
         app!
       </Typography>
-      ;
       <form onSubmit={handleCreateSubmit}>
         <label>
           <span>Email</span>
@@ -223,6 +242,25 @@ export default function UserCrudPage() {
           </Button>
         </div>
       )}
+      <hr />
+      <Typography variant="h2">
+        Send email verification
+      </Typography>
+      <Typography variant="body1">
+        This is a manual tester for the email verification feature that is still in development. <br />
+        /!\ At the moment, the feature is logged, no email will be sent.
+      </Typography>
+      <form onSubmit={handleVerifyEmailSubmit}>
+        <label>
+          <span>Email</span>
+          <input
+            type="text"
+            name="verifyEmail"
+            defaultValue={selectedUser?.email || user?.email}
+          />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
       <style jsx>
         {`
           label {

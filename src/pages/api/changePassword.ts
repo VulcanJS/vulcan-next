@@ -5,7 +5,7 @@ import { User } from "~/models/user";
 
 // TODO: factor the context creation so we can reuse it for graphql and REST endpoints
 import { contextFromReq } from "~/api/context";
-export default async function signup(
+export default async function changePassword(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -18,7 +18,7 @@ export default async function signup(
 
     // Use the userId as input of the mutator
     const userId = (context.userId || context.currentUser?._id) as string;
-    if (!userId){
+    if (!userId) {
       res.status(500).end("can't infer the user from context");
     }
 
