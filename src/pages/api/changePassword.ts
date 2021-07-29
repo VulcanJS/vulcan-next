@@ -1,7 +1,7 @@
 import { Request } from "express";
 import { updateMutator } from "@vulcanjs/graphql";
 import { NextApiRequest, NextApiResponse } from "next";
-import { User } from "~/models/user";
+import { User, UserConnector } from "~/models/user";
 
 // TODO: factor the context creation so we can reuse it for graphql and REST endpoints
 import { contextFromReq } from "~/api/context";
@@ -17,12 +17,23 @@ export default async function changePassword(
     const context = await contextFromReq((req as unknown) as Request);
 
     // Use the userId as input of the mutator
-    const userId = (context.userId || context.currentUser?._id) as string;
-    if (!userId) {
-      res.status(500).end("can't infer the user from context");
+    let userId: string;
+
+    const email = body.email;
+    // Either we reset the password, so we put the email on the body.
+    if (email) {
+      const user = await UserConnector.findOne({ email });
+      userId = user._id
+    } else {
+      // Or we just want to change the connected user's password
+      userId = (context.userId || context.currentUser?._id) as string;
     }
 
-    await updateMutator({ model: User, data: body, context, dataId: userId });
+    if (!userId) {
+      res.status(500).end("user not found");
+    }    
+
+    await updateMutator({ model: User, data: { password: body.password }, context, dataId: userId, asAdmin: true });
     console.log("MAIL: Password changed"); //TODO: send the real email
     res.status(200).send({ done: true });
   } catch (error) {
