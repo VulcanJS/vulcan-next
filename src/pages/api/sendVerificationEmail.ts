@@ -1,4 +1,3 @@
-import { Request } from "express";
 import { NextApiRequest, NextApiResponse } from "next";
 import { UserConnector } from "~/models/user";
 import { encryptSession } from "~/api/passport/iron";
