@@ -7,14 +7,14 @@ import {
 } from "@material-ui/core";
 
 function ChangePasswordForm(props: { user: { email: string; } }) {
-  const [errorMsg, setErrorMsg] = useState(null as string|null);
+  const [errorMsg, setErrorMsg] = useState(null as string | null);
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const oldPassword = e.currentTarget.oldPassword.value.trim();
-    const newPassword = e.currentTarget.newPassword.value.trim();
+    const oldPassword = e.currentTarget.oldPassword.value;
+    const newPassword = e.currentTarget.newPassword.value;
 
-    if (newPassword !== e.currentTarget.confirmNewPassword.value.trim()) {
+    if (newPassword !== e.currentTarget.confirmNewPassword.value) {
       setErrorMsg("passwords don't match")
     } else {
       setErrorMsg(null)
@@ -103,4 +103,4 @@ function ChangePasswordForm(props: { user: { email: string; } }) {
   );
 };
 
-  export default ChangePasswordForm;
+export default ChangePasswordForm;

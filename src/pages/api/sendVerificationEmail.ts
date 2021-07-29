@@ -11,9 +11,6 @@ export default async function sendVerificationEmail(
     res: NextApiResponse
 ) {
     try {
-        // TODO: check if this is ok to compute the context from a NextApiRequest like this
-        const context = await contextFromReq((req as unknown) as Request);
-
         const email: string = req.body?.email;
         if (!email) {
             res.status(500).end("email not found");
