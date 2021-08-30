@@ -12,7 +12,7 @@ if (process.env.ANALYZE === "true") {
 }
 module.exports = {
   stories: [
-    "../stories/**/*.stories.@(js|ts|jsx|tsx|mdx)",
+    "../.vn/stories/**/*.stories.@(js|ts|jsx|tsx|mdx)",
     "../src/**/*.stories.@(js|ts|jsx|tsx|mdx)",
   ],
   addons: [
