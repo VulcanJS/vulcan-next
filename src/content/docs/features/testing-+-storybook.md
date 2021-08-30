@@ -110,3 +110,11 @@ There is nothing worse than a slow Storybook build, you can debug your Webpack b
 ### Mock packages
 
 See `.storybook/mocks/packages` and `.storybook/main.js`, we use Webpack alias to load them. Thus, you can use components that rely on `next/router` and `next/config` for instance.
+
+### Chromatic configuration
+
+We don't usually recommend third party services, but [Chromatic](https://www.chromatic.com/) is really an excellent addition to any developer
+workflow.
+
+Set the [`CHROMATIC_PROJECT_TOKEN` environment variable](https://www.chromatic.com/docs/cli#required-options) in `.env.development.local`
+and then run `yarn run chromatic`.

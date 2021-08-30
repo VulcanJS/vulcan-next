@@ -14,6 +14,8 @@ All your code should go into the `/src` directory ([doc](https://nextjs.org/docs
 
 This folder structure is officially supported by Next. It is relevant when you have a lot of development tooling alongside your actual codebase, like we do in Vulcan.
 
+The `src` folder has its own `tsconfig.json`: this way collocated files like Stories and Unit tests are correctly handled by your text editor, but they can be excluded from the root `tsconfig.json` to avoid bloating Next.js build.
+
 ### Package-oriented architecture
 
 The structure of a plugin system of Next is still [under discussion](https://github.com/vercel/next.js/discussions/9133). In the meantime, we strive to provide code as clean as possible, structured in package, so you can easily remove prebundled features.
@@ -21,7 +23,7 @@ The structure of a plugin system of Next is still [under discussion](https://git
 To do so, we currently use a Webpack config so folders in `packages/@vulcanjs` can be imported the same way as `node_modules`. For instance, `packages/@vulcanjs/next-utils` can be imported as `import "@vulcanjs/next-utils"` in your code.
 You can reproduce the same behaviour with any other prefix by changing `tsconfig.common.json`
 
-However, you are **not** forced to structure your own code as packages.
+However, you are **not** forced to structure your own code as packages. [Avoid Hasty Abstractions!](https://kentcdodds.com/blog/aha-programming)
 
 ### Magic src imports with `~`
 

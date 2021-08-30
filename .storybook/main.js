@@ -29,6 +29,8 @@ module.exports = {
     // "@next/plugin-storybook",
     // handle CSS modules (until we have a Next plugin that does it for us)
     "storybook-css-modules-preset",
+    // https://storybook.js.org/addons/storybook-addon-next-router
+    "storybook-addon-next-router",
   ],
   // https://github.com/storybookjs/storybook/blob/next/docs/src/pages/configurations/custom-webpack-config/index.md#debug-the-default-webpack-config
   webpackFinal: async (config, { configType }) => {
