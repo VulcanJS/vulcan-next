@@ -12,7 +12,7 @@ Vulcan Next provides:
 - A GraphQL API endpoint set up with Apollo Server, so you can start coding back-end features immediately.
 - Schema-based helpers and hooks to quickly generate and consume your own GraphQL API.
 
-[Join the Slack](http://slack.telescopeapp.org/)
+[Join the Slack](http://slack.vulcanjs.org/)
 
 [Check all the features in our live app](https://vulcan-next.vercel.app/docs/features) or [directly on Github](https://github.com/VulcanJS/vulcan-next/tree/devel/src/content/docs/features)
 
