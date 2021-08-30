@@ -109,7 +109,9 @@ There is nothing worse than a slow Storybook build, you can debug your Webpack b
 
 ### Mock packages
 
-See `.storybook/mocks/packages` and `.storybook/main.js`, we use Webpack alias to load them. Thus, you can use components that rely on `next/router` and `next/config` for instance.
+See `.storybook/mocks/packages` and `.storybook/main.js`, we use Webpack alias to load them. Thus, you can use components that rely on `next/config` for instance.
+
+We use [Storybook Addon Next Router](https://storybook.js.org/addons/storybook-addon-next-router) for mocking the router.
 
 ### Chromatic configuration
 
@@ -118,3 +120,4 @@ workflow.
 
 Set the [`CHROMATIC_PROJECT_TOKEN` environment variable](https://www.chromatic.com/docs/cli#required-options) in `.env.development.local`
 and then run `yarn run chromatic`.
+
