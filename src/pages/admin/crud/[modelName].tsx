@@ -78,8 +78,8 @@ export default function CrudPage({ modelName }) {
     <PageLayout>
       <Typography variant="h1"> Manage {model.name}</Typography>
       <Typography variant="body1">
-        /!\ This page is an experimental demonstration of using Vulcan "magic"
-        components (SmartForm) to manage your model
+        /!&#92; This page is an experimental demonstration of using Vulcan
+        "magic" components (SmartForm) to manage your model
       </Typography>
       <hr />
       <Typography variant="h2"> Create a new {model.name} </Typography>

@@ -51,5 +51,12 @@ export const muiMdComponents = {
   //hr: Typography,
   a: Link,
   // TODO: didn't find a way to override image styling...
-  img: (props) => <img {...props} style={{ maxWidth: "100%" }} />,
+  img: (props) => (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      alt="Image from markdown content with no alt text"
+      {...props}
+      style={{ maxWidth: "100%" }}
+    />
+  ),
 };

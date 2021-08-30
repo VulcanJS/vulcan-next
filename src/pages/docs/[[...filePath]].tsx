@@ -8,6 +8,7 @@ import { List, ListItem, Link, Typography } from "@material-ui/core";
 import matter from "gray-matter";
 import { muiMdComponents } from "~/components/layout/muiMdComponents";
 import { MdxRemote } from "next-mdx-remote/types";
+import Image from "next/image";
 
 // Define components to allow them in your mdx files
 // You can also replace HTML tags (components is passed to MDXProvider )
@@ -52,7 +53,12 @@ function PreviousPageLink(props: { filePath: string }) {
 const header = (
   <Typography variant="h1">
     <Link href="/">
-      <img src="/img/vns-logo-96.png" style={{ marginRight: "32px" }} />
+      {/* eslint-disable @next/next/no-img-element */}
+      <img
+        src="/img/vns-logo-96.png"
+        alt="Vulcan Next logo"
+        style={{ marginRight: "32px" }}
+      />
     </Link>
     VN Live Documentation
   </Typography>

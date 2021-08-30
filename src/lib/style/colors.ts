@@ -1,4 +1,4 @@
-export default {
+const colors = {
   pinkGraphql: "#e10098",
   darkBlueApollo: "#15336e",
   greenApollo: "#22A699",
@@ -10,3 +10,5 @@ export default {
   darkOrangeVulcan: "#E45729",
   white: "#fefefe",
 };
+
+export default colors;

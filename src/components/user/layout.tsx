@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 
 const Layout = (props) => (
   <>
@@ -16,7 +17,11 @@ const Layout = (props) => (
               database.
             </p>
             <p>
-              See <a href="/">home README </a> for relevant instructions.
+              See{" "}
+              <Link href="/">
+                <a>home README </a>
+              </Link>{" "}
+              for relevant instructions.
             </p>
           </div>
         ) : (

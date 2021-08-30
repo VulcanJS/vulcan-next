@@ -25,6 +25,10 @@ const Header = () => {
                 </Link>
               </li>
               <li>
+                {/* We use a GET request for logging out at the moment
+                TODO: this should be replaced by an explicit POST request on click,
+                side-effects with GET is a bad practice leading to all sort of troubles */}
+                {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
                 <a href="/api/logout">Logout</a>
               </li>
             </>
