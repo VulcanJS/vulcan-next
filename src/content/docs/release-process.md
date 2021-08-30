@@ -53,6 +53,8 @@ yarn run test:vn
 yarn run storybook
 # Test storybook static build
 yarn run build:storybook && yarn run start:storybook-static # test storybook  static export
+# Update Chromatic
+yarn run chromatic
 
 # Optionnaly test Docker version (takes a lot of time + not very useful as they don't change often)
 # yarn run build:docker
