@@ -20,6 +20,7 @@ yarn upgrade # update versions to latest Vulcan NPM release
 
 ```sh
 yarn run typecheck
+yarn run lint
 ```
 
 ```sh
