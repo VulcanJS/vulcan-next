@@ -1,7 +1,7 @@
-# File that will not be bundled in the docker image
-# We use mostly the same as in .gitignore, except .env.local
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
 # dependencies
-/node_modules
+node_modules
 /.pnp
 .pnp.js
 
@@ -17,7 +17,6 @@
 
 # misc
 .DS_Store
-# .env*.local # Needed in docker
 
 # debug
 npm-debug.log*
@@ -26,13 +25,31 @@ yarn-error.log*
 
 # now
 .now
+
+# Tests
 cypress/screenshots
 cypress/videos
 coverage-e2e/
 .nyc_output/
 coverage-unit
 reports/
-storybook-static
 
 # mdx enhanced
 .mdx-data
+
+# mongo
+.mongo
+
+# next-sitemap
+/public/sitemap.xml
+/public/robots.txt
+
+
+# Yalc
+.yalc
+yalc.lock
+.yalc/
+
+# Storybook
+build-storybook.log
+storybook-static

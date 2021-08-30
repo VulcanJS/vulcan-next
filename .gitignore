@@ -17,7 +17,6 @@ node_modules
 
 # misc
 .DS_Store
-.env*.local
 
 # debug
 npm-debug.log*
@@ -26,21 +25,36 @@ yarn-error.log*
 
 # now
 .now
+
+# Tests
 cypress/screenshots
 cypress/videos
 coverage-e2e/
 .nyc_output/
 coverage-unit
 reports/
-storybook-static
 
 # mdx enhanced
 .mdx-data
+
+# mongo
 .mongo
 
 # next-sitemap
 /public/sitemap.xml
-/public/robots.txt.yalc
+/public/robots.txt
+
+
+# Yalc
+.yalc
 yalc.lock
 .yalc/
+
+# Storybook
 build-storybook.log
+storybook-static
+
+
+# Local config
+# ! keep them in .dockerignore
+.env*.local

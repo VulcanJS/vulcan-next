@@ -1,4 +1,5 @@
-FROM node:10.16.0-alpine
+# Use the same version than in  your app, see .nvmrc file
+FROM node:14.17.5-alpine
 
 WORKDIR /app
 
