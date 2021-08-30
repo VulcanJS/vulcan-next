@@ -1,4 +1,4 @@
-import nextConfig from "../../next.config";
+import nextConfig from "../../../next.config";
 const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
 
 describe("extend next config", () => {

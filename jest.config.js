@@ -22,8 +22,8 @@ const commonConfig = {
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   transformIgnorePatterns: [
-    '/node_modules/',
-    '^.+\\.module\\.(css|sass|scss)$',
+    "/node_modules/",
+    "^.+\\.module\\.(css|sass|scss)$",
   ],
 
   // A map from regular expressions to module names that allow to stub out resources with a single module
@@ -94,11 +94,10 @@ const commonConfig = {
   // dependencyExtractor: undefined,
 
   // A path to a module which exports an async function that is triggered once before all test suites
-  globalSetup: "./tests/globalSetup",
+  globalSetup: "./.vn/tests/globalSetup",
 
   // An array of file extensions your modules use
   moduleFileExtensions: ["js", "json", "jsx", "ts", "tsx", "node"],
-
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
@@ -134,7 +133,7 @@ const commonConfig = {
   //rootDir: undefined,
 
   // A list of paths to directories that Jest should use to search for files in
-  roots: ["<rootDir>/src", "<rootDir>/tests"],
+  roots: ["<rootDir>/src", "<rootDir>/.vn/tests"],
 
   // Allows you to use a custom runner instead of Jest's default test runner
   // runner: "jest-runner",
@@ -153,7 +152,6 @@ const commonConfig = {
 
   // Adds a location field to test results
   // testLocationInResults: false,
-
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],
@@ -181,7 +179,7 @@ const commonConfig = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
-}
+};
 
 module.exports = {
   // An array of glob patterns indicating a set of files for which coverage information should be collected
@@ -207,29 +205,31 @@ module.exports = {
   projects: [
     {
       ...commonConfig,
-      name: 'client',
-      displayName: 'client',
+      name: "client",
+      displayName: "client",
       // testEnvironment: "jsdom", // defautl already
       // The glob patterns Jest uses to detect test files
       testMatch: [
-        '**/__tests__/(!server)/**/*.[jt]s?(x)',
-        '**/__tests__/*.[jt]s?(x)',
-        '**/!(*.server).test.[jt]s?(x)',
+        "**/__tests__/(!server)/**/*.[jt]s?(x)",
+        "**/__tests__/*.[jt]s?(x)",
+        "**/!(*.server).test.[jt]s?(x)",
       ],
       // A list of paths to modules that run some code to configure or set up the testing framework before each test
-      setupFilesAfterEnv: ["./tests/setupTests.ts"], modulePaths: ['<rootDir>'],
+      setupFilesAfterEnv: ["./.vn/tests/setupTests.ts"],
+      modulePaths: ["<rootDir>"],
     },
     {
       ...commonConfig,
-      name: 'server',
-      displayName: 'server',
-      testEnvironment: 'node',
+      name: "server",
+      displayName: "server",
+      testEnvironment: "node",
       // The glob patterns Jest uses to detect test files
       testMatch: [
-        '**/__tests__/server/**/*.[jt]s?(x)',
-        '**/*.server.test.[jt]s?(x)',
+        "**/__tests__/server/**/*.[jt]s?(x)",
+        "**/*.server.test.[jt]s?(x)",
       ],
-      setupFilesAfterEnv: ["./tests/setupTests.server.js"], modulePaths: ['<rootDir>'],
+      setupFilesAfterEnv: ["./.vn/tests/setupTests.server.js"],
+      modulePaths: ["<rootDir>"],
     },
   ],
-}
+};

@@ -5,7 +5,7 @@
 import {
   connectToDb,
   closeDbConnection,
-} from "../../src/api/middlewares/mongoConnection";
+} from "../../../src/api/middlewares/mongoConnection";
 import mongoose from "mongoose";
 
 describe("api/middlewares/mongoConnection", () => {
