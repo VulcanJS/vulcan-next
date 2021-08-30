@@ -13,7 +13,7 @@
     "build:test:docker": "docker build -f ./.vn/docker/cypress.dockerfile -t vulcan-next-test .",
     "build": "next build",
     "chromatic": "dotenv -e .env.development.local chromatic --build-script-name build-storybook",
-    "clean": "rm -Rf ./dist # clean various build folders",
+    "clean": "rm -Rf ./dist ./storybook-static .yalc # clean various build folders",
     "combine:reports": "nyc merge reports && mv coverage.json .nyc_output/out.json # intermediate script",
     "copy:reports": "cp coverage-e2e/coverage-final.json reports/from-cypress.json && cp coverage-unit/coverage-final.json reports/from-jest.json # intermediate scripts",
     "coverage:e2e": "cross-env COVERAGE=1 npm run build && start-server-and-test start:test http://localhost:3000 'COVERAGE=1 cypress run'",
