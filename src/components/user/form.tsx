@@ -16,6 +16,13 @@ const UserForm = ({ isLogin, errorMessage, onSubmit }) => (
         <input type="password" name="rpassword" required />
       </label>
     )}
+    {isLogin && (
+      <div className="forgottenPassword">
+        <Link href="/forgottenPassword">
+          <a>Forgot password?</a>
+        </Link>
+      </div>
+    )}
 
     <div className="submit">
       {isLogin ? (
@@ -70,6 +77,9 @@ const UserForm = ({ isLogin, errorMessage, onSubmit }) => (
       }
       .submit > button:hover {
         border-color: #888;
+      }
+      .forgottenPassword {
+        margin: 0 0rem 0.2rem;
       }
       .error {
         color: brown;

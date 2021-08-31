@@ -23,3 +23,7 @@ export async function getSession(
   const token = getTokenCookie(req);
   return token && Iron.unseal(token, TOKEN_SECRET, Iron.defaults);
 }
+
+export async function decryptToken(token: string) {
+  return Iron.unseal(token, TOKEN_SECRET, Iron.defaults);;
+}
