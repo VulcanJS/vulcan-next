@@ -120,48 +120,28 @@ function ChangePasswordForm(props: { user: { email: string } }) {
       dispatch({ type: "setErrorMessage", payload: "Passwords don't match" });
     } else {
       dispatch({ type: "setLoading", payload: true });
-      // First, see if the old password is the good one by login the user again
-      // TODO: this has a few side effects, we should add a "check-credentials" endpoint instead of reusing login
-      // TODO: this must be done server side anyway
-      const loginCredits = {
-        username: props.user.email,
-        password: oldPassword,
-      };
       try {
-        const resLogin = await fetch("/api/login", {
+        // Then, change the user's password
+        const body = {
+          oldPassword: oldPassword,
+          newPassword: newPassword,
+        };
+
+        const resChangePassword = await fetch("/api/changePassword", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(loginCredits),
+          body: JSON.stringify(body),
         });
 
-        if (resLogin.status === 200) {
-          // Then, change the user's password
-          const body = {
-            password: newPassword,
-          };
-
-          const resChangePassword = await fetch("/api/changePassword", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body),
+        if (resChangePassword.status === 200) {
+          dispatch({
+            type: "setSuccessMessage",
+            payload: "Password successfully updated",
           });
-
-          if (resChangePassword.status === 200) {
-            dispatch({
-              type: "setSuccessMessage",
-              payload: "Password successfully updated",
-            });
-          } else {
-            // Can't change the password
-            const text = await resChangePassword.text();
-            dispatch({ type: "setErrorMessage", payload: text });
-            throw new Error(text);
-          }
         } else {
-          // Can't login
-          const text = await resLogin.text();
+          // Can't change the password
+          const text = await resChangePassword.text();
           dispatch({ type: "setErrorMessage", payload: text });
-          throw new Error(text);
         }
       } catch (error) {
         console.error("An unexpected error occurred:", error);

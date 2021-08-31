@@ -1,33 +1,35 @@
 import { useState } from "react";
 import { GetStaticPropsContext } from "next";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import {
   FormControl,
   InputLabel,
   Input,
   Button,
-  Typography
+  Typography,
 } from "@material-ui/core";
 import { PageLayout } from "~/components/layout";
-import { decryptToken } from "~/api/passport/iron";
 
-export default function ResetPasswordPage({ email }) {
-  const router = useRouter()
-  // If the page is not yet generated, this will be displayed
-  // initially until getStaticProps() finishes running
-  if (router.isFallback) {
-    return <div>Loading...</div>
-  }
+export default function ResetPasswordPage() {
+  const router = useRouter();
 
   const [errorMsg, setErrorMsg] = useState(null as string | null);
 
+  // If the page is not yet generated, this will be displayed
+  // initially until getStaticProps() finishes running
+  if (router.isFallback || !router.isReady) {
+    return <div>Loading...</div>;
+  }
+
+  const { token } = router.query;
+
   const resetPassword = async (e) => {
     e.preventDefault();
-    setErrorMsg(null)
+    setErrorMsg(null);
     const body = {
-      email,
-      password: e.currentTarget.password.value
-    }
+      token,
+      newPassword: e.currentTarget.password.value,
+    };
     try {
       const res = await fetch("/api/changePassword", {
         method: "POST",
@@ -46,7 +48,7 @@ export default function ResetPasswordPage({ email }) {
       console.error("An unexpected error occurred:", error);
       setErrorMsg(error.message);
     }
-  }
+  };
 
   return (
     <PageLayout>
@@ -58,24 +60,23 @@ export default function ResetPasswordPage({ email }) {
             <Input type="password" name="password" required />
           </FormControl>
 
-          {errorMsg &&
-            <p className="errorMessage"> {errorMsg} </p>}
+          {errorMsg && <p className="errorMessage"> {errorMsg} </p>}
 
           <Button type="submit">Reset password</Button>
         </form>
         <style jsx>{`
           .updatePassword {
-          max-width: 21rem;
-          padding: 1rem;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-          margin: 1rem 0 0;
+            max-width: 21rem;
+            padding: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 1rem 0 0;
           }
-          .errorMessage{
-          color: red;
-          margin: 0 0 0;
+          .errorMessage {
+            color: red;
+            margin: 0 0 0;
           }
-      `}</style>
+        `}</style>
       </div>
     </PageLayout>
   );
@@ -84,36 +85,9 @@ export default function ResetPasswordPage({ email }) {
 interface PathsProps {
   params: { token: string };
 }
-
 export async function getStaticPaths() {
   return {
     paths: [], // No initial paths because this page is only for temporary tokens
     fallback: true,
   };
-}
-
-export async function getStaticProps(context: GetStaticPropsContext) {
-  const token = context.params?.token;
-  if (!token || Array.isArray(token)) {
-    return {
-      notFound: true
-    };
-  }
-
-  try {
-    const unsealedToken = await decryptToken(token);
-    const email = unsealedToken.email;
-    if (!email) {
-      console.error("This token countains no email");
-      return {
-        notFound: true
-      };
-    }
-    return { props: { email } };
-  } catch {
-    console.error("Wrong or outdated token")
-    return {
-      notFound: true
-    };
-  }
 }
