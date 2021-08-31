@@ -1,14 +1,22 @@
+/**
+ * We use an hackish solution to run Next.js API endpoints, however
+ * if this fall short, we might move to running the actual dev server + an inmemory mongo
+ *
+ * @see https://github.com/vercel/next.js/discussions/15166
+ * @see
+ */
 import { connectToDb } from "~/api/mongoose/connection";
 // import changePassword from "~/pages/api/changePassword";
 // import login from "~/pages/api/login";
-import signup from "~/pages/api/signup";
 import { MongoMemoryServer } from "mongodb-memory-server"; // @see https://github.com/nodkz/mongodb-memory-server
 import mongoose from "mongoose";
-import { createServer } from "http";
 import request from "supertest";
+
+import { spawn } from "child_process";
 
 let mongod;
 let mongoUri;
+let serverUrl = "http://localhost:3000";
 beforeAll(async () => {
   // Spin up a dummy mongo server
   mongod = await MongoMemoryServer.create();
@@ -19,6 +27,8 @@ beforeAll(async () => {
   // Connect mongoose client
   //await mongoose.connect(mongoUri);
   await connectToDb(mongoUri);
+
+  // TODO: spin up the Next server as well USING THE LOCAL MONGO_URI
 });
 afterAll(async () => {
   // remove the collection
@@ -28,13 +38,19 @@ afterAll(async () => {
   await mongod.stop();
 });
 
-test("signup", async () => {
+test.skip("signup", async () => {
   const user = {
     email: "test@test.vulcan-next",
     password: "foobar",
   };
-  const server = createServer(signup);
-  request(server).post("/").send(user).expect(200);
+  //TODO: this tests expects the Next server to already run
+  // we are not yet able to spin a server elegantly
+  // @see https://github.com/vercel/next.js/discussions/28173
+  const res = await request(serverUrl)
+    .post("/api/signup")
+    .send(user)
+    .expect(200);
+  expect(res.body).toEqual({ done: true });
 });
 test.skip("login", () => {
   // TODO

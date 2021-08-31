@@ -4372,17 +4372,6 @@
   dependencies:
     "@vulcanjs/schema" "^0.2.0"
 
-"@vulcanjs/mongo@^0.1.8":
-  version "0.1.14"
-  resolved "https://registry.yarnpkg.com/@vulcanjs/mongo/-/mongo-0.1.14.tgz#5a727cf3a687a12e8062da09ffbc59fb205a170c"
-  integrity sha512-e2Z/uPYS4I1fBL5k7YVTIrxLvTHs3ERD95P+Ku1szCj6RilJcZK0+e5QeHglGcW1JX+0icFhHVGSSYm5oNTRwg==
-  dependencies:
-    "@vulcanjs/graphql" "^0.1.14"
-    "@vulcanjs/model" "^0.1.13"
-    "@vulcanjs/utils" "^0.1.14"
-    escape-string-regexp "4.0.0"
-    lodash "^4.17.20"
-
 "@vulcanjs/mongo@^0.2.4":
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/@vulcanjs/mongo/-/mongo-0.2.4.tgz#3aa07d8e3e90d83be6362c14cc04acea02b85b3d"

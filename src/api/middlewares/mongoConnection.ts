@@ -12,16 +12,6 @@ import mongoose from "mongoose";
 import "~/api/mongoose/models";
 import { connectToDb } from "~/api/mongoose/connection";
 
-export async function closeDbConnection() {
-  try {
-    await mongoose.connection.close();
-  } catch (err) {
-    // Catch locally error
-    console.error("Could not close mongoose connection");
-    console.error(err);
-  }
-}
-
 const mongoConnectionMiddleware = (mongoUri: string) => {
   // init the first database connection on server startup
   const isLocalMongo = mongoUri.match(/localhost/);

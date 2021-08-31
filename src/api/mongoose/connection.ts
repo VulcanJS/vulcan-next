@@ -76,3 +76,13 @@ export const connectToAppDb = async () => {
     return err;
   }
 };
+
+export async function closeDbConnection() {
+  try {
+    await mongoose.connection.close();
+  } catch (err) {
+    // Catch locally error
+    console.error("Could not close mongoose connection");
+    console.error(err);
+  }
+}

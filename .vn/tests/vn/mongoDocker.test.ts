@@ -7,7 +7,7 @@
 import {
   connectToDb,
   closeDbConnection,
-} from "../../../src/api/middlewares/mongoConnection";
+} from "../../../src/api/mongoose/connection";
 import { debugMongo } from "../../../src/lib/debuggers";
 import { spawn } from "child_process";
 // TODO: setup dotenv like in Next
