@@ -6,17 +6,7 @@ import { decryptToken } from "~/api/passport/iron";
 
 // TODO: factor the context creation so we can reuse it for graphql and REST endpoints
 import { contextFromReq } from "~/api/context";
-
-const checkCredentials = async ({ id, password }): Promise<boolean> => {
-  // 1. find the user
-  const user = await UserConnector.findOneById(id);
-  if (!user) return false;
-  // 2. check if password is correct
-  // TODO
-  throw new Error(
-    "Credentials check not yet implemented, cannot verify your old password validity"
-  );
-};
+import { checkPasswordForUser } from "~/api/passport/account";
 
 /**
  * Change the password for any user
@@ -63,12 +53,15 @@ export default async function changePassword(
       if (!userId) {
         return res.status(500).end("User is not authenticated");
       }
+      const user = context.currentUser;
+      if (!user) {
+        return res
+          .status(500)
+          .end("User authenticated, but context.currentUser not defined");
+      }
       // Check if old password is correct
       const { oldPassword } = req.body;
-      const isValid = await checkCredentials({
-        id: userId,
-        password: oldPassword,
-      });
+      const isValid = await checkPasswordForUser(user, oldPassword);
       if (!isValid) {
         return res.status(500).end("User not found/wrong password");
       }

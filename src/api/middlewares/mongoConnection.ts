@@ -7,10 +7,10 @@
  */
 
 import { Request, Response } from "express";
-import mongoose, { ConnectOptions } from "mongoose";
+import mongoose from "mongoose";
 // Import mongoose models here
 import "~/api/mongoose/models";
-import { debugMongo } from "~/lib/debuggers";
+import { connectToDb } from "~/api/mongoose/connection";
 
 export async function closeDbConnection() {
   try {
@@ -21,50 +21,6 @@ export async function closeDbConnection() {
     console.error(err);
   }
 }
-
-// Based on https://github.com/vercel/next.js/blob/canary/examples/with-mongodb/util/mongodb.js
-// We need to globally cache Mongoose connection promise so that it's reused by all calls to connectToDb
-// => this avoid unexpectedly creating multiple connections + the promise is shared so .then/.catch are called as expected
-interface MongooseCache {
-  connectPromise: Promise<any> | null;
-}
-interface GlobalWithMongoose extends NodeJS.Global {
-  mongooseCache: MongooseCache | undefined;
-}
-const globalNode: GlobalWithMongoose = {
-  mongooseCache: undefined,
-  ...global,
-};
-let mongooseCache = globalNode.mongooseCache; // shared promise, so "then" chains are called correctly for all code trying to connect (avoids race conditions)
-if (!mongooseCache) {
-  globalNode.mongooseCache = { connectPromise: null };
-  mongooseCache = globalNode.mongooseCache;
-}
-export const connectToDb = async (
-  mongoUri: string,
-  options?: ConnectOptions
-) => {
-  if (mongooseCache?.connectPromise) {
-    debugMongo(
-      "Running connectToDb, already connected or connecting to Mongo, waiting for promise"
-    );
-
-    await mongooseCache.connectPromise;
-  }
-  if (![1, 2].includes(mongoose.connection.readyState)) {
-    debugMongo("Call mongoose connect");
-    (mongooseCache as MongooseCache).connectPromise = mongoose.connect(
-      mongoUri,
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        ...(options || {}),
-      }
-    );
-    // Wait for connection
-    await mongooseCache?.connectPromise;
-  }
-};
 
 const mongoConnectionMiddleware = (mongoUri: string) => {
   // init the first database connection on server startup

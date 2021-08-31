@@ -17,43 +17,12 @@ export interface UserType extends VulcanDocument {
   groups?: Array<string>;
 }
 
-/**
- * Find an user during authentication
- * Return null if not found/password mismatch
- * @param param0
- */
-export async function findUserByCredentials({
-  email,
-  password,
-}: {
-  email: string;
-  password: string;
-}): Promise<UserType | null> {
-  // Here you should lookup for the user in your DB and compare the password:
-  //
-  const user = await UserConnector.findOne({ email });
-  // NOTE: we should NEVER differentiate the return type depending on whether the email is found or the password is mismatching
-  // otherwise attacker could guess whether an user has an account or not in the application
-  if (!user) {
-    return null;
-  }
-  // const user = await DB.findUser(...)
-  const hash = (crypto as any)
-    .pbkdf2Sync(password, user.salt, 1000, 64, "sha512")
-    .toString("hex");
-  const passwordsMatch = user.hash === hash;
-  if (!passwordsMatch) {
-    return null;
-  }
-  return user;
-}
-
 const guaranteeOwnership = (data) => {
   // TODO: put _id into userId to guarantee ownership
   data.userId = data._id;
   return data;
 };
-const hashPassowrd = (password: string) => {
+const hashPassword = (password: string) => {
   const salt = (crypto as any).randomBytes(16).toString("hex");
   const hash = (crypto as any)
     .pbkdf2Sync(password, salt, 1000, 64, "sha512")
@@ -64,7 +33,7 @@ const hashPassowrd = (password: string) => {
 const handlePasswordCreation = (data, props) => {
   const { password } = data;
   // const user = await DB.findUser(...)
-  const { hash, salt } = hashPassowrd(password);
+  const { hash, salt } = hashPassword(password);
   data.hash = hash;
   data.salt = salt;
   // Do not store the password in the database
@@ -76,13 +45,49 @@ const handlePasswordUpdate = (data) => {
   // update the hash
   if (password) {
     // const user = await DB.findUser(...)
-    const { hash, salt } = hashPassowrd(data.password);
+    const { hash, salt } = hashPassword(data.password);
     data.hash = hash;
     data.salt = salt;
     // Do not store the password in the database
     data.password = null;
   }
   return data;
+};
+
+const passwordAuthSchema = {
+  // password auth management
+  hash: {
+    type: String,
+    canRead: [],
+    canCreate: [],
+    canUpdate: [],
+  },
+  salt: {
+    type: String,
+    canRead: [],
+    canCreate: [],
+    canUpdate: [],
+  },
+  verificationToken: {
+    type: String,
+    canRead: [],
+    canCreate: [],
+    canUpdate: [],
+  },
+  resetPasswordToken: {
+    type: String,
+    canRead: [],
+    canCreate: [],
+    canUpdate: [],
+  },
+  // Temporary field, used only in the frontend, must be deleted on mutations
+  password: {
+    type: String,
+    optional: false,
+    canRead: [],
+    canCreate: ["guests"],
+    canUpdate: ["owners"],
+  },
 };
 
 const schema: VulcanSchema = {
@@ -165,27 +170,8 @@ const schema: VulcanSchema = {
     type: String,
     optional: true,
   },
-  // password management
-  hash: {
-    type: String,
-    canRead: [],
-    canCreate: [],
-    canUpdate: [],
-  },
-  salt: {
-    type: String,
-    canRead: [],
-    canCreate: [],
-    canUpdate: [],
-  },
-  // Temporary field, used only in the frontend, must be deleted on mutations
-  password: {
-    type: String,
-    optional: false,
-    canRead: [],
-    canCreate: ["guests"],
-    canUpdate: ["owners"],
-  },
+
+  ...passwordAuthSchema,
 };
 
 export const User = createGraphqlModel({
