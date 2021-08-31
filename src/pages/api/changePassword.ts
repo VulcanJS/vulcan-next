@@ -69,6 +69,7 @@ export default async function changePassword(
 
     // NOTE: the mutator is the function used by the update mutations in Vulcan
     // we need to use it to ensure that we run all callbacks associated to the user collection
+    // In particular, the update callback will take care of hashing the password
     await updateMutator({
       model: User,
       data: { password: newPassword },

@@ -29,7 +29,10 @@ const commonConfig = {
   // A map from regular expressions to module names that allow to stub out resources with a single module
   moduleNameMapper: {
     "~/(.*)": "<rootDir>/src/$1",
-    "@vulcanjs/(.*)": "<rootDir>/packages/@vulcanjs/$1",
+    "@vulcanjs/(.*)": [
+      "<rootDir>/node_modules/@vulcanjs/$1",
+      "<rootDir>/packages/@vulcanjs/$1",
+    ],
   },
 
   // The directory where Jest should output its coverage files
