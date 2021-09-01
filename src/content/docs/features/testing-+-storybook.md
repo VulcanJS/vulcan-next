@@ -41,6 +41,16 @@ We followed awesome [recommandations from Bahmutov](https://github.com/bahmutov/
 
 ## Cypress for e2e testing
 
+### Run Next in test mode
+
+Run `yarn start:test` or `yarn dev:test` to run your Next server in Test mode. This will in particular load `.env.test` environment config and set `NODE_ENV` to "test".
+
+### Database management API routes
+
+Trigger a request to `api/debug/db/seed` and `api/debug/db/reset` to seed/reset your local database.
+
+/!\ Those endpoints wont work in production! They are only for testing.
+
 ### TypeScript and vanilla JS (+ESLint)
 
 ### Custom commands, with TypeScript
@@ -120,4 +130,3 @@ workflow.
 
 Set the [`CHROMATIC_PROJECT_TOKEN` environment variable](https://www.chromatic.com/docs/cli#required-options) in `.env.development.local`
 and then run `yarn run chromatic`.
-

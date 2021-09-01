@@ -31,7 +31,6 @@ async function runSeed() {
           ]);
         }
       };
-      console.log("inserted");
       await seedRestaurants();
     } catch (err) {
       console.error(
