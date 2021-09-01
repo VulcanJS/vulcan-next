@@ -85,6 +85,7 @@
     "i18next-http-backend": "^1.0.15",
     "lodash": "^4.17.19",
     "mongoose": "^5.9.19",
+    "nanoid": "^3.1.25",
     "next": "^11.1.0",
     "next-connect": "^0.9.1",
     "next-i18next": "^5.1.0",

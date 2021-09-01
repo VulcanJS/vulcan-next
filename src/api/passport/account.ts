@@ -7,7 +7,18 @@
  */
 import crypto from "crypto";
 import { UserType, UserConnector } from "~/models/user";
+import { nanoid } from "nanoid";
 
+/**
+ * (Reusing code from Blitz)
+ */
+export const generateToken = () => nanoid();
+/**
+ * Hash password reset/email verification token
+ * (Reusing code from Blitz)
+ */
+export const hashToken = (token: string) =>
+  (crypto as any).createHash("sha256").update(token).digest("hex");
 /**
  * Check that the provided password is the user's password
  * @param user

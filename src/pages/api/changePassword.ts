@@ -1,7 +1,7 @@
 import { Request } from "express";
 import { updateMutator } from "@vulcanjs/graphql";
 import { NextApiRequest, NextApiResponse } from "next";
-import { User, UserConnector } from "~/models/user";
+import { User, UserConnector, UserType } from "~/models/user";
 import { decryptToken } from "~/api/passport/iron";
 
 // TODO: factor the context creation so we can reuse it for graphql and REST endpoints
@@ -29,14 +29,16 @@ export default async function changePassword(
 
     if (token) {
       // Scenario 1: reset the password for a logged out user
-      // Email must be passed from the body
-      // TODO: this is probably not secure, we don't need a session token here but a temporary token
-      const unsealedToken = await decryptToken(token);
-      const { email } = unsealedToken;
-      if (!email) {
+      // TODO: use a TokenConnector and get the user from there
+      //const token = await TokenConnector.findOne({hashedToken: hashToken(token)})
+      // if (token.expiresAt > new Date()) {
+      //return res.status(500).send("Invalid token")
+      //}
+      // TODO: do the same for verification of users
+      const user = (null as unknown) as UserType; // token.user
+      if (!user) {
         return res.status(500).send("Invalid token");
       }
-      const user = await UserConnector.findOne({ email });
       if (!user) {
         return res.status(500).end("User not found");
       }
