@@ -5,7 +5,11 @@ import crypto from "crypto";
 
 // TODO: factor the context creation so we can reuse it for graphql and REST endpoints
 import { contextFromReq } from "~/api/context";
-import { generateToken, hashToken } from "~/api/passport/account";
+import {
+  StorableTokenConnector,
+  generateToken,
+  hashToken,
+} from "~/models/storableToken.server";
 
 export default async function sendVerificationEmail(
   req: NextApiRequest,
@@ -34,7 +38,8 @@ export default async function sendVerificationEmail(
       expiresAt.getHours() + RESET_PASSWORD_TOKEN_EXPIRATION_IN_HOURS
     );
 
-    // TODO: store the HASHED token in the database. We should define a "token" model in the app.
+    const userId = user._id;
+    await StorableTokenConnector.create({ hashedToken, expiresAt, userId });
 
     // TODO: put the app URL here, maybe imported from src/pages/vns/debug/about.tsx but it doesn't seems complete right now
     const url = `rootUrl/verify-email/${token}`;

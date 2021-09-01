@@ -1,23 +1,47 @@
 import React from "react";
-import { GetStaticPropsContext } from "next";
 import { useRouter } from 'next/router'
 import {
   Button,
   Typography
 } from "@material-ui/core";
 import { PageLayout } from "~/components/layout";
-import { decryptToken } from "~/api/passport/iron";
 
-export default function VerifyEmailPage({ token, email }) {
+export default function VerifyEmailPage() {
   const router = useRouter()
   // If the page is not yet generated, this will be displayed
   // initially until getStaticProps() finishes running
-  if (router.isFallback) {
+  if (router.isFallback && !router.isReady) {
     return <div>Loading...</div>
   }
 
-  const verifyEmail = async () => {
-    // Put your code here
+  const { token } = router.query;
+
+  // TODO: reused from reset-password
+  const verifyEmail = async (evt) => {
+    evt.preventDefault()
+    // setErrorMsg(null);
+    const body = {
+      token,
+    };
+    try {
+      const res = await fetch("/api/verifyEmail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+
+      if (res.status === 200) {
+        console.log("email verified !");
+      } else {
+        const text = await res.text();
+        // setErrorMsg(text);
+        throw new Error(text);
+      }
+    } catch (error) {
+      console.error("An unexpected error occurred:", error);
+      // setErrorMsg(error.message);
+    }
+
   }
 
   return (
@@ -25,7 +49,7 @@ export default function VerifyEmailPage({ token, email }) {
       <Typography variant="h1">Verify Email</Typography>
       <Button onClick={verifyEmail}>Click to verify</Button>
       <hr />
-      <Typography variant="body1">Email: {email} <br /> <br /> Token: {token}</Typography>
+      <Typography variant="body1">Token: {token}</Typography>
     </PageLayout>
   );
 }
@@ -39,30 +63,4 @@ export async function getStaticPaths() {
     paths: [], // No initial paths because this page is only for temporary tokens
     fallback: true,
   };
-}
-
-export async function getStaticProps(context: GetStaticPropsContext) {
-  const token = context.params?.token;
-  if (!token || Array.isArray(token)) {
-    return {
-      notFound: true
-    };
-  }
-
-  try {
-    const unsealedToken = await decryptToken(token);
-    const email = unsealedToken.email;
-    if (!email) {
-      console.error("This token countains no email");
-      return {
-        notFound: true
-      };
-    }
-    return { props: { token, email } };
-  } catch {
-    console.error("Wrong or outdated token")
-    return {
-      notFound: true
-    };
-  }
 }
