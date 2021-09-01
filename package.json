@@ -23,6 +23,7 @@
     "cypress:run": "cross-env CYPRESS_DEBUG=false CYPRESS_coverage=false NODE_ENV=test cypress run --headless",
     "debug": "NODE_OPTIONS='--inspect' next",
     "dev": "next",
+    "dev:test": "cross-env NODE_ENV=test next # Start app in test + dev mode",
     "link-vulcan": "./.vn/scripts/link-vulcan.sh # for linking a local copy of Vulcan NPM monorepo (don't forget to publish in Vulcan NPM first)",
     "lint": "yarn run next lint",
     "mkdir:reports": "rm -Rf reports && mkdir reports || true # intermediate script",

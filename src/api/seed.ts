@@ -1,7 +1,7 @@
 import { createMutator, getModelConnector } from "@vulcanjs/graphql";
 import { User } from "~/models/user";
 
-const seed = (context) => {
+const seed = async (context) => {
   // Add your seed functions here based on the example of users
   const UserConnector = getModelConnector(context, User);
 
@@ -41,7 +41,7 @@ const seed = (context) => {
   };
 
   // Run the seed functions
-  seedAdminUser();
+  await seedAdminUser();
 };
 
 export default seed;

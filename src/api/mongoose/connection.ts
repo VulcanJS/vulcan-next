@@ -73,7 +73,8 @@ export const connectToAppDb = async () => {
       console.error("Did you forget to run 'yarn run start:mongo'?\n");
     }
     console.error(err);
-    return err;
+    // rethrow
+    throw err;
   }
 };
 
@@ -84,5 +85,6 @@ export async function closeDbConnection() {
     // Catch locally error
     console.error("Could not close mongoose connection");
     console.error(err);
+    throw err;
   }
 }
