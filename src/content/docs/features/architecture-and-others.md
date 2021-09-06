@@ -31,6 +31,13 @@ Import code in `src` from anywhere by writing `import "~/components/foobar"`.
 
 Relative imports are a huge mess to support. A relative import should never go further than the category it belongs too: `pages` should never have to import `components` using a messy `../../../components/myComponent`.
 
+### Scripts written in TypeScript
+
+What's more annoying than writing an utility script, for instance to clean your database, and being forced to use *JavaScript* or even worse, *bash scripts* :(!
+
+We have created a command `yarn run build:scripts` that builds files from `.vn/scripts/ts-sources` into reusable `.js` scripts. You can reuse
+your code utilities within those scripts. The build script is based on Vercel [ncc builder](https://github.com/vercel/ncc).
+
 ### Quasi-imorphism
 
 We allow folders and packages to contain an `index.client` or `index.server` file, that will be used at build time depending on the environment.
