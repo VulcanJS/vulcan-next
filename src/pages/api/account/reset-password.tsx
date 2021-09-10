@@ -42,6 +42,8 @@ export default async function changePassword(
     if (!user) {
       return res.status(500).send("Expired or invalid token");
     }
+    // Delete the token already
+    await StorableTokenConnector.delete({ userId });
     // NOTE: the mutator is the function used by the update mutations in Vulcan
     // we need to use it to ensure that we run all callbacks associated to the user collection
     // In particular, the update callback will take care of hashing the password

@@ -1,18 +1,14 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import {
-  FormControl,
-  InputLabel,
-  Input,
-  Button,
-  Typography,
-} from "@material-ui/core";
+import { Button, Typography, TextField } from "@material-ui/core";
 import { PageLayout } from "~/components/layout";
+import { ErrorSuccessMessages } from "~/components/user/ErrorSuccessMessages";
 
 export default function ResetPasswordPage() {
   const router = useRouter();
 
   const [errorMsg, setErrorMsg] = useState(null as string | null);
+  const [successMsg, setSuccessMsg] = useState(null as string | null);
 
   // If the page is not yet generated, this will be displayed
   // initially until getStaticProps() finishes running
@@ -37,11 +33,10 @@ export default function ResetPasswordPage() {
       });
 
       if (res.status === 200) {
-        console.log("password changed !");
+        setSuccessMsg("Password resetted successfully!");
       } else {
         const text = await res.text();
         setErrorMsg(text);
-        throw new Error(text);
       }
     } catch (error) {
       console.error("An unexpected error occurred:", error);
@@ -54,13 +49,13 @@ export default function ResetPasswordPage() {
       <Typography variant="h1">Reset password</Typography>
       <div className="updatePassword">
         <form onSubmit={resetPassword}>
-          <FormControl>
-            <InputLabel>New password</InputLabel>
-            <Input type="password" name="password" required />
-          </FormControl>
-
-          {errorMsg && <p className="errorMessage"> {errorMsg} </p>}
-
+          <TextField
+            id="resetPassword_newPassword"
+            name="newPassword"
+            label="New password"
+            required
+          />
+          <ErrorSuccessMessages errorMsg={errorMsg} successMsg={successMsg} />
           <Button type="submit">Reset password</Button>
         </form>
         <style jsx>{`
@@ -70,10 +65,6 @@ export default function ResetPasswordPage() {
             border: 1px solid #ccc;
             border-radius: 4px;
             margin: 1rem 0 0;
-          }
-          .errorMessage {
-            color: red;
-            margin: 0 0 0;
           }
         `}</style>
       </div>

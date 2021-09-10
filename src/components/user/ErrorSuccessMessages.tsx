@@ -10,10 +10,12 @@ export const ErrorSuccessMessages = ({
   if (!(errorMsg || successMsg)) return null;
   return (
     <>
-      <Typography>
-        {errorMsg && <p className="errorMessage"> {errorMsg} </p>}
-        {successMsg && <p className="successMessage"> {successMsg} </p>}
-      </Typography>
+      {errorMsg && (
+        <Typography className="errorMessage"> {errorMsg} </Typography>
+      )}
+      {successMsg && (
+        <Typography className="successMessage"> {successMsg} </Typography>
+      )}
       <style jsx>
         {`
           .errorMessage {
