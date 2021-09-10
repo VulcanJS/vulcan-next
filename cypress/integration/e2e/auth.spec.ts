@@ -73,6 +73,7 @@ describe("auth", () => {
     cy.findByRole("button", { name: /update password/i }).click();
     // Success message
     cy.findByText(/password successfully updated/i).should("exist");
+    // TODO: logout and login again with new password
   });
 
   // TODO: follow this tutorial to test email based workflows: password reset, email verification
