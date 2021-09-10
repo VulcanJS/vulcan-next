@@ -61,7 +61,11 @@ export default async function changePassword(
       asAdmin: true,
     });
     // TODO: setup a real mail
-    console.log(`MAIL SIMULATION: Your password has been changed succesfully.`);
+    // this is not mandatory for password change, yet you'd want to notify the user incase this change was not voluntary.
+    console.log(
+      `MAIL SIMULATION: Your password has been changed succesfully at ${new Date()}. If you did not change your password,
+      please reach out the Technical team.`
+    );
     res.status(200).send({ done: true });
   } catch (error) {
     console.error(error);

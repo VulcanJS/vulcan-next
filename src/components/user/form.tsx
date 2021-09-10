@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { routes } from "~/lib/routes";
 
 const UserForm = ({ isLogin, errorMessage, onSubmit }) => (
   <form onSubmit={onSubmit}>
@@ -18,7 +19,7 @@ const UserForm = ({ isLogin, errorMessage, onSubmit }) => (
     )}
     {isLogin && (
       <div className="forgottenPassword">
-        <Link href="/forgottenPassword">
+        <Link href={routes.account.forgottenPassword.href}>
           <a>Forgot password?</a>
         </Link>
       </div>

@@ -1,5 +1,6 @@
 import { Dispatch, useReducer, useState } from "react";
 import { TextField, Button, Typography } from "@material-ui/core";
+import { ErrorSuccessMessages } from "./ErrorSuccessMessages";
 
 interface State {
   errorMsg: string | null;
@@ -52,10 +53,7 @@ export const ChangePasswordForm = ({
           required
         />
 
-        <Typography>
-          {errorMsg && <p className="errorMessage"> {errorMsg} </p>}
-          {successMsg && <p className="successMessage"> {successMsg} </p>}
-        </Typography>
+        <ErrorSuccessMessages errorMsg={errorMsg} successMsg={successMsg} />
 
         <Button type="submit" disabled={loading}>
           Update password
@@ -72,14 +70,6 @@ export const ChangePasswordForm = ({
           border: 1px solid #ccc;
           border-radius: 4px;
           margin: 1rem 0 0;
-        }
-        .errorMessage {
-          color: red;
-          margin: 0 0 0;
-        }
-        .successMessage {
-          color: green;
-          margin: 0 0 0;
         }
       `}</style>
     </div>

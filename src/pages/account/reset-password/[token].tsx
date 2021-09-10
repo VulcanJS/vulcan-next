@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { GetStaticPropsContext } from "next";
 import { useRouter } from "next/router";
 import {
   FormControl,
@@ -31,7 +30,7 @@ export default function ResetPasswordPage() {
       newPassword: e.currentTarget.password.value,
     };
     try {
-      const res = await fetch("/api/changePassword", {
+      const res = await fetch("/api/account/reset-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -80,14 +79,4 @@ export default function ResetPasswordPage() {
       </div>
     </PageLayout>
   );
-}
-
-interface PathsProps {
-  params: { token: string };
-}
-export async function getStaticPaths() {
-  return {
-    paths: [], // No initial paths because this page is only for temporary tokens
-    fallback: true,
-  };
 }

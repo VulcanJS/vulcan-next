@@ -4330,6 +4330,24 @@
     graphql-type-json "^0.3.2"
     lodash "^4.17.21"
 
+"@vulcanjs/graphql@^0.2.5":
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/graphql/-/graphql-0.2.5.tgz#b3f563f72408f3212c663601ffb659c9abf039ba"
+  integrity sha512-yehZO20vpQsVuip/uWZW7wQ4bWA9jwnwV5xV6kfA7p2b7ZjL1hz02Y+n7xAw3P//ySL2RFOdZQnjxtxXLclEHA==
+  dependencies:
+    "@vulcanjs/core" "^0.2.0"
+    "@vulcanjs/i18n" "^0.2.0"
+    "@vulcanjs/model" "^0.2.0"
+    "@vulcanjs/permissions" "^0.2.4"
+    "@vulcanjs/schema" "^0.2.0"
+    "@vulcanjs/utils" "^0.2.0"
+    apollo-server "^2.18.2"
+    debug "^4.3.1"
+    deepmerge "^4.2.2"
+    graphql-date "^1.0.3"
+    graphql-type-json "^0.3.2"
+    lodash "^4.17.21"
+
 "@vulcanjs/i18n@^0.1.14":
   version "0.1.14"
   resolved "https://registry.yarnpkg.com/@vulcanjs/i18n/-/i18n-0.1.14.tgz#6b6bbad82a6765d1672ca9244f9f6d7eefc6e8da"
@@ -4383,6 +4401,17 @@
   integrity sha512-f+bOtLbtFtnGFjBZiy7aB/AVE6BzGejR4RXgj5/Cbm/IZRNPLh6l3A8gJ9Rat6aqDd2A5gXgwm5SAhfMw44plQ==
   dependencies:
     "@vulcanjs/graphql" "^0.2.4"
+    "@vulcanjs/model" "^0.2.0"
+    "@vulcanjs/utils" "^0.2.0"
+    escape-string-regexp "4.0.0"
+    lodash "^4.17.20"
+
+"@vulcanjs/mongo@^0.2.5":
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/mongo/-/mongo-0.2.5.tgz#051630ea4738a9a84aa208556a74e98d14dca87d"
+  integrity sha512-mV8jgZRkZQcbcDEvOX7UQhA9UlKcNBDqPm3hvLIdaBxcSnAVccsLU1bjCM/lenif8iz1e/PSevBBAox4HWh0lw==
+  dependencies:
+    "@vulcanjs/graphql" "^0.2.5"
     "@vulcanjs/model" "^0.2.0"
     "@vulcanjs/utils" "^0.2.0"
     escape-string-regexp "4.0.0"

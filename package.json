@@ -69,7 +69,7 @@
     "@vulcanjs/graphql": "^0.2.4",
     "@vulcanjs/mdx": "^0.2.3-alpha.0",
     "@vulcanjs/meteor-legacy": "^0.1.8",
-    "@vulcanjs/mongo": "^0.2.4",
+    "@vulcanjs/mongo": "^0.2.5",
     "@vulcanjs/react-hooks": "^0.2.3",
     "@vulcanjs/react-ui": "^0.2.3",
     "apollo-server-express": "2.14.2",
