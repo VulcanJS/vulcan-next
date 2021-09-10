@@ -22,6 +22,8 @@
     "coverage": "npm run coverage:unit && npm run coverage:e2e",
     "cypress:open": "cross-env CYPRESS_coverage=false NODE_ENV=test  cypress open",
     "cypress:run": "cross-env CYPRESS_DEBUG=false CYPRESS_coverage=false NODE_ENV=test cypress run --headless",
+    "db:test:seed": "dotenv -e .env.test node .vn/scripts/db/seed.js",
+    "db:test:reset": "dotenv -e .env.test node .vn/scripts/db/reset.js # reset can only happen against the test database!",
     "debug": "NODE_OPTIONS='--inspect' next",
     "dev": "next",
     "dev:test": "cross-env NODE_ENV=test next # Start app in test + dev mode",

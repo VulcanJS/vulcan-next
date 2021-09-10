@@ -8,8 +8,8 @@
  */
 describe("auth", () => {
   beforeEach(() => {
-    cy.request("/api/debug/db/reset");
-    cy.request("/api/debug/db/seed");
+    cy.exec("yarn run db:test:reset");
+    cy.exec("yarn run db:test:seed");
   });
   it("login", () => {
     cy.visit("/login");
