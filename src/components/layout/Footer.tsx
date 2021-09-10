@@ -1,4 +1,3 @@
-import { Typography } from "@material-ui/core";
 /**
  * TODO: the useUser hook doesn't seem to be updated on route change when the component is put into _app
  */
@@ -6,7 +5,7 @@ import { Typography } from "@material-ui/core";
 import Link from "next/link";
 import { useUser } from "~/components/user/hooks";
 
-const Header = () => {
+const Footer = () => {
   const user = useUser();
   return (
     <footer>
@@ -33,11 +32,18 @@ const Header = () => {
               </li>
             </>
           ) : (
-            <li>
-              <Link href="/login">
-                <a>Login</a>
-              </Link>
-            </li>
+            <>
+              <li>
+                <Link href="/login">
+                  <a>Login</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/signup">
+                  <a>Signup</a>
+                </Link>
+              </li>
+            </>
           )}
         </ul>
       </nav>
@@ -77,4 +83,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Footer;

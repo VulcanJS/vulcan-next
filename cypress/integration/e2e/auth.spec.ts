@@ -1,18 +1,28 @@
 /**
  * NOTE: this is an e2e test, because login in is a critical part of the application
- * When writing an integration test, instead you should mock calls to the API and return a fake user
- * For testing signup, a more advanced stategy would be required with database cleaning
  *
+ * Writing e2e tests, maintaining them and running them is expensive!
+ *
+ * When writing an integration test, instead you should mock calls to the API and return a fake user!
  *
  * @see https://docs.cypress.io/guides/getting-started/testing-your-app#Logging-in
  */
 describe("auth", () => {
   beforeEach(() => {
+    // NOTE: those operations are expensive! When testing less-critical part of your UI,
+    // prefer mocking API calls! We do this only because auth is very critical
     cy.exec("yarn run db:test:reset");
     cy.exec("yarn run db:test:seed");
   });
-  it("login", () => {
-    cy.visit("/login");
+
+  // NOTE: for integration testing, prefer short, unit test
+  // but for e2e it's ok to test small user-centric scenarios like login then logout
+  it("login from home and logout", () => {
+    // 1. can visit the page
+    cy.visit("/");
+    cy.findByText(/login/i).click();
+    cy.url().should("match", /login/);
+    // 2. can login
     cy.findByLabelText(/email/i).type(Cypress.env("ADMIN_EMAIL"));
     // if you have changed ADMIN_INITIAL_PASSWORD in .env.development, please add the new
     // value in your local .env.development.local (it's safe, it's not tracked by git)
@@ -20,6 +30,25 @@ describe("auth", () => {
     cy.findByLabelText(/password/i).type(Cypress.env("ADMIN_INITIAL_PASSWORD"));
     cy.findByRole("button").click();
     cy.url().should("match", /\/$/);
+    // 3. logout
+    cy.findByText(/logout/i).click();
+    cy.findByText(/logout/i).should("not.exist");
+    cy.findByText(/login/i).should("exist");
   });
-  it.skip("logout", () => {});
+  it("signup from home", () => {
+    cy.visit("/");
+    const newMember = {
+      email: "test-user@vulcanjs.org",
+      password: "!cypress-test1234",
+    };
+    cy.findByText(/signup/i).click();
+    cy.url().should("match", /signup/);
+    cy.findAllByLabelText(/email/i).type(newMember.email);
+    cy.findAllByLabelText(/^password/i).type(newMember.password);
+    cy.findAllByLabelText(/repeat password/i).type(newMember.password);
+    cy.findByRole("button", { name: /signup/i }).click();
+    // Signing up doesn't automatically log you in
+    // TODO: in the future, we will add email verification as well
+    cy.url().should("match", /login/);
+  });
 });

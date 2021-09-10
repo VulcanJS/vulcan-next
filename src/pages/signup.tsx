@@ -31,6 +31,8 @@ const Signup = () => {
         body: JSON.stringify(body),
       });
       if (res.status === 200) {
+        // TODO: when we set up email verification, this should instead
+        // redirect to "Please verify your email" message
         Router.push("/login");
       } else {
         throw new Error(await res.text());
@@ -43,7 +45,7 @@ const Signup = () => {
 
   return (
     <Layout>
-      <div className="login">
+      <div className="signup">
         <UserForm
           isLogin={false}
           errorMessage={errorMsg}
@@ -51,7 +53,7 @@ const Signup = () => {
         />
       </div>
       <style jsx>{`
-        .login {
+        .signup {
           max-width: 21rem;
           margin: 0 auto;
           padding: 1rem;
