@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import Router from "next/router";
 import useSWR from "swr";
+import { UserType } from "~/models/user";
 
 const fetcher = (url) =>
   fetch(url)
@@ -18,7 +19,7 @@ export function useUser({
   redirectTo?: string;
   redirectIfFound?: boolean;
 } = {}) {
-  const { data, error } = useSWR("/api/user", fetcher);
+  const { data, error } = useSWR<{ user?: UserType }>("/api/user", fetcher);
   const user = data?.user;
   const finished = Boolean(data);
   const hasUser = Boolean(user);

@@ -8,6 +8,7 @@ export default async function user(req, res) {
   const user = session?._id
     ? await UserConnector.findOneById(session._id)
     : null;
+  // TODO: apply usual security like mutators would do!
   res.status(200).json({ user: user || null });
 }
 

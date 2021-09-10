@@ -5,15 +5,15 @@ import { Typography } from "@material-ui/core";
 
 const Profile = () => {
   const user = useUser({ redirectTo: "/login" });
-
+  if (!user) return null; // will redirect
+  console.log(user);
   return (
     <PageLayout>
-      <Typography variant="h1">Profile</Typography>
-      <Typography variant="h2"> Password Update: </Typography>
+      <Typography variant="h1">Your profile</Typography>
+      <p>
+        <Typography>Logged in as {user.email}</Typography>
+      </p>
       <ChangePasswordForm user={user} />
-
-      <Typography variant="h2"> Your session: </Typography>
-      <Typography variant="body1"> {JSON.stringify(user)} </Typography>
     </PageLayout>
   );
 };

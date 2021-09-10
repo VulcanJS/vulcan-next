@@ -14,6 +14,11 @@ describe("auth", () => {
     cy.exec("yarn run db:test:reset");
     cy.exec("yarn run db:test:seed");
   });
+  after(() => {
+    // clean the db when done
+    cy.exec("yarn run db:test:reset");
+    cy.exec("yarn run db:test:seed");
+  });
 
   // NOTE: for integration testing, prefer short, unit test
   // but for e2e it's ok to test small user-centric scenarios like login then logout
@@ -43,12 +48,31 @@ describe("auth", () => {
     };
     cy.findByText(/signup/i).click();
     cy.url().should("match", /signup/);
-    cy.findAllByLabelText(/email/i).type(newMember.email);
-    cy.findAllByLabelText(/^password/i).type(newMember.password);
-    cy.findAllByLabelText(/repeat password/i).type(newMember.password);
+    cy.findByLabelText(/email/i).type(newMember.email);
+    cy.findByLabelText(/^password/i).type(newMember.password);
+    cy.findByLabelText(/repeat password/i).type(newMember.password);
     cy.findByRole("button", { name: /signup/i }).click();
     // Signing up doesn't automatically log you in
     // TODO: in the future, we will add email verification as well
     cy.url().should("match", /login/);
+  });
+  it("login, changes password", () => {
+    cy.visit("/login");
+    cy.findByLabelText(/email/i).type(Cypress.env("ADMIN_EMAIL"));
+    cy.findByLabelText(/password/i).type(Cypress.env("ADMIN_INITIAL_PASSWORD"));
+    cy.findByRole("button").click();
+    // Go to the password change page
+    cy.findByText(/profile/i).click();
+    cy.url().should("match", /profile/);
+    // Change password
+    cy.findByLabelText(/old password/i).type(
+      Cypress.env("ADMIN_INITIAL_PASSWORD")
+    );
+    cy.findByLabelText(/^new password/i).type("!cypress-test1234");
+    cy.findByLabelText(/confirm new password/i).type("!cypress-test1234");
+    cy.findByRole("button", { name: /update password/i }).click();
+    // Success message
+    cy.findByText(/password successfully updated/i).should("exist");
+    // TODO
   });
 });

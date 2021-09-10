@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  ChangePassword,
+  ChangePasswordForm,
   ChangePasswordProps,
   initialState,
 } from "../ChangePassword";
@@ -9,7 +9,7 @@ import { Story, Meta } from "@storybook/react";
 
 export default {
   title: "user/ChangePassword",
-  component: ChangePassword,
+  component: ChangePasswordForm,
   //  decorators: [(Story) => <div><Story /></div>,
   args: {
     state: initialState,
@@ -17,7 +17,7 @@ export default {
 } as Meta<ChangePasswordProps>;
 
 const Template: Story<ChangePasswordProps> = (args) => (
-  <ChangePassword {...args} />
+  <ChangePasswordForm {...args} />
 );
 
 // please keep this default story as is => it serves as a basis for Jest unit tests as well

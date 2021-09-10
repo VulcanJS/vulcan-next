@@ -20,7 +20,7 @@ export interface ChangePasswordProps {
   state: State;
   dispatch: Dispatch<Action>;
 }
-export const ChangePassword = ({
+export const ChangePasswordForm = ({
   handleSubmit,
   state,
   dispatch,
@@ -28,22 +28,26 @@ export const ChangePassword = ({
   const { errorMsg, successMsg, loading } = state;
   return (
     <div className="updatePassword">
+      <Typography variant="h2">Update your password</Typography>
       <form onSubmit={handleSubmit}>
         <TextField
           label="Old password"
           type="password"
+          id="updatePassword_oldPassword" // id is needed for accessibility
           name="oldPassword"
           required
         />
         <TextField
           label="New password"
           type="password"
+          id="updatePassword_newPassword"
           name="newPassword"
           required
         />
         <TextField
           label="Confirm new password"
           type="password"
+          id="updatePassword_confirmNewPassword"
           name="confirmNewPassword"
           required
         />
@@ -105,7 +109,7 @@ export const initialState = {
   loading: false,
 };
 
-function ChangePasswordForm(props: { user: { email: string } }) {
+const ChangePasswordFormContainer = (props: { user: { email: string } }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { errorMsg, successMsg, loading } = state;
 
@@ -153,12 +157,12 @@ function ChangePasswordForm(props: { user: { email: string } }) {
   }
 
   return (
-    <ChangePassword
+    <ChangePasswordForm
       handleSubmit={handleSubmit}
       state={state}
       dispatch={dispatch}
     />
   );
-}
+};
 
-export default ChangePasswordForm;
+export default ChangePasswordFormContainer;
