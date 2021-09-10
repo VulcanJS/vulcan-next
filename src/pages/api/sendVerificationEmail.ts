@@ -24,9 +24,9 @@ export default async function sendVerificationEmail(
     // verify that an user corresponds to this email adress
     const user = await UserConnector.findOne({ email });
     if (!user) {
-      res
+      return res
         .status(500)
-        .end(`user not found: no user correspond to the adress ${email}`);
+        .send(`user not found: no user correspond to the adress ${email}`);
     }
 
     // create the url
@@ -39,13 +39,17 @@ export default async function sendVerificationEmail(
     );
 
     const userId = user._id;
-    await StorableTokenConnector.create({ hashedToken, expiresAt, userId });
+    await StorableTokenConnector.create({
+      hashedToken,
+      expiresAt: expiresAt.toISOString(),
+      userId,
+    });
 
     // TODO: put the app URL here, maybe imported from src/pages/vns/debug/about.tsx but it doesn't seems complete right now
     const url = `rootUrl/verify-email/${token}`;
 
     // send the mail
-    console.log(`MAIL: verify email ${email}\with the url ${url}`); //TODO: send the real email
+    console.log(`MAIL: verify email ${email} with the url ${url}`); //TODO: send the real email
     res.status(200).send({ done: true });
   } catch (error) {
     console.error(error);
