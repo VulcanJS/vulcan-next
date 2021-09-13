@@ -35,11 +35,11 @@ export default function ResetPasswordPage() {
 
       if (res.status === 200) {
         setSuccessMsg(
-          "Password reset successfully!" // "You will be redirected to login page in one second..."
+          "Password reset successfully! You will be redirected to login page in one second..."
         );
-        // setTimeout(() => {
-        //   router.push(routes.account.login);
-        // }, 500);
+        setTimeout(() => {
+          router.push(routes.account.login.href);
+        }, 500);
       } else {
         const text = await res.text();
         setErrorMsg(text);

@@ -135,11 +135,11 @@ describe("auth", () => {
       cy.findByText(/password reset successfully/i).should("exist");
       // 4. Login with new password
       // (NOTE: since login is already tested, we can simply test that we can access the login UI + send a request)
-      //cy.url().should("match", /login/);
-      //cy.findByLabelText(/email/i).type(email);
-      //cy.findByLabelText(/password/i).type(newPassword);
-      //cy.findByRole("button").click();
-      //cy.url().should("match", /\/$/);
+      cy.url().should("match", /login/);
+      cy.findByLabelText(/email/i).type(email);
+      cy.findByLabelText(/password/i).type(newPassword);
+      cy.findByRole("button").click();
+      cy.url().should("match", /\/$/);
     });
   });
 });
