@@ -7,6 +7,9 @@
  */
 import crypto from "crypto";
 import { UserType, UserConnector } from "~/models/user";
+import { localMailTransport } from "../mail/transports";
+import { resetPasswordTokenEmailParameters } from "./emails/resetPasswordToken";
+
 /**
  * Check that the provided password is the user's password
  * @param user
@@ -50,3 +53,11 @@ export async function findUserByCredentials({
   }
   return user;
 }
+
+export const sendResetPasswordEmail = async ({ email, resetUrl }) => {
+  await localMailTransport.sendMail({
+    from: "My App <myapp@changethisname.whatever",
+    to: email,
+    ...resetPasswordTokenEmailParameters({ resetUrl }),
+  });
+};

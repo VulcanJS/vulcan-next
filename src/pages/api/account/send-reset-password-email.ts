@@ -1,11 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { UserConnector } from "~/models/user";
-import { encryptSession } from "~/api/passport/iron";
 import {
   generateToken,
   hashToken,
   StorableTokenConnector,
 } from "~/models/storableToken.server";
+import { sendResetPasswordEmail } from "~/api/passport/account";
 import { routes } from "~/lib/routes";
 
 interface SendResetPasswordEmailBody {
@@ -22,7 +22,7 @@ const getRootUrl = (req: NextApiRequest) => {
  *
  * Inspired by Blitz "forgotPassword" example and Meteor accounts system
  */
-export default async function sendResetPasswordEmail(
+export default async function sendResetPasswordEmailEndpoint(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -65,14 +65,12 @@ export default async function sendResetPasswordEmail(
       userId,
     });
     // TODO: put the app URL here, maybe imported from src/pages/vns/debug/about.tsx but it doesn't seems complete right now
-    const url = `${getRootUrl(req)}${
+    const resetUrl = `${getRootUrl(req)}${
       routes.account.resetPassword.href
     }/${token}`;
 
     // send the mail
-    console.log(
-      `MAIL: reset password for the email ${email}\nwith the url ${url}`
-    ); //TODO: send the real email
+    await sendResetPasswordEmail({ email, resetUrl });
     // send a 200 status even if there's no user corresponding to the email for better security.
     return res.status(200).send({ done: true });
   } catch (error) {

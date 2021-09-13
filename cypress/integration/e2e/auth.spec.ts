@@ -77,4 +77,5 @@ describe("auth", () => {
   });
 
   // TODO: follow this tutorial to test email based workflows: password reset, email verification
+  // https://www.cypress.io/blog/2021/05/11/testing-html-emails-using-cypress/
 });
