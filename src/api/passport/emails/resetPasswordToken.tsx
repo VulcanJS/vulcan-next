@@ -13,7 +13,7 @@ export const ResetPasswordTokenEmail = ({ resetUrl }) => (
   <div>
     <Typography variant="h1">Reset your password</Typography>
     <Typography>
-      Click on this link to access the password reset interface: ${resetUrl}
+      Click on this link to access the password reset interface: {resetUrl}
     </Typography>
     <Typography>
       You didn't ask for a password reset? Please reach out our Technical Teams.

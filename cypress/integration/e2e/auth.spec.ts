@@ -7,12 +7,15 @@
  *
  * @see https://docs.cypress.io/guides/getting-started/testing-your-app#Logging-in
  */
+import { apiRoutes } from "~/api/apiRoutes";
+import { routes } from "~/lib/routes";
 describe("auth", () => {
   beforeEach(() => {
     // NOTE: those operations are expensive! When testing less-critical part of your UI,
     // prefer mocking API calls! We do this only because auth is very critical
     cy.exec("yarn run db:test:reset");
     cy.exec("yarn run db:test:seed");
+    cy.task("resetEmails");
   });
   after(() => {
     // clean the db when done
@@ -75,7 +78,67 @@ describe("auth", () => {
     cy.findByText(/password successfully updated/i).should("exist");
     // TODO: logout and login again with new password
   });
-
   // TODO: follow this tutorial to test email based workflows: password reset, email verification
   // https://www.cypress.io/blog/2021/05/11/testing-html-emails-using-cypress/
+  it.only("reset forgotten password", () => {
+    const email = Cypress.env("ADMIN_EMAIL");
+    cy.intercept("POST", apiRoutes.account.sendResetPasswordEmail.href).as(
+      "sendLink"
+    );
+    // 1. Access password reset interface
+    cy.visit("/login");
+    cy.findByRole("link", { name: /forgot/i }).click();
+    cy.url().should("match", /forgotten/i);
+    cy.findByLabelText(/email/).type(email);
+    cy.findByRole("button", {
+      name: /send password reset email/i,
+      exact: false,
+    }).click();
+    // 2. Send email
+    cy.wait("@sendLink")
+      .its("request.body")
+      .should("deep.equal", {
+        email: Cypress.env("ADMIN_EMAIL"),
+      });
+    /**
+       * We wait for the reponse to be there, so that there are greater chances that the mail has been sent by the mail server
+       * 
+       * If this test is flaky (works locally but sometimes fails in other context for no reason), use this tip to retry the call
+       * using cypress-recurse:
+       * 
+        // call the task every second for up to 20 seconds
+        // until it returns a string result
+        recurse(
+          () => cy.task('getLastEmail', 'joe@acme.io'),
+          Cypress._.isString,
+          {
+            log: false,
+            delay: 1000,
+            timeout: 20000,
+          },
+        ).then(email => ...)
+       */
+    cy.get("@sendLink").its("response.body").should("exist");
+    // by now the SMTP server has probably received the email
+    const resetLinkRegex = new RegExp(
+      `http://(?<domain>.+)${routes.account.resetPassword.href}/(?<token>\\w+)`
+    );
+    cy.task("getLastEmail", email).then((emailBody: string) => {
+      console.log(
+        "emailBody",
+        emailBody,
+        `http://(?<domain>.+)${routes.account.resetPassword.href}/(?<token>\\w+)`
+      );
+      const resetLinkMatch = emailBody.match(resetLinkRegex);
+      cy.wrap(resetLinkMatch).should("exist");
+      const resetLink = resetLinkMatch?.[0] as string;
+      const token = resetLinkMatch?.groups?.token; // equivalent to getting the 2nd item
+      // token = resetLink.groups.token
+      cy.visit(resetLink);
+    });
+
+    // 3. Access reset interface
+    // 4. Reset password
+    // 5. Login with new password
+  });
 });

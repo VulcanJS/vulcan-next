@@ -5,6 +5,7 @@ import {
   Input,
   Button,
   Typography,
+  TextField,
 } from "@material-ui/core";
 import { ErrorSuccessMessages } from "~/components/user/ErrorSuccessMessages";
 import { useState } from "react";
@@ -51,10 +52,12 @@ const ForgottenPassword = () => {
       </Typography>
       <div className="updatePassword">
         <form onSubmit={handleSubmit}>
-          <FormControl>
-            <InputLabel>Your email address</InputLabel>
-            <Input type="email" name="email" required />
-          </FormControl>
+          <TextField
+            id="updatePassword_email"
+            name="email"
+            type="email"
+            label="Your email address"
+          />
           <ErrorSuccessMessages errorMsg={errorMsg} successMsg={successMsg} />
           <Button type="submit">Send password reset email</Button>
         </form>
