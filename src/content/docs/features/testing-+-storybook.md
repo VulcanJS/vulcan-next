@@ -89,6 +89,13 @@ We use a plugin that will in turn rely on Next.js dotenv loading capabilities.
 Used for instance to load the default admin user credentials in tests.
 As a default, it will use development values from `.env.development`.
 
+### Intercept emails
+
+Vulcan Next embeds the setup described in the [following official tutorial on how to test mail workflows in Cypress](https://www.cypress.io/blog/2021/05/11/testing-html-emails-using-cypress/).
+Cypress will automatically run a test mail server on `http://localhost:7777` and can intercept mails via the "getMail" task.
+
+See e2e tests for the authentication workflow to get some usage examples.
+
 ## Storybook
 
 ### Same import as in Next

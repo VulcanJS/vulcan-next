@@ -95,11 +95,9 @@ describe("auth", () => {
       exact: false,
     }).click();
     // 2. Send email
-    cy.wait("@sendLink")
-      .its("request.body")
-      .should("deep.equal", {
-        email: Cypress.env("ADMIN_EMAIL"),
-      });
+    cy.wait("@sendLink").its("request.body").should("deep.equal", {
+      email,
+    });
     /**
        * We wait for the reponse to be there, so that there are greater chances that the mail has been sent by the mail server
        * 
@@ -124,21 +122,24 @@ describe("auth", () => {
       `http://(?<domain>.+)${routes.account.resetPassword.href}/(?<token>\\w+)`
     );
     cy.task("getLastEmail", email).then((emailBody: string) => {
-      console.log(
-        "emailBody",
-        emailBody,
-        `http://(?<domain>.+)${routes.account.resetPassword.href}/(?<token>\\w+)`
-      );
       const resetLinkMatch = emailBody.match(resetLinkRegex);
       cy.wrap(resetLinkMatch).should("exist");
       const resetLink = resetLinkMatch?.[0] as string;
-      const token = resetLinkMatch?.groups?.token; // equivalent to getting the 2nd item
+      //const token = resetLinkMatch?.groups?.token; // equivalent to getting the 2nd item
       // token = resetLink.groups.token
+      // 3. Access reset interface and change password
       cy.visit(resetLink);
+      const newPassword = "DHJAZHDJ873824$$1£_hello";
+      cy.findByLabelText(/new password/i).type(newPassword);
+      cy.findByRole("button", { name: /reset password/i }).click();
+      cy.findByText(/password reset successfully/i).should("exist");
+      // 4. Login with new password
+      // (NOTE: since login is already tested, we can simply test that we can access the login UI + send a request)
+      //cy.url().should("match", /login/);
+      //cy.findByLabelText(/email/i).type(email);
+      //cy.findByLabelText(/password/i).type(newPassword);
+      //cy.findByRole("button").click();
+      //cy.url().should("match", /\/$/);
     });
-
-    // 3. Access reset interface
-    // 4. Reset password
-    // 5. Login with new password
   });
 });

@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { Button, Typography, TextField } from "@material-ui/core";
 import { PageLayout } from "~/components/layout";
 import { ErrorSuccessMessages } from "~/components/user/ErrorSuccessMessages";
+import { routes } from "~/lib/routes";
 
 export default function ResetPasswordPage() {
   const router = useRouter();
@@ -23,7 +24,7 @@ export default function ResetPasswordPage() {
     setErrorMsg(null);
     const body = {
       token,
-      newPassword: e.currentTarget.password.value,
+      newPassword: e.currentTarget.newPassword.value,
     };
     try {
       const res = await fetch("/api/account/reset-password", {
@@ -33,7 +34,12 @@ export default function ResetPasswordPage() {
       });
 
       if (res.status === 200) {
-        setSuccessMsg("Password resetted successfully!");
+        setSuccessMsg(
+          "Password reset successfully!" // "You will be redirected to login page in one second..."
+        );
+        // setTimeout(() => {
+        //   router.push(routes.account.login);
+        // }, 500);
       } else {
         const text = await res.text();
         setErrorMsg(text);
