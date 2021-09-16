@@ -1,10 +1,12 @@
 import { useState } from "react";
-import Router from "next/router";
 import { useUser } from "~/components/user/hooks";
 import Layout from "~/components/user/layout";
 import UserForm from "~/components/user/form";
+import { routes } from "~/lib/routes";
+import { useRouter } from "next/router";
 
 const Signup = () => {
+  const router = useRouter();
   useUser({ redirectTo: "/", redirectIfFound: true });
 
   const [errorMsg, setErrorMsg] = useState("");
@@ -31,9 +33,7 @@ const Signup = () => {
         body: JSON.stringify(body),
       });
       if (res.status === 200) {
-        // TODO: when we set up email verification, this should instead
-        // redirect to "Please verify your email" message
-        Router.push("/login");
+        router.push(routes.account.verifyEmail.href);
       } else {
         throw new Error(await res.text());
       }

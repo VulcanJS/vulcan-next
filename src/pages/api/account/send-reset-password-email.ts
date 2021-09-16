@@ -7,16 +7,12 @@ import {
 } from "~/models/storableToken.server";
 import { sendResetPasswordEmail } from "~/lib/api/account";
 import { routes } from "~/lib/routes";
+import { getRootUrl } from "~/lib/api/utils";
 
 interface SendResetPasswordEmailBody {
   email?: string;
 }
 
-const getRootUrl = (req: NextApiRequest) => {
-  const { headers } = req;
-  // TODO: this might not be the most robust approach when a proxy/gateway is setup
-  return headers.origin;
-};
 /**
  * To be called when user has forgot their password
  *

@@ -1,7 +1,17 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 export const VerifyEmailPage = () => {
-  return <Box>Check your emails and click on the verification link</Box>;
+  return (
+    <Box>
+      <Typography variant="subtitle1">
+        One last thing before you can log in...
+      </Typography>
+      <Typography>
+        We've sent you an email with a verification link. Check your inbox and
+        click on this link to verify your account.
+      </Typography>
+    </Box>
+  );
 };
 
 export default VerifyEmailPage;

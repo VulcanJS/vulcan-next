@@ -9,6 +9,7 @@ import crypto from "crypto";
 import { UserType, UserConnector } from "~/models/user";
 import { localMailTransport } from "~/lib/api/mail/transports";
 import { resetPasswordTokenEmailParameters } from "./emails/resetPasswordToken";
+import { verifyEmailEmailParameters } from "./emails/verifyEmail";
 
 import passport from "passport";
 /**
@@ -79,5 +80,13 @@ export const sendResetPasswordEmail = async ({ email, resetUrl }) => {
     from: "My App <myapp@changethisname.whatever",
     to: email,
     ...resetPasswordTokenEmailParameters({ resetUrl }),
+  });
+};
+
+export const sendVerificationEmail = async ({ email, verificationUrl }) => {
+  await localMailTransport.sendMail({
+    from: "My App <myapp@changethisname.whatever",
+    to: email,
+    ...verifyEmailEmailParameters({ verificationUrl }),
   });
 };

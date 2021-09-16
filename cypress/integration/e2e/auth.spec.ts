@@ -60,7 +60,7 @@ describe("auth", () => {
     // TODO: in the future, we will add email verification as well
     cy.url().should("match", /login/);
   });*/
-  it("signup from home and verify email", () => {
+  it.only("signup from home and verify email", () => {
     cy.visit("/");
     const email = "test-user@vulcanjs.org";
     const password = "!cypress-test1234";
@@ -68,6 +68,9 @@ describe("auth", () => {
       email,
       password,
     };
+    //intercept signup request
+    cy.intercept("POST", apiRoutes.account.signup.href).as("signupRequest");
+
     cy.findByText(/signup/i).click();
     cy.url().should("match", /signup/);
     cy.findByLabelText(/email/i).type(email);
@@ -75,10 +78,13 @@ describe("auth", () => {
     cy.findByLabelText(/repeat password/i).type(password);
     cy.findByRole("button", { name: /signup/i }).click();
 
+    cy.wait("@signupRequest");
+    cy.get("@signupRequest").its("response.body").should("exist");
+
     // Signing up doesn't automatically log you in
     // cy.url().should("match", /login?s=need-verification/);
     cy.url().should("match", /verify-email/i);
-    cy.findByText("check your emails").should("exist");
+    cy.findByText(/sent you an email/i).should("exist");
     // Get an error message because you didn'nt verify your email yet
 
     // by now the SMTP server has probably received the email
@@ -127,7 +133,7 @@ describe("auth", () => {
   });
   // TODO: follow this tutorial to test email based workflows: password reset, email verification
   // https://www.cypress.io/blog/2021/05/11/testing-html-emails-using-cypress/
-  it.only("reset forgotten password", () => {
+  it("reset forgotten password", () => {
     const email = Cypress.env("ADMIN_EMAIL");
     cy.intercept("POST", apiRoutes.account.sendResetPasswordEmail.href).as(
       "sendLink"

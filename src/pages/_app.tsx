@@ -1,4 +1,6 @@
+import { NextPage } from "next";
 import App, { AppProps } from "next/app";
+import { ReactElement, ReactNode } from "react";
 // Comment if you don't need i18n
 import { appWithTranslation } from "~/lib/i18n";
 // Comment if you don't need Material UI
@@ -27,7 +29,12 @@ import { CacheProvider, EmotionCache } from "@emotion/react";
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
+// @see https://nextjs.org/docs/basic-features/layouts#with-typescript
+type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
 export interface VNAppProps extends AppProps {
+  Component: NextPageWithLayout;
   emotionCache: EmotionCache;
 }
 function VNApp({
@@ -42,6 +49,9 @@ function VNApp({
     crossDomainGraphqlUri:
       !!process.env.NEXT_PUBLIC_CROSS_DOMAIN_GRAPHQL_URI || false,
   }); // you can also easily setup ApolloProvider on a per-page basis
+  // Use the layout defined at the page level, if available
+  // @see https://nextjs.org/docs/basic-features/layouts
+  const getLayout = Component.getLayout || ((page) => page);
   return (
     <CacheProvider value={emotionCache}>
       <VulcanComponentsProvider>
