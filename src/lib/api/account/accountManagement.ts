@@ -7,9 +7,29 @@
  */
 import crypto from "crypto";
 import { UserType, UserConnector } from "~/models/user";
-import { localMailTransport } from "../mail/transports";
+import { localMailTransport } from "~/lib/api/mail/transports";
 import { resetPasswordTokenEmailParameters } from "./emails/resetPasswordToken";
 
+import passport from "passport";
+/**
+ * Generic authentication method
+ *
+ * For local authentication with password and email, see passwordAuth
+ * @param method
+ * @param req
+ * @param res
+ * @returns
+ */
+export const authenticate = (method, req, res): Promise<any> =>
+  new Promise((resolve, reject) => {
+    passport.authenticate(method, { session: false }, (error, token) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(token);
+      }
+    })(req, res);
+  });
 /**
  * Check that the provided password is the user's password
  * @param user

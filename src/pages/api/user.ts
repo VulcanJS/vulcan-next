@@ -1,4 +1,4 @@
-import { getSession } from "~/lib/api/passport/iron";
+import { getSession } from "~/lib/api/account";
 import runSeed from "~/lib/api/runSeed";
 import { UserConnector } from "~/models/user";
 

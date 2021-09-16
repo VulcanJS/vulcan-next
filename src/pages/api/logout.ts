@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { removeTokenCookie } from "~/lib/api/passport/auth-cookies";
+import { removeTokenCookie } from "~/lib/api/account";
 
 export default async function logout(
   req: NextApiRequest,

@@ -1,8 +1,8 @@
 //@see http://www.passportjs.org/packages/passport-local/
 import Local from "passport-local";
 import { debugMongo } from "~/lib/debuggers";
-import { findUserByCredentials } from "./account";
-import { connectToAppDb } from "../mongoose/connection";
+import { findUserByCredentials } from "../accountManagement";
+import { connectToAppDb } from "../../mongoose/connection";
 
 /**
  * Passport strategy for local password based authentication

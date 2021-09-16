@@ -1,14 +1,13 @@
 import { Request } from "express";
 import { updateMutator } from "@vulcanjs/graphql";
 import { NextApiRequest, NextApiResponse } from "next";
-import { User, UserConnector, UserType } from "~/models/user";
+import { User, UserConnector } from "~/models/user";
 import {
   StorableTokenConnector,
   hashToken,
 } from "~/models/storableToken.server";
 
 import { contextFromReq } from "~/lib/api/context";
-import { checkPasswordForUser } from "~/lib/api/passport/account";
 
 interface ResetPasswordBody {
   token: string;

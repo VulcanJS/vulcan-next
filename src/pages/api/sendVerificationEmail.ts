@@ -1,7 +1,12 @@
+/**
+ * Endpoint for when user wants to send the verification email again,
+ * eg when user suspect that it's lost
+ *
+ * You don't need to call it after signup, as signup will already trigger a
+ * first email
+ */
 import { NextApiRequest, NextApiResponse } from "next";
 import { UserConnector } from "~/models/user";
-import nanoid from "nanoid";
-import crypto from "crypto";
 
 // TODO: factor the context creation so we can reuse it for graphql and REST endpoints
 import { contextFromReq } from "~/lib/api/context";

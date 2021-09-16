@@ -6,7 +6,7 @@ import { Connector, VulcanGraphqlModel } from "@vulcanjs/graphql";
 import { createMongooseConnector } from "@vulcanjs/mongo";
 import { User, UserConnector, UserType } from "~/models/user";
 import { NextApiRequest } from "next";
-import { getSession } from "./passport/iron";
+import { getSession } from "~/lib/api/account";
 import { Request } from "express";
 import debug from "debug";
 import models from "~/models";

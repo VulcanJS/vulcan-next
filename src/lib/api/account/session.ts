@@ -25,5 +25,5 @@ export async function getSession(
 }
 
 export async function decryptToken(token: string) {
-  return Iron.unseal(token, TOKEN_SECRET, Iron.defaults);;
+  return Iron.unseal(token, TOKEN_SECRET, Iron.defaults);
 }

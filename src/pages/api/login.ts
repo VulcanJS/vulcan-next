@@ -1,12 +1,12 @@
 import passport from "passport";
 import nextConnect from "next-connect";
-import { encryptSession } from "~/lib/api/passport/iron";
-import { setTokenCookie } from "~/lib/api/passport/auth-cookies";
+import { encryptSession } from "~/lib/api/account";
+import { setTokenCookie } from "~/lib/api/account";
 import { NextApiRequest, NextApiResponse } from "next";
 import runSeed from "~/lib/api/runSeed";
 
-import { localStrategy } from "~/lib/api/passport/password-local";
-import { authenticate } from "~/lib/api/passport/utils";
+import { localStrategy } from "~/lib/api/account/passport/password-local";
+import { authenticate } from "~/lib/api/account";
 passport.use(localStrategy);
 const authenticateWithPassword = async (req, res) => {
   return authenticate("local", req, res);
