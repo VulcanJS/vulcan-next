@@ -1,6 +1,12 @@
-import { ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider, Theme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
 import defaultTheme from "~/lib/style/defaultTheme";
 import React, { createContext, useContext, useState } from "react";
+
+// @ts-expect-error-next-line
+declare module "@mui/styles/defaultTheme" {
+  interface DefaultTheme extends Theme {}
+}
 
 type UseMuiThemeOutput = [Object, (newTheme: Object) => void];
 const useMuiTheme = (): UseMuiThemeOutput => {
@@ -30,7 +36,13 @@ export const MuiThemeProvider = ({ children }) => {
   const value = useMuiTheme();
   return (
     <MuiThemeContext.Provider value={value}>
-      <ThemeProvider theme={value[0]}>{children}</ThemeProvider>
+      {/*<StyledEngineProvider injectFirst>*/}
+      <ThemeProvider theme={value[0]}>
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <CssBaseline />
+        {children}
+      </ThemeProvider>
+      {/*</StyledEngineProvider>*/}
     </MuiThemeContext.Provider>
   );
 };

@@ -14,7 +14,7 @@ import {
   Typography,
   List,
   ListItem,
-} from "@material-ui/core";
+} from "@mui/material";
 import { PageLayout } from "~/components/layout";
 
 import { User } from "~/models/user";

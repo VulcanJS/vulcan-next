@@ -10,7 +10,7 @@ import clsx from "clsx";
 import {
   Button as MuiButton,
   ButtonProps as MuiButtonProps,
-} from "@material-ui/core";
+} from "@mui/material";
 import colors from "~/lib/style/colors";
 
 const technologyToColor = {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { Button, Typography, TextField } from "@material-ui/core";
+import { Button, Typography, TextField } from "@mui/material";
 import { PageLayout } from "~/components/layout";
 import { ErrorSuccessMessages } from "~/components/user/ErrorSuccessMessages";
 import { routes } from "~/lib/routes";

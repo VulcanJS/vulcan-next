@@ -1,5 +1,5 @@
 import { Dispatch, useReducer, useState } from "react";
-import { TextField, Button, Typography } from "@material-ui/core";
+import { TextField, Button, Typography } from "@mui/material";
 import { ErrorSuccessMessages } from "./ErrorSuccessMessages";
 
 interface State {

@@ -1,5 +1,5 @@
 import "~/types/mdx.d.ts"; // TODO: load this automatically
-import { Typography } from "@material-ui/core";
+import { Typography } from "@mui/material";
 
 export const Home = () => (
   <div>

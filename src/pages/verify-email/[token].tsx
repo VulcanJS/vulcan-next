@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import {
   Button,
   Typography
-} from "@material-ui/core";
+} from "@mui/material";
 import { PageLayout } from "~/components/layout";
 
 export default function VerifyEmailPage() {

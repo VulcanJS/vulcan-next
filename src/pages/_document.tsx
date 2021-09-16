@@ -28,9 +28,14 @@ export default class MyDocument extends Document<VNSDocumentProps> {
         <Head>
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
+          {/* @see https://next.material-ui.com/getting-started/installation/ */}
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+          />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
           />
         </Head>
         <body>
@@ -48,7 +53,7 @@ MyDocument.getInitialProps = async (ctx) => {
   const muiAppEnhancer = getMuiAppEnhancer();
   const enhancers = [muiAppEnhancer];
 
-  // Enhance Next page renderer so it also applies MUI and Styled Components stylesheets collectors
+  // Enhance Next page renderer so it also applies MUI stylesheets collectors
   const originalRenderPage = ctx.renderPage;
   try {
     ctx.renderPage = () =>
@@ -64,6 +69,7 @@ MyDocument.getInitialProps = async (ctx) => {
 
     // Run the renderer
     const initialProps = await Document.getInitialProps(ctx);
+    const html = initialProps.html;
 
     // i18n
     const i18nDocumentProps = i18nPropsFromCtx(ctx);
@@ -75,7 +81,7 @@ MyDocument.getInitialProps = async (ctx) => {
       styles: (
         <>
           {initialProps.styles}
-          {enhancers.map((e) => e.sheets.getStyleElement())}
+          {enhancers.map((e) => e.sheets.getStyleElements(html))}
         </>
       ),
     };

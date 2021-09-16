@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal } from "../Modal";
-import { Typography } from "@material-ui/core";
+import { Typography } from "@mui/material";
 // import { action } from "@storybook/addon-actions";
 // Prefer addon-control
 

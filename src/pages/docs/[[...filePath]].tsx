@@ -4,7 +4,7 @@ import path from "path";
 import { getMdxPaths, MdxPath } from "@vulcanjs/mdx";
 import { Link as NextLink } from "@vulcanjs/next-material-ui";
 import { promises as fsPromises, lstatSync, existsSync } from "fs";
-import { List, ListItem, Link, Typography } from "@material-ui/core";
+import { List, ListItem, Link, Typography } from "@mui/material";
 import matter from "gray-matter";
 import { muiMdComponents } from "~/components/layout/muiMdComponents";
 import { MdxRemote } from "next-mdx-remote/types";

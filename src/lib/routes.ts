@@ -4,11 +4,17 @@ export const routes = {
     href: "/",
   },
   account: {
+    root: {
+      href: "/account",
+    },
     forgottenPassword: {
       href: "/account/forgotten-password",
     },
     resetPassword: {
       href: "/account/reset-password",
+    },
+    verifyEmail: {
+      href: "/account/verify-email",
     },
     login: {
       href: "/login",

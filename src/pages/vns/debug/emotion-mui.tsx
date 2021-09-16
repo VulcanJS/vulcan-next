@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, Container } from "@material-ui/core"; // Next has tree shaking
+import { Box, Typography, Container } from "@mui/material"; // Next has tree shaking
 import EmotionButton from "~/components/ui/EmotionButton";
 
 export default function MuiSCPage() {

@@ -5,7 +5,7 @@
  */
 import ReactDOMServer from "react-dom/server";
 
-import { Typography } from "@material-ui/core";
+import { Typography } from "@mui/material";
 import Mail from "nodemailer/lib/mailer";
 
 // exported only for Storybook, don't use directly this component within your app

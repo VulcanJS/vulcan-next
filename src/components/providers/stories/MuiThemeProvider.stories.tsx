@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { useMuiThemeContext } from "../MuiThemeProvider";
 import darkTheme from "~/lib/style/darkTheme";
 import defaultTheme from "~/lib/style/defaultTheme";
-import { styled } from "@material-ui/core/styles";
+import { styled } from "@mui/material/styles";
 
 export default {
   title: "VN/ThemeSwitch",

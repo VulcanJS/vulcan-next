@@ -43,6 +43,7 @@ describe("auth", () => {
     cy.findByText(/logout/i).should("not.exist");
     cy.findByText(/login/i).should("exist");
   });
+  /*
   it("signup from home", () => {
     cy.visit("/");
     const newMember = {
@@ -58,6 +59,52 @@ describe("auth", () => {
     // Signing up doesn't automatically log you in
     // TODO: in the future, we will add email verification as well
     cy.url().should("match", /login/);
+  });*/
+  it("signup from home and verify email", () => {
+    cy.visit("/");
+    const email = "test-user@vulcanjs.org";
+    const password = "!cypress-test1234";
+    const newMember = {
+      email,
+      password,
+    };
+    cy.findByText(/signup/i).click();
+    cy.url().should("match", /signup/);
+    cy.findByLabelText(/email/i).type(email);
+    cy.findByLabelText(/^password/i).type(password);
+    cy.findByLabelText(/repeat password/i).type(password);
+    cy.findByRole("button", { name: /signup/i }).click();
+
+    // Signing up doesn't automatically log you in
+    // cy.url().should("match", /login?s=need-verification/);
+    cy.url().should("match", /verify-email/i);
+    cy.findByText("check your emails").should("exist");
+    // Get an error message because you didn'nt verify your email yet
+
+    // by now the SMTP server has probably received the email
+    const verificationLinkRegex = new RegExp(
+      `http://(?<domain>.+)${routes.account.verifyEmail.href}/(?<token>\\w+)`
+    );
+    // Then, we check for the verification email to be sent
+    cy.task("getLastEmail", email).then((emailBody: string) => {
+      const verificationLinkMatch = emailBody.match(verificationLinkRegex);
+      cy.wrap(verificationLinkMatch).should("exist");
+      const verificationLink = verificationLinkMatch?.[0] as string;
+      //const token = resetLinkMatch?.groups?.token; // equivalent to getting the 2nd item
+      // token = resetLink.groups.token
+
+      // 3. Access verification link, get a success message and redirect to login
+      cy.visit(verificationLink);
+      cy.findByText(/validated/i).should("exist");
+
+      // 4. Login will now succeed
+      // (NOTE: since login is already tested, we can simply test that we can access the login UI + send a request)
+      cy.url().should("match", /login?s=verified/);
+      cy.findByLabelText(/email/i).type(email);
+      cy.findByLabelText(/password/i).type(password);
+      cy.findByRole("button").click();
+      cy.url().should("match", /\/$/);
+    });
   });
   it("login, changes password", () => {
     cy.visit("/login");

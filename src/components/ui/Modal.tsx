@@ -5,7 +5,7 @@
  * - with react-spring, for physics based animation
  */
 import colors from "~/lib/style/colors";
-import { styled } from "@material-ui/core/styles";
+import { styled } from "@mui/material/styles";
 import { useSpring, animated } from "react-spring";
 
 // Demo using styled components and modifier

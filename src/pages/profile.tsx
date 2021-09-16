@@ -1,7 +1,7 @@
 import { useUser } from "~/components/user/hooks";
 import { PageLayout } from "~/components/layout";
 import ChangePasswordForm from "~/components/user/ChangePassword";
-import { Typography } from "@material-ui/core";
+import { Typography } from "@mui/material";
 
 const Profile = () => {
   const user = useUser({ redirectTo: "/login" });

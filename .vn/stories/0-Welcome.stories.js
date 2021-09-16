@@ -1,7 +1,7 @@
 import React from "react";
 // import { linkTo } from "@storybook/addon-links";
 import { Welcome } from "@storybook/react/demo";
-import { Typography } from "@material-ui/core";
+import { Typography } from "@mui/material";
 
 export default {
   title: "Welcome",

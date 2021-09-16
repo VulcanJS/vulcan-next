@@ -1,7 +1,7 @@
 import React from "react";
 import { useUser } from "~/components/user/hooks";
 import { NextMuiLink } from "@vulcanjs/next-material-ui";
-import { Typography } from "@material-ui/core";
+import { Typography } from "@mui/material";
 import { PageLayout } from "~/components/layout";
 
 const AdminPage = () => {

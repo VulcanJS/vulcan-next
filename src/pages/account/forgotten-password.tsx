@@ -6,7 +6,7 @@ import {
   Button,
   Typography,
   TextField,
-} from "@material-ui/core";
+} from "@mui/material";
 import { ErrorSuccessMessages } from "~/components/user/ErrorSuccessMessages";
 import { useState } from "react";
 

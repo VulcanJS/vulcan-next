@@ -1,10 +1,33 @@
 import React from "react";
-import { ServerStyleSheets } from "@material-ui/styles";
-import { AppSheetsCollector } from "@vulcanjs/next-style-collector";
+import { AppSheetsCollector, Sheets } from "@vulcanjs/next-style-collector";
+
+import createEmotionServer from "@emotion/server/create-instance";
+// import theme from "/src/theme";
+import { createEmotionCache } from "./emotion/createEmotionCache";
 
 export const getAppEnhancer = (): AppSheetsCollector => {
-  const sheets = new ServerStyleSheets();
-  const enhanceApp = (App) => (props) => sheets.collect(<App {...props} />);
+  const cache = createEmotionCache();
+  const enhanceApp = (App) =>
+    function AppWithEmotionCache(props) {
+      return <App emotionCache={cache} {...props} />;
+    };
+  const sheets: Sheets = {
+    getStyleElements: (html) => {
+      const { extractCriticalToChunks } = createEmotionServer(cache);
+      // This is important. It prevents emotion to render invalid HTML.
+      // See https://github.com/mui-org/material-ui/issues/26561#issuecomment-855286153
+      const emotionStyles = extractCriticalToChunks(html);
+      const emotionStyleTags = emotionStyles.styles.map((style) => (
+        <style
+          data-emotion={`${style.key} ${style.ids.join(" ")}`}
+          key={style.key}
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: style.css }}
+        />
+      ));
+      return emotionStyleTags;
+    },
+  };
   return {
     sheets,
     enhanceApp,

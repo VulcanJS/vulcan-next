@@ -8,9 +8,9 @@ import clsx from "clsx";
 import {
   Button as MuiButton,
   ButtonProps as MuiButtonProps,
-} from "@material-ui/core";
+} from "@mui/material";
 import colors from "~/lib/style/colors";
-import { styled } from "@material-ui/core/styles";
+import { styled } from "@mui/material/styles";
 import { lighten } from "polished";
 
 const technologyToColor = {

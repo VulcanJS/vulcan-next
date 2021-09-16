@@ -11,7 +11,7 @@ import {
   // TableCell,
   TableRow,
   Link,
-} from "@material-ui/core";
+} from "@mui/material";
 
 // @see https://mdxjs.com/table-of-components
 // NOTE: those components are also used by next-mdx-remote based pages

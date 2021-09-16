@@ -14,7 +14,7 @@ import {
   Typography,
   List,
   ListItem,
-} from "@material-ui/core";
+} from "@mui/material";
 import { SmartForm } from "@vulcanjs/react-ui";
 import { VulcanGraphqlModel } from "@vulcanjs/graphql";
 import { ItemCard } from "~/components/vns/ItemCard";
