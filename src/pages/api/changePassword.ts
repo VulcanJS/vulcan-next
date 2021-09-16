@@ -7,8 +7,8 @@ import {
   hashToken,
 } from "~/models/storableToken.server";
 
-import { contextFromReq } from "~/api/context";
-import { checkPasswordForUser } from "~/api/passport/account";
+import { contextFromReq } from "~/lib/api/context";
+import { checkPasswordForUser } from "~/lib/api/passport/account";
 
 interface ChangePasswordBody {
   oldPassword: string;

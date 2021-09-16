@@ -5,13 +5,13 @@ import { ApolloServer, gql } from "apollo-server-express";
 import { makeExecutableSchema, mergeSchemas } from "graphql-tools";
 import { buildApolloSchema } from "@vulcanjs/graphql";
 
-import mongoConnection from "~/api/middlewares/mongoConnection";
-import corsOptions from "~/api/cors";
-import { contextFromReq } from "~/api/context";
+import mongoConnection from "~/lib/api/middlewares/mongoConnection";
+import corsOptions from "~/lib/api/cors";
+import { contextFromReq } from "~/lib/api/context";
 import models from "~/models";
 
 // will trigger seed
-import runSeed from "~/api/runSeed";
+import runSeed from "~/lib/api/runSeed";
 
 /**
  * Example graphQL schema and resolvers generated using Vulcan declarative approach

@@ -1,5 +1,8 @@
-import { closeDbConnection, connectToAppDb } from "~/api/mongoose/connection";
-import runSeed from "~/api/runSeed";
+import {
+  closeDbConnection,
+  connectToAppDb,
+} from "~/lib/api/mongoose/connection";
+import runSeed from "~/lib/api/runSeed";
 
 await connectToAppDb();
 await runSeed();

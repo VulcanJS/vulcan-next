@@ -4,7 +4,7 @@ import nanoid from "nanoid";
 import crypto from "crypto";
 
 // TODO: factor the context creation so we can reuse it for graphql and REST endpoints
-import { contextFromReq } from "~/api/context";
+import { contextFromReq } from "~/lib/api/context";
 import {
   StorableTokenConnector,
   generateToken,

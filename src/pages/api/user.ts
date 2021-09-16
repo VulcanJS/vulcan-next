@@ -1,5 +1,5 @@
-import { getSession } from "~/api/passport/iron";
-import runSeed from "~/api/runSeed";
+import { getSession } from "~/lib/api/passport/iron";
+import runSeed from "~/lib/api/runSeed";
 import { UserConnector } from "~/models/user";
 
 export default async function user(req, res) {

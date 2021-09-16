@@ -7,7 +7,7 @@
  *
  * @see https://docs.cypress.io/guides/getting-started/testing-your-app#Logging-in
  */
-import { apiRoutes } from "~/api/apiRoutes";
+import { apiRoutes } from "~/lib/api/apiRoutes";
 import { routes } from "~/lib/routes";
 describe("auth", () => {
   beforeEach(() => {

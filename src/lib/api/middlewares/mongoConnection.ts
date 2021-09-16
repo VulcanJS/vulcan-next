@@ -9,8 +9,8 @@
 import { Request, Response } from "express";
 import mongoose from "mongoose";
 // Import mongoose models here
-import "~/api/mongoose/models";
-import { connectToDb } from "~/api/mongoose/connection";
+import "~/lib/api/mongoose/models";
+import { connectToDb } from "~/lib/api/mongoose/connection";
 
 const mongoConnectionMiddleware = (mongoUri: string) => {
   // init the first database connection on server startup

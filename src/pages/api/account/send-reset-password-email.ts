@@ -5,7 +5,7 @@ import {
   hashToken,
   StorableTokenConnector,
 } from "~/models/storableToken.server";
-import { sendResetPasswordEmail } from "~/api/passport/account";
+import { sendResetPasswordEmail } from "~/lib/api/passport/account";
 import { routes } from "~/lib/routes";
 
 interface SendResetPasswordEmailBody {

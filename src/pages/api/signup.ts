@@ -4,8 +4,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { User } from "~/models/user";
 
 // TODO: factor the context creation so we can reuse it for graphql and REST endpoints
-import { contextFromReq } from "~/api/context";
-import runSeed from "~/api/runSeed";
+import { contextFromReq } from "~/lib/api/context";
+import runSeed from "~/lib/api/runSeed";
 export default async function signup(
   req: NextApiRequest,
   res: NextApiResponse

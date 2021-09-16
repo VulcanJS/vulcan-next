@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 import { debugMongo } from "~/lib/debuggers";
-import { connectToAppDb } from "~/api/mongoose/connection";
-import seedDatabase from "~/api/seed";
-import { contextBase } from "~/api/context";
+import { connectToAppDb } from "~/lib/api/mongoose/connection";
+import seedDatabase from "~/lib/api/seed";
+import { contextBase } from "~/lib/api/context";
 
 async function runSeed() {
   // Seed in development
