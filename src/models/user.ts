@@ -68,18 +68,6 @@ const passwordAuthSchema = {
     canCreate: [],
     canUpdate: [],
   },
-  verificationToken: {
-    type: String,
-    canRead: [],
-    canCreate: [],
-    canUpdate: [],
-  },
-  resetPasswordToken: {
-    type: String,
-    canRead: [],
-    canCreate: [],
-    canUpdate: [],
-  },
   // Temporary field, used only in the frontend, must be deleted on mutations
   password: {
     type: String,
@@ -87,6 +75,18 @@ const passwordAuthSchema = {
     canRead: [],
     canCreate: ["guests"],
     canUpdate: ["owners"],
+  },
+};
+
+const emailVerificationSchema = {
+  isVerified: {
+    type: String,
+    default: false,
+    optional: true,
+    // can be forced by admins/mods
+    canRead: ["admins"],
+    canCreate: ["admins"],
+    canUpdate: ["admins"],
   },
 };
 
@@ -172,6 +172,8 @@ const schema: VulcanSchema = {
   },
 
   ...passwordAuthSchema,
+
+  ...emailVerificationSchema,
 };
 
 export const User = createGraphqlModel({

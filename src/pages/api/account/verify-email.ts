@@ -50,7 +50,7 @@ export default async function verifyEmail(
     await updateMutator({
       model: User,
       // TODO: only this part change between password reset and email verification
-      data: { verified: true },
+      data: { isVerified: true },
       context,
       dataId: userId,
       asAdmin: true,

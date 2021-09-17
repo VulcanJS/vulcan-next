@@ -26,8 +26,11 @@ export const authenticate = (method, req, res): Promise<any> =>
     passport.authenticate(method, { session: false }, (error, token) => {
       if (error) {
         reject(error);
-      } else {
+      } else if (token) {
         resolve(token);
+      } else {
+        // This occurs when the request has an incorrect body, eg you are using "username" instead of "emails"
+        reject(new Error("Unexpected error during authentication"));
       }
     })(req, res);
   });

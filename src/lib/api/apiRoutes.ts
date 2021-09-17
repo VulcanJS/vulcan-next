@@ -3,6 +3,9 @@ export const apiRoutes = {
     signup: {
       href: "/api/signup",
     },
+    login: {
+      href: "/api/login",
+    },
     sendResetPasswordEmail: {
       href: "/api/account/send-reset-password-email",
     },

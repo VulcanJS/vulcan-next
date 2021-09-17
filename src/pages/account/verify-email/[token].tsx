@@ -31,13 +31,14 @@ export const VerifyEmailTokenPage = () => {
       const body = { token };
       const res = await fetch(apiRoutes.account.verifyEmail.href, {
         method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
       if (res.status === 200) {
         setMsg(
           "Your email has been successfully verified! We will redirect you to the login page..."
         );
-        router.push(routes.account.login.href);
+        router.push(routes.account.login.href + "?s=verified");
       } else {
         const text = await res.text();
         // setErrorMsg(text);

@@ -7,11 +7,17 @@ import runSeed from "~/lib/api/runSeed";
 
 import { localStrategy } from "~/lib/api/account/passport/password-local";
 import { authenticate } from "~/lib/api/account";
+
 passport.use(localStrategy);
+
 const authenticateWithPassword = async (req, res) => {
   return authenticate("local", req, res);
 };
 
+interface LoginReqBody {
+  email: string; // /!\  should match the "usernameField" of passport local strategy setup (default is "username")
+  password: string;
+}
 // NOTE: adding NextApiRequest, NextApiResponse is required to get the right typings in next-connect
 // this is the normal behaviour
 export default nextConnect<NextApiRequest, NextApiResponse>()

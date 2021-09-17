@@ -25,7 +25,7 @@ describe("auth", () => {
 
   // NOTE: for integration testing, prefer short, unit test
   // but for e2e it's ok to test small user-centric scenarios like login then logout
-  it("login from home and logout", () => {
+  it("login as admin from home and logout", () => {
     // 1. can visit the page
     cy.visit("/");
     cy.findByText(/login/i).click();
@@ -60,7 +60,10 @@ describe("auth", () => {
     // TODO: in the future, we will add email verification as well
     cy.url().should("match", /login/);
   });*/
-  it.only("signup from home and verify email", () => {
+  it("signup from home and verify email", () => {
+    /**
+     * SIGNUP
+     */
     cy.visit("/");
     const email = "test-user@vulcanjs.org";
     const password = "!cypress-test1234";
@@ -87,6 +90,9 @@ describe("auth", () => {
     cy.findByText(/sent you an email/i).should("exist");
     // Get an error message because you didn'nt verify your email yet
 
+    /**
+     * VERIFICATION
+     */
     // by now the SMTP server has probably received the email
     const verificationLinkRegex = new RegExp(
       `http://(?<domain>.+)${routes.account.verifyEmail.href}/(?<token>\\w+)`
@@ -96,23 +102,35 @@ describe("auth", () => {
       const verificationLinkMatch = emailBody.match(verificationLinkRegex);
       cy.wrap(verificationLinkMatch).should("exist");
       const verificationLink = verificationLinkMatch?.[0] as string;
-      //const token = resetLinkMatch?.groups?.token; // equivalent to getting the 2nd item
+      const token = verificationLinkMatch?.groups?.token; // equivalent to getting the 2nd item
       // token = resetLink.groups.token
 
       // 3. Access verification link, get a success message and redirect to login
+      cy.intercept("POST", apiRoutes.account.verifyEmail.href).as(
+        "verifyEmail"
+      );
+
       cy.visit(verificationLink);
-      cy.findByText(/validated/i).should("exist");
+
+      cy.wait("@verifyEmail");
+      cy.get("@verifyEmail")
+        .its("request.body")
+        .should("deep.equal", { token });
+      cy.get("@verifyEmail").its("response.body").should("exist"); // wait for the response to be there
+
+      // User is redirected quickly so no need to check for this text
+      //cy.findByText(/successfully verified/i).should("exist");
 
       // 4. Login will now succeed
       // (NOTE: since login is already tested, we can simply test that we can access the login UI + send a request)
-      cy.url().should("match", /login?s=verified/);
+      cy.url().should("match", /login\?s=verified/);
       cy.findByLabelText(/email/i).type(email);
       cy.findByLabelText(/password/i).type(password);
       cy.findByRole("button").click();
       cy.url().should("match", /\/$/);
     });
   });
-  it("login, changes password", () => {
+  it("login as admin, changes password", () => {
     cy.visit("/login");
     cy.findByLabelText(/email/i).type(Cypress.env("ADMIN_EMAIL"));
     cy.findByLabelText(/password/i).type(Cypress.env("ADMIN_INITIAL_PASSWORD"));
@@ -131,8 +149,6 @@ describe("auth", () => {
     cy.findByText(/password successfully updated/i).should("exist");
     // TODO: logout and login again with new password
   });
-  // TODO: follow this tutorial to test email based workflows: password reset, email verification
-  // https://www.cypress.io/blog/2021/05/11/testing-html-emails-using-cypress/
   it("reset forgotten password", () => {
     const email = Cypress.env("ADMIN_EMAIL");
     cy.intercept("POST", apiRoutes.account.sendResetPasswordEmail.href).as(
@@ -174,6 +190,7 @@ describe("auth", () => {
     const resetLinkRegex = new RegExp(
       `http://(?<domain>.+)${routes.account.resetPassword.href}/(?<token>\\w+)`
     );
+
     cy.task("getLastEmail", email).then((emailBody: string) => {
       const resetLinkMatch = emailBody.match(resetLinkRegex);
       cy.wrap(resetLinkMatch).should("exist");
