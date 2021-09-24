@@ -4,6 +4,7 @@ import Layout from "~/components/user/layout";
 import UserForm from "~/components/user/form";
 import { routes } from "~/lib/routes";
 import { useRouter } from "next/router";
+import { apiRoutes } from "~/lib/api/apiRoutes";
 
 const Signup = () => {
   const router = useRouter();
@@ -27,7 +28,7 @@ const Signup = () => {
     }
 
     try {
-      const res = await fetch("/api/signup", {
+      const res = await fetch(apiRoutes.account.signup.href, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),

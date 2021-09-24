@@ -6,8 +6,7 @@
  * @see
  */
 import { connectToDb } from "~/lib/api/mongoose/connection";
-// import changePassword from "~/pages/api/changePassword";
-// import login from "~/pages/api/login";
+import { apiRoutes } from "~/lib/api/apiRoutes";
 import { MongoMemoryServer } from "mongodb-memory-server"; // @see https://github.com/nodkz/mongodb-memory-server
 import mongoose from "mongoose";
 import request from "supertest";
@@ -47,7 +46,7 @@ test.skip("signup", async () => {
   // we are not yet able to spin a server elegantly
   // @see https://github.com/vercel/next.js/discussions/28173
   const res = await request(serverUrl)
-    .post("/api/signup")
+    .post(apiRoutes.account.signup.href)
     .send(user)
     .expect(200);
   expect(res.body).toEqual({ done: true });

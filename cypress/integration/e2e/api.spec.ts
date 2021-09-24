@@ -15,7 +15,6 @@ describe("auth - API", () => {
     cy.exec("yarn run db:test:seed");
   });
 
-  // TODO: verification not yet implemented, to be done
   it("cannot login if not verified", () => {
     const email = "test-user@vulcanjs.org";
     const password = "!cypress-test1234";

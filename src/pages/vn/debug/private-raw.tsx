@@ -52,7 +52,7 @@ const PrivatePage: NextPage<PrivatePageProps> = (props) => {
     const isAllowed = isAllowedClient();
     if (!isAllowed) {
       debugNext("Redirecting client-side");
-      router.push("/vns/debug/public");
+      router.push("/vn/debug/public");
     } else {
       setAllowedState(true);
     }
@@ -82,7 +82,7 @@ const PrivatePage: NextPage<PrivatePageProps> = (props) => {
       <h1>private</h1>
       <div>Seeing a private page.</div>
       <div>
-        <Link href="/vns/debug/public">
+        <Link href="/vn/debug/public">
           <a>Back to public page</a>
         </Link>
       </div>
@@ -106,7 +106,7 @@ PrivatePage.getInitialProps = async (ctx?: NextPageContext) => {
     debugNext("Detected dynamic server-side rendering");
     if (!isAllowed) {
       debugNext("Redirecting (dynamic server render)");
-      redirectServer(ctx as SsrNextPageContext)("/vns/debug/public");
+      redirectServer(ctx as SsrNextPageContext)("/vn/debug/public");
     } else {
       return { ...pageProps, isServerRender: true, isStaticExport: false };
     }
@@ -118,7 +118,7 @@ PrivatePage.getInitialProps = async (ctx?: NextPageContext) => {
     debugNext("Detected client render");
     if (!isAllowed) {
       debugNext("Redirecting (client-side)");
-      Router.push("/vns/debug/public");
+      Router.push("/vn/debug/public");
     }
   }
 

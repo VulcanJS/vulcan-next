@@ -2,9 +2,10 @@ import { useUser } from "~/components/user/hooks";
 import { PageLayout } from "~/components/layout";
 import ChangePasswordForm from "~/components/user/ChangePassword";
 import { Typography } from "@mui/material";
+import { routes } from "~/lib/routes";
 
 const Profile = () => {
-  const user = useUser({ redirectTo: "/login" });
+  const user = useUser({ redirectTo: routes.account.login.href });
   if (!user) return null; // will redirect
   console.log(user);
   return (

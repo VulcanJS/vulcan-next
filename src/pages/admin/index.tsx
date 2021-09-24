@@ -3,10 +3,11 @@ import { useUser } from "~/components/user/hooks";
 import { NextMuiLink } from "@vulcanjs/next-material-ui";
 import { Typography } from "@mui/material";
 import { PageLayout } from "~/components/layout";
+import { routes } from "~/lib/routes";
 
 const AdminPage = () => {
   // TODO: this is an authenticated page, but we also would like to check the role
-  /*const user = */ useUser({ redirectTo: "/login" });
+  /*const user = */ useUser({ redirectTo: routes.account.login.href });
   return (
     <PageLayout>
       <Typography variant="h1">Admin area</Typography>

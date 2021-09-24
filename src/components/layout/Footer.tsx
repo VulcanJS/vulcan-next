@@ -2,11 +2,16 @@
  * TODO: the useUser hook doesn't seem to be updated on route change when the component is put into _app
  */
 // Taken from Next Passport example
+import { Button } from "@mui/material";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useUser } from "~/components/user/hooks";
+import { apiRoutes } from "~/lib/api/apiRoutes";
+import { routes } from "~/lib/routes";
 
 const Footer = () => {
   const user = useUser();
+  const router = useRouter();
   return (
     <footer>
       <nav>
@@ -19,7 +24,7 @@ const Footer = () => {
           {user ? (
             <>
               <li>
-                <Link href="/profile">
+                <Link href={routes.account.profile.href}>
                   <a>Profile</a>
                 </Link>
               </li>
@@ -28,18 +33,28 @@ const Footer = () => {
                 TODO: this should be replaced by an explicit POST request on click,
                 side-effects with GET is a bad practice leading to all sort of troubles */}
                 {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-                <a href="/api/logout">Logout</a>
+                <a
+                  onClick={async (evt) => {
+                    evt.preventDefault();
+                    await fetch(apiRoutes.account.logout.href, {
+                      method: "POST",
+                    });
+                    window.location.replace(routes.home.href);
+                  }}
+                >
+                  Logout
+                </a>
               </li>
             </>
           ) : (
             <>
               <li>
-                <Link href="/login">
+                <Link href={routes.account.login.href}>
                   <a>Login</a>
                 </Link>
               </li>
               <li>
-                <Link href="/signup">
+                <Link href={routes.account.signup.href}>
                   <a>Signup</a>
                 </Link>
               </li>

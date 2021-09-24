@@ -29,7 +29,7 @@ const PrivatePage: NextPage = () => {
     <>
       <div>Seeing a private page.</div>
       <div>
-        <Link href="/vns/debug/public">
+        <Link href="/vn/debug/public">
           <a>Back to public page</a>
         </Link>
       </div>
@@ -57,13 +57,13 @@ PrivatePage.getInitialProps = async (ctx?: NextPageContext) => {
     debugNext("Detected dynamic server-side rendering");
     debugNext("Redirecting (dynamic server render)");
 
-    redirectServer(ctx)("/vns/debug/public");
+    redirectServer(ctx)("/vn/debug/public");
   } else if (isClientRender()) {
     // Scenario 3: we are client-side
     debugNext("Detected client render");
     debugNext("Redirecting (client-side)");
 
-    Router.push("/vns/debug/public");
+    Router.push("/vn/debug/public");
   }
   return pageProps;
 };

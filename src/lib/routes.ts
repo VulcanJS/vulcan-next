@@ -17,7 +17,13 @@ export const routes = {
       href: "/account/verify-email",
     },
     login: {
-      href: "/login",
+      href: "/account/login",
+    },
+    signup: {
+      href: "/account/signup",
+    },
+    profile: {
+      href: "/account/profile",
     },
   },
 };

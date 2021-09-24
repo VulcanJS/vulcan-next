@@ -5,7 +5,8 @@ export default async function logout(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  removeTokenCookie(res);
-  res.writeHead(302, { Location: "/" });
-  res.end();
+  if (req.method === "POST") {
+    removeTokenCookie(res);
+    res.end();
+  }
 }

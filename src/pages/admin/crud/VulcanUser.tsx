@@ -20,16 +20,18 @@ import { PageLayout } from "~/components/layout";
 import { User } from "~/models/user";
 import { useUser } from "~/components/user/hooks";
 import {
-  useCreate,
+  //useCreate,
   useMulti,
   useUpdate,
   useDelete,
 } from "@vulcanjs/react-hooks";
-import { ItemCard } from "~/components/vns/ItemCard";
+import { ItemCard } from "~/components/vn/ItemCard";
+import { routes } from "~/lib/routes";
+import { apiRoutes } from "~/lib/api/apiRoutes";
 
 export default function UserCrudPage() {
   // Auth
-  const user = useUser({ redirectTo: "/login" });
+  const user = useUser({ redirectTo: routes.account.login.href });
 
   // Create
   /* 
@@ -51,7 +53,7 @@ export default function UserCrudPage() {
     // TODO: instead use useCreate + hooks or any other pattern to send an email
     // NOT SAFE FOR PRODUCTION, this is just a demo
     try {
-      const res = await fetch("/api/signup", {
+      const res = await fetch(apiRoutes.account.signup.href, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -243,11 +245,10 @@ export default function UserCrudPage() {
         </div>
       )}
       <hr />
-      <Typography variant="h2">
-        Send email verification
-      </Typography>
+      <Typography variant="h2">Send email verification</Typography>
       <Typography variant="body1">
-        This is a manual tester for the email verification feature that is still in development. <br />
+        This is a manual tester for the email verification feature that is still
+        in development. <br />
         /!\ At the moment, the feature is logged, no email will be sent.
       </Typography>
       <form onSubmit={handleVerifyEmailSubmit}>

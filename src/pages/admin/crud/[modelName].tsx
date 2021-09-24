@@ -17,12 +17,13 @@ import {
 } from "@mui/material";
 import { SmartForm } from "@vulcanjs/react-ui";
 import { VulcanGraphqlModel } from "@vulcanjs/graphql";
-import { ItemCard } from "~/components/vns/ItemCard";
+import { ItemCard } from "~/components/vn/ItemCard";
 import { PageLayout } from "~/components/layout";
 import models from "~/models";
 
 import { useUser } from "~/components/user/hooks";
 import { useMulti, useDelete } from "@vulcanjs/react-hooks";
+import { routes } from "~/lib/routes";
 
 const modelsMap = models.reduce<{ [modelName: string]: VulcanGraphqlModel }>(
   (asMap, model) => ({ ...asMap, [model.name]: model }),
@@ -44,7 +45,7 @@ const getCurrentModel = (modelName: string): VulcanGraphqlModel => {
  */
 export default function CrudPage({ modelName }) {
   // Auth
-  /*const user = */ useUser({ redirectTo: "/login" });
+  /*const user = */ useUser({ redirectTo: routes.account.login.href });
 
   const model = getCurrentModel(modelName);
 

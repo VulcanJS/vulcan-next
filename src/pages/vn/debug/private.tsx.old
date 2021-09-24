@@ -39,7 +39,7 @@ const PrivatePage: NextPage<PrivatePageProps> = (props) => {
       <h1>private</h1>
       <div>Seeing a private page.</div>
       <div>
-        <Link href="/vns/debug/public">
+        <Link href="/vn/debug/public">
           <a>Back to public page</a>
         </Link>
       </div>
@@ -51,7 +51,7 @@ export const getServerSideProps = async (ctx: NextPageContext) => {
   const isAllowed = !!ctx.query.allowed; // demo
   if (!isAllowed) {
     debugNext("Redirecting (dynamic server render)", ctx.req.url);
-    redirectServer(ctx)("/vns/debug/public");
+    redirectServer(ctx)("/vn/debug/public");
   }
   return { props: { isAllowed } };
 };

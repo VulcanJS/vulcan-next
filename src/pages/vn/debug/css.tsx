@@ -1,5 +1,5 @@
-import CSSModule from "~/components/vns/cssModule";
-import StyledJsx from "~/components/vns/styledJsx";
+import CSSModule from "~/components/vn/cssModule";
+import StyledJsx from "~/components/vn/styledJsx";
 //import { useForm } from "react-hook-form";
 
 const CSSDebugPage = () => {

@@ -60,7 +60,7 @@ export default async function sendResetPasswordEmailEndpoint(
       expiresAt: expiresAt.toISOString(),
       userId,
     });
-    // TODO: put the app URL here, maybe imported from src/pages/vns/debug/about.tsx but it doesn't seems complete right now
+    // TODO: put the app URL here, maybe imported from src/pages/vn/debug/about.tsx but it doesn't seems complete right now
     const resetUrl = `${getRootUrl(req)}${
       routes.account.resetPassword.href
     }/${token}`;

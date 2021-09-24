@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { useUser } from "../components/user/hooks";
+import { useUser } from "~/components/user/hooks";
 import Layout from "~/components/user/layout";
 import Form from "~/components/user/form";
+import { apiRoutes } from "~/lib/api/apiRoutes";
 
 const Login = () => {
   useUser({ redirectTo: "/", redirectIfFound: true });
@@ -19,14 +20,14 @@ const Login = () => {
     };
 
     try {
-      const res = await fetch("/api/login", {
+      const res = await fetch(apiRoutes.account.login.href, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
       if (res.status === 200) {
         // @see https://github.com/vercel/next.js/discussions/19601
-        // This force SWR to update all queries subscribed to "api/user"
+        // This force SWR to update all queries subscribed to "user"
         window.location.replace("/");
         // Router.push("/");
       } else {

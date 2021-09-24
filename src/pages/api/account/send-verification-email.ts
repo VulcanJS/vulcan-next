@@ -50,7 +50,7 @@ export default async function sendVerificationEmail(
       userId,
     });
 
-    // TODO: put the app URL here, maybe imported from src/pages/vns/debug/about.tsx but it doesn't seems complete right now
+    // TODO: put the app URL here, maybe imported from src/pages/vn/debug/about.tsx but it doesn't seems complete right now
     const url = `rootUrl/verify-email/${token}`;
 
     // send the mail

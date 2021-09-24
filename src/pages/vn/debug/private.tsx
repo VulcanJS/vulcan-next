@@ -17,7 +17,7 @@ const PrivatePage: NextPage<PrivatePageProps> = (props) => {
       <h1>private</h1>
       <div>Seeing a private page.</div>
       <div>
-        <Link href="/vns/debug/public">
+        <Link href="/vn/debug/public">
           <a>Back to public page</a>
         </Link>
       </div>
@@ -62,5 +62,5 @@ export default withPrivateAccess({
     const isAllowed = !!ctx.query.allowed;
     return { isAllowed };
   },
-  defaultRedirection: "/vns/debug/public",
+  defaultRedirection: "/vn/debug/public",
 })(PrivatePage);

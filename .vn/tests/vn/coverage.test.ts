@@ -5,7 +5,7 @@ import { spawn } from "child_process";
 import debug from "debug";
 const debugCoverage = debug("vn:coverage");
 
-const basicSpec = "cypress/integration/vns/basic.spec.ts";
+const basicSpec = "cypress/integration/vn/basic.spec.ts";
 
 const isDebug = !!process.env.DEBUG;
 const rootDir = path.resolve(__dirname, "../../");

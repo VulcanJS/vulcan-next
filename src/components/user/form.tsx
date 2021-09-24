@@ -28,14 +28,14 @@ const UserForm = ({ isLogin, errorMessage, onSubmit }) => (
     <div className="submit">
       {isLogin ? (
         <>
-          <Link href="/signup">
+          <Link href={routes.account.signup.href}>
             <a>I don't have an account</a>
           </Link>
           <button type="submit">Login</button>
         </>
       ) : (
         <>
-          <Link href="/login">
+          <Link href={routes.account.login.href}>
             <a>I already have an account</a>
           </Link>
           <button type="submit">Signup</button>

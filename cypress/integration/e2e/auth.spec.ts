@@ -131,7 +131,7 @@ describe("auth", () => {
     });
   });
   it("login as admin, changes password", () => {
-    cy.visit("/login");
+    cy.visit("/account/login");
     cy.findByLabelText(/email/i).type(Cypress.env("ADMIN_EMAIL"));
     cy.findByLabelText(/password/i).type(Cypress.env("ADMIN_INITIAL_PASSWORD"));
     cy.findByRole("button").click();
@@ -155,7 +155,7 @@ describe("auth", () => {
       "sendLink"
     );
     // 1. Access password reset interface
-    cy.visit("/login");
+    cy.visit("/account/login");
     cy.findByRole("link", { name: /forgot/i }).click();
     cy.url().should("match", /forgotten/i);
     cy.findByLabelText(/email/).type(email);
