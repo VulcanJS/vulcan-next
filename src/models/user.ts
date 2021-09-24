@@ -1,13 +1,10 @@
 import { VulcanDocument, VulcanSchema } from "@vulcanjs/schema";
 import SimpleSchema from "simpl-schema";
 import {
-  buildDefaultMutationResolvers,
-  buildDefaultQueryResolvers,
   createGraphqlModel,
   CreateGraphqlModelOptionsShared,
   VulcanGraphqlSchema,
 } from "@vulcanjs/graphql";
-import { createMongooseConnector } from "@vulcanjs/mongo";
 
 export interface UserType extends VulcanDocument {
   email: string;

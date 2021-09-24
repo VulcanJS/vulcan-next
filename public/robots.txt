@@ -1,6 +1,6 @@
 # *
 User-agent: *
-Disallow: /vns/*
+Disallow: /vn/*
 Disallow: /login
 Disallow: /profile
 Disallow: /signup
