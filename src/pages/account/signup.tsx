@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useUser } from "~/components/user/hooks";
-import Layout from "~/components/user/layout";
-import UserForm from "~/components/user/form";
+import { useUser } from "~/components/account/hooks";
+import Layout from "~/components/account/layout";
+import UserForm from "~/components/account/form";
 import { routes } from "~/lib/routes";
 import { useRouter } from "next/router";
 import { apiRoutes } from "~/lib/api/apiRoutes";

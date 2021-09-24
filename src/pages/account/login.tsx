@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useUser } from "~/components/user/hooks";
-import Layout from "~/components/user/layout";
-import Form from "~/components/user/form";
+import { useUser } from "~/components/account/hooks";
+import Layout from "~/components/account/layout";
+import Form from "~/components/account/form";
 import { apiRoutes } from "~/lib/api/apiRoutes";
 
 const Login = () => {

@@ -7,7 +7,7 @@ import {
   Typography,
   TextField,
 } from "@mui/material";
-import { ErrorSuccessMessages } from "~/components/user/ErrorSuccessMessages";
+import { ErrorSuccessMessages } from "~/components/account/ErrorSuccessMessages";
 import { useState } from "react";
 
 const ForgottenPassword = () => {

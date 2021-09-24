@@ -18,7 +18,7 @@ import {
 import { PageLayout } from "~/components/layout";
 
 import { User } from "~/models/user";
-import { useUser } from "~/components/user/hooks";
+import { useUser } from "~/components/account/hooks";
 import {
   //useCreate,
   useMulti,

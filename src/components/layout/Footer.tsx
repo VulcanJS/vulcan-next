@@ -5,7 +5,7 @@
 import { Button } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useUser } from "~/components/user/hooks";
+import { useUser } from "~/components/account/hooks";
 import { apiRoutes } from "~/lib/api/apiRoutes";
 import { routes } from "~/lib/routes";
 

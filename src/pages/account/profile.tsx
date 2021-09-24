@@ -1,6 +1,6 @@
-import { useUser } from "~/components/user/hooks";
+import { useUser } from "~/components/account/hooks";
 import { PageLayout } from "~/components/layout";
-import ChangePasswordForm from "~/components/user/ChangePassword";
+import ChangePasswordForm from "~/components/account/ChangePassword";
 import { Typography } from "@mui/material";
 import { routes } from "~/lib/routes";
 

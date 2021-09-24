@@ -21,7 +21,7 @@ import { ItemCard } from "~/components/vn/ItemCard";
 import { PageLayout } from "~/components/layout";
 import models from "~/models";
 
-import { useUser } from "~/components/user/hooks";
+import { useUser } from "~/components/account/hooks";
 import { useMulti, useDelete } from "@vulcanjs/react-hooks";
 import { routes } from "~/lib/routes";
 
