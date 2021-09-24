@@ -50,6 +50,8 @@ export interface StorableTokenType {
   kind: "verifyEmail" | "resetPassword";
 }
 
+// NOTE: this is not a graphql model, as we use it only server-side
+// this "just" a model
 export const StorableToken = createModel({
   name: "VulcanStorableToken",
   schema,

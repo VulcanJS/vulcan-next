@@ -1,6 +1,7 @@
 import { Dispatch, useReducer, useState } from "react";
 import { TextField, Button, Typography } from "@mui/material";
 import { ErrorSuccessMessages } from "./ErrorSuccessMessages";
+import { apiRoutes } from "~/lib/api/apiRoutes";
 
 interface State {
   errorMsg: string | null;
@@ -121,11 +122,14 @@ const ChangePasswordFormContainer = (props: { user: { email: string } }) => {
           newPassword: newPassword,
         };
 
-        const resChangePassword = await fetch("/api/changePassword", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-        });
+        const resChangePassword = await fetch(
+          apiRoutes.account.changePassword.href,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+          }
+        );
 
         if (resChangePassword.status === 200) {
           dispatch({

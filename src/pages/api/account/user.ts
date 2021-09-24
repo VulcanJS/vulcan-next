@@ -1,6 +1,6 @@
 import { getSession } from "~/lib/api/account";
 import runSeed from "~/lib/api/runSeed";
-import { UserConnector } from "~/models/user";
+import { UserConnector } from "~/models/user.server";
 
 export default async function user(req, res) {
   const session = await getSession(req);

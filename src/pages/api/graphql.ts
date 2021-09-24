@@ -8,7 +8,7 @@ import { buildApolloSchema } from "@vulcanjs/graphql";
 import mongoConnection from "~/lib/api/middlewares/mongoConnection";
 import corsOptions from "~/lib/api/cors";
 import { contextFromReq } from "~/lib/api/context";
-import models from "~/models";
+import models from "~/models/index.server";
 
 // will trigger seed
 import runSeed from "~/lib/api/runSeed";

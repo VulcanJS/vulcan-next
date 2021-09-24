@@ -1,73 +1,21 @@
-import crypto from "crypto";
-
 import { VulcanDocument, VulcanSchema } from "@vulcanjs/schema";
 import SimpleSchema from "simpl-schema";
 import {
   buildDefaultMutationResolvers,
   buildDefaultQueryResolvers,
   createGraphqlModel,
+  CreateGraphqlModelOptionsShared,
+  VulcanGraphqlSchema,
 } from "@vulcanjs/graphql";
 import { createMongooseConnector } from "@vulcanjs/mongo";
 
 export interface UserType extends VulcanDocument {
   email: string;
-  hash?: string;
-  salt?: string;
   isAdmin?: boolean;
   groups?: Array<string>;
 }
 
-const guaranteeOwnership = (data) => {
-  // TODO: put _id into userId to guarantee ownership
-  data.userId = data._id;
-  return data;
-};
-const hashPassword = (password: string) => {
-  const salt = (crypto as any).randomBytes(16).toString("hex");
-  const hash = (crypto as any)
-    .pbkdf2Sync(password, salt, 1000, 64, "sha512")
-    .toString("hex");
-  return { salt, hash };
-};
-
-const handlePasswordCreation = (data, props) => {
-  const { password } = data;
-  // const user = await DB.findUser(...)
-  const { hash, salt } = hashPassword(password);
-  data.hash = hash;
-  data.salt = salt;
-  // Do not store the password in the database
-  data.password = null;
-  return data;
-};
-const handlePasswordUpdate = (data) => {
-  const { password } = data;
-  // update the hash
-  if (password) {
-    // const user = await DB.findUser(...)
-    const { hash, salt } = hashPassword(data.password);
-    data.hash = hash;
-    data.salt = salt;
-    // Do not store the password in the database
-    data.password = null;
-  }
-  return data;
-};
-
-const passwordAuthSchema = {
-  // password auth management
-  hash: {
-    type: String,
-    canRead: [],
-    canCreate: [],
-    canUpdate: [],
-  },
-  salt: {
-    type: String,
-    canRead: [],
-    canCreate: [],
-    canUpdate: [],
-  },
+const passwordAuthSchema: VulcanGraphqlSchema = {
   // Temporary field, used only in the frontend, must be deleted on mutations
   password: {
     type: String,
@@ -78,19 +26,19 @@ const passwordAuthSchema = {
   },
 };
 
-const emailVerificationSchema = {
+const emailVerificationSchema: VulcanGraphqlSchema = {
   isVerified: {
     type: String,
     default: false,
     optional: true,
     // can be forced by admins/mods
-    canRead: ["admins"],
+    canRead: ["owners"],
     canCreate: ["admins"],
     canUpdate: ["admins"],
   },
 };
 
-const schema: VulcanSchema = {
+export const schema: VulcanGraphqlSchema = {
   // _id, userId, and createdAT are basic field you may want to use in almost all schemas
   _id: {
     type: String,
@@ -172,28 +120,14 @@ const schema: VulcanSchema = {
   },
 
   ...passwordAuthSchema,
-
   ...emailVerificationSchema,
 };
 
-export const User = createGraphqlModel({
+export const modelDef: CreateGraphqlModelOptionsShared = {
   name: "VulcanUser",
   graphql: {
-    typeName: "VulcanUser", // TODO: automatically create from a modelName property
+    typeName: "VulcanUser",
     multiTypeName: "VulcanUsers",
-    callbacks: {
-      create: {
-        before: [handlePasswordCreation],
-        after: [guaranteeOwnership],
-      },
-      update: {
-        before: [handlePasswordUpdate],
-      },
-    },
-    queryResolvers: buildDefaultQueryResolvers({ typeName: "VulcanUser" }),
-    mutationResolvers: buildDefaultMutationResolvers({
-      typeName: "VulcanUser",
-    }),
   },
   schema,
   permissions: {
@@ -202,6 +136,5 @@ export const User = createGraphqlModel({
     canDelete: ["owners", "admins"],
     canRead: ["members", "admins"],
   },
-});
-
-export const UserConnector = createMongooseConnector<UserType>(User);
+};
+export const User = createGraphqlModel(modelDef);

@@ -6,7 +6,7 @@
  * first email
  */
 import { NextApiRequest, NextApiResponse } from "next";
-import { UserConnector } from "~/models/user";
+import { UserConnector } from "~/models/user.server";
 
 // TODO: factor the context creation so we can reuse it for graphql and REST endpoints
 import { contextFromReq } from "~/lib/api/context";

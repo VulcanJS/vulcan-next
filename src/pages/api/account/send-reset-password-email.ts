@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { UserConnector } from "~/models/user";
+import { UserConnector } from "~/models/user.server";
 import {
   generateToken,
   hashToken,

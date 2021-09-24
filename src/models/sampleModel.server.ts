@@ -2,13 +2,17 @@
  * I am a sample model
  * Replace me with your own
  */
-import { VulcanSchema, VulcanDocument } from "@vulcanjs/schema";
+import { VulcanDocument } from "@vulcanjs/schema";
 import {
-  createGraphqlModel,
-  CreateGraphqlModelOptionsShared,
+  CreateGraphqlModelOptionsServer,
+  createGraphqlModelServer,
+  VulcanGraphqlSchemaServer,
 } from "@vulcanjs/graphql";
+import { createMongooseConnector } from "@vulcanjs/mongo";
+import merge from "lodash/merge";
+import { modelDef as modelDefShared } from "./sampleModel";
 
-const schema: VulcanSchema = {
+const schema: VulcanGraphqlSchemaServer = {
   _id: {
     type: String,
     optional: true,
@@ -41,21 +45,15 @@ export interface SampleModelType extends VulcanDocument {
   someField: string;
 }
 
-const name = "Sample"; // Change this value when creating your own model
-const typeName = name;
-const multiTypeName = "Samples"; // Change this value when creating your own model
-export const modelDef: CreateGraphqlModelOptionsShared = {
-  name: "sample",
+const modelDef: CreateGraphqlModelOptionsServer = merge({}, modelDefShared, {
   schema,
+  // add other server only options here
   graphql: {
-    typeName,
-    multiTypeName,
+    /* ...*/
   },
-  permissions: {
-    canCreate: ["member"],
-    canUpdate: ["owners", "admins"],
-    canDelete: ["owners", "admins"],
-    canRead: ["members", "admins"],
-  },
-};
-export const SampleModel = createGraphqlModel(modelDef);
+});
+export const SampleModel = createGraphqlModelServer(modelDef);
+
+export const SampleModelConnector = createMongooseConnector<SampleModelType>(
+  SampleModel
+);

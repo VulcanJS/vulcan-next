@@ -6,7 +6,7 @@
  * - Or establish the connection before you run those function, using "connectoToAppDb()" helper
  */
 import crypto from "crypto";
-import { UserType, UserConnector } from "~/models/user";
+import { UserTypeServer, UserConnector } from "~/models/user.server";
 import { localMailTransport } from "~/lib/api/mail/transports";
 import { resetPasswordTokenEmailParameters } from "./emails/resetPasswordToken";
 import { verifyEmailEmailParameters } from "./emails/verifyEmail";
@@ -41,7 +41,7 @@ export const authenticate = (method, req, res): Promise<any> =>
  * @returns
  */
 export const checkPasswordForUser = (
-  user: Pick<UserType, "hash" | "salt">,
+  user: Pick<UserTypeServer, "hash" | "salt">,
   passwordToTest: string
 ): boolean => {
   const hash = (crypto as any)
@@ -61,7 +61,7 @@ export async function findUserByCredentials({
 }: {
   email: string;
   password: string;
-}): Promise<UserType | null> {
+}): Promise<UserTypeServer | null> {
   // Here you should lookup for the user in your DB and compare the password:
   //
   const user = await UserConnector.findOne({ email });

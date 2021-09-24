@@ -4,12 +4,12 @@
 import { Connector, VulcanGraphqlModel } from "@vulcanjs/graphql";
 
 import { createMongooseConnector } from "@vulcanjs/mongo";
-import { User, UserConnector, UserType } from "~/models/user";
+import { User, UserConnector, UserType } from "~/models/user.server";
 import { NextApiRequest } from "next";
 import { getSession } from "~/lib/api/account";
 import { Request } from "express";
 import debug from "debug";
-import models from "~/models";
+import models from "~/models/index.server";
 const debugGraphqlContext = debug("vn:graphql:context");
 
 /**

@@ -17,6 +17,10 @@ export const apiRoutes = {
       href: "/api/account/send-reset-password-email",
       method: "POST",
     },
+    changePassword: {
+      href: "/api/account/changePassword",
+      method: "POST",
+    },
     verifyEmail: {
       href: "/api/account/verify-email",
       method: "POST",
