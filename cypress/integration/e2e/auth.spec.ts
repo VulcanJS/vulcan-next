@@ -5,6 +5,13 @@
  *
  * When writing an integration test, instead you should mock calls to the API and return a fake user!
  *
+ * NOTE: APP SHOULD BE RUNNING IN DEV+TEST MODE or PRODUCTION
+ * yarn run dev:test
+ * or
+ * yarn run start
+ *
+ * yarn run dev won't suffice because it doesn't spawn a mail server yet.
+ *
  * @see https://docs.cypress.io/guides/getting-started/testing-your-app#Logging-in
  */
 import { apiRoutes } from "~/lib/api/apiRoutes";

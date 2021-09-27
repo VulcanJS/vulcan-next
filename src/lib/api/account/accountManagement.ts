@@ -12,6 +12,8 @@ import { resetPasswordTokenEmailParameters } from "./emails/resetPasswordToken";
 import { verifyEmailEmailParameters } from "./emails/verifyEmail";
 
 import passport from "passport";
+import { resetPasswordSuccessEmailParameters } from "./emails/resetPasswordSuccess";
+import { changePasswordSuccessEmailParameters } from "./emails/changePasswordSuccess";
 /**
  * Generic authentication method
  *
@@ -78,12 +80,7 @@ export async function findUserByCredentials({
   return user;
 }
 
-export const sendResetPasswordEmail = async ({ email, resetUrl }) => {
-  const res = await localMailTransport.sendMail({
-    from: "My App <myapp@changethisname.whatever",
-    to: email,
-    ...resetPasswordTokenEmailParameters({ resetUrl }),
-  });
+const logMail = (res) => {
   console.info(
     "Sent an email",
     JSON.stringify(res?.envelope, null, 2),
@@ -91,15 +88,38 @@ export const sendResetPasswordEmail = async ({ email, resetUrl }) => {
   );
 };
 
+export const sendResetPasswordEmail = async ({ email, resetUrl }) => {
+  const res = await localMailTransport.sendMail({
+    from: process.env.MAIL_FROM,
+    to: email,
+    ...resetPasswordTokenEmailParameters({ resetUrl }),
+  });
+  logMail(res);
+};
+
 export const sendVerificationEmail = async ({ email, verificationUrl }) => {
   const res = await localMailTransport.sendMail({
-    from: "My App <myapp@changethisname.whatever",
+    from: process.env.MAIL_FROM,
     to: email,
     ...verifyEmailEmailParameters({ verificationUrl }),
   });
-  console.info(
-    "Sent an email",
-    JSON.stringify(res?.envelope, null, 2),
-    (res as any)?.message?.toString()
-  );
+  logMail(res);
+};
+
+export const sendResetPasswordSuccessEmail = async ({ email }) => {
+  const res = await localMailTransport.sendMail({
+    from: process.env.MAIL_FROM,
+    to: email,
+    ...resetPasswordSuccessEmailParameters(),
+  });
+  logMail(res);
+};
+
+export const sendChangePasswordSuccessEmail = async ({ email }) => {
+  const res = await localMailTransport.sendMail({
+    from: process.env.MAIL_FROM,
+    to: email,
+    ...changePasswordSuccessEmailParameters(),
+  });
+  logMail(res);
 };
