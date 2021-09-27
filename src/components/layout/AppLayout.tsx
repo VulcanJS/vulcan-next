@@ -11,10 +11,9 @@ interface AppLayoutProps {
   children: React.ReactNode;
 }
 
-const AppLayout = ({ children }: AppLayoutProps) => (
+export const GlobalAppStyle = ({ children }) => (
   <div className="global">
-    <main>{children}</main>
-    <Footer />
+    {children}
     <style jsx global>{`
       /* FIXME: ignore errors when using "vscode-styled-jsx", as we also use PostCSS */
       /* Typescale */
@@ -81,6 +80,12 @@ const AppLayout = ({ children }: AppLayoutProps) => (
       }
     `}</style>
   </div>
+);
+const AppLayout = ({ children }: AppLayoutProps) => (
+  <GlobalAppStyle>
+    <main>{children}</main>
+    <Footer />
+  </GlobalAppStyle>
 );
 
 export default AppLayout;

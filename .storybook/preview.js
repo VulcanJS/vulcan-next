@@ -3,7 +3,8 @@ import { withA11y } from "@storybook/addon-a11y";
 import { MuiThemeProvider } from "~/components/providers";
 import { I18nextProvider } from "react-i18next";
 import { i18n } from "~/lib/i18n";
-import { AppLayout } from "~/components/layout";
+//import { AppLayout } from "~/components/layout";
+import { GlobalAppStyle } from "~/components/layout/AppLayout";
 
 import { RouterContext } from "next/dist/shared/lib/router-context"; // next 11.2
 
@@ -28,12 +29,14 @@ const withI18n = (storyFn) => (
   </React.Suspense>
 );
 
-const withAppLayout = (storyFn) => <AppLayout>{storyFn()}</AppLayout>;
+const withGlobalAppStyle = (storyFn) => (
+  <GlobalAppStyle>{storyFn()}</GlobalAppStyle>
+);
 
 export const decorators = [
   withMui,
   // @see https://gist.github.com/justincy/c1075650b1d5ba448c50eaf83cbb4ffe
   withI18n,
-  withAppLayout,
+  withGlobalAppStyle,
   withA11y,
 ];

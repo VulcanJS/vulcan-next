@@ -71,6 +71,7 @@ export default async function signup(
       hashedToken,
       expiresAt: expiresAt.toISOString(),
       userId,
+      kind: "verifyEmail",
     });
 
     const verificationUrl = `${getRootUrl(req)}${
