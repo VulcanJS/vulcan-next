@@ -2,10 +2,7 @@
  * // @see https://jestjs.io/docs/en/next/configuration#testenvironment-string
  * @jest-environment node
  */
-import {
-  connectToDb,
-  closeDbConnection,
-} from "../../../src/api/mongoose/connection";
+import { connectToDb, closeDbConnection } from "~/lib/api/mongoose/connection";
 import mongoose from "mongoose";
 
 if (!process.env.MONGO_URI)
