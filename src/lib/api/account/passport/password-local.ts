@@ -20,7 +20,6 @@ export const localStrategy = new Local.Strategy(
         debugMongo("Connected to db from passport local auth strategy");
         findUserByCredentials({ email, password })
           .then((user) => {
-            console.log("user", user);
             if (!user) {
               done(new Error("Email/password not matching"));
             } else if (!(user.isAdmin || user.isVerified)) {

@@ -8,6 +8,7 @@ import {
 } from "~/models/storableToken.server";
 
 import { contextFromReq } from "~/lib/api/context";
+import { sendResetPasswordSuccessEmail } from "~/lib/api/account";
 
 interface ResetPasswordBody {
   token: string;
@@ -53,11 +54,7 @@ export default async function changePassword(
       dataId: userId,
       asAdmin: true,
     });
-    // TODO: setup a real mail. It's important to notify the user in case of success, in case
-    // they didn't ask for this change.
-    console.log(
-      `MAIL SIMULATION: Your password has been reset succesfully. If you did not ask for a password reset, please reach out the Technical Team.`
-    );
+    sendResetPasswordSuccessEmail({ email: user.email });
     res.status(200).send({ done: true });
   } catch (error) {
     console.error(error);

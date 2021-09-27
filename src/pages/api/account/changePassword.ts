@@ -4,7 +4,10 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { User, UserConnector, UserType } from "~/models/user.server";
 
 import { contextFromReq } from "~/lib/api/context";
-import { checkPasswordForUser } from "~/lib/api/account";
+import {
+  checkPasswordForUser,
+  sendChangePasswordSuccessEmail,
+} from "~/lib/api/account";
 
 interface ChangePasswordBody {
   oldPassword: string;
@@ -58,10 +61,7 @@ export default async function changePassword(
     });
     // TODO: setup a real mail
     // this is not mandatory for password change, yet you'd want to notify the user incase this change was not voluntary.
-    console.log(
-      `MAIL SIMULATION: Your password has been changed succesfully at ${new Date()}. If you did not change your password,
-      please reach out the Technical team.`
-    );
+    sendChangePasswordSuccessEmail({ email: user.email });
     res.status(200).send({ done: true });
   } catch (error) {
     console.error(error);

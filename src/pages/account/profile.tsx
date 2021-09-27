@@ -7,7 +7,6 @@ import { routes } from "~/lib/routes";
 const Profile = () => {
   const user = useUser({ redirectTo: routes.account.login.href });
   if (!user) return null; // will redirect
-  console.log(user);
   return (
     <PageLayout>
       <Typography variant="h1">Your profile</Typography>
