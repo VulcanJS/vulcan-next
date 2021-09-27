@@ -6,7 +6,6 @@ import { appWithTranslation } from "~/lib/i18n";
 // Comment if you don't need Material UI
 import { createEmotionCache } from "@vulcanjs/next-material-ui";
 import { MuiThemeProvider } from "~/components/providers";
-import CssBaseline from "@mui/material/CssBaseline";
 
 import Head from "next/head";
 import { VulcanComponentsProvider } from "@vulcanjs/react-ui";
