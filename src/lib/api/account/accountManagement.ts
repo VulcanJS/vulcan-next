@@ -84,7 +84,11 @@ export const sendResetPasswordEmail = async ({ email, resetUrl }) => {
     to: email,
     ...resetPasswordTokenEmailParameters({ resetUrl }),
   });
-  console.info("Sent an email", JSON.stringify(res, null, 2));
+  console.info(
+    "Sent an email",
+    JSON.stringify(res?.envelope, null, 2),
+    (res as any)?.message?.toString()
+  );
 };
 
 export const sendVerificationEmail = async ({ email, verificationUrl }) => {
@@ -93,5 +97,9 @@ export const sendVerificationEmail = async ({ email, verificationUrl }) => {
     to: email,
     ...verifyEmailEmailParameters({ verificationUrl }),
   });
-  console.info("Sent an email", JSON.stringify(res, null, 2));
+  console.info(
+    "Sent an email",
+    JSON.stringify(res?.envelope, null, 2),
+    (res as any)?.message?.toString()
+  );
 };
