@@ -12,6 +12,7 @@ import {
 } from "~/models/storableToken.server";
 import { getRootUrl } from "~/lib/api/utils";
 import { routes } from "~/lib/routes";
+import { debugAccount } from "~/lib/debuggers";
 
 type SignupBody = Pick<UserTypeServer, "email" | "password">;
 
@@ -24,7 +25,8 @@ export default async function signup(
 
     // NOTE: the mutator is the function used by the create mutations in Vulcan
     // we need to use it to ensure that we run all callbacks associated to the user collection
-    let user: Partial<UserTypeServer> = { email, password };
+    const user: Partial<UserTypeServer> = { email, password };
+    let fullUser: UserTypeServer;
     const context = await contextFromReq((req as unknown) as Request);
     // create mutator should return the created user
     // NOTE: we use the mutator and not the model connector so callbacks are applied
@@ -41,18 +43,22 @@ export default async function signup(
         context,
         asAdmin: true, // so we get all fields back
       });
-      user = createMutatorRes.data;
+      fullUser = createMutatorRes.data;
     } else if (foundUser.isVerified) {
       // If user is found AND verified, we return already.
       // If not verified, we trigger the verification workflow again
       return res.status(200).send({ done: true });
+    } else {
+      // found but not verified => send new token
+      fullUser = foundUser;
     }
 
     // create verification token and send it
-    // TODO: 99% sahred with send-reset-password-email, to factor
+    // TODO: 99% shared with send-reset-password-email, to factor
     // delete previous requests
-    const userId = user._id;
+    const userId = fullUser._id;
     await StorableTokenConnector.delete({ userId });
+    debugAccount(`Deleting email verification token for userId ${userId}`);
     // create the reset url with token
     const token = generateToken();
     const hashedToken = hashToken(token);
@@ -71,7 +77,7 @@ export default async function signup(
       routes.account.verifyEmail.href
     }/${token}`;
 
-    await sendVerificationEmail({ email: user.email, verificationUrl });
+    await sendVerificationEmail({ email: fullUser.email, verificationUrl });
     res.status(200).send({ done: true });
   } catch (error) {
     console.error(error);

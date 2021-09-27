@@ -1,3 +1,4 @@
+import crypto from "crypto";
 export const hashPassword = (password: string) => {
   const salt = (crypto as any).randomBytes(16).toString("hex");
   const hash = (crypto as any)

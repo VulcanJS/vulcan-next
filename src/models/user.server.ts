@@ -1,10 +1,8 @@
 /**
  * Extends user.ts with server-side logic
  */
-import crypto from "crypto";
 import merge from "lodash/merge";
 
-import { VulcanSchema } from "@vulcanjs/schema";
 import SimpleSchema from "simpl-schema";
 import {
   CreateGraphqlModelOptionsServer,
