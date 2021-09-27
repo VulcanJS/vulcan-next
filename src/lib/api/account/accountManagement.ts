@@ -79,17 +79,19 @@ export async function findUserByCredentials({
 }
 
 export const sendResetPasswordEmail = async ({ email, resetUrl }) => {
-  await localMailTransport.sendMail({
+  const res = await localMailTransport.sendMail({
     from: "My App <myapp@changethisname.whatever",
     to: email,
     ...resetPasswordTokenEmailParameters({ resetUrl }),
   });
+  console.info("Sent an email", JSON.stringify(res, null, 2));
 };
 
 export const sendVerificationEmail = async ({ email, verificationUrl }) => {
-  await localMailTransport.sendMail({
+  const res = await localMailTransport.sendMail({
     from: "My App <myapp@changethisname.whatever",
     to: email,
     ...verifyEmailEmailParameters({ verificationUrl }),
   });
+  console.info("Sent an email", JSON.stringify(res, null, 2));
 };

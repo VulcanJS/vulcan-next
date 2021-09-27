@@ -10,6 +10,8 @@ export interface UserType extends VulcanDocument {
   email: string;
   isAdmin?: boolean;
   groups?: Array<string>;
+
+  isVerified?: boolean;
 }
 
 const passwordAuthSchema: VulcanGraphqlSchema = {

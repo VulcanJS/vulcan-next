@@ -52,4 +52,22 @@ describe("auth - API", () => {
       .its("status")
       .should("equal", 200);
   });
+  // SIGNUP
+  it("can signup again an existing user, but won't fill the db", () => {
+    const email = Cypress.env("ADMIN_EMAIL");
+    const password = Cypress.env("ADMIN_INITIAL_PASSWORD");
+    const admin = { email, password };
+    cy.request({
+      method: "POST",
+      url: apiRoutes.account.signup.href,
+      body: {
+        ...admin,
+      },
+      failOnStatusCode: false,
+    })
+      .its("status")
+      .should("equal", 200);
+    // TODO: also check that the db is correctly filled (no user duplicate) + that verification workflow is triggered again for unverified users
+    // TODO: try again to signup, but this time a verified user + check that verification workflow is not triggered twice in this case
+  });
 });

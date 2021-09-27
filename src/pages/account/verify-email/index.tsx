@@ -1,8 +1,15 @@
 import { Box, Typography } from "@mui/material";
+import { getDefaultPageLayout } from "~/components/layout/PageLayout";
 
 export const VerifyEmailPage = () => {
   return (
-    <Box>
+    <Box
+      sx={{
+        mx: "auto",
+        my: 2,
+        p: 4,
+      }}
+    >
       <Typography variant="subtitle1">
         One last thing before you can log in...
       </Typography>
@@ -13,5 +20,7 @@ export const VerifyEmailPage = () => {
     </Box>
   );
 };
+
+VerifyEmailPage.getLayout = getDefaultPageLayout;
 
 export default VerifyEmailPage;

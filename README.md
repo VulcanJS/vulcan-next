@@ -11,6 +11,7 @@ Vulcan Next provides:
 - A production-grade Next.js + Apollo GraphQL boilerplate. It includes development tooling such as Cypress, Jest, Storybook, MDX... and many others.
 - A GraphQL API endpoint set up with Apollo Server, so you can start coding back-end features immediately.
 - Schema-based helpers and hooks to quickly generate and consume your own GraphQL API.
+- Password based authentication
 
 [Join the Slack](http://slack.vulcanjs.org/)
 
@@ -37,9 +38,11 @@ You can then access the live docs on [http://localhost:3000/docs](http://localho
 
 ### Setup your own git repository
 
-#### Initialization
+When creating your own application, you'll want to host the code on your own Git repository (on GitHub, BitBucket, etc.).
 
-Rename "origin" to "upstream", so you can use your own git repository as the main origin and VN official repo as "upstream".
+#### Point git to your own repository
+
+Rename "origin" to "upstream", so you can use your own git repository as the main "origin", and VN official repo as "upstream".
 
 ```sh
 git remote rename origin upstream
@@ -47,10 +50,10 @@ git remote rename origin upstream
 # git remote add origin <your-own-git-repository-url>
 ```
 
-#### Update
+#### Update your app to the latest version of Vulcan Next
 
 **Beware:** Vulcan Next is a boilerplate, the possibility to update automatically is not guaranteed. You may
-have to apply the updates by hand, comparing Vulcan Next latest version to your own code.
+have to apply the updates by hand, comparing Vulcan Next latest version to your own code. **Always double-check that the merge didn't break your app!**.
 
 ```sh
 # Get the latest version of Vulcan Next locally
@@ -135,9 +138,9 @@ They give time and share knowledge to support the project.
 
 ---
 
-# About Next
+## About Next.js
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Learn More
 
@@ -146,10 +149,10 @@ To learn more about Next.js, take a look at the following resources:
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/zeit/next.js/) - your feedback and contributions are welcome!
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on ZEIT Now
+## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [ZEIT Now Platform](https://zeit.co/) from the creators of Next.js.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

@@ -29,13 +29,17 @@ import { CacheProvider, EmotionCache } from "@emotion/react";
 const clientSideEmotionCache = createEmotionCache();
 
 // @see https://nextjs.org/docs/basic-features/layouts#with-typescript
+// Doc says to use "ReactNode" as the return type at the time of writing (09/2021) but then that fails appWithTranslation
+// , ReactElement seems more appropriate
 type NextPageWithLayout = NextPage & {
-  getLayout?: (page: ReactElement) => ReactNode;
+  getLayout?: (page: ReactElement) => ReactElement; //ReactNode;
 };
+
 export interface VNAppProps extends AppProps {
   Component: NextPageWithLayout;
   emotionCache: EmotionCache;
 }
+
 function VNApp({
   Component,
   pageProps,
@@ -50,8 +54,8 @@ function VNApp({
   }); // you can also easily setup ApolloProvider on a per-page basis
   // Use the layout defined at the page level, if available
   // @see https://nextjs.org/docs/basic-features/layouts
-  const getLayout = Component.getLayout || ((page) => page);
-  return (
+  const getLayout = Component.getLayout ?? ((page) => page);
+  return getLayout(
     <CacheProvider value={emotionCache}>
       <VulcanComponentsProvider>
         <Head>

@@ -120,6 +120,7 @@
     "@vercel/ncc": "^0.30.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-import": "^1.13.3",
+    "chalk": "^4.1.2",
     "eslint": "^7.32.0",
     "graphql-voyager": "^1.0.0-rc.31",
     "mongodb-memory-server": "^7.3.6",
