@@ -6,6 +6,7 @@ import renderToString from "next-mdx-remote/render-to-string";
 import hydrate from "next-mdx-remote/hydrate";
 import { muiMdComponents } from "~/components/layout/muiMdComponents";
 import { PageLayout } from "~/components/layout";
+import { Box } from "@mui/material";
 
 // inject both the custom components + default components like h1, p, etc.
 const components = { ...muiMdComponents };
@@ -17,17 +18,18 @@ const HomePage = ({ source }) => {
     <PageLayout>
       <main>
         <Home />
-        {readMeContent}
+        <Box
+          sx={{
+            borderLeft: "1px solid",
+            paddingLeft: "24px",
+            borderImageSource: "linear-gradient(10deg, #e1009855, #3f77fa55)",
+            borderImageSlice: 1,
+            borderColor: "#3f77fa",
+          }}
+        >
+          {readMeContent}
+        </Box>
       </main>
-      <style jsx>{`
-        main {
-          border-left: 72px solid;
-          padding-left: 24px;
-          border-image-source: linear-gradient(10deg, #e1009855, #3f77fa55);
-          border-image-slice: 1;
-          border-color: #3f77fa;
-        }
-      `}</style>
     </PageLayout>
   );
 };
