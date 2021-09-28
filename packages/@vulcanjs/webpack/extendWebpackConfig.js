@@ -59,7 +59,7 @@ const extendWebpackConfig = (environment) => (webpackConfig) => {
   // @see https://github.com/angular/angular-cli/issues/20819
   // TODO: this is the sign of a server code leak, investigate if still needed
   // after we get rid of those leaks (O9/2021)
-  webpackConfig.resolve.fallback = { events: false };
+  webpackConfig.resolve.fallback = { events: false, path: false };
 
   withMagicImports(webpackConfig);
   return webpackConfig;
