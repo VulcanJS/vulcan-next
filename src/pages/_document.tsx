@@ -11,7 +11,7 @@ import theme from "~/lib/style/defaultTheme";
 import {
   getAppEnhancer as getMuiAppEnhancer,
   //getMuiDocumentInitialProps,
-} from "@vulcanjs/next-material-ui";
+} from "@vulcanjs/next-material-ui/server";
 import { i18nPropsFromCtx, DocumentLanguageProps } from "~/lib/i18n";
 
 interface VNSDocumentProps {

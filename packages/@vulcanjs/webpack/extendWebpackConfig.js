@@ -63,6 +63,7 @@ const extendWebpackConfig = (environment) => (webpackConfig) => {
     events: false,
     path: false,
     stream: false,
+    util: false,
   };
 
   withMagicImports(webpackConfig);

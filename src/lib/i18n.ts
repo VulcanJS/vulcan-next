@@ -13,7 +13,12 @@ const i18nInstance = new I18N({
   defaultLanguage: "en",
   otherLanguages: ["fr"],
   localeSubpaths: {},
-  localePath: path.resolve("./public/locales"),
+  // TODO: this code seems to run client-side
+  // to be improved when updating i18n
+  localePath:
+    typeof path.resolve === "function"
+      ? path.resolve("./public/locales")
+      : "./public/locales",
 });
 
 // reexport everything

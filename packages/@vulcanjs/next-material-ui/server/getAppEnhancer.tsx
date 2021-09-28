@@ -3,7 +3,7 @@ import { AppSheetsCollector, Sheets } from "@vulcanjs/next-style-collector";
 
 import createEmotionServer from "@emotion/server/create-instance";
 // import theme from "/src/theme";
-import { createEmotionCache } from "./emotion/createEmotionCache";
+import { createEmotionCache } from "../emotion/createEmotionCache";
 
 export const getAppEnhancer = (): AppSheetsCollector => {
   const cache = createEmotionCache();
