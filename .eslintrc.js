@@ -1,36 +1,37 @@
-{
-  "extends": ["plugin:cypress/recommended", "next"],
-  "root": true,
-  "plugins": [],
-  "env": {
-    "browser": true,
-    "commonjs": true,
-    "es6": true,
-    "node": true
+module.exports = {
+  extends: ["plugin:cypress/recommended", "next"],
+  root: true,
+  plugins: [],
+  env: {
+    browser: true,
+    commonjs: true,
+    es6: true,
+    node: true,
   },
-  "parserOptions": {
-    "ecmaVersion": 2018,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
+  parserOptions: {
+    ecmaVersion: 2018,
+    sourceType: "module",
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
+  settings: {
+    react: {
+      version: "detect",
+    },
   },
-  "overrides": [
-    { "files": ["**/__tests__/**"], "env": { "jest": true } },
-      {"files": ["**/*.stories.tsx"],
-        "rules": {
-          // stories always have a named default export
-          "import/no-anonymous-default-export": "off"
-      }
+  overrides: [
+    { files: ["**/__tests__/**"], env: { jest: true } },
+    {
+      files: ["**/*.stories.tsx"],
+      rules: {
+        // stories always have a named default export
+        "import/no-anonymous-default-export": "off",
+      },
     },
     {
-      "files": ["**/*.ts", "**/*.tsx"],
-      "rules": {
+      files: ["**/*.ts", "**/*.tsx"],
+      rules: {
         // Already handled by TS
         "no-dupe-class-members": "off",
         "no-undef": "off",
@@ -39,16 +40,16 @@
         "no-use-before-define": "off",
         "no-unused-vars": "off",
         "no-unused-expressions": "off",
-        "no-useless-constructor": "off"
-      }
-    }
+        "no-useless-constructor": "off",
+      },
+    },
   ],
-  "rules": {
+  rules: {
     //"quotes": ["error", "single"],
     "array-callback-return": "warn",
-    "default-case": ["warn", { "commentPattern": "^no default$" }],
+    "default-case": ["warn", { commentPattern: "^no default$" }],
     "dot-location": ["warn", "property"],
-    "eqeqeq": ["warn", "smart"],
+    eqeqeq: ["warn", "smart"],
     "new-parens": "warn",
     "no-array-constructor": "warn",
     "no-caller": "warn",
@@ -73,20 +74,20 @@
     "no-invalid-regexp": "warn",
     "no-iterator": "warn",
     "no-label-var": "warn",
-    "no-labels": ["warn", { "allowLoop": true, "allowSwitch": false }],
+    "no-labels": ["warn", { allowLoop: true, allowSwitch: false }],
     "no-lone-blocks": "warn",
     "no-loop-func": "warn",
     "no-mixed-operators": [
       "warn",
       {
-        "groups": [
+        groups: [
           ["&", "|", "^", "~", "<<", ">>", ">>>"],
           ["==", "!=", "===", "!==", ">", ">=", "<", "<="],
           ["&&", "||"],
-          ["in", "instanceof"]
+          ["in", "instanceof"],
         ],
-        "allowSamePrecedence": false
-      }
+        allowSamePrecedence: false,
+      },
     ],
     "no-multi-str": "warn",
     "no-native-reassign": "warn",
@@ -98,7 +99,7 @@
     "no-obj-calls": "warn",
     "no-octal": "warn",
     "no-octal-escape": "warn",
-    "no-redeclare": ["warn", { "builtinGlobals": false }],
+    "no-redeclare": ["warn", { builtinGlobals: false }],
     "no-regex-spaces": "warn",
     "no-restricted-syntax": ["warn", "WithStatement"],
     "no-script-url": "warn",
@@ -116,26 +117,26 @@
     "no-unused-expressions": [
       "error",
       {
-        "allowShortCircuit": true,
-        "allowTernary": true,
-        "allowTaggedTemplates": true
-      }
+        allowShortCircuit: true,
+        allowTernary: true,
+        allowTaggedTemplates: true,
+      },
     ],
     "no-unused-labels": "warn",
     "no-unused-vars": [
       "warn",
       {
-        "args": "none",
-        "ignoreRestSiblings": true
-      }
+        args: "none",
+        ignoreRestSiblings: true,
+      },
     ],
     "no-use-before-define": [
       "warn",
       {
-        "functions": false,
-        "classes": false,
-        "variables": false
-      }
+        functions: false,
+        classes: false,
+        variables: false,
+      },
     ],
     "no-useless-computed-key": "warn",
     "no-useless-concat": "warn",
@@ -144,22 +145,22 @@
     "no-useless-rename": [
       "warn",
       {
-        "ignoreDestructuring": false,
-        "ignoreImport": false,
-        "ignoreExport": false
-      }
+        ignoreDestructuring: false,
+        ignoreImport: false,
+        ignoreExport: false,
+      },
     ],
     "no-with": "warn",
     "no-whitespace-before-property": "warn",
     "react-hooks/exhaustive-deps": "warn",
     "require-yield": "warn",
     "rest-spread-spacing": ["warn", "never"],
-    "strict": ["warn", "never"],
+    strict: ["warn", "never"],
     "unicode-bom": ["warn", "never"],
     "use-isnan": "warn",
     "valid-typeof": "warn",
     "getter-return": "warn",
-    "react/forbid-foreign-prop-types": ["warn", { "allowInPropTypes": true }],
+    "react/forbid-foreign-prop-types": ["warn", { allowInPropTypes: true }],
     "react/jsx-no-comment-textnodes": "warn",
     "react/jsx-no-duplicate-props": "warn",
     "react/jsx-no-target-blank": "warn",
@@ -167,9 +168,9 @@
     "react/jsx-pascal-case": [
       "warn",
       {
-        "allowAllCaps": true,
-        "ignore": []
-      }
+        allowAllCaps: true,
+        ignore: [],
+      },
     ],
     "react/jsx-uses-react": "warn",
     "react/jsx-uses-vars": "warn",
@@ -182,6 +183,6 @@
     "react/require-render-return": "error",
     "react/style-prop-object": "warn",
     "react-hooks/rules-of-hooks": "error",
-    "react/no-unescaped-entities": ["error", {"forbid": [">", "}"]}]
-  }
-}
+    "react/no-unescaped-entities": ["error", { forbid: [">", "}"] }],
+  },
+};

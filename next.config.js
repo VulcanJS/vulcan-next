@@ -61,6 +61,15 @@ module.exports = (phase, { defaultConfig }) => {
     extendedConfig = withBundleAnalyzer(extendedConfig);
   }
 
+  // Disable linting during build => the linter may have optional dev dependencies
+  // (eslint-plugin-cypress) that wont exist during prod build
+  // You should lint manually only
+  extendedConfig.eslint = {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true,
+  };
+
   // To support markdown import
   extendedConfig.pageExtensions = ["js", "jsx", "md", "mdx", "ts", "tsx"];
   extendedConfig = flowRight([
