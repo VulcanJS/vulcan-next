@@ -3,7 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import { ApolloServer, gql } from "apollo-server-express";
 import { makeExecutableSchema, mergeSchemas } from "graphql-tools";
-import { buildApolloSchema } from "@vulcanjs/graphql";
+import { buildApolloSchema } from "@vulcanjs/graphql/server";
 
 import mongoConnection from "~/lib/api/middlewares/mongoConnection";
 import corsOptions from "~/lib/api/cors";

@@ -1,7 +1,7 @@
 /**
  * Context creation, for graphql but also REST endpoints
  */
-import { Connector, VulcanGraphqlModel } from "@vulcanjs/graphql";
+import { Connector, VulcanGraphqlModel } from "@vulcanjs/graphql/server";
 
 import { createMongooseConnector } from "@vulcanjs/mongo";
 import { User, UserConnector, UserType } from "~/models/user.server";

@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { createMutator } from "@vulcanjs/graphql";
+import { createMutator } from "@vulcanjs/graphql/server";
 import { NextApiRequest, NextApiResponse } from "next";
 import { User, UserConnector, UserTypeServer } from "~/models/user.server";
 import { contextFromReq } from "~/lib/api/context";

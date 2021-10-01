@@ -1,4 +1,4 @@
-import { createMutator, getModelConnector } from "@vulcanjs/graphql";
+import { createMutator, getModelConnector } from "@vulcanjs/graphql/server";
 import { User } from "~/models/user";
 
 const seed = async (context) => {
