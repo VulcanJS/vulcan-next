@@ -73,14 +73,19 @@ export const Steps = () => {
   // be careful with step 0, that happens online
   return (
     <List>
-      {["Step 0", "Step 1", "Step 2", "Step 3"].map((stepName, stepIdx) => {
+      {[
+        { name: "Step 0", path: "/learn/intro-online" },
+        { name: "Step 1", path: "/learn/intro-offline" },
+        { name: "Step 2", path: "/learn/mongo" },
+        { name: "Step 3", path: "/learn/mongo" },
+      ].map((step, stepIdx) => {
         return (
-          <ListItem key={stepName}>
+          <ListItem key={step.name}>
             <ListItemButton
               disabled={stepIdx > maxStep}
               selected={stepIdx === currentStep}
             >
-              {stepName}
+              {step.name}
             </ListItemButton>
           </ListItem>
         );
