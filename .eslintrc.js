@@ -152,7 +152,8 @@ module.exports = {
     ],
     "no-with": "warn",
     "no-whitespace-before-property": "warn",
-    "react-hooks/exhaustive-deps": "warn",
+    // Way to many false positive, @see https://github.com/facebook/react/issues/22132
+    "react-hooks/exhaustive-deps": "off",
     "require-yield": "warn",
     "rest-spread-spacing": ["warn", "never"],
     strict: ["warn", "never"],

@@ -1,8 +1,7 @@
 import { Button } from "@mui/material";
-import { PageLayout } from "~/components/layout";
-import { MuiMdxLayout } from "~/components/layout/MuiMdxLayout";
+import { LearnLayout } from "~/components/vn/learn/LearnLayout";
 
-# Let's install Vulcan
+# Step 0: Let's install Vulcan
 
 ## Already familiar with JavaScript frameworks?
 
@@ -78,7 +77,7 @@ Now, let's run Vulcan:
 yarn run dev
 ```
 
-## Go to step 2
+## Go to step 1
 
 **Congratulation, you beat the first and hardest step!**
 
@@ -97,9 +96,5 @@ yarn run dev
 [Join us on Slack and ask your questions directly](http://slack.vulcanjs.org/)
 
 export default function IntroOnlinePage(props) {
-  return (
-    <PageLayout>
-      <MuiMdxLayout {...props} />
-    </PageLayout>
-  );
+  return <LearnLayout {...props} />;
 }
