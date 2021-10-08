@@ -1,43 +1,12 @@
 const { extendNextConfig } = require("./packages/@vulcanjs/next-config");
-// Use @next/mdx for a basic MDX support. However, in Vulcan Next we prefer
-// next-mdx-remote which is more advanced (loading remote MD, supporting styling correctly etc.)
-//const withMDX = require("@next/mdx")({ extension: /\.mdx?$/ });
+// Use @next/mdx for a basic MDX support.
+// See the how Vulcan Next docs are setup with next-mdx-remote
+// which is more advanced (loading remote MD, supporting styling correctly etc.)
+const withMDX = require("@next/mdx")({ extension: /\.mdx?$/ });
+const withPkgInfo = require("./.vn/nextConfig/withPkgInfo");
 
 const flowRight = require("lodash/flowRight");
 const debug = require("debug")("vns:next");
-
-// fooBar => FOO_BAR
-const camelToTitle = (camelStr) => {
-  return camelStr
-    .replace(/[A-Z]/g, " $1") // fooBar => foo Bar
-    .split(" ")
-    .map((t) => t.toUpperCase())
-    .join("_");
-};
-
-// NOTE: NEVER import package.json elswhere in your app!
-// We can import it here because next.config is not in the client side bundle
-// We then pass only the relevant values in the config
-const packageJSON = require("./package.json");
-
-// Add package.json metadata to runtime configs and environment
-const withPkgInfo = (nextConfig = {}) => {
-  // Public
-  // It's still unclear where such config should go
-  // @see https://github.com/vercel/next.js/discussions/14308
-  const publicPkgInfo = {
-    version: packageJSON.version,
-  };
-  if (!nextConfig.publicRuntimeConfig) nextConfig.publicRuntimeConfig = {};
-  nextConfig.publicRuntimeConfig.pkgInfo = publicPkgInfo;
-  // Also enhance environment with the same infos
-  Object.entries(publicPkgInfo).map(([key, value]) => {
-    const envKey = `NEXT_PUBLIC_PKGINFO_${camelToTitle(key)}`;
-    nextConfig.env[envKey] = `${value}`; // we convert to string
-  });
-
-  return nextConfig;
-};
 
 // @see https://nextjs.org/docs/api-reference/next.config.js/runtime-configuration
 module.exports = (phase, { defaultConfig }) => {
@@ -76,8 +45,37 @@ module.exports = (phase, { defaultConfig }) => {
   extendedConfig.pageExtensions = ["js", "jsx", "md", "mdx", "ts", "tsx"];
   extendedConfig = flowRight([
     withPkgInfo,
+    withMDX,
     // add other wrappers here
   ])(extendedConfig);
+
+  extendedConfig.redirects = async () => {
+    // learn offline vs online
+    return [
+      {
+        source: "/learn",
+        destination: "/learn/intro-offline",
+        permanent: true,
+        has: [
+          {
+            type: "host",
+            value: "localhost",
+          },
+        ],
+      },
+      {
+        source: "/learn",
+        destination: "/learn/intro-online",
+        permanent: true,
+        has: [
+          {
+            type: "host",
+            value: "vulcan-next",
+          },
+        ],
+      },
+    ];
+  };
 
   debug("Extended next config FINAL " + JSON.stringify(extendedConfig));
 
