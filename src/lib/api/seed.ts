@@ -2,6 +2,10 @@ import { createMutator, getModelConnector } from "@vulcanjs/graphql/server";
 import { User } from "~/models/user";
 
 const seed = async (context) => {
+  if (process.env.MONGO_URI?.match(/lbke-demo/)) {
+    console.log("Using demo database, skip seeding");
+    return;
+  }
   // Add your seed functions here based on the example of users
   const UserConnector = getModelConnector(context, User);
 
