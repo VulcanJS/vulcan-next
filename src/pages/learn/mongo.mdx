@@ -1,7 +1,14 @@
 import { Button } from "@mui/material";
 import { LearnLayout } from "~/components/vn/learn/LearnLayout";
+import { StepIfElse } from "~/components/vn/learn/Steps";
 
 # Step 2: Plug the database
+
+Vulcan is a **full-stack** framework. It means that it provides a way to create user interfaces (front-end) and to manage a web server (back-end).
+Most back-end need to manipulate data, using a database, like [MongoDB](https://www.mongodb.com/).
+This is what we sometimes call the ["3-tier architecture"](https://en.wikipedia.org/wiki/Multitier_architecture#Three-tier_architecture).
+
+Therefore, for Vulcan to work, you need to setup a Mongo database on your computer.
 
 ## Already familiar with Docker and Mongo?
 
@@ -49,14 +56,32 @@ MONGO_URI="mongodb+srv://johnDoe:T74OcxqL15TRt7Zn@lbke-demo-ara2d.mongodb.net/sa
 # MONGO_URI="mongodb://localhost:27017/vulcan-next-app"
 ```
 
-You can comment the first value, and uncomment the second one.
+You can comment the first value, and remove the second one:
+
+```
+MONGO_URI="mongodb://localhost:27017/vulcan-next-app"
+```
+
 Now, Vulcan Next will use your local database.
+
+**Restart your server for this change to apply (ctrl+C in your terminal and then `yarn run dev`).**
 
 ## Go to step 3
 
-<Button variant="contained" disabled={true}>
-  TODO: reuse Steps code to detect if we have users
-</Button>
+If this button is still disabled:
+
+- check if you Mongo server is running correctly
+- restart Vulcan Next (ctrl+C in your terminal, and `yarn run dev` again)
+
+  <StepIfElse
+    step={3}
+    ifOk={<Button variant="contained">Click to go to next step</Button>}
+    ifNotOk={
+      <Button variant="contained" disabled={true}>
+        Please complete step 2 to activate this button
+      </Button>
+    }
+  ></StepIfElse>
 
 export default function MongoPage(props) {
   return <LearnLayout {...props} />;

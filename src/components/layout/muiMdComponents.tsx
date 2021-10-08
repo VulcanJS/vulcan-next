@@ -35,9 +35,9 @@ export const muiMdComponents = {
   //   </p>
   // ),
   li: (props) => (
-    <p>
-      - <Typography component={"span"} variant="body2" {...props} />
-    </p>
+    <li>
+      <Typography component="span" variant="body2" {...props} />
+    </li>
   ),
   table: Table,
   thead: TableHead,
