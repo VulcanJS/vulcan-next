@@ -12,7 +12,7 @@ const components = { ...muiMdComponents };
 export const MuiMdxLayout = (props) => {
   return (
     <MDXProvider components={components}>
-      <main {...props} />
+      <div {...props} />
     </MDXProvider>
   );
 };

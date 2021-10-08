@@ -11,7 +11,9 @@ import {
   // TableCell,
   TableRow,
   Link,
+  Paper,
 } from "@mui/material";
+import vnColors from "~/lib/style/colors";
 
 // @see https://mdxjs.com/table-of-components
 // NOTE: those components are also used by next-mdx-remote based pages
@@ -42,7 +44,24 @@ export const muiMdComponents = {
   tr: TableRow,
   // th/td will give SyntaxError: Arg string terminates parameters early for unknown reasons
   // "th/td": TableCell,
-  // pre: Typography,
+  pre: (props) => (
+    <Paper
+      elevation={1}
+      sx={{
+        mb: "1em",
+        mt: "1em",
+        px: 3,
+        py: 1,
+        "& pre": { my: 0 },
+        color: vnColors.darkBlueApollo, // "primary.main",
+        backgroundColor: (theme) => theme.palette.grey["50"], // "primary.main",
+        borderLeft: `2px solid ${vnColors.pinkGraphql}`,
+        borderRight: `2px solid ${vnColors.lightBlueReact}`,
+      }}
+    >
+      <pre {...props} />
+    </Paper>
+  ),
   // code: Typography,
   // em: Typography,
   // strong: Typography,
