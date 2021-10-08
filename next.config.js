@@ -1,4 +1,6 @@
 const { extendNextConfig } = require("./packages/@vulcanjs/next-config");
+// Use @next/mdx for a basic MDX support. However, in Vulcan Next we prefer
+// next-mdx-remote which is more advanced (loading remote MD, supporting styling correctly etc.)
 //const withMDX = require("@next/mdx")({ extension: /\.mdx?$/ });
 
 const flowRight = require("lodash/flowRight");
