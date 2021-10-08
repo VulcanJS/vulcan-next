@@ -5,24 +5,29 @@ import { LearnLayout } from "~/components/vn/learn/LearnLayout";
 
 ## Already familiar with JavaScript frameworks?
 
+If you are a beginner, skip to next section.
+If you feel confident in your programming skills, run this in your terminal:
+
 ```sh
 git clone -b main https://github.com/VulcanJS/vulcan-next
 cd ./vulcan-next
 yarn install
 yarn run dev
-xdg-open http://localhost:3000/learn/intro-local
+xdg-open http://localhost:3000/learn
 ```
 
-If those commands didn't make sense for you, that's ok! The sections below will explain
+If those commands don't make sense for you, that's ok! The sections below will explain
 Vulcan installation process step by step.
+
+---
 
 ## Prerequisites
 
-This sections has a lot of prerequesites! If you never used Node.js before, the setup will feel complicated,
-that's perfectly normal at this point, keep going!
+This first step has a lot of prerequesites! If you've never used Node.js before, the setup will feel complicated.
+That's perfectly normal and fine at this point, keep going!
 
 - Being able to use the terminal. All the commands are provided in "Linux" shell format. They will work
-  on Linux (Ubuntu, Fedora, etc.) and Mac, but not on Windows! If you are using Windows, you might want to use [WSL](https://docs.microsoft.com/fr-fr/windows/wsl/install) to get the same results.
+  on Linux (Ubuntu, Fedora, etc.) and Mac, but not on Windows. If you are using Windows, you might want to use [WSL](https://docs.microsoft.com/fr-fr/windows/wsl/install) to get the same results.
 - Having [Git](https://git-scm.com/) installed.
 - Having Node.js installed. We recommend using [NVM](https://github.com/nvm-sh/nvm) or [Volta](https://volta.sh/).
 
@@ -31,10 +36,13 @@ that's perfectly normal at this point, keep going!
 Vulcan Next is a framework based on Next.js.
 If you don't know Next.js: good news, they have a live tutorial as well!
 
-<Button>
-  <a target="_blank" rel="noreferrer" href="https://nextjs.org/learn/">
-    Learn Next.js
-  </a>
+<Button
+  variant="contained"
+  target="_blank"
+  rel="noreferrer"
+  href="https://nextjs.org/learn/"
+>
+  Learn Next.js
 </Button>
 
 ## Get the code on your own computer
@@ -66,8 +74,8 @@ yarn install
 ## Run Vulcan
 
 Wow, that was probably the most difficult step. Good news is that most Node.js/JavaScript frameworks
-works exactly the same: if it's your first time using a JS framework, you'll be able to reuse the knowledge
-for other projects.
+works exactly the same: if it's your first time using a JS framework,
+you'll be able to reuse this new knowledge for other projects.
 
 Now, let's run Vulcan:
 
@@ -81,19 +89,14 @@ yarn run dev
 
 **Congratulation, you beat the first and hardest step!**
 
-<Button>
-  <a
-    target="_blank"
-    rel="noreferrer"
-    href="http://localhost:3000/learn/intro-local"
-  >
-    Now, click to open your local version of Vulcan
-  </a>
+<Button
+  target="_blank"
+  rel="noreferrer"
+  href="http://localhost:3000/learn/intro-offline"
+  variant="contained"
+>
+  Click to open your local version of Vulcan and go to next step
 </Button>
-
-**Had some trouble with this first step?**
-
-[Join us on Slack and ask your questions directly](http://slack.vulcanjs.org/)
 
 export default function IntroOnlinePage(props) {
   return <LearnLayout {...props} />;

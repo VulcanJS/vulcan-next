@@ -12,6 +12,7 @@ import {
   TableRow,
   Link,
   Paper,
+  Divider,
 } from "@mui/material";
 import vnColors from "~/lib/style/colors";
 
@@ -53,7 +54,6 @@ export const muiMdComponents = {
         px: 3,
         py: 1,
         "& pre": { my: 0 },
-        color: vnColors.darkBlueApollo, // "primary.main",
         backgroundColor: (theme) => theme.palette.grey["50"], // "primary.main",
         borderLeft: `2px solid ${vnColors.pinkGraphql}`,
         borderRight: `2px solid ${vnColors.lightBlueReact}`,
@@ -62,12 +62,31 @@ export const muiMdComponents = {
       <pre {...props} />
     </Paper>
   ),
-  // code: Typography,
+  code: (props) => (
+    <Typography
+      sx={{
+        color: vnColors.darkBlueApollo, // "primary.main",
+      }}
+    >
+      <code {...props} />
+    </Typography>
+  ),
+  inlineCode: (props) => (
+    <Typography
+      sx={{
+        backgroundColor: (theme) => theme.palette.grey["50"], // "primary.main",
+        color: vnColors.darkBlueApollo, // "primary.main",
+        display: "inline",
+      }}
+    >
+      <code {...props} />
+    </Typography>
+  ),
   // em: Typography,
   // strong: Typography,
   //del: Typography,
   //inlineCode: Typography,
-  //hr: Typography,
+  hr: (props) => <Divider sx={{ my: 2 }} {...props} />,
   a: Link,
   // TODO: didn't find a way to override image styling...
   img: (props) => (

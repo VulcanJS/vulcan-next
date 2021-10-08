@@ -3,22 +3,18 @@ import { LearnLayout } from "~/components/vn/learn/LearnLayout";
 
 # Step 1: Opening Vulcan locally
 
-Great, you installed and started Vulcan on your own machine!
+Great, you have installed and started Vulcan on your own machine!
 
 The "`localhost`" in the url means that Vulcan Next is currently running on your own computer,
 litterally the "local host".
 
+This is you have to do for this step. Next step is going to be about the database.
+
 ## Go to step 2
 
-<Button>
-  <a target="_blank" rel="noreferrer" href="/learn/mongo">
-    Now, let's setup the database
-  </a>
+<Button variant="contained" href="/learn/mongo">
+  Click to go to next step
 </Button>
-
-**Had some trouble with this step?**
-
-[Join us on Slack and ask your questions directly](http://slack.vulcanjs.org/)
 
 export default function IntroOfflinePage(props) {
   return <LearnLayout {...props} />;
