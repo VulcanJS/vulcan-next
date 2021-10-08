@@ -74,10 +74,10 @@ export const Steps = () => {
   return (
     <List>
       {[
-        { name: "Step 0", path: "/learn/intro-online" },
-        { name: "Step 1", path: "/learn/intro-offline" },
-        { name: "Step 2", path: "/learn/mongo" },
-        { name: "Step 3", path: "/learn/mongo" },
+        { name: "0 - Install", path: "/learn/intro-online" },
+        { name: "1 - Run", path: "/learn/intro-offline" },
+        { name: "2 - Mongo", path: "/learn/mongo" },
+        { name: "3 - Done!", path: "/learn/mongo" },
       ].map((step, stepIdx) => {
         return (
           <ListItem key={step.name}>
