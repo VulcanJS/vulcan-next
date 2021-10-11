@@ -4,6 +4,7 @@ import { useMulti } from "@vulcanjs/react-hooks";
 import { User } from "~/models/user";
 import { UserType } from "~/models/user";
 import { useRouter } from "next/router";
+import { NextMuiListItemButton } from "@vulcanjs/next-mui";
 
 /**
  * @client-only
@@ -84,12 +85,14 @@ export const Steps = () => {
       {steps.map((step, stepIdx) => {
         return (
           <ListItem key={step.name}>
-            <ListItemButton
+            {/** Since steps are pointing to a local page, we need a Next link */}
+            <NextMuiListItemButton
+              href={step.path}
               disabled={stepIdx > maxStep}
               selected={stepIdx === currentStep}
             >
               {step.name}
-            </ListItemButton>
+            </NextMuiListItemButton>
           </ListItem>
         );
       })}

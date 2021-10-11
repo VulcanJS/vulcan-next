@@ -4,7 +4,7 @@ import { ReactElement, ReactNode } from "react";
 // Comment if you don't need i18n
 import { appWithTranslation } from "~/lib/i18n";
 // Comment if you don't need Material UI
-import { createEmotionCache } from "@vulcanjs/next-material-ui";
+import { createEmotionCache } from "@vulcanjs/next-mui";
 import { MuiThemeProvider } from "~/components/providers";
 
 import Head from "next/head";

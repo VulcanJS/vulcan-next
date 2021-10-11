@@ -2,7 +2,7 @@ import React from "react";
 import models from "~/models";
 import { PageLayout } from "~/components/layout";
 import { Typography, List, ListItem } from "@mui/material";
-import { Link } from "@vulcanjs/next-material-ui";
+import { Link } from "@vulcanjs/next-mui";
 
 const ModelsPage = () => {
   return (

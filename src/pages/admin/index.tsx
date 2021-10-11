@@ -1,6 +1,6 @@
 import React from "react";
 import { useUser } from "~/components/account/hooks";
-import { NextMuiLink } from "@vulcanjs/next-material-ui";
+import { NextMuiLink } from "@vulcanjs/next-mui";
 import { Typography } from "@mui/material";
 import { PageLayout } from "~/components/layout";
 import { routes } from "~/lib/routes";

@@ -1,5 +1,5 @@
 {
-  "name": "@vulcanjs/next-material-ui",
+  "name": "@vulcanjs/next-mui",
   "version": "0.0.1",
   "description": "Vulcan Next Material UI binding",
   "main": "./dist/index.js",

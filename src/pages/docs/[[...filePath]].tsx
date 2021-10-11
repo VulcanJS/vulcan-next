@@ -2,7 +2,7 @@ import renderToString from "next-mdx-remote/render-to-string";
 import hydrate from "next-mdx-remote/hydrate";
 import path from "path";
 import { getMdxPaths, MdxPath } from "@vulcanjs/mdx";
-import { Link as NextLink } from "@vulcanjs/next-material-ui";
+import { Link as NextLink } from "@vulcanjs/next-mui";
 import { promises as fsPromises, lstatSync, existsSync } from "fs";
 import { List, ListItem, Link, Typography } from "@mui/material";
 import matter from "gray-matter";
