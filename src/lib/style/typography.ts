@@ -5,7 +5,7 @@ export const typeScale = {
   h3: "1.5em",
   h4: "1.3em",
   h5: "1.2em",
-  p: "1em",
+  p: "1.05em",
   helper: "0.8em" /* 14 px */,
   legal: "0.7em",
 };

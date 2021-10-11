@@ -1,10 +1,9 @@
-import { List, ListItem, ListItemButton } from "@mui/material";
+import { List, ListItem, ListItemButton, Typography } from "@mui/material";
 import { ReactNode, useEffect, useState } from "react";
 import { useMulti } from "@vulcanjs/react-hooks";
 import { User } from "~/models/user";
 import { UserType } from "~/models/user";
 import { useRouter } from "next/router";
-import { S_IFSOCK } from "constants";
 
 /**
  * @client-only
@@ -29,6 +28,7 @@ const detectStep = ({ usersCount }) => {
   // etc.
 };
 const useMaxStep = () => {
+  const currentStep = useCurrentStep();
   const [step, setStep] = useState<number>(-1);
 
   // various data needed to detect the step
@@ -46,17 +46,25 @@ const useMaxStep = () => {
       setStep(nextStep);
     }
   }, [usersCount]);
-  return step;
+  // NOTE: when "forcing" a step, by accessing its url, it becomes the max step automatically
+  // (it's ok to access a step manually)
+  return Math.max(step, currentStep);
 };
+
+const steps = [
+  { name: "0 - Install", path: "/learn/intro-online" },
+  { name: "1 - Run", path: "/learn/intro-offline" },
+  { name: "2 - Mongo", path: "/learn/mongo" },
+  { name: "3 - Models", path: "/learn/about-models" },
+  { name: "Done!", path: "/learn/final" },
+];
+const stepPaths = steps.map((s, idx) => {
+  return [s.path, idx] as const;
+});
 
 const useCurrentStep = () => {
   const router = useRouter();
   const { pathname } = router;
-  const stepPaths = [
-    ["intro-online", 0],
-    ["intro-offline", 1],
-    ["mongo", 2],
-  ] as const;
   const currentStep = stepPaths.find(([pathMatch, step]) => {
     if (pathname.match(pathMatch)) {
       return true;
@@ -73,12 +81,7 @@ export const Steps = () => {
   // be careful with step 0, that happens online
   return (
     <List>
-      {[
-        { name: "0 - Install", path: "/learn/intro-online" },
-        { name: "1 - Run", path: "/learn/intro-offline" },
-        { name: "2 - Mongo", path: "/learn/mongo" },
-        { name: "3 - Done!", path: "/learn/mongo" },
-      ].map((step, stepIdx) => {
+      {steps.map((step, stepIdx) => {
         return (
           <ListItem key={step.name}>
             <ListItemButton
@@ -94,6 +97,11 @@ export const Steps = () => {
   );
 };
 
+/**
+ * Enable a step button or show a message if disabled
+ * @param param0
+ * @returns
+ */
 export const StepIfElse = ({
   ifOk,
   ifNotOk = null,

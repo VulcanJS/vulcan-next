@@ -71,11 +71,7 @@ If this button is still disabled:
 
   <StepIfElse
     step={3}
-    ifOk={
-      <Button variant="contained" href="/learn/about-models">
-        Click to go to next step
-      </Button>
-    }
+    ifOk={<Button variant="contained">Click to go to next step</Button>}
     ifNotOk={
       <Button variant="contained" disabled={true}>
         Please complete step 2 to activate this button

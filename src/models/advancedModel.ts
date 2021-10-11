@@ -9,19 +9,16 @@ import {
 } from "@vulcanjs/graphql";
 
 const schema: VulcanSchema = {
-  /** Unique id of the document in the database. You'll want to leave this field as is. */
   _id: {
     type: String,
     optional: true,
     canRead: ["guests"],
   },
-  /** _id of the user that created the document. This special field is used to handle the "ownership" of the document. */
   userId: {
     type: String,
     optional: true,
     canRead: ["guests"],
   },
-  /** Timestamps handled by the database (you could also define updatedAt) */
   createdAt: {
     type: Date,
     optional: true,
@@ -30,18 +27,17 @@ const schema: VulcanSchema = {
       return new Date();
     },
   },
-  // Your own custom fields. Press ctrl+space to see the possible fields.
   someField: {
     type: String,
     optional: true,
     canRead: ["guests"],
     canUpdate: ["admins"],
     canCreate: ["owners"],
+    searchable: true,
   },
 };
 
 export interface SampleModelType extends VulcanDocument {
-  // List your custom fields (_id, userId, createdAt, updatedAt and slug are already in VulcanDocument type)
   someField: string;
 }
 

@@ -1,0 +1,35 @@
+import { Button } from "@mui/material";
+import { LearnLayout } from "~/components/vn/learn/LearnLayout";
+import {
+  StepIfElse,
+  MultipleChoiceQuestion,
+} from "~/components/vn/learn/Steps";
+import models from "~/models";
+
+# Congratulations!
+
+**Congratulations, you went through all steps of the "Learn" section!**
+
+This should be enough to get you started with Vulcan Next.
+However, creating a full-fledged web application is more complicated than plugging
+a Mongo database and writing a few models.
+
+We strongly advise to join our Slack. You'll meet a community of developers
+that strive to create the best web applications, just like you!
+
+<Button
+  sx={{ my: 3 }}
+  color="secondary"
+  variant="contained"
+  href="http://slack.vulcanjs.org"
+  target="_blank"
+  rel="noreferrer"
+>
+  Join us on Slack and ask your questions directly
+</Button>
+
+**See you soon!**
+
+export default function Final(props) {
+  return <LearnLayout {...props} />;
+}

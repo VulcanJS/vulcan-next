@@ -73,10 +73,10 @@ export const muiMdComponents = {
   ),
   inlineCode: (props) => (
     <Typography
+      component="span"
       sx={{
         backgroundColor: (theme) => theme.palette.grey["50"], // "primary.main",
         color: vnColors.darkBlueApollo, // "primary.main",
-        display: "inline",
       }}
     >
       <code {...props} />
