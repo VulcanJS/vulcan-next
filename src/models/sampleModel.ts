@@ -49,7 +49,7 @@ const name = "Sample"; // Change this value when creating your own model
 const typeName = name;
 const multiTypeName = "Samples"; // Change this value when creating your own model
 export const modelDef: CreateGraphqlModelOptionsShared = {
-  name: "sample",
+  name,
   schema,
   graphql: {
     typeName,
