@@ -1,3 +1,4 @@
+import { NextMuiButton } from "@vulcanjs/next-mui";
 import { Button } from "@mui/material";
 import { LearnLayout } from "~/components/vn/learn/LearnLayout";
 import { StepIfElse } from "~/components/vn/learn/Steps";
@@ -69,15 +70,18 @@ If this button is still disabled:
 - check if you Mongo server is running correctly
 - restart Vulcan Next (ctrl+C in your terminal, and `yarn run dev` again)
 
-  <StepIfElse
-    step={3}
-    ifOk={<Button variant="contained">Click to go to next step</Button>}
-    ifNotOk={
-      <Button variant="contained" disabled={true}>
-        Please complete step 2 to activate this button
-      </Button>
-    }
-  ></StepIfElse>
+      <StepIfElse
+
+  step={3}
+  ifOk={<NextMuiButton variant="contained" href=="/learn/final">Click to go to next step</NextMuiButton>}
+  ifNotOk={
+
+  <Button variant="contained" disabled={true}>
+    Please complete step 2 to activate this button
+  </Button>
+  }
+
+  > </StepIfElse>
 
 export default function MongoPage(props) {
   return <LearnLayout {...props} />;

@@ -85,7 +85,6 @@ export const Steps = () => {
       {steps.map((step, stepIdx) => {
         return (
           <ListItem key={step.name}>
-            {/** Since steps are pointing to a local page, we need a Next link */}
             <NextMuiListItemButton
               href={step.path}
               disabled={stepIdx > maxStep}

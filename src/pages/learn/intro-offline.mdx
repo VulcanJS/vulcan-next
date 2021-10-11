@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { NextMuiButton } from "@vulcanjs/next-mui";
 import { LearnLayout } from "~/components/vn/learn/LearnLayout";
 
 # Step 1: Opening Vulcan locally
@@ -12,9 +12,9 @@ This is all you have to do for this step. Next step is going to be about the dat
 
 ## Go to step 2
 
-<Button variant="contained" href="/learn/mongo">
+<NextMuiButton href="/learn/mongo" variant="contained">
   Click to go to next step
-</Button>
+</NextMuiButton>
 
 export default function IntroOfflinePage(props) {
   return <LearnLayout {...props} />;

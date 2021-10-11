@@ -28,23 +28,25 @@ export const NextMuiButton = ({
   const linkProps = pick(props, nextLinkProps);
   const buttonProps = omit(props, nextLinkProps);
   return (
-    <Button {...buttonProps}>
-      <NextLink {...linkProps}>{children}</NextLink>
-    </Button>
+    <NextLink {...linkProps}>
+      <Button {...buttonProps}>{children}</Button>
+    </NextLink>
   );
 };
 /**
  * Button to be used when using href and pointing toward a local page
+ *
+ * Do not pass href directly to Button or ListItemButton, this leads to bad UX
+ * Use a Next link for better consistency (will use an SPA link)
  */
-export const NextMuiListItemButton = ({
-  children,
-  ...props
-}: ListItemButtonProps & NextLinkProps) => {
+export const NextMuiListItemButton = (
+  props: ListItemButtonProps & NextLinkProps
+) => {
   const linkProps = pick(props, nextLinkProps);
   const buttonProps = omit(props, nextLinkProps);
   return (
-    <ListItemButton {...buttonProps}>
-      <NextLink {...linkProps}>{children}</NextLink>
-    </ListItemButton>
+    <NextLink {...linkProps} passHref>
+      <ListItemButton {...buttonProps}></ListItemButton>
+    </NextLink>
   );
 };
