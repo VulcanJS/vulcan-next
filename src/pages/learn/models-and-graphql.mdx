@@ -73,15 +73,13 @@ If this button is still disabled:
       <StepIfElse
 
   step={3}
-  ifOk={<NextMuiButton variant="contained" href=="/learn/final">Click to go to next step</NextMuiButton>}
+  ifOk={<NextMuiButton variant="contained" href="/learn/final">Click to go to next step</NextMuiButton>}
   ifNotOk={
 
   <Button variant="contained" disabled={true}>
     Please complete step 2 to activate this button
   </Button>
-  }
-
-  > </StepIfElse>
+  } />
 
 export default function MongoPage(props) {
   return <LearnLayout {...props} />;
