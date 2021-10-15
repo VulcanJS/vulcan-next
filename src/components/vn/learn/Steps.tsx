@@ -57,6 +57,7 @@ const steps = [
   { name: "1 - Run", path: "/learn/intro-offline" },
   { name: "2 - Mongo", path: "/learn/mongo" },
   { name: "3 - Models", path: "/learn/about-models" },
+  { name: "4 - Server models", path: "/learn/server-only-models" },
   { name: "Done!", path: "/learn/final" },
 ];
 const stepPaths = steps.map((s, idx) => {

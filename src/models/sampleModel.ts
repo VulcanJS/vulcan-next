@@ -2,13 +2,14 @@
  * I am a sample model
  * Replace me with your own
  */
-import { VulcanSchema, VulcanDocument } from "@vulcanjs/schema";
+import { VulcanDocument } from "@vulcanjs/schema";
 import {
   createGraphqlModel,
   CreateGraphqlModelOptionsShared,
+  VulcanGraphqlSchema,
 } from "@vulcanjs/graphql";
 
-const schema: VulcanSchema = {
+export const schema: VulcanGraphqlSchema = {
   /** Unique id of the document in the database. You'll want to leave this field as is. */
   _id: {
     type: String,

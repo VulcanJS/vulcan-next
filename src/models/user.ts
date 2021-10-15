@@ -1,4 +1,4 @@
-import { VulcanDocument, VulcanSchema } from "@vulcanjs/schema";
+import { VulcanDocument } from "@vulcanjs/schema";
 import SimpleSchema from "simpl-schema";
 import {
   createGraphqlModel,
