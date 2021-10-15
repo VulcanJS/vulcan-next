@@ -3,10 +3,10 @@ import colors from "./colors";
 // @see https://material-ui.com/customization/default-theme
 // @see https://github.com/mui-org/material-ui/issues/20787
 // @see https://github.com/vercel/styled-jsx/issues/142
-import { createTheme, adaptV4Theme } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
 
 // Create a theme instance.
-const theme = createTheme(adaptV4Theme({
+const theme = createTheme({
   palette: {
     background: {
       default: colors.white,
@@ -15,6 +15,6 @@ const theme = createTheme(adaptV4Theme({
       primary: colors.greyVulcan,
     },
   },
-}));
+});
 
 export default theme;
