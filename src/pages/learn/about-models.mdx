@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { NextMuiButton } from "@vulcanjs/next-mui";
 import { LearnLayout } from "~/components/vn/learn/LearnLayout";
 import { StepIfElse } from "~/components/vn/learn/Steps";
 import { MultipleChoiceQuestion } from "~/components/vn/learn/MultipleChoiceQuestion";
@@ -97,9 +97,9 @@ First, please answer this question:
   answers={[models.length.toString(), (models.length + 1).toString()]}
   validAnswerIdx={0}
   ifOk={
-    <Button variant="contained" href="/learn/final">
+    <NextMuiButton variant="contained" href="/learn/server-only-models">
       Click to go to next step
-    </Button>
+    </NextMuiButton>
   }
 />
 

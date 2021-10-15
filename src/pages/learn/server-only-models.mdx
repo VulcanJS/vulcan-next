@@ -1,84 +1,75 @@
-import { Button } from "@mui/material";
+import { NextMuiButton } from "@vulcanjs/next-mui";
 import { LearnLayout } from "~/components/vn/learn/LearnLayout";
 import { StepIfElse } from "~/components/vn/learn/Steps";
+import { MultipleChoiceQuestion } from "~/components/vn/learn/MultipleChoiceQuestion";
 
-# Step 2: Plug the database
+# Step 4: Server-side models
 
-Vulcan is a **full-stack** framework. It means that it provides a way to create user interfaces (front-end) and to manage a web server (back-end).
-Most back-end need to manipulate data, using a database, like [MongoDB](https://www.mongodb.com/).
-This is what we sometimes call the ["3-tier architecture"](https://en.wikipedia.org/wiki/Multitier_architecture#Three-tier_architecture).
+## Why you need server-only code
 
-Therefore, for Vulcan to work, you need to setup a Mongo database on your computer.
+Vulcan models are an **isomorphic** feature.
+It means that models work both client-side, for the front-end user interface,
+and server-side, for the backend business logic.
 
-## Prerequesites
+That makes sense, because models represent real-life objects.
+Whether you are creating a form or an API endpoint,
+a blog Author is still an Author,
+so it's a good practice to share as much code as possible.
 
-- Install Docker ([link for Ubuntu](https://docs.docker.com/engine/install/ubuntu/), [link for Mac](https://docs.docker.com/desktop/mac/install/)).
-- (Optional) Install [Compass](https://www.mongodb.com/fr-fr/download-center/compass), the official tool to visualize your data
+However, some code should stay private.
+For example, the code that process user password belongs to the server.
+It should not be included in the client bundle and shared to users.
 
-## Run Mongo
+## Discover the User model server code
 
-If Docker is installed, this magic command will either install and run, or just run Mongo on your computer.
+The User model is a good example of server-only features.
 
-```sh
-yarn run mongo
-```
+Open `src/models/user.server.ts`.
 
-You should already be able to access the database in Compass, using the following URI:
+You'll see:
 
-```
-mongodb://localhost:27017/vulcan-next-app
-```
+- **Model specific logic**: a bunch of functions related to users
+- **Server-only fields**: fields you **don't** want to see in the user interface
+- **Server callbacks**: functions that are called on certain events (creation, update, deletion...),
+  like sending an email on success, modifying data before storing them etc.
+- **Custom field-resolvers**: some data might **not** be stored outside of your database.
+  For instance, you might want to get information about the user from the Twitter API.
+  To do so, you can use a custom field resolver, with the `resolveAs` property.
 
-## Link Mongo to your Vulcan application
+It is a very advanced model: it handles user signup and authentication.
+Since those features are related to security, you want them to
+happen server-side.
 
-Now, you'll want your Vulcan Next app to connect to this database.
+Hopefully, your models will be simpler than that most of the time!
 
-To do so, you need to configure a global environment variable, `MONGO_URI`.
-We are going to use [Next.js configuration features](https://blog.vulcanjs.org/how-to-set-configuration-variables-in-next-js-a81505e43dad).
+## Exporting server models
 
-```sh
-# Duplicate ".env.development" to create a ".env.development.local"
-cp .env.development .env.development.local
-```
+**Always remember to export your model in `src/models/index.server` to activate this automated generation.**
 
-You can change the values of this `.env.development.local`: it
-will only exist on your own computer, so you can even put password
-and secret values here.
+Those models will be automatically added to your GraphQL API
+and Mongo database. Awesome!
 
-You'll find a line like this:
+Notice the `.server`. In Vulcan, whenever you see a folder named `server`, or
+a file named `*.server.ts`, it means that it contains server-only code.
 
-```
-MONGO_URI="mongodb+srv://johnDoe:T74OcxqL15TRt7Zn@lbke-demo-ara2d.mongodb.net/sample_restaurants?retryWrites=true&w=majority"
-# MONGO_URI="mongodb://localhost:27017/vulcan-next-app"
-```
+## Go to step 5
 
-You can comment the first value, and remove the second one:
+First, please answer this question:
 
-```
-MONGO_URI="mongodb://localhost:27017/vulcan-next-app"
-```
+<MultipleChoiceQuestion
+  question="What does the User model do when creating a new user?"
+  answers={[
+    "It hashes the provided password before storing it, using the 'create' callback.",
+    "It sends an email to the moderators.",
+  ]}
+  validAnswerIdx={0}
+  ifOk={
+    <NextMuiButton variant="contained" href="/learn/final">
+      Click to go to next step
+    </NextMuiButton>
+  }
+/>
 
-Now, Vulcan Next will use your local database.
-
-**Restart your server for this change to apply (ctrl+C in your terminal and then `yarn run dev`).**
-
-## Go to step 3
-
-If this button is still disabled:
-
-- check if you Mongo server is running correctly
-- restart Vulcan Next (ctrl+C in your terminal, and `yarn run dev` again)
-
-  <StepIfElse
-    step={3}
-    ifOk={<Button variant="contained">Click to go to next step</Button>}
-    ifNotOk={
-      <Button variant="contained" disabled={true}>
-        Please complete step 2 to activate this button
-      </Button>
-    }
-  ></StepIfElse>
-
-export default function MongoPage(props) {
+export default function ServerOnlyModels(props) {
   return <LearnLayout {...props} />;
 }

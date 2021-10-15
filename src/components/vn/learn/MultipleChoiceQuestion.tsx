@@ -29,13 +29,21 @@ export const MultipleChoiceQuestion = ({
     <Box>
       <List
         subheader={
-          <ListSubheader>{question} (click on the right answer)</ListSubheader>
+          <ListSubheader sx={{ color: "secondary.main" }}>
+            {question} (click on the right answer)
+          </ListSubheader>
         }
       >
         {answers.map((answer, idx) => {
           return (
             <ListItem key={idx}>
               <ListItemButton
+                sx={{
+                  boxShadow: 1,
+                  borderLeft: "3px solid",
+                  borderColor: "secondary.main",
+                  borderRadius: 1,
+                }}
                 onClick={() => setCurrentAnswer(idx)}
                 selected={idx === currentAnswer}
               >
@@ -45,7 +53,12 @@ export const MultipleChoiceQuestion = ({
           );
         })}
       </List>
-      {currentAnswer === validAnswerIdx ? ifOk : null}
+      {currentAnswer === validAnswerIdx ? (
+        <div>
+          <Typography sx={{ color: "success.main" }}>Right answer!</Typography>
+          {ifOk}
+        </div>
+      ) : null}
       {currentAnswer && currentAnswer !== validAnswerIdx ? (
         <>
           <Typography sx={{ color: "warning.main" }}>

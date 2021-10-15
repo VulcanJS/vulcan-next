@@ -10,28 +10,16 @@ import {
 } from "@vulcanjs/graphql/server";
 import { createMongooseConnector } from "@vulcanjs/mongo";
 import merge from "lodash/merge";
-import { modelDef as modelDefShared } from "./sampleModel";
+import {
+  modelDef as commonModelDef,
+  SampleModelType,
+  schema as commonSchema,
+} from "./sampleModel";
 
-const schema: VulcanGraphqlSchemaServer = {
-  _id: {
-    type: String,
-    optional: true,
-    canRead: ["guests"],
-  },
-  userId: {
-    type: String,
-    optional: true,
-    canRead: ["guests"],
-  },
-  createdAt: {
-    type: Date,
-    optional: true,
-    canRead: ["admins"],
-    onCreate: () => {
-      return new Date();
-    },
-  },
-  someField: {
+const schema: VulcanGraphqlSchemaServer = merge({}, commonSchema, {
+  // An API-only field, that will appear in the graphql schema
+  // but not used in the browser
+  someServerOnlyField: {
     type: String,
     optional: true,
     canRead: ["guests"],
@@ -39,18 +27,17 @@ const schema: VulcanGraphqlSchemaServer = {
     canCreate: ["owners"],
     searchable: true,
   },
-};
+});
 
-export interface SampleModelType extends VulcanDocument {
-  someField: string;
+export interface SampleModelTypeServer extends SampleModelType {
+  someServerOnlyField: string;
 }
 
-const modelDef: CreateGraphqlModelOptionsServer = merge({}, modelDefShared, {
+const modelDef: CreateGraphqlModelOptionsServer = merge({}, commonModelDef, {
   schema,
-  // add other server only options here
-  graphql: {
-    /* ...*/
-  },
+  // add other server only options here,
+  // like callbacks
+  graphql: {},
 });
 export const SampleModel = createGraphqlModelServer(modelDef);
 
