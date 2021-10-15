@@ -3,8 +3,8 @@
   "version": "0.6.1",
   "private": true,
   "scripts": {
-    "analyze-bundle:storybook": "cross-env ANALYZE=true yarn run build:storybook",
-    "analyze-bundle": "cross-env ANALYZE=true npm run build",
+    "analyze:bundle:storybook": "cross-env ANALYZE=true yarn run build:storybook",
+    "analyze:bundle": "cross-env ANALYZE=true npm run build",
     "auto-changelog": "auto-changelog -u",
     "build-storybook": "build-storybook",
     "build:docker": "docker build -f ./.vn/docker/vn.production.dockerfile -t vulcan-next .",
