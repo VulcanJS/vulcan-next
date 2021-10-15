@@ -105,6 +105,7 @@
     "react-i18next": "^11.5.0",
     "react-spring": "^8.0.27",
     "styled-jsx-plugin-postcss": "^3.0.2",
+    "stylis": "^4.0.10",
     "swr": "^0.4.0"
   },
   "devDependencies": {
