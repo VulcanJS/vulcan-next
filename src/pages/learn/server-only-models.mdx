@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { NextMuiButton } from "@vulcanjs/next-mui";
 import { LearnLayout } from "~/components/vn/learn/LearnLayout";
 import { StepIfElse } from "~/components/vn/learn/Steps";
 import { MultipleChoiceQuestion } from "~/components/vn/learn/MultipleChoiceQuestion";
@@ -42,6 +42,16 @@ happen server-side.
 
 Hopefully, your models will be simpler than that most of the time!
 
+## Exporting server models
+
+**Always remember to export your model in `src/models/index.server` to activate this automated generation.**
+
+Those models will be automatically added to your GraphQL API
+and Mongo database. Awesome!
+
+Notice the `.server`. In Vulcan, whenever you see a folder named `server`, or
+a file named `*.server.ts`, it means that it contains server-only code.
+
 ## Go to step 5
 
 First, please answer this question:
@@ -54,9 +64,9 @@ First, please answer this question:
   ]}
   validAnswerIdx={0}
   ifOk={
-    <Button variant="contained" href="/learn/final">
+    <NextMuiButton variant="contained" href="/learn/final">
       Click to go to next step
-    </Button>
+    </NextMuiButton>
   }
 />
 
