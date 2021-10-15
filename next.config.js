@@ -77,6 +77,13 @@ module.exports = (phase, { defaultConfig }) => {
     ];
   };
 
+  extendedConfig.experimental = {
+    // @see https://github.com/isaachinman/next-i18next/issues/1202#issuecomment-871233853
+    // @see https://github.com/vercel/next.js/issues/24700
+    // Remove after update to Next 11.4+
+    outputFileTracing: true,
+  };
+
   debug("Extended next config FINAL " + JSON.stringify(extendedConfig));
 
   return extendedConfig;
