@@ -16,8 +16,9 @@ const i18nInstance = new I18N({
   // TODO: this code seems to run client-side
   // to be improved when updating i18n
   localePath:
+    // @see https://github.com/isaachinman/next-i18next/issues/1202#issuecomment-947779838
     typeof path.resolve === "function"
-      ? path.resolve("./public/locales")
+      ? path.join(process.cwd(), `public/locales`) //path.resolve("./public/locales")
       : "./public/locales",
 });
 
