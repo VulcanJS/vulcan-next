@@ -101,6 +101,7 @@
     "passport-local": "1.0.0",
     "polished": "^3.6.5",
     "postcss-nested": "^4.2.1",
+    "querystring": "^0.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-hook-form": "4.9.8",
