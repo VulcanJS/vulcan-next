@@ -6,6 +6,19 @@ import { UserType } from "~/models/user";
 import { useRouter } from "next/router";
 import { NextMuiListItemButton } from "@vulcanjs/next-mui";
 
+const steps = [
+  { name: "0 - Install", path: "/learn/intro-online" },
+  { name: "1 - Run", path: "/learn/intro-offline" },
+  { name: "2 - Mongo", path: "/learn/mongo" },
+  { name: "3 - Models", path: "/learn/about-models" },
+  { name: "4 - Server models", path: "/learn/server-only-models" },
+  { name: "5 - GraphQL server", path: "/learn/graphql-server" },
+  { name: "Done!", path: "/learn/final" },
+];
+const stepPaths = steps.map((s, idx) => {
+  return [s.path, idx] as const;
+});
+
 /**
  * @client-only
  */
@@ -51,18 +64,6 @@ const useMaxStep = () => {
   // (it's ok to access a step manually)
   return Math.max(step, currentStep);
 };
-
-const steps = [
-  { name: "0 - Install", path: "/learn/intro-online" },
-  { name: "1 - Run", path: "/learn/intro-offline" },
-  { name: "2 - Mongo", path: "/learn/mongo" },
-  { name: "3 - Models", path: "/learn/about-models" },
-  { name: "4 - Server models", path: "/learn/server-only-models" },
-  { name: "Done!", path: "/learn/final" },
-];
-const stepPaths = steps.map((s, idx) => {
-  return [s.path, idx] as const;
-});
 
 const useCurrentStep = () => {
   const router = useRouter();
