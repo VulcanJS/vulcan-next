@@ -62,6 +62,10 @@ module.exports = {
     // load optional plugins (eg bundle analyzer)
     withVulcan.plugins = (withVulcan.plugins || []).concat(plugins);
 
+    // Allow to use next-i18next isomorphic code
+    // @see https://github.com/isaachinman/next-i18next/issues/1012
+    withVulcan.node = { ...(withVulcan.node || {}), fs: "empty" };
+
     return withVulcan;
   },
 };
