@@ -17,7 +17,6 @@ Cypress.Commands.add("visitAsHtml", (route: string) => {
       // It doesn't actually work if you run this command multiple times
       console.log("setting html", html.slice(0, 300));
       cy.document().invoke({ log: false }, "write", html);
-      cy.get("html").should("have.attr", "lang", "fr");
     });
   // now we can use "normal" Cypress api on the page
 });
