@@ -2,6 +2,10 @@ import { GetStaticPaths } from "next";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { useRouter } from "next/dist/client/router";
 
+/**
+ * Run the server and open
+ * http://localhost:3000/vn/examples/megaparam-demo
+ */
 export const MegaparamDemo = ({
   params,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
