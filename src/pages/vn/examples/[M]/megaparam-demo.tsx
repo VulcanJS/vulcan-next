@@ -36,7 +36,7 @@ export const MegaparamDemo = ({
       </p>
       <p>
         See our article for more insights:{" "}
-        <a href="http://vulcan-next.vercel.app">M the Megaparameter</a>
+        <a href="https://medium.com/p/4039e66ffde">M the Megaparameter</a>
       </p>
       <form
         onSubmit={(evt) => {
