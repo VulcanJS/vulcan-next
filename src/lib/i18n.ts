@@ -1,39 +1,7 @@
-import I18N from "next-i18next";
-import path from "path";
-// import getConfig from "next/config";
-import { IncomingMessage } from "http";
+/**
+ * Various helpers for i18n
+ */
 import { NextPageContext } from "next";
-
-// NOTE: publicRuntimeConfig can be undefined if you just provide an empty object
-// @see https://github.com/vercel/next.js/issues/6249#issuecomment-643259623
-// @see https://github.com/VulcanJS/vulcan-next/issues/62
-//const { publicRuntimeConfig = {} } = getConfig();
-//const { localeSubpaths = {} } = publicRuntimeConfig;
-const i18nInstance = new I18N({
-  defaultLanguage: "en",
-  otherLanguages: ["fr"],
-  localeSubpaths: {},
-  // TODO: this code seems to run client-side
-  // to be improved when updating i18n
-  localePath:
-    // @see https://github.com/isaachinman/next-i18next/issues/1202#issuecomment-947779838
-    typeof path.resolve === "function"
-      ? path.join(process.cwd(), `public/locales`) //path.resolve("./public/locales")
-      : "/locales",
-});
-
-// reexport everything
-export const {
-  Trans,
-  Link,
-  Router,
-  i18n,
-  initPromise,
-  config,
-  useTranslation,
-  withTranslation,
-  appWithTranslation,
-} = i18nInstance;
 
 // Add language info to the custom _document header
 export interface DocumentLanguageProps {
@@ -46,18 +14,29 @@ interface HtmlLanguageProps {
 }
 
 // i18next-http-middleware is in charge of enhancing the req object
-interface IncomingMessageWithI18n extends IncomingMessage {
-  language?: string;
-  i18n: any;
-}
+// interface IncomingMessageWithI18n extends IncomingMessage {
+//   language?: string;
+//   i18n: any;
+// }
+
+const rtlLocales: Array<string> = [
+  /** Add locales of languages that reads right-to-left, depending on your own needs (persian, arabic, etc.)*/
+];
+
 export const i18nPropsFromCtx = (
   ctx: NextPageContext
 ): Partial<HtmlLanguageProps> => {
-  if (!(ctx && ctx.req && (ctx.req as IncomingMessageWithI18n).language))
-    return {};
-  const req = ctx.req as IncomingMessageWithI18n;
+  // At the time of writing (2021, Next 12) Next.js automatically handles the "lang" attribute
+  const locale = ctx.locale;
+  if (!locale) return {};
+  let dir = "ltr";
+  if (rtlLocales.includes(locale)) {
+    dir = "rtl";
+  }
+
+  // "dir" (the language direction) may need more investigation
   return {
-    lang: req.language,
-    dir: req.i18n && req.i18n.dir(req.language),
+    dir,
+    //dir: req.i18n && req.i18n.dir(req.language),
   };
 };

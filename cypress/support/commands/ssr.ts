@@ -13,12 +13,11 @@ Cypress.Commands.add("visitAsHtml", (route: string) => {
         /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
         ""
       );
-      // FIXME: https://github.com/VulcanJS/vulcan-next/issues/40
-      // https://github.com/vercel/next.js/discussions/11379
-      // https://github.com/cypress-io/cypress/issues/4771
-      // @see https://github.com/cypress-io/cypress-documentation/issues/108
-      // cy.state is not currently documented nor typed
-      (cy as any).state("document").write(html);
+      // FIXME: https://github.com/cypress-io/cypress/issues/1611
+      // It doesn't actually work if you run this command multiple times
+      console.log("setting html", html.slice(0, 300));
+      cy.document().invoke({ log: false }, "write", html);
+      cy.get("html").should("have.attr", "lang", "fr");
     });
   // now we can use "normal" Cypress api on the page
 });

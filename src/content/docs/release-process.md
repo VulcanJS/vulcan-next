@@ -44,7 +44,9 @@ yarn run start # test the production app
 
 ```sh
 # Check static build and run
-yarn run build:static && yarn run start:static
+# Next Export is now disabled (11/2021, Next 12), we prefer Automatic Static Optimization.
+# @see https://github.com/VulcanJS/vulcan-next/issues/98
+# yarn run build:static && yarn run start:static
 # Run tests
 yarn run test
 # Run tests specific to Vulcan Next (longer)

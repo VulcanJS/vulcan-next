@@ -89,19 +89,30 @@ See `src/components/ui` for the code, and run Storybook to see the demos.
 
 No more excuses to make dull UIs, you have all the tools you need :)
 
-## Serverless internationalization
+## Internationalization (i18n)
 
-### i18n without custom server
+### next-i18next latest version
 
-We use next-i18next new serverless version (beta), as demoed in [this repo](https://github.com/borispoehland/next-i18next-boilerplate.git) from [@borispoehland](https://github.com/borispoehland).
+Next.js and its ecosystem has made a lot of progress regarding i18n while we were coding VulcanNext.
+We currently use the latest version of [next-i18next](https://github.com/isaachinman/next-i18next) package. 
+Its role is to handle the loading of the right translation files depending on the user current locale.
 
-IMPORTANT NOTE: [there is one last blocking issue with serverless deployment on Vercel](https://github.com/vercel/next.js/issues/13624). To put it in a nutshell prevents your locale JSON to be deployed alongside your pages.
+I18n is a very vast subject, if you need more advanced features, [check Next.js documentation](https://nextjs.org/docs/advanced-features/i18n-routing), it's complete and well written.
 
-More broadly, it is related to the impossibility of [reading static files in Next when deployed to Vercel](https://github.com/vercel/next.js/issues/8251) at the moment.
+You can tweak the configuration to fit your need, see the file named `next-i18next.config.js`.
 
-### Lang in the custom \_document
+### No automated redirect
 
-`lang` attribute is set automatically on `<html>` during server-render
+As a default, we disable automated i18n redirect. So a French user
+accessing `/` will still see the page in English. You need to redirect those user manually to `/fr`.
+
+We think that this setup is more consistent, but don't hesitate to tweak the `i18n` config in `next-i18next.config.js`.
+
+### Lang and dir in the custom \_document
+
+`lang` attribute is set automatically by Next.js on `<html>` during server-render/static-render.
+`dir` attribute (`rtl` or `ltr` for right-to-left and left-to-right languages) is set based on the current locale.
+
 
 ## MDX support
 

@@ -1,8 +1,9 @@
 import { NextPage } from "next";
-import App, { AppProps } from "next/app";
-import { ReactElement, ReactNode } from "react";
+import { AppProps } from "next/app";
+import { ReactElement } from "react";
 // Comment if you don't need i18n
-import { appWithTranslation } from "~/lib/i18n";
+import { appWithTranslation } from "next-i18next";
+
 // Comment if you don't need Material UI
 import { createEmotionCache } from "@vulcanjs/next-mui";
 import { MuiThemeProvider } from "~/components/providers";
@@ -40,6 +41,33 @@ export interface VNAppProps extends AppProps {
   emotionCache: EmotionCache;
 }
 
+const Favicons = () => (
+  <>
+    {/* Favicon created using https://realfavicongenerator.net/ */}
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/apple-touch-icon.png"
+    ></link>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon-32x32.png"
+    ></link>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon-16x16.png"
+    ></link>
+    <link rel="manifest" href="/site.webmanifest"></link>
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"></link>
+    <meta name="msapplication-TileColor" content="#da532c"></meta>
+    <meta name="theme-color" content="#ffffff"></meta>
+  </>
+);
+
 function VNApp({
   Component,
   pageProps,
@@ -64,32 +92,7 @@ function VNApp({
             name="viewport"
             content="minimum-scale=1, initial-scale=1, width=device-width"
           />
-          {/* Favicon created using https://realfavicongenerator.net/ */}
-          <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="/apple-touch-icon.png"
-          ></link>
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="/favicon-32x32.png"
-          ></link>
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="/favicon-16x16.png"
-          ></link>
-          <link rel="manifest" href="/site.webmanifest"></link>
-          <link
-            rel="mask-icon"
-            href="/safari-pinned-tab.svg"
-            color="#5bbad5"
-          ></link>
-          <meta name="msapplication-TileColor" content="#da532c"></meta>
-          <meta name="theme-color" content="#ffffff"></meta>
+          <Favicons />
         </Head>
         {/** Provide MUI theme but also mui utilities like CSS baseline, StyledEngineProvider... */}
         <MuiThemeProvider>
@@ -103,13 +106,5 @@ function VNApp({
     </CacheProvider>
   );
 }
-
-// Neeeded for next-i18n next to work
-// Comment if you don't need i18n
-VNApp.getInitialProps = async (appContext) => {
-  // calls page's `getInitialProps` and fills `appProps.pageProps`
-  const appProps = await App.getInitialProps(appContext);
-  return { ...appProps };
-};
 
 export default appWithTranslation(VNApp);
