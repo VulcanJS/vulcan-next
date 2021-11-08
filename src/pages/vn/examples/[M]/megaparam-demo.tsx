@@ -36,7 +36,9 @@ export const MegaparamDemo = ({
       </p>
       <p>
         See our article for more insights:{" "}
-        <a href="https://medium.com/p/4039e66ffde">M the Megaparameter</a>
+        <a href="https://blog.vulcanjs.org/render-anything-statically-with-next-js-and-the-megaparam-4039e66ffde">
+          M the Megaparameter
+        </a>
       </p>
       <form
         onSubmit={(evt) => {
