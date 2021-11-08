@@ -15,9 +15,11 @@ Vulcan Next provides:
 
 [Join the Slack](http://slack.vulcanjs.org/)
 
-[Check all the features in our live app](https://vulcan-next.vercel.app/docs/features) or [directly on Github](https://github.com/VulcanJS/vulcan-next/tree/devel/src/content/docs/features)
+[Get started with the live tutorial](https://vulcan-next.vercel.app/learn)
 
-[Read the introductory article](https://www.freecodecamp.org/news/how-to-replace-meteor-by-next-introducing-vulcan-next-starter/)
+[Check all the features from our live app](https://vulcan-next.vercel.app/docs/features) or [directly on Github](https://github.com/VulcanJS/vulcan-next/tree/devel/src/content/docs/features)
+
+[Read the introductory article on FreeCodeCamp](https://www.freecodecamp.org/news/how-to-replace-meteor-by-next-introducing-vulcan-next-starter/)
 
 ## A word about Vulcan.js aka Vulcan Meteor
 
