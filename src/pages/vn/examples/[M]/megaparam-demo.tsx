@@ -10,6 +10,9 @@ export const MegaparamDemo = ({
   return (
     <div
       style={{
+        maxWidth: "960px",
+        margin: "auto",
+        padding: "64px 32px",
         color: theme === "dark" ? "#ebefeb" : "#363333",
         background: theme === "dark" ? "#363333" : "#ebefeb",
       }}
@@ -42,12 +45,12 @@ export const MegaparamDemo = ({
         }}
       >
         <label htmlFor="theme">Pick a theme:</label>
-        <select id="theme" name="theme">
+        <select id="theme" name="theme" defaultValue={theme}>
           <option value="dark">Switch to dark theme</option>
           <option value="light">Switch to light theme</option>
         </select>
         <label htmlFor="company">Pick a company</label>
-        <select id="company" name="company">
+        <select id="company" name="company" defaultValue={company}>
           <option value="my_company">"my_company"</option>
           <option value="my_other_company">"my_other_company"</option>
         </select>
@@ -59,7 +62,7 @@ export const MegaparamDemo = ({
 
 // Megaparams methods
 interface PageParams {
-  theme: "dark" | "light";
+  theme: string;
   company: string;
 }
 // dark-my_company => { theme: "dark", company: "my_company"}
@@ -72,7 +75,7 @@ export const decode = (megaparam: string): PageParams => {
   if (!["dark", "light"].includes(theme))
     throw new Error(`Theme ${theme} does not exist.`);
   return {
-    theme: theme as "dark" | "light",
+    theme: theme,
     company,
   };
 };
@@ -83,20 +86,15 @@ export const encode = (params: PageParams): string => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const params = [
+    { theme: "light", company: "my_company" },
+    // clients of "my_company" are known for using a dark theme
+    // => we render it at build time
+    { theme: "dark", company: "my_company" },
+    { theme: "light", company: "my_other_company" },
+  ];
   return {
-    paths: [
-      {
-        params: { theme: "light", company: "my_company" },
-      },
-      // clients of "my_company" are known for using a dark theme
-      // => we render it at build time
-      {
-        params: { theme: "dark", company: "my_company" },
-      },
-      {
-        params: { theme: "light", company: "my_other_company" },
-      },
-    ],
+    paths: params.map((p) => ({ params: { M: encode(p) } })),
     // less common combinations will be dynamically server-rendered
     fallback: "blocking",
   };
@@ -113,3 +111,5 @@ export const getStaticProps: GetStaticProps = async (context) => {
     },
   };
 };
+
+export default MegaparamDemo;
