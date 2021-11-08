@@ -1,5 +1,5 @@
-import renderToString from "next-mdx-remote/render-to-string";
-import hydrate from "next-mdx-remote/hydrate";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import { serialize } from "next-mdx-remote/serialize";
 import path from "path";
 import { getMdxPaths, MdxPath } from "@vulcanjs/mdx";
 import { Link as NextLink } from "@vulcanjs/next-mui";
@@ -7,8 +7,6 @@ import { promises as fsPromises, lstatSync, existsSync } from "fs";
 import { List, ListItem, Link, Typography } from "@mui/material";
 import matter from "gray-matter";
 import { muiMdComponents } from "~/components/layout/muiMdComponents";
-import { MdxRemote } from "next-mdx-remote/types";
-import Image from "next/image";
 
 // Define components to allow them in your mdx files
 // You can also replace HTML tags (components is passed to MDXProvider )
@@ -67,21 +65,18 @@ const header = (
 interface PageArguments {
   pages: Array<string>;
   filePath: string;
-  source: MdxRemote.Source;
+  source: MDXRemoteSerializeResult;
 }
 export default function DocPage({ pages, filePath, source }: PageArguments) {
   if (source) {
     // It's a file, not a folder
-    const content = hydrate(source, {
-      components,
-    });
     return (
       <div className="MDXProvider root">
         {header}
         <PreviousPageLink filePath={filePath} />
         {indexLink}
         <hr style={{ margin: "32px auto" }}></hr>
-        {content}
+        <MDXRemote {...source} components={components} />
         <hr style={{ margin: "32px auto" }}></hr>
         <PreviousPageLink filePath={filePath} />
         {indexLink}
@@ -185,7 +180,7 @@ export async function getStaticProps({ params }) {
       // MDX text - can be from a local file, database, anywhere
       const { content, data } = matter(source);
       // Does a server-render of the source and relevant React wrappers + allow to inject React components
-      const mdxSource = await renderToString(content, { components });
+      const mdxSource = await serialize(content); //await renderToString(content, { components });
       return {
         props: {
           pages: [],

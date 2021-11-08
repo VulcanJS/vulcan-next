@@ -2,18 +2,16 @@ import Home from "~/components/home";
 //import { useForm } from "react-hook-form";
 import path from "path";
 import { promises as fsPromises } from "fs";
-import renderToString from "next-mdx-remote/render-to-string";
-import hydrate from "next-mdx-remote/hydrate";
 import { muiMdComponents } from "~/components/layout/muiMdComponents";
 import { PageLayout } from "~/components/layout";
 import { Box } from "@mui/material";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import { serialize } from "next-mdx-remote/serialize";
 
 // inject both the custom components + default components like h1, p, etc.
 const components = { ...muiMdComponents };
-const HomePage = ({ source }) => {
-  const readMeContent = hydrate(source, {
-    components,
-  }); //, { components });
+const HomePage = ({ source }: { source: MDXRemoteSerializeResult }) => {
+  const readMeContent = <MDXRemote {...source} components={components} />;
   return (
     <PageLayout>
       <main>
@@ -39,7 +37,7 @@ export async function getStaticProps() {
   const source = await fsPromises.readFile(filePath, { encoding: "utf8" });
   // MDX text - can be from a local file, database, anywhere
   // Does a server-render of the source and relevant React wrappers + allow to inject React components
-  const mdxSource = await renderToString(source, { components });
+  const mdxSource = await serialize(source);
   return { props: { source: mdxSource } };
 }
 
