@@ -31,7 +31,7 @@ export const MegaparamDemo = ({
         be rendered on-the-fly.
       </p>
       <p>
-        See our article for more insights:
+        See our article for more insights:{" "}
         <a href="http://vulcan-next.vercel.app">M the Megaparameter</a>
       </p>
       <form
