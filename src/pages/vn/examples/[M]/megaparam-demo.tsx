@@ -1,0 +1,115 @@
+import { GetStaticPaths } from "next";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
+import { useRouter } from "next/dist/client/router";
+
+export const MegaparamDemo = ({
+  params,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const { theme, company } = params;
+  const router = useRouter();
+  return (
+    <div
+      style={{
+        color: theme === "dark" ? "#ebefeb" : "#363333",
+        background: theme === "dark" ? "#363333" : "#ebefeb",
+      }}
+    >
+      <h1>Welcome back, user of company "{company}!"</h1>
+      <p>
+        This page demonstrate Megaparam, a pattern to statically render a
+        complex combination of parameters.
+      </p>
+      <p>
+        This example uses 2 parameters: theme, and company. Both are stored in
+        the cookies.
+      </p>
+      <p>
+        Some theme/company combinations are pre-rendered statically, some will
+        be rendered on-the-fly.
+      </p>
+      <p>
+        See our article for more insights:
+        <a href="http://vulcan-next.vercel.app">M the Megaparameter</a>
+      </p>
+      <form
+        onSubmit={(evt) => {
+          evt.preventDefault();
+          const theme = evt.target["theme"]?.value;
+          const company = evt.target["company"]?.value;
+          (window as any).cookieStore.set("company", company);
+          (window as any).cookieStore.set("theme", theme);
+          router.reload();
+        }}
+      >
+        <label htmlFor="theme">Pick a theme:</label>
+        <select id="theme" name="theme">
+          <option value="dark">Switch to dark theme</option>
+          <option value="light">Switch to light theme</option>
+        </select>
+        <label htmlFor="company">Pick a company</label>
+        <select id="company" name="company">
+          <option value="my_company">"my_company"</option>
+          <option value="my_other_company">"my_other_company"</option>
+        </select>
+        <button>Submit</button>
+      </form>
+    </div>
+  );
+};
+
+// Megaparams methods
+interface PageParams {
+  theme: "dark" | "light";
+  company: string;
+}
+// dark-my_company => { theme: "dark", company: "my_company"}
+export const decode = (megaparam: string): PageParams => {
+  const split = megaparam.split("-");
+  if (split.length !== 2)
+    throw new Error(`Megaparam must respect the format "theme-company_name"`);
+
+  const [theme, company] = split;
+  if (!["dark", "light"].includes(theme))
+    throw new Error(`Theme ${theme} does not exist.`);
+  return {
+    theme: theme as "dark" | "light",
+    company,
+  };
+};
+
+// { theme: "dark", company: "my_company"} => "dark-my_company"
+export const encode = (params: PageParams): string => {
+  return `${params.theme}-${params.company}`;
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [
+      {
+        params: { theme: "light", company: "my_company" },
+      },
+      // clients of "my_company" are known for using a dark theme
+      // => we render it at build time
+      {
+        params: { theme: "dark", company: "my_company" },
+      },
+      {
+        params: { theme: "light", company: "my_other_company" },
+      },
+    ],
+    // less common combinations will be dynamically server-rendered
+    fallback: "blocking",
+  };
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const megaparam = context.params?.M as string;
+  if (!megaparam) throw new Error(`Undefined megaparam`);
+  if (Array.isArray(megaparam)) throw new Error("Megaparam cannot be an array");
+  const params = decode(megaparam);
+  return {
+    props: {
+      params,
+    },
+  };
+};
