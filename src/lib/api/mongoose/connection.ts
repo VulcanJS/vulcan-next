@@ -43,8 +43,6 @@ export const connectToDb = async (
     (mongooseCache as MongooseCache).connectPromise = mongoose.connect(
       mongoUri,
       {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
         ...(options || {}),
       }
     );
