@@ -7,7 +7,10 @@ import { routes } from "~/lib/routes";
 
 const AdminPage = () => {
   // TODO: this is an authenticated page, but we also would like to check the role
-  /*const user = */ useUser({ redirectTo: routes.account.login.href });
+  /*const user = */ useUser({
+    redirectTo: routes.account.login.href,
+    rememberCurrentRoute: true,
+  });
   return (
     <PageLayout>
       <Typography variant="h1">Admin area</Typography>

@@ -3,9 +3,12 @@ import { useUser } from "~/components/account/hooks";
 import Layout from "~/components/account/layout";
 import Form from "~/components/account/form";
 import { apiRoutes } from "~/lib/api/apiRoutes";
+import { useRouter } from "next/router";
 
 const Login = () => {
   useUser({ redirectTo: "/", redirectIfFound: true });
+  const router = useRouter();
+  const redirectedFrom = router.query?.from as string;
 
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -28,7 +31,7 @@ const Login = () => {
       if (res.status === 200) {
         // @see https://github.com/vercel/next.js/discussions/19601
         // This force SWR to update all queries subscribed to "user"
-        window.location.replace("/");
+        window.location.replace(redirectedFrom || "/");
         // Router.push("/");
       } else {
         throw new Error(await res.text());
