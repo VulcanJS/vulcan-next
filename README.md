@@ -2,7 +2,7 @@
 
 Vulcan Next helps you build GraphQL-based applications with Next.js.
 
-![vulcan-next banner](https://raw.githubusercontent.com/VulcanJS/vulcan-next/devel/public/img/vn-logo-full-1280-640.png)
+![vulcan-next banner](https://raw.githubusercontent.com/VulcanJS/vulcan-next/develmpublic/img/vn-logo-full-600.png)
 
 ## What's in the box?
 
@@ -13,7 +13,7 @@ Vulcan Next provides:
 - Schema-based helpers and hooks to quickly generate and consume your own GraphQL API.
 - Password based authentication
 
-[Join the Slack](http://slack.vulcanjs.org/)
+[Join the Slack and meet Vulcan contributors](http://slack.vulcanjs.org/)
 
 [Get started with the live tutorial](https://vulcan-next.vercel.app/learn)
 
@@ -52,22 +52,21 @@ git remote rename origin upstream
 # git remote add origin <your-own-git-repository-url>
 ```
 
-#### Update your app to the latest version of Vulcan Next
-
-**Beware:** Vulcan Next is a boilerplate, the possibility to update automatically is not guaranteed. You may
-have to apply the updates by hand, comparing Vulcan Next latest version to your own code. **Always double-check that the merge didn't break your app!**.
-
-```sh
-# Get the latest version of Vulcan Next locally
-git fetch upstream
-# Merge to your own code (favouring your own code as a default in case of conflict)
-git merge upstream/main -X ours
-```
+## Next steps
 
 ### Roll your own Mongo database
 
 As a default, Vulcan Next will connect to a sample read-only database owned by LBKE.
 To create your own application, you'll want to use your own databse.
+
+#### 0. I am a Windows user (if using Mac or Linux skip to 1.)
+
+If you use Windows, you might want to either:
+
+- Install [Ubuntu as a dual boot](https://help.ubuntu.com/community/WindowsDualBoot) (virtual machine are technically fine but way slower and could lead to a poor development experience)
+- Setup the [Linux subsystem](https://docs.microsoft.com/fr-fr/windows/wsl/install) in order to be able to run [Docker on Windows](https://docs.docker.com/desktop/windows/wsl/)
+
+- Install MongoDB using the [Windows installer](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
 
 #### 1. Run a Mongo server using Docker
 
@@ -92,6 +91,18 @@ MONGO_URI="mongodb://localhost:27017/vulcan-next-app"
 You can then stop the server and start it again.
 
 We advise to use [MongoDB Compass](https://www.mongodb.com/try/download/compass) to visualize your database content.
+
+### Update your app to the latest version of Vulcan Next
+
+**Beware:** Vulcan Next is a boilerplate, the possibility to update automatically is not guaranteed. You may
+have to apply the updates by hand, comparing Vulcan Next latest version to your own code. **Always double-check that the merge didn't break your app!**.
+
+```sh
+# Get the latest version of Vulcan Next locally
+git fetch upstream
+# Merge to your own code (favouring your own code as a default in case of conflict)
+git merge upstream/main -X ours
+```
 
 ---
 
