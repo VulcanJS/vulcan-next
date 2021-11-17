@@ -1,5 +1,5 @@
 import { createMutator, getModelConnector } from "@vulcanjs/graphql/server";
-import { User } from "~/models/user";
+import { User } from "~/models/user.server";
 
 const seed = async (context) => {
   if (process.env.MONGO_URI?.match(/lbke-demo/)) {
