@@ -9,7 +9,10 @@ import { createEmotionCache } from "@vulcanjs/next-mui";
 import { MuiThemeProvider } from "~/components/providers";
 
 import Head from "next/head";
-import { VulcanComponentsProvider } from "@vulcanjs/react-ui";
+import {
+  VulcanComponentsProvider,
+  VulcanCurrentUserProvider,
+} from "@vulcanjs/react-ui";
 
 import debug from "debug";
 import AppLayout from "~/components/layout/AppLayout";
@@ -22,6 +25,7 @@ export function reportWebVitals(metric) {
 import { ApolloProvider } from "@apollo/client";
 import { useApollo } from "@vulcanjs/next-apollo";
 import { CacheProvider, EmotionCache } from "@emotion/react";
+import { useUser } from "~/components/account/hooks";
 
 // import environment from '@vulcanjs/multi-env-demo';
 // console.log('imported environment', environment); // should display "server"/"client" depending on the environment, this is just a test
@@ -82,27 +86,36 @@ function VNApp({
   }); // you can also easily setup ApolloProvider on a per-page basis
   // Use the layout defined at the page level, if available
   // @see https://nextjs.org/docs/basic-features/layouts
+  const user = useUser();
+
   const getLayout = Component.getLayout ?? ((page) => page);
   return getLayout(
     <CacheProvider value={emotionCache}>
-      <VulcanComponentsProvider>
-        <Head>
-          <title>Vulcan Next</title>
-          <meta
-            name="viewport"
-            content="minimum-scale=1, initial-scale=1, width=device-width"
-          />
-          <Favicons />
-        </Head>
-        {/** Provide MUI theme but also mui utilities like CSS baseline, StyledEngineProvider... */}
-        <MuiThemeProvider>
-          <ApolloProvider client={apolloClient}>
-            <AppLayout>
-              <Component {...pageProps} />
-            </AppLayout>
-          </ApolloProvider>
-        </MuiThemeProvider>
-      </VulcanComponentsProvider>
+      <VulcanCurrentUserProvider
+        value={{
+          currentUser: user || null,
+          loading: false /* TODO: we don't get the loading information from useUser yet */,
+        }}
+      >
+        <VulcanComponentsProvider>
+          <Head>
+            <title>Vulcan Next</title>
+            <meta
+              name="viewport"
+              content="minimum-scale=1, initial-scale=1, width=device-width"
+            />
+            <Favicons />
+          </Head>
+          {/** Provide MUI theme but also mui utilities like CSS baseline, StyledEngineProvider... */}
+          <MuiThemeProvider>
+            <ApolloProvider client={apolloClient}>
+              <AppLayout>
+                <Component {...pageProps} />
+              </AppLayout>
+            </ApolloProvider>
+          </MuiThemeProvider>
+        </VulcanComponentsProvider>
+      </VulcanCurrentUserProvider>
     </CacheProvider>
   );
 }

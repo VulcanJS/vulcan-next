@@ -16,7 +16,7 @@ const AdminPage = () => {
       <Typography variant="h1">Admin area</Typography>
       <Typography variant="body1">/!\ This is experimental</Typography>
       <NextMuiLink href="/admin/crud">
-        <Typography>Manage your models</Typography>
+        <Typography>Manage your data</Typography>
       </NextMuiLink>
     </PageLayout>
   );

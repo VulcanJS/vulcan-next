@@ -9,7 +9,7 @@ import {
 export interface UserType extends VulcanDocument {
   email: string;
   isAdmin?: boolean;
-  groups?: Array<string>;
+  groups: Array<string>;
 
   isVerified?: boolean;
 }
