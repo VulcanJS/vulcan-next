@@ -4,7 +4,7 @@ Vulcan Next helps you build GraphQL-based applications with Next.js.
 
 <picture>
   <source
-   srcset="https://raw.githubusercontent.com/VulcanJS/vulcan-next/devel/public/img/vn-logo-full-padded-dark-840.png"
+   srcSet="https://raw.githubusercontent.com/VulcanJS/vulcan-next/devel/public/img/vn-logo-full-padded-dark-840.png"
     media="(prefers-color-scheme: dark)"/>
   <img src="https://raw.githubusercontent.com/VulcanJS/vulcan-next/devel/public/img/vn-logo-full-padded-840.png" alt="vulcan-next banner" />
 </picture>
