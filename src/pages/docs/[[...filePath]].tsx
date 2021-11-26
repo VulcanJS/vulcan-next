@@ -67,64 +67,74 @@ interface PageArguments {
   filePath: string;
   source: MDXRemoteSerializeResult;
 }
+
+const MarkdownPage = ({ source, filePath }) => (
+  <div className="MDXProvider root">
+    {header}
+    <PreviousPageLink filePath={filePath} />
+    {indexLink}
+    <hr style={{ margin: "32px auto" }}></hr>
+    <MDXRemote {...source} components={components} />
+    <hr style={{ margin: "32px auto" }}></hr>
+    <PreviousPageLink filePath={filePath} />
+    {indexLink}
+    <style jsx>{`
+      .MDXProvider.root {
+        margin: 32px auto;
+        max-width: 1000px;
+      }
+    `}</style>
+  </div>
+);
+
+const FolderTableOfContent = ({
+  filePath,
+  pages,
+}: {
+  filePath: string;
+  pages: Array<string>;
+}) => (
+  <div style={{ margin: "32px auto", maxWidth: "1000px" }}>
+    {header}
+    <Typography
+      style={{ margin: "32px auto", textTransform: "capitalize" }}
+      variant="h2"
+    >
+      {" "}
+      {filePath.slice(0, -1)}{" "}
+    </Typography>{" "}
+    {/* Print the subfolders we're in */}
+    <List>
+      {pages.map((pageName) => (
+        <NextLink key={pageName} href={`/docs/${filePath}${pageName}`}>
+          <ListItem button key={pageName}>
+            <Typography style={{ textTransform: "capitalize" }}>
+              {
+                pageName.replace(
+                  /-/g,
+                  " "
+                ) /* we don't use the front matter of the file at this point to simplify loading, so we have to cleanup the name manually */
+              }
+            </Typography>
+          </ListItem>
+        </NextLink>
+      ))}
+      <hr></hr>
+      <PreviousPageLink filePath={filePath} />
+      {filePath ===
+      "" /* Back home if we're in /docs, back to /docs if we're in a subfolder */
+        ? homeLink
+        : indexLink}
+    </List>
+  </div>
+);
 export default function DocPage({ pages, filePath, source }: PageArguments) {
   if (source) {
     // It's a file, not a folder
-    return (
-      <div className="MDXProvider root">
-        {header}
-        <PreviousPageLink filePath={filePath} />
-        {indexLink}
-        <hr style={{ margin: "32px auto" }}></hr>
-        <MDXRemote {...source} components={components} />
-        <hr style={{ margin: "32px auto" }}></hr>
-        <PreviousPageLink filePath={filePath} />
-        {indexLink}
-        <style jsx>{`
-          .MDXProvider.root {
-            margin: 32px auto;
-            max-width: 1000px;
-          }
-        `}</style>
-      </div>
-    );
+    return <MarkdownPage source={source} filePath={filePath} />;
   } else {
     // It's a folder
-    return (
-      <div style={{ margin: "32px auto", maxWidth: "1000px" }}>
-        {header}
-        <Typography
-          style={{ margin: "32px auto", textTransform: "capitalize" }}
-          variant="h2"
-        >
-          {" "}
-          {filePath.slice(0, -1)}{" "}
-        </Typography>{" "}
-        {/* Print the subfolders we're in */}
-        <List>
-          {pages.map((pageName) => (
-            <NextLink key={pageName} href={`/docs/${filePath}${pageName}`}>
-              <ListItem button key={pageName}>
-                <Typography style={{ textTransform: "capitalize" }}>
-                  {
-                    pageName.replace(
-                      /-/g,
-                      " "
-                    ) /* we don't use the front matter of the file at this point to simplify loading, so we have to cleanup the name manually */
-                  }
-                </Typography>
-              </ListItem>
-            </NextLink>
-          ))}
-          <hr></hr>
-          <PreviousPageLink filePath={filePath} />
-          {filePath ===
-          "" /* Back home if we're in /docs, back to /docs if we're in a subfolder */
-            ? homeLink
-            : indexLink}
-        </List>
-      </div>
-    );
+    return <FolderTableOfContent filePath={filePath} pages={pages} />;
   }
 }
 

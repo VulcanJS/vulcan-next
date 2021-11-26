@@ -51,6 +51,7 @@
     "test:unit": "jest --testPathIgnorePatterns=tests/vn",
     "test:vn": "jest --testPathPattern=tests/vn # run tests for Vulcan Next itself, eg scripts (long) ",
     "test": "npm run test:unit && npm run test:e2e",
+    "upgrade:vulcan": "yarn upgrade --pattern '@vulcanjs/*'",
     "typecheck-watch": "tsc --noEmit --p src/tsconfig.json -w",
     "typecheck": "tsc --noEmit --p src/tsconfig.json # in case of error with @vulcanjs/* package, check that src/types (eg simpl-schema) are up-to-date with vulcan-npm",
     "update-link-vulcan": "yalc update"
@@ -73,7 +74,7 @@
     "@vulcanjs/meteor-legacy": "^0.4.0",
     "@vulcanjs/mongo": "^0.4.0",
     "@vulcanjs/react-hooks": "^0.4.0",
-    "@vulcanjs/react-ui": "^0.4.0",
+    "@vulcanjs/react-ui": "^0.4.2",
     "apollo-server-express": "2.14.2",
     "babel-jest": "26.0.1",
     "babel-plugin-istanbul": "6.0.0",

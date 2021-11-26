@@ -1,4 +1,4 @@
-import { List, ListItem, ListItemButton, Typography } from "@mui/material";
+import { List, ListItem, Switch, FormControlLabel } from "@mui/material";
 import { ReactNode, useEffect, useState } from "react";
 import { useMulti } from "@vulcanjs/react-hooks";
 import { User } from "~/models/user";
@@ -78,26 +78,42 @@ const useCurrentStep = () => {
   return currentStep[1];
 };
 export const Steps = () => {
+  const [enableAllSteps, setEnableAllSteps] = useState(false);
   const maxStep = useMaxStep();
   const currentStep = useCurrentStep();
   // TODO: also associate a link to step
   // be careful with step 0, that happens online
   return (
-    <List>
-      {steps.map((step, stepIdx) => {
-        return (
-          <ListItem key={step.name}>
-            <NextMuiListItemButton
-              href={step.path}
-              disabled={stepIdx > maxStep}
-              selected={stepIdx === currentStep}
-            >
-              {step.name}
-            </NextMuiListItemButton>
-          </ListItem>
-        );
-      })}
-    </List>
+    <>
+      <div>
+        <FormControlLabel
+          control={
+            <Switch
+              checked={enableAllSteps}
+              onChange={(evt) => {
+                setEnableAllSteps(evt.target.checked);
+              }}
+            />
+          }
+          label={enableAllSteps ? "Stop cheating :)" : "Enable all steps"}
+        />
+      </div>
+      <List>
+        {steps.map((step, stepIdx) => {
+          return (
+            <ListItem key={step.name}>
+              <NextMuiListItemButton
+                href={step.path}
+                disabled={stepIdx > maxStep}
+                selected={stepIdx === currentStep}
+              >
+                {step.name}
+              </NextMuiListItemButton>
+            </ListItem>
+          );
+        })}
+      </List>
+    </>
   );
 };
 
