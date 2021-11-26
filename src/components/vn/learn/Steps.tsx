@@ -84,8 +84,8 @@ export const Steps = () => {
   // TODO: also associate a link to step
   // be careful with step 0, that happens online
   return (
-    <>
-      <div>
+    <List>
+      <ListItem>
         <FormControlLabel
           control={
             <Switch
@@ -97,23 +97,21 @@ export const Steps = () => {
           }
           label={enableAllSteps ? "Stop cheating :)" : "Enable all steps"}
         />
-      </div>
-      <List>
-        {steps.map((step, stepIdx) => {
-          return (
-            <ListItem key={step.name}>
-              <NextMuiListItemButton
-                href={step.path}
-                disabled={stepIdx > maxStep}
-                selected={stepIdx === currentStep}
-              >
-                {step.name}
-              </NextMuiListItemButton>
-            </ListItem>
-          );
-        })}
-      </List>
-    </>
+      </ListItem>
+      {steps.map((step, stepIdx) => {
+        return (
+          <ListItem key={step.name}>
+            <NextMuiListItemButton
+              href={step.path}
+              disabled={enableAllSteps ? false : stepIdx > maxStep}
+              selected={stepIdx === currentStep}
+            >
+              {step.name}
+            </NextMuiListItemButton>
+          </ListItem>
+        );
+      })}
+    </List>
   );
 };
 
