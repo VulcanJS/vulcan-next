@@ -46,7 +46,7 @@ export const NextMuiListItemButton = (
   const buttonProps = omit(props, nextLinkProps);
   return (
     <NextLink {...linkProps} passHref>
-      <ListItemButton {...buttonProps}></ListItemButton>
+      <ListItemButton component="a" {...buttonProps}></ListItemButton>
     </NextLink>
   );
 };

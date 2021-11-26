@@ -2,7 +2,11 @@ import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import path from "path";
 import { getMdxPaths, MdxPath } from "@vulcanjs/mdx";
-import { Link as NextLink } from "@vulcanjs/next-mui";
+import {
+  Link as NextLink,
+  NextMuiLink,
+  NextMuiListItemButton,
+} from "@vulcanjs/next-mui";
 import { promises as fsPromises, lstatSync, existsSync } from "fs";
 import { List, ListItem, Link, Typography } from "@mui/material";
 import matter from "gray-matter";
@@ -106,18 +110,19 @@ const FolderTableOfContent = ({
     {/* Print the subfolders we're in */}
     <List>
       {pages.map((pageName) => (
-        <NextLink key={pageName} href={`/docs/${filePath}${pageName}`}>
-          <ListItem button key={pageName}>
-            <Typography style={{ textTransform: "capitalize" }}>
-              {
-                pageName.replace(
-                  /-/g,
-                  " "
-                ) /* we don't use the front matter of the file at this point to simplify loading, so we have to cleanup the name manually */
-              }
-            </Typography>
-          </ListItem>
-        </NextLink>
+        <NextMuiListItemButton
+          key={pageName}
+          href={`/docs/${filePath}${pageName}`}
+        >
+          <Typography style={{ textTransform: "capitalize" }}>
+            {
+              pageName.replace(
+                /-/g,
+                " "
+              ) /* we don't use the front matter of the file at this point to simplify loading, so we have to cleanup the name manually */
+            }
+          </Typography>
+        </NextMuiListItemButton>
       ))}
       <hr></hr>
       <PreviousPageLink filePath={filePath} />
