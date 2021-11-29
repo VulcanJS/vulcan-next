@@ -7,7 +7,10 @@ import { i18n } from "next-i18next";
 //import { AppLayout } from "~/components/layout";
 import { GlobalAppStyle } from "~/components/layout/AppLayout";
 
-import { RouterContext } from "next/dist/shared/lib/router-context"; // next 11.2
+// @see https://github.com/vercel/next.js/pull/28528
+// import { RouterContext } from "next/dist/shared/lib/router-context"; // next 11.2
+// import { RouterContext } from "next/dist/next-server/lib/router-context"; // next < 11.2
+import { RouterContext } from "next/dist/shared/lib/router-context"; // next **12**
 
 import { backgrounds } from "./backgrounds";
 export const parameters = {
