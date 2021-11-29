@@ -154,6 +154,7 @@ They give time and share knowledge to support the project.
 - [Next and TypeScript from the maker of next-transpile-modules](https://github.com/martpie/monorepo-typescript-next-the-sane-way)
 - [A frontend performance oriented starter](https://github.com/ixartz/Next-js-Boilerplate)
 - [Bison, a full-stack Next.js starter](https://github.com/echobind/bisonapp)
+- [Nextra](https://github.com/shuding/nextra), a no-code site generator with Markdown (great for blogging)
 
 ---
 
