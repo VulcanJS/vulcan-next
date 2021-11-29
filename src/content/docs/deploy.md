@@ -14,7 +14,11 @@ This "Install Command" option is available in your project settings.
 
 ### Env variables
 
-Set relevant environment variables, based on the content of `.env.production.local`. You may need to adapt depending on your application URL and your Mongo database URL.
+Set relevant environment variables, based on the content of `.env.production`. You may need to adapt depending on your application URL and your Mongo database URL.
+
+**Please set your TOKEN_SECRET with a  32 characters unique value in "settings/environment-variables".**
+
+![Example setting the secret token ](/img/docs/env_token_secret.png)
 
 Examples:
 
