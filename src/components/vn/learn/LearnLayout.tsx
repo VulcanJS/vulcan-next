@@ -23,19 +23,21 @@ const mdSrc=`---
 };
 export const LearnLayout = ({ children, ...props }) => {
   return (
-    <Container sx={{ mx: "auto", my: 2 }}>
-      <Box sx={{ display: "grid", gridTemplateColumns: { md: "200px 1fr" } }}>
-        <nav>
-          <Steps />
-        </nav>
-        <div>
-          <MuiMdxLayout {...props}>
-            <main>{children}</main>
-          </MuiMdxLayout>
-          <Divider sx={{ my: 4 }} />
-          <LearnFooter />
-        </div>
-      </Box>
-    </Container>
+    <PageLayout>
+      <Container sx={{ mx: "auto", my: 2 }}>
+        <Box sx={{ display: "grid", gridTemplateColumns: { md: "200px 1fr" } }}>
+          <nav>
+            <Steps />
+          </nav>
+          <div>
+            <MuiMdxLayout {...props}>
+              <main>{children}</main>
+            </MuiMdxLayout>
+            <Divider sx={{ my: 4 }} />
+            <LearnFooter />
+          </div>
+        </Box>
+      </Container>
+    </PageLayout>
   );
 };
