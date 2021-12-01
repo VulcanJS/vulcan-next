@@ -21,6 +21,12 @@ const withMagicImports = (config = {}) => {
     ...(config.resolve.modules || []),
     path.join(__dirname, "../../../", "packages"),
   ];
+
+  // Fix issue with simpl-schema importing buffer
+  config.resolve.fallback = {
+    ...(config.resolve.fallback || {}),
+    buffer: false,
+  };
   return config;
 };
 
