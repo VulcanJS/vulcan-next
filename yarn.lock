@@ -4319,10 +4319,10 @@
   resolved "https://registry.yarnpkg.com/@vulcanjs/demo/-/demo-0.4.0.tgz#7504a702eb309777336f7e020ba36d70d0a39fab"
   integrity sha512-PylbnJMLhMxzpNrWCSz24rleQvUpPHINQYlbTk5UG3L92IncxHIR1jxSUQdfQa1DVqVQkxZ+clW1xMhFPcYccw==
 
-"@vulcanjs/graphql@^0.4.0", "@vulcanjs/graphql@^0.4.4":
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/@vulcanjs/graphql/-/graphql-0.4.4.tgz#f7b2b81bc0e609c46e68901bc8e0f51c6ac3b4ae"
-  integrity sha512-SK3snLoN/n6SYtP/WkapYhysbjoBQC2wC2Qc5kRJyqimiY1q4C0TITePa8sTZueWVQDzO5KdtMjObxGtM/gyfw==
+"@vulcanjs/graphql@^0.4.0", "@vulcanjs/graphql@^0.4.5":
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/graphql/-/graphql-0.4.5.tgz#7e682d92bb54d13876d4248dca51f5d3d0f57eb3"
+  integrity sha512-BNhoq2ZDb0UoqLbPvazeu0t5HPw+HGfosqv2904BmSQQAHsiQUtihQlGp0bCcEb8Fy9W1MTEejZNt++Ka8oT0w==
   dependencies:
     "@vulcanjs/core" "^0.4.4"
     "@vulcanjs/i18n" "^0.4.4"
@@ -4355,11 +4355,11 @@
   integrity sha512-KWt/t/Q/jsp7y4Jmaz66IWoYhEC32JFqHugr3A94j3CU292DERfuNVw9Aw4DBZ6rqhlRSZl47WFl2AqyYrTUoQ==
 
 "@vulcanjs/meteor-legacy@^0.4.0":
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/@vulcanjs/meteor-legacy/-/meteor-legacy-0.4.4.tgz#181c316dfd50c652692f533ed36fe58a0734e2e6"
-  integrity sha512-B3sLLVpdv7uY/f9YePX1+lkYvKFJselbfIzQolPVxonqkQg14CgkYtmfn6HAoBY2Uko7suW/Gr5pBgMfruGU9A==
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/meteor-legacy/-/meteor-legacy-0.4.5.tgz#2e23516e885a52b7427a9d9ff32114667fc9e027"
+  integrity sha512-3jCRWIiLiwXEIf3R821xX15wplXPpjfzRwMH0ItUTRY0S4Dh64i7HMRaM+TX3ynrBzZTl4xyAGL5IQkP+DefHw==
   dependencies:
-    "@vulcanjs/graphql" "^0.4.4"
+    "@vulcanjs/graphql" "^0.4.5"
     lodash "^4.17.21"
 
 "@vulcanjs/model@^0.4.1":
@@ -4369,12 +4369,12 @@
   dependencies:
     "@vulcanjs/schema" "^0.4.1"
 
-"@vulcanjs/mongo@^0.4.0", "@vulcanjs/mongo@^0.4.4":
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/@vulcanjs/mongo/-/mongo-0.4.4.tgz#5861c673e8311f0bf7d9f0438dbd9b5d47524061"
-  integrity sha512-7KWosnlmobn3tXwrWEwFrPepVUxdepU2ElMz2i1xZS0g+MtBSO5+w07RTerOMiWunUKYjfMg6dfKagwUZlpQhQ==
+"@vulcanjs/mongo@^0.4.0", "@vulcanjs/mongo@^0.4.5":
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/mongo/-/mongo-0.4.5.tgz#a79a4e762d0ca33fc0a3b236f963ad591e8e5740"
+  integrity sha512-F8ow+iDgAf2c3agSIO0KLoTI7vXP4RlNy6EtXGps35gZKDqfvFZ2i/kZgrGO9Vwz+qCLQXCLhIZDUj3oZv1sPA==
   dependencies:
-    "@vulcanjs/graphql" "^0.4.4"
+    "@vulcanjs/graphql" "^0.4.5"
     "@vulcanjs/model" "^0.4.1"
     "@vulcanjs/utils" "^0.4.4"
     escape-string-regexp "4.0.0"
@@ -4389,29 +4389,29 @@
     "@vulcanjs/schema" "^0.4.1"
     lodash "^4.17.21"
 
-"@vulcanjs/react-hooks@^0.4.0", "@vulcanjs/react-hooks@^0.4.4":
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/@vulcanjs/react-hooks/-/react-hooks-0.4.4.tgz#524b4e5069a004b74ba9b87ab32b0f2a81cbd2d7"
-  integrity sha512-KJKAnSCad5juas4IY3xeO7WExiEyrALVIJhJhB7roZPptCjYpB2PerIys32/xxDl1tuQua6/qStwQGjfNl9Plg==
+"@vulcanjs/react-hooks@^0.4.0", "@vulcanjs/react-hooks@^0.4.5":
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/react-hooks/-/react-hooks-0.4.5.tgz#79646bde0ea02f8be5f6d841a90fe7e5942f53c9"
+  integrity sha512-8uFswIPEoWwCumkw/k0t6HEjN+AhzNGqsaH24uN954Pd8HTwEiI0DFN58BtTwG5wFac5dbX0JehcAzsikiqcfw==
   dependencies:
-    "@vulcanjs/graphql" "^0.4.4"
-    "@vulcanjs/mongo" "^0.4.4"
+    "@vulcanjs/graphql" "^0.4.5"
+    "@vulcanjs/mongo" "^0.4.5"
     debug "^4.3.1"
     graphql "^15.5.0"
     lodash "^4.17.20"
     mingo "^3.0.6"
 
 "@vulcanjs/react-ui@^0.4.2":
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/@vulcanjs/react-ui/-/react-ui-0.4.4.tgz#da7cac3e50626c8f9ecba3f29c9afbc09bd79021"
-  integrity sha512-0iD/8zMHkHC+mAPeQbCXJbWmr9e9mfZtrx7b9iMyoJunZMJYEL33uCfocZ4vATBRGwfzoohQawdJVjy/QjUBTw==
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/react-ui/-/react-ui-0.4.5.tgz#30896c7d3ba16d158ca1a199eec93fd12d4d0fb9"
+  integrity sha512-w4IpobG9oG64cKDP7RkxOZxPgbG61NzAYD3K67oMsqc4L/8XP8GAiH58JNOETDLJ9fByBdCnUYaqdjRgEZ4Giw==
   dependencies:
     "@vulcanjs/core" "^0.4.4"
-    "@vulcanjs/graphql" "^0.4.4"
+    "@vulcanjs/graphql" "^0.4.5"
     "@vulcanjs/i18n" "^0.4.4"
     "@vulcanjs/model" "^0.4.1"
     "@vulcanjs/permissions" "^0.4.2"
-    "@vulcanjs/react-hooks" "^0.4.4"
+    "@vulcanjs/react-hooks" "^0.4.5"
     "@vulcanjs/schema" "^0.4.1"
     "@vulcanjs/utils" "^0.4.4"
     classnames "^2.3.1"
