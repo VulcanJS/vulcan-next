@@ -11,6 +11,10 @@ it("redirect back to from page after login", () => {
     `${apiRoutes.account.login.href}`,
     {
       statusCode: 200,
+      headers: {
+        "Set-Cookie":
+          "token=fake-token; Max-Age=28800; Path=/; Expires=Thu, 02 Dec 2021 01:32:07 GMT; HttpOnly; SameSite=Lax",
+      },
       body: { done: true },
     }
   );

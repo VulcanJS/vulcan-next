@@ -94,7 +94,8 @@ function VNApp({
       <VulcanCurrentUserProvider
         value={{
           currentUser: user || null,
-          loading: false /* TODO: we don't get the loading information from useUser yet */,
+          loading:
+            false /* TODO: we don't get the loading information from useUser yet */,
         }}
       >
         <VulcanComponentsProvider>

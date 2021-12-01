@@ -27,7 +27,7 @@ export default async function signup(
     // we need to use it to ensure that we run all callbacks associated to the user collection
     const user: Partial<UserTypeServer> = { email, password };
     let fullUser: UserTypeServer;
-    const context = await contextFromReq((req as unknown) as Request);
+    const context = await contextFromReq(req as unknown as Request);
     // create mutator should return the created user
     // NOTE: we use the mutator and not the model connector so callbacks are applied
     // like hashing the password

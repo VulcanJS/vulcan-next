@@ -4,6 +4,8 @@
  *
  * You don't need to call it after signup, as signup will already trigger a
  * first email
+ *
+ * TODO: this is not finished, it should reuse code from signup
  */
 import { NextApiRequest, NextApiResponse } from "next";
 import { UserConnector } from "~/models/user.server";

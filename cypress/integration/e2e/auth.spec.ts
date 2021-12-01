@@ -105,6 +105,8 @@ describe("auth", () => {
       `http://(?<domain>.+)${routes.account.verifyEmail.href}/(?<token>\\w+)`
     );
     // Then, we check for the verification email to be sent
+    // /!\ IF THIS FAIL CHECK THAT YOU ARE RUNNING IN TEST MODE
+    // yarn run dev:test (and not just yarn run dev!)
     cy.task("getLastEmail", email).then((emailBody: string) => {
       const verificationLinkMatch = emailBody.match(verificationLinkRegex);
       cy.wrap(verificationLinkMatch).should("exist");
