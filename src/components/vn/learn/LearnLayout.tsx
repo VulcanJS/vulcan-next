@@ -1,6 +1,7 @@
 import { MuiMdxLayout } from "~/components/layout/MuiMdxLayout";
 import { Steps } from "./Steps";
 import { Container, Box, Typography, Link, Divider } from "@mui/material";
+import { PageLayout } from "~/components/layout";
 const LearnFooter = () => {
   /*
   TODO: haven't found a way to reuse some md content outside of page yet
