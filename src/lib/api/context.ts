@@ -76,6 +76,8 @@ export const contextFromReq = async (req: Request) => {
   const context = {
     ...contextBase,
     ...userContext,
+    // pass down the request to graphql context, to allow advanced usage
+    req,
   };
   debugGraphqlContext("Graphql context for current request:", context);
   return context;
