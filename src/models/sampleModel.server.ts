@@ -43,8 +43,23 @@ const schema: VulcanGraphqlSchemaServer = merge({}, commonSchema, {
   /**
    * Demo of an avanced field resolver
    *
+   *
    * Use only as a last resort for advanced use case,
    * prefer relations for more basic use cases
+   *
+   * NOTE: a field resolver is tied to a specific document,
+   * it is used to enhance each document of your collection,
+   * for instance getting Twitter account info of your user based on their id.
+   *
+   * If you want to define a new "static", "top-level" query/mutation,
+   * => just add it in src/pages/api/graphql using usual Apollo syntax
+   *
+   *
+   * @example
+   * query withResolved { sample(input:{}) { result {
+   *   someId
+   *   resolvedField(someArgument: "hello", anotherArgument: 42)
+   * }}}
    */
   someId: {
     type: String,
@@ -58,6 +73,7 @@ const schema: VulcanGraphqlSchemaServer = merge({}, commonSchema, {
       addOriginalField: true,
       arguments: "someArgument: String, anotherArgument: Int",
       description: "A resolved field",
+      // query withResolved { sample { result { someId(someArgument: "hello", anotherArgument: 42) }}}
       resolver: async (document, args, context, info) => {
         // Here, you can get a value based on "document.someId" (or any other field)
         // "context" contains:
@@ -65,8 +81,12 @@ const schema: VulcanGraphqlSchemaServer = merge({}, commonSchema, {
         // - HTTP request
         // - each model and connector (but you should import them explicitely, this only is used internally by Vulcan)
         // Permissions are automatically checked for you based on "canRead" field
-        const allUsers = UserConnector.find({}, { limit: 10 });
-        console.log("allUsers", allUsers);
+
+        // Dumb example of how you can use a connector to fetch data from another collection
+        const tenUsers = await UserConnector.find({}, { limit: 10 });
+        const filtered = tenUsers.filter((u) =>
+          u.email?.match(document.someId)
+        );
         return `
         Initial Id is: ${document.someId}
         Args are: ${args.someArgument}, ${args.anotherArgument}`;
