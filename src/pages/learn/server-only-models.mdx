@@ -20,11 +20,13 @@ However, some code should stay private.
 For example, the code that process user password belongs to the server.
 It should not be included in the client bundle and shared to users.
 
-## Discover the User model server code
+## Discover the User and Sample model server code
 
-The User model is a good example of server-only features.
+The User model is a good example of real-life server-only features.
+The Sample model is also including demonstration of how you could use Vulcan most advanced features
+to customize your graphql schema.
 
-Open `src/models/user.server.ts`.
+Open `src/models/user.server.ts` and `src/models/sampleModel.server.ts`.
 
 You'll see:
 
@@ -32,9 +34,10 @@ You'll see:
 - **Server-only fields**: fields you **don't** want to see in the user interface
 - **Server callbacks**: functions that are called on certain events (creation, update, deletion...),
   like sending an email on success, modifying data before storing them etc.
+- **Relation field-resolvers**: Handle one-to-one and one-to-many relationships elegantly using the relation syntax
 - **Custom field-resolvers**: some data might **not** be stored outside of your database.
   For instance, you might want to get information about the user from the Twitter API.
-  To do so, you can use a custom field resolver, with the `resolveAs` property.
+  To do so, you can use a custom field resolver, with the resolveAs` property.
 
 It is a very advanced model: it handles user signup and authentication.
 Since those features are related to security, you want them to
@@ -51,6 +54,18 @@ and Mongo database. Awesome!
 
 Notice the `.server`. In Vulcan, whenever you see a folder named `server`, or
 a file named `*.server.ts`, it means that it contains server-only code.
+
+## Customizing the graphQL schema
+
+Have some really custom logic that don't fit in Vulcan Model architecture?
+
+No problem, Vulcan Next has "Just Do It" philosophy: you have full control
+over your GraphQL schema and Apollo server.
+
+Just check `src/pages/api/graphql.ts` to understand the setup.
+
+Models are meant to make your life easier in the early stage of developing your application.
+But you are completely free to _not_ use them and write your GraphQL API as you wish.
 
 ## Go to step 5
 

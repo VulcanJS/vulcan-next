@@ -10,36 +10,16 @@ import {
 } from "@vulcanjs/graphql/server";
 import { createMongooseConnector } from "@vulcanjs/mongo";
 import merge from "lodash/merge";
-import { modelDef as modelDefShared } from "./sampleModel";
+import {
+  schema as schemaShared,
+  modelDef as modelDefShared,
+} from "./advancedModel";
 
-const schema: VulcanGraphqlSchemaServer = {
-  _id: {
-    type: String,
-    optional: true,
-    canRead: ["guests"],
-  },
-  userId: {
-    type: String,
-    optional: true,
-    canRead: ["guests"],
-  },
-  createdAt: {
-    type: Date,
-    optional: true,
-    canRead: ["admins"],
-    onCreate: () => {
-      return new Date();
-    },
-  },
-  someField: {
-    type: String,
-    optional: true,
-    canRead: ["guests"],
-    canUpdate: ["admins"],
-    canCreate: ["owners"],
-    searchable: true,
-  },
-};
+const schema: VulcanGraphqlSchemaServer = merge(
+  {},
+  schemaShared,
+  {} as VulcanGraphqlSchemaServer
+);
 
 export interface SampleModelType extends VulcanDocument {
   someField: string;
@@ -51,9 +31,8 @@ const modelDef: CreateGraphqlModelOptionsServer = merge({}, modelDefShared, {
   graphql: {
     /* ...*/
   },
-});
+} as CreateGraphqlModelOptionsServer);
 export const SampleModel = createGraphqlModelServer(modelDef);
 
-export const SampleModelConnector = createMongooseConnector<SampleModelType>(
-  SampleModel
-);
+export const SampleModelConnector =
+  createMongooseConnector<SampleModelType>(SampleModel);

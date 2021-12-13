@@ -26,8 +26,8 @@ Vulcan NPM is relying on Lerna.
 
 We rely on Yalc to set a local registry that simulates NPM behaviour. This palliates limitations of `yarn link`, which is simpler, but creates unexpected issues with duplicate `node_modules` (the symlinked package keeps using `node_modules` from the monorepo instead of your app, leading to duplicate React instance, wrong Webpack version...).
 
-- In Vulcan NPM, run `yarn run local-publish`. This will use `yalc` to simulate a local NPM registry (quite similarly to METEOR_PACKAGE_DIRS)
-- In Vulcan Next, run `yarn run link-vulcan`. This will symlink Vulcan packages to the local registry.
+- In Vulcan NPM, run `yarn run publish:local`. This will use `yalc` to simulate a local NPM registry (quite similarly to METEOR_PACKAGE_DIRS)
+- In Vulcan Next, run `yarn run link:vulcan`. This will symlink Vulcan packages to the local registry.
 
 If you modify Vulcan NPM:
 

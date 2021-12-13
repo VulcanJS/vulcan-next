@@ -8,7 +8,7 @@ import {
   CreateGraphqlModelOptionsShared,
 } from "@vulcanjs/graphql";
 
-const schema: VulcanSchema = {
+export const schema: VulcanSchema = {
   _id: {
     type: String,
     optional: true,
