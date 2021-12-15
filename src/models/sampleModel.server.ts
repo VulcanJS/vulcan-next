@@ -32,6 +32,8 @@ const schema: VulcanGraphqlSchemaServer = merge({}, commonSchema, {
   },
   // If relationDemoUserId matches an existing user, this field can resolve it
   // NOTE: the match will be done on "_id" field, this is not configurable yet
+  // NOTE 2: since relations are declarative (no server code), you can also define them in the shared schema
+  // this may make data fetching easier in the frontend (the client can know the relation)
   relationDemoUserId: {
     type: String,
     relation: {
