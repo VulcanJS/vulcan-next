@@ -32,9 +32,7 @@ We rely on Yalc to set a local registry that simulates NPM behaviour. This palli
 If you modify Vulcan NPM:
 
 - In Vulcan NPM, run `yarn run build`
-- Rerun the workflow (local publish in Vulcan NPM ; and link in Vulcan Next)
-
-It's exactly as publishing on NPM, but locally. You need to republish the updated package, and reinstall it again.
+- Run `yalc run publish:local` again. Note: no need to "link" again, `publish:local` will use [Yalc "push" option](https://github.com/wclr/yalc#pushing-updates-automatically-to-all-installations) to automatically update your Vulcan Next install. 
 
 ### Troubleshoot
 
