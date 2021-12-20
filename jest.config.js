@@ -18,6 +18,8 @@ const commonConfig = {
     "/storybook/",
     "/.next/",
     "/stories/",
+    // also ignore Vulcan Next specific tests
+    "tests/vn",
   ],
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
@@ -29,6 +31,11 @@ const commonConfig = {
   // A map from regular expressions to module names that allow to stub out resources with a single module
   moduleNameMapper: {
     "~/(.*)": "<rootDir>/src/$1",
+    // Also handles multi-entrypoints imports eg @vulcanjs/graphql/server
+    "@vulcanjs/(.*)/(.*)": [
+      "<rootDir>/node_modules/@vulcanjs/$1",
+      "<rootDir>/packages/@vulcanjs/$1",
+    ],
     "@vulcanjs/(.*)": [
       "<rootDir>/node_modules/@vulcanjs/$1",
       "<rootDir>/packages/@vulcanjs/$1",

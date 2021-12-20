@@ -2,13 +2,10 @@
  * I am a sample model
  * Replace me with your own
  */
-import { VulcanDocument } from "@vulcanjs/schema";
 import {
   CreateGraphqlModelOptionsServer,
   createGraphqlModelServer,
   VulcanGraphqlSchemaServer,
-  getModel,
-  getModelConnector,
 } from "@vulcanjs/graphql/server";
 import { createMongooseConnector } from "@vulcanjs/mongo";
 import merge from "lodash/merge";
@@ -22,25 +19,13 @@ import { User, UserConnector } from "./user.server";
 const schema: VulcanGraphqlSchemaServer = merge({}, commonSchema, {
   // An API-only field, that will appear in the graphql schema
   // but not used in the browser
-  someServerOnlyField: {
+  demoServerOnlyField: {
     type: String,
     optional: true,
     canRead: ["guests"],
     canUpdate: ["admins"],
     canCreate: ["owners"],
     searchable: true,
-  },
-  // If relationDemoUserId matches an existing user, this field can resolve it
-  // NOTE: the match will be done on "_id" field, this is not configurable yet
-  // NOTE 2: since relations are declarative (no server code), you can also define them in the shared schema
-  // this may make data fetching easier in the frontend (the client can know the relation)
-  relationDemoUserId: {
-    type: String,
-    relation: {
-      fieldName: "resolvedFieldFromRelation",
-      kind: "hasOne",
-      model: User,
-    },
   },
   /**
    * Demo of an avanced field resolver
@@ -63,12 +48,13 @@ const schema: VulcanGraphqlSchemaServer = merge({}, commonSchema, {
    *   resolvedField(someArgument: "hello", anotherArgument: 42)
    * }}}
    */
-  someId: {
+  demoCustomResolverField: {
     type: String,
     optional: true,
     canRead: ["admins"],
     resolveAs: {
-      fieldName: "resolvedField",
+      // fieldName can be the same as the initial type (useful for "virtual" fields that do not exist in the database at all)
+      fieldName: "demoResolvedField",
       // Return type of your field
       typeName: "String",
       // Will keep "someId" in the graphql schema
@@ -76,7 +62,12 @@ const schema: VulcanGraphqlSchemaServer = merge({}, commonSchema, {
       arguments: "someArgument: String, anotherArgument: Int",
       description: "A resolved field",
       // query withResolved { sample { result { someId(someArgument: "hello", anotherArgument: 42) }}}
-      resolver: async (document, args, context, info) => {
+      resolver: async (
+        document: SampleModelTypeServer,
+        args: { someArgument: string; anotherArgument: number },
+        context,
+        info
+      ) => {
         // Here, you can get a value based on "document.someId" (or any other field)
         // "context" contains:
         // - currentUser and userId for authenticated user
@@ -87,10 +78,10 @@ const schema: VulcanGraphqlSchemaServer = merge({}, commonSchema, {
         // Dumb example of how you can use a connector to fetch data from another collection
         const tenUsers = await UserConnector.find({}, { limit: 10 });
         const filtered = tenUsers.filter((u) =>
-          u.email?.match(document.someId)
+          u.email?.match(document.demoCustomResolverField)
         );
         return `
-        Initial Id is: ${document.someId}
+        Initial Id is: ${document.demoCustomResolverField}
         Args are: ${args.someArgument}, ${args.anotherArgument}`;
       },
     },
@@ -98,7 +89,9 @@ const schema: VulcanGraphqlSchemaServer = merge({}, commonSchema, {
 } as VulcanGraphqlSchemaServer);
 
 export interface SampleModelTypeServer extends SampleModelType {
-  someServerOnlyField: string;
+  demoServerOnlyField: string;
+  demoCustomResolverField: string;
+  demoResolvedField: string;
 }
 
 const modelDef: CreateGraphqlModelOptionsServer = merge({}, commonModelDef, {

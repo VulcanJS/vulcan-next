@@ -8,6 +8,7 @@ import {
   CreateGraphqlModelOptionsShared,
   VulcanGraphqlSchema,
 } from "@vulcanjs/graphql";
+import { User } from "./user";
 
 export const schema: VulcanGraphqlSchema = {
   /** Unique id of the document in the database. You'll want to leave this field as is. */
@@ -38,6 +39,18 @@ export const schema: VulcanGraphqlSchema = {
     canRead: ["guests"],
     canUpdate: ["admins", "owners"],
     canCreate: ["members"],
+  },
+  // If relationDemoUserId matches an existing user, this field can resolve it
+  // NOTE: the match will be done on "_id" field of the relation, this is not configurable yet
+  // NOTE 2: since relations are declarative (no server code), you can also define them in the shared schema
+  // this may make data fetching easier in the frontend (the client can know the relation)
+  demoRelationFieldUserId: {
+    type: String,
+    relation: {
+      fieldName: "resolvedFieldFromRelation",
+      kind: "hasOne",
+      model: User,
+    },
   },
 };
 
