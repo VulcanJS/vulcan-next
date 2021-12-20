@@ -36,10 +36,6 @@ const commonConfig = {
       "<rootDir>/node_modules/@vulcanjs/$1",
       "<rootDir>/packages/@vulcanjs/$1",
     ],
-    "@vulcanjs/(.*)": [
-      "<rootDir>/node_modules/@vulcanjs/$1",
-      "<rootDir>/packages/@vulcanjs/$1",
-    ],
   },
 
   // The directory where Jest should output its coverage files
