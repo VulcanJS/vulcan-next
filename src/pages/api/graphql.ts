@@ -71,6 +71,12 @@ const server = new ApolloServer({
           },
         }
       : false,
+  formatError: (err) => {
+    // This function is mandatory to log error messages, even in development
+    // You may enhance this function, eg by plugging an error tracker like Sentry in production
+    console.error(err);
+    return err;
+  },
 });
 
 const app = express();
