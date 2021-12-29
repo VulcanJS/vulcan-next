@@ -52,7 +52,7 @@ export const checkPasswordForUser = (
   /**
    * LEGACY HANDLING FOR METEOR DB
    */
-  if (!(user.salt && !user.hash)) {
+  if (!(user.salt && user.hash)) {
     console.warn(
       `User ${
         user && JSON.stringify(user)
