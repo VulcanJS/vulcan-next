@@ -78,6 +78,7 @@
     "apollo-server-express": "2.14.2",
     "babel-jest": "26.0.1",
     "babel-plugin-istanbul": "6.0.0",
+    "bcrypt": "^5.0.1",
     "clsx": "^1.1.1",
     "cors": "^2.8.5",
     "cross-env": "7.0.2",

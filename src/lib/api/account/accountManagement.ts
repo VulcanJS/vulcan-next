@@ -14,6 +14,7 @@ import { verifyEmailEmailParameters } from "./emails/verifyEmail";
 import passport from "passport";
 import { resetPasswordSuccessEmailParameters } from "./emails/resetPasswordSuccess";
 import { changePasswordSuccessEmailParameters } from "./emails/changePasswordSuccess";
+import { hashPassword } from "./utils";
 /**
  * Generic authentication method
  *
@@ -36,6 +37,8 @@ export const authenticate = (method, req, res): Promise<any> =>
       }
     })(req, res);
   });
+
+import bcrypt from "bcrypt";
 /**
  * Check that the provided password is the user's password
  * @param user
@@ -46,6 +49,34 @@ export const checkPasswordForUser = (
   user: Pick<UserTypeServer, "hash" | "salt">,
   passwordToTest: string
 ): boolean => {
+  /**
+   * LEGACY HANDLING FOR METEOR DB
+   */
+  if (!(user.salt && !user.hash)) {
+    console.warn(
+      `User ${
+        user && JSON.stringify(user)
+      } has no salt/hash. Coming from Meteor? Will try to use legacy Meteor password, until the user changes their password.`
+    );
+    const storedHashedPassword = (user as any)?.services?.password?.bcrypt;
+    if (!storedHashedPassword)
+      throw new Error("User has no Meteor password either.");
+    /*
+      @see https://willvincent.com/2018/08/09/replicating-meteors-password-hashing-implementation/
+      It doesn't work, probably because the hashing alg may change (Meteor seems to use sha256)
+    const split = storedHashedPassword.split("$");
+    if (split.length < 3) throw new Error(`Password string not valid.`);
+    const hashedPassword = split[3];
+    user.salt = hashedPassword.slice(0, 22);
+    user.hash = hashedPassword.slice(22);
+    */
+    // @ts-ignore
+    const userInput = new crypto.Hash("sha256")
+      .update(passwordToTest)
+      .digest("hex");
+
+    return bcrypt.compareSync(userInput, storedHashedPassword);
+  }
   const hash = (crypto as any)
     .pbkdf2Sync(passwordToTest, user.salt, 1000, 64, "sha512")
     .toString("hex");
