@@ -10,6 +10,7 @@ const seed = async (context) => {
   const UserConnector = getModelConnector(context, User);
 
   const seedAdminUser = async () => {
+    // FIXME: the isAdmin: true filter seems ignored for unknown version
     const count = await UserConnector.count({ isAdmin: true });
     if (count === 0) {
       console.log("No admin user found, seeding admin");

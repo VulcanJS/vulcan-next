@@ -6,6 +6,7 @@ import merge from "lodash/merge";
 import {
   CreateGraphqlModelOptionsServer,
   createGraphqlModelServer,
+  mergeModelDefinitionServer,
   VulcanGraphqlSchemaServer,
 } from "@vulcanjs/graphql/server";
 import { createMongooseConnector } from "@vulcanjs/mongo";
@@ -16,6 +17,7 @@ import {
   UserType as UserTypeShared,
 } from "./user";
 import { hashPassword } from "~/lib/api/account";
+import mongoose from "mongoose";
 
 // use if you specifically want to accept only server user definition
 export interface UserTypeServer extends UserTypeShared {
@@ -96,25 +98,50 @@ const passwordAuthSchema: VulcanGraphqlSchemaServer = {
    */
 };
 
+//import { nanoid } from 'nanoid'
 const schema: VulcanGraphqlSchemaServer = merge({}, clientSchema, {
   ...passwordAuthSchema,
-} as VulcanGraphqlSchemaServer);
-
-const modelDef: CreateGraphqlModelOptionsServer = merge({}, clientModelDef, {
-  graphql: {
-    // server only fields
-    callbacks: {
-      create: {
-        before: [handlePasswordCreation],
-        after: [guaranteeOwnership],
-      },
-      update: {
-        before: [handlePasswordUpdate],
-      },
+  /**
+   * UNCOMMENT ONLY WHEN REUSING USE FROM A VULCAN METEOR DATABASE
+  _id: {
+    onCreate: () => {
+      // generate a random value for the id
+      return nanoid();
     },
   },
-  schema,
+  */
 });
+
+const modelDef: CreateGraphqlModelOptionsServer = mergeModelDefinitionServer(
+  clientModelDef,
+  {
+    graphql: {
+      // server only fields
+      callbacks: {
+        create: {
+          before: [handlePasswordCreation],
+          after: [guaranteeOwnership],
+        },
+        update: {
+          before: [handlePasswordUpdate],
+        },
+      },
+    },
+    schema,
+  }
+);
+
 export const User = createGraphqlModelServer(modelDef);
-export const UserConnector = createMongooseConnector<UserTypeServer>(User);
+export const UserConnector = createMongooseConnector<UserTypeServer>(
+  User
+  /*
+  UNCOMMENT ONLY WHEN REUSING A MONGO DATABASE WITH STRING IDS
+  Will force _id to be a string
+  /!\ You should not mix string _id and ObjectId _id!
+  /!\ You should not use this for a new Vulcan Next project!
+  , {
+  mongooseSchema: new mongoose.Schema({ _id: String }, { strict: false }), // we also need an on create callback
+}
+*/
+);
 User.graphql.connector = UserConnector;
