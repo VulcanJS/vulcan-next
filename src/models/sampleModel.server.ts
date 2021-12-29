@@ -107,5 +107,14 @@ const modelDef: CreateGraphqlModelOptionsServer = merge({}, commonModelDef, {
 } as Partial<CreateGraphqlModelOptionsServer>);
 export const SampleModel = createGraphqlModelServer(modelDef);
 
+/**
+ * Defining a connector explicitely let us reuse it when creating custom resolver
+ *
+ * This is optional, a connector is automatically created for you during graphql context creation
+ */
 export const SampleModelConnector =
   createMongooseConnector<SampleModelType>(SampleModel);
+// We registrer the connector within the model
+// (Note: since the connector depends on the model, it can not be done during model creation,
+// you have to do this afterward)
+SampleModel.graphql.connector = SampleModelConnector;

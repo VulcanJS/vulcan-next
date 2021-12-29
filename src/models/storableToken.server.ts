@@ -3,6 +3,8 @@
  * (email verification, password reset)
  *
  * Persisted in Mongo but NOT part of the graphql schema
+ * => do NOT add it in index.server
+ *
  * @server-only
  */
 import crypto from "crypto";
@@ -65,9 +67,12 @@ export const StorableToken = createModel({
   },
 });
 
-export const StorableTokenConnector = createMongooseConnector<StorableTokenType>(
-  StorableToken
-);
+/**
+ * TODO: currently Connector is a concept from "@vulcanjs/graphql/server"
+ * But it should be moved to "@vulcanjs/model/server" to be easier to reuse
+ */
+export const StorableTokenConnector =
+  createMongooseConnector<StorableTokenType>(StorableToken);
 
 // helpers
 

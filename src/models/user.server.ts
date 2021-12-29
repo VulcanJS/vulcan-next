@@ -116,5 +116,5 @@ const modelDef: CreateGraphqlModelOptionsServer = merge({}, clientModelDef, {
   schema,
 });
 export const User = createGraphqlModelServer(modelDef);
-
 export const UserConnector = createMongooseConnector<UserTypeServer>(User);
+User.graphql.connector = UserConnector;

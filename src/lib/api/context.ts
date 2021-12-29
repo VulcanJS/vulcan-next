@@ -10,6 +10,7 @@ import { getSession } from "~/lib/api/account";
 import { Request } from "express";
 import debug from "debug";
 import models from "~/models/index.server";
+import { VulcanGraphqlModelServer } from "@vulcanjs/graphql";
 const debugGraphqlContext = debug("vn:graphql:context");
 
 /**
@@ -27,17 +28,19 @@ interface ModelContext {
 }
 /**
  * Build a default graphql context for a list of models
+ *
+ * Will use Mongoose connector if no connector is specified in the model
  * @param models
  */
 const createContextForModels = (
-  models: Array<VulcanGraphqlModel>
+  models: Array<VulcanGraphqlModelServer>
 ): ModelContext => {
   return models.reduce(
-    (context, model: VulcanGraphqlModel) => ({
+    (context, model) => ({
       ...context,
       [model.name]: {
         model,
-        connector: createMongooseConnector(model),
+        connector: model.graphql.connector || createMongooseConnector(model),
       },
     }),
     {}
@@ -47,11 +50,7 @@ const createContextForModels = (
 // TODO: isolate context creation code like we do in Vulcan + initialize the currentUser too
 export const contextBase = {
   ...createContextForModels(models),
-  // add some custom context here
-  [User.graphql.typeName]: {
-    model: User,
-    connector: UserConnector, // we use the premade connector
-  },
+  // add some custom context here if needed
 };
 
 interface UserContext {
