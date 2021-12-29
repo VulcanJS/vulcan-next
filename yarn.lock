@@ -1456,14 +1456,14 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.10.2", "@babel/runtime@^7.10.3", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.0", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.10", "@babel/runtime@^7.13.17", "@babel/runtime@^7.13.8", "@babel/runtime@^7.14.0", "@babel/runtime@^7.14.5", "@babel/runtime@^7.14.6", "@babel/runtime@^7.14.8", "@babel/runtime@^7.15.3", "@babel/runtime@^7.16.0", "@babel/runtime@^7.16.3", "@babel/runtime@^7.2.0", "@babel/runtime@^7.3.1", "@babel/runtime@^7.5.0", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.3", "@babel/runtime@^7.7.2", "@babel/runtime@^7.7.6", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.10.2", "@babel/runtime@^7.10.3", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.0", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.10", "@babel/runtime@^7.13.17", "@babel/runtime@^7.13.8", "@babel/runtime@^7.14.5", "@babel/runtime@^7.14.6", "@babel/runtime@^7.14.8", "@babel/runtime@^7.15.3", "@babel/runtime@^7.16.0", "@babel/runtime@^7.16.3", "@babel/runtime@^7.2.0", "@babel/runtime@^7.3.1", "@babel/runtime@^7.5.0", "@babel/runtime@^7.7.2", "@babel/runtime@^7.7.6", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
   version "7.16.3"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.16.3.tgz#b86f0db02a04187a3c17caa77de69840165d42d5"
   integrity sha512-WBwekcqacdY2e9AF/Q7WLFUWmdJGJTkbjqTjoMDgXkVZ3ZRUvOPsLb5KdwISoQVsbP+DQzVZW4Zhci0DvpbNTQ==
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.13.16", "@babel/runtime@^7.6.2":
+"@babel/runtime@^7.13.16", "@babel/runtime@^7.14.0", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.2", "@babel/runtime@^7.6.3", "@babel/runtime@^7.8.7":
   version "7.16.5"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.16.5.tgz#7f3e34bf8bdbbadf03fbb7b1ea0d929569c9487a"
   integrity sha512-TXWihFIS3Pyv5hzR7j6ihmeLkZfrXGxAr5UfSl8CHf+6q/wpiYDkUau0czckpYG8QmnCIuPpdLtuA9VmuGGyMA==
@@ -4006,9 +4006,9 @@
     pretty-format "^25.2.1"
 
 "@types/js-levenshtein@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@types/js-levenshtein/-/js-levenshtein-1.1.0.tgz#9541eec4ad6e3ec5633270a3a2b55d981edc44a9"
-  integrity sha512-14t0v1ICYRtRVcHASzes0v/O+TIeASb8aD55cWF1PidtInhFWSXcmhzhHqGjUWf9SUq1w70cvd1cWKUULubAfQ==
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@types/js-levenshtein/-/js-levenshtein-1.1.1.tgz#ba05426a43f9e4e30b631941e0aa17bf0c890ed5"
+  integrity sha512-qC4bCqYGy1y/NP7dDVr7KJarn+PbX1nSpwA7JXdu0HxT3QYjO8MJ+cntENtHFVy2dRAyBV23OZ6MxsW1AM1L8g==
 
 "@types/json-schema@^7.0.4", "@types/json-schema@^7.0.5", "@types/json-schema@^7.0.8":
   version "7.0.9"
@@ -4105,9 +4105,9 @@
     form-data "^3.0.0"
 
 "@types/node@*":
-  version "17.0.1"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.1.tgz#88d501e84b6185f6489ecee4ba9e8fcec7f29bb2"
-  integrity sha512-NXKvBVUzIbs6ylBwmOwHFkZS2EXCcjnqr8ZCRNaXBkHAf+3mn/rPcJxwrzuc6movh8fxQAsUUfYklJ/EG+hZqQ==
+  version "17.0.5"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.5.tgz#57ca67ec4e57ad9e4ef5a6bab48a15387a1c83e0"
+  integrity sha512-w3mrvNXLeDYV1GKTZorGJQivK6XLCoGwpnyJFbJVK/aTBQUxOCaa/GlFAAN3OTDFcb7h5tiFG+YXCO2By+riZw==
 
 "@types/node@^10.1.0":
   version "10.17.60"
@@ -4224,9 +4224,9 @@
     "@types/react" "*"
 
 "@types/react@*", "@types/react@>=16.14.8", "@types/react@>=16.9.11":
-  version "17.0.37"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.37.tgz#6884d0aa402605935c397ae689deed115caad959"
-  integrity sha512-2FS1oTqBGcH/s0E+CjrCCR9+JMpsu9b69RTFO+40ua43ZqP5MmQ4iUde/dMjWR909KxZwmOQIFq6AV6NjEG5xg==
+  version "17.0.38"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.38.tgz#f24249fefd89357d5fa71f739a686b8d7c7202bd"
+  integrity sha512-SI92X1IA+FMnP3qM5m4QReluXzhcmovhZnLNm3pyeQlooi02qI7sLiepEYqT678uNiyc25XfCqxREFpy3W7YhQ==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -4255,9 +4255,9 @@
     "@types/node" "*"
 
 "@types/set-cookie-parser@^2.4.0":
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/@types/set-cookie-parser/-/set-cookie-parser-2.4.1.tgz#49403d3150f6f296da8e51b3e9e7e562eaf105b4"
-  integrity sha512-N0IWe4vT1w5IOYdN9c9PNpQniHS+qe25W4tj4vfhJDJ9OkvA/YA55YUhaC+HNmMMeLlOSnBW9UMno0qlt5xu3Q==
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@types/set-cookie-parser/-/set-cookie-parser-2.4.2.tgz#b6a955219b54151bfebd4521170723df5e13caad"
+  integrity sha512-fBZgytwhYAUkj/jC/FAV4RQ5EerRup1YQsXQCh8rZfiHkc4UahC192oH0smGwsXol3cL3A5oETuAHeQHmhXM4w==
   dependencies:
     "@types/node" "*"
 
@@ -4480,10 +4480,10 @@
   resolved "https://registry.yarnpkg.com/@vulcanjs/demo/-/demo-0.4.0.tgz#7504a702eb309777336f7e020ba36d70d0a39fab"
   integrity sha512-PylbnJMLhMxzpNrWCSz24rleQvUpPHINQYlbTk5UG3L92IncxHIR1jxSUQdfQa1DVqVQkxZ+clW1xMhFPcYccw==
 
-"@vulcanjs/graphql@^0.4.0", "@vulcanjs/graphql@^0.4.7":
-  version "0.4.7"
-  resolved "https://registry.yarnpkg.com/@vulcanjs/graphql/-/graphql-0.4.7.tgz#453098cc13164f4ec9e8114689e2e81c670a599f"
-  integrity sha512-8Uv7wRJyu89LnvNsWYQxU4QTHbnMJyulzB2iAxAFXMXZVDvuNvk6VTCLiqxoHcoBNmp4wmJR3ZwBSyIoJqb9ww==
+"@vulcanjs/graphql@^0.4.0", "@vulcanjs/graphql@^0.4.9":
+  version "0.4.9"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/graphql/-/graphql-0.4.9.tgz#68327ec307b240b4ad180455a3b8bfb75dff446c"
+  integrity sha512-9wJBgp0f+8SS0yAjDzRlfXjJVizFZ4d8oNFad2p7Fa/WcFpo46MPdY1nVV3EzcFfQyorH4vbNY6HNWT5zgAm5Q==
   dependencies:
     "@vulcanjs/core" "^0.4.6"
     "@vulcanjs/i18n" "^0.4.7"
@@ -4517,11 +4517,11 @@
   integrity sha512-KWt/t/Q/jsp7y4Jmaz66IWoYhEC32JFqHugr3A94j3CU292DERfuNVw9Aw4DBZ6rqhlRSZl47WFl2AqyYrTUoQ==
 
 "@vulcanjs/meteor-legacy@^0.4.0":
-  version "0.4.7"
-  resolved "https://registry.yarnpkg.com/@vulcanjs/meteor-legacy/-/meteor-legacy-0.4.7.tgz#2cfccda0799a569f667bc4c0d8edcf244c73d066"
-  integrity sha512-ThwNgDVsnZaxCPTIWXkJTtKlc4cC/jeFvuH3Q/Bsqqew+6E2Kp85C5zWxms4XWdtyEaQIDdv22xPgdbqOeqqJA==
+  version "0.4.9"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/meteor-legacy/-/meteor-legacy-0.4.9.tgz#dc9b66343f213a499fd1700427bb25adb8a1a30a"
+  integrity sha512-M5P50Gss8m51UcIKd8o4JoSZkZFqKcSx2d3r12ksFbTKgCUR4Hq6Ohx40tFx8iJhOnkFaTBTd8dy20I6/WvcZA==
   dependencies:
-    "@vulcanjs/graphql" "^0.4.7"
+    "@vulcanjs/graphql" "^0.4.9"
     lodash "^4.17.21"
 
 "@vulcanjs/model@^0.4.6":
@@ -4531,12 +4531,12 @@
   dependencies:
     "@vulcanjs/schema" "^0.4.6"
 
-"@vulcanjs/mongo@^0.4.0", "@vulcanjs/mongo@^0.4.7":
-  version "0.4.7"
-  resolved "https://registry.yarnpkg.com/@vulcanjs/mongo/-/mongo-0.4.7.tgz#2283b180cee05329bbdbf337d27d1352d20c54c3"
-  integrity sha512-WK3bRbqOJkV0xrxYgzy9E5mEYl6wP8vsvP0fVGfi4unM7XNhWzhq06W09BEvHrTJX/c5iif4ubn0RJ4rhqaZEw==
+"@vulcanjs/mongo@^0.4.0", "@vulcanjs/mongo@^0.4.9":
+  version "0.4.9"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/mongo/-/mongo-0.4.9.tgz#b96cac21e81f778716d0fafb1fa8c5fdb3d085ec"
+  integrity sha512-xlBSIZvuqwKxxEug/Y0Y0hNHS5GdZPzDaVPbp9kdcack5gk28S2zuPSTWfAIFBuh0ff1mMxCuQ55i44CSGlVjw==
   dependencies:
-    "@vulcanjs/graphql" "^0.4.7"
+    "@vulcanjs/graphql" "^0.4.9"
     "@vulcanjs/model" "^0.4.6"
     "@vulcanjs/utils" "^0.4.6"
     escape-string-regexp "4.0.0"
@@ -4551,29 +4551,29 @@
     "@vulcanjs/schema" "^0.4.6"
     lodash "^4.17.21"
 
-"@vulcanjs/react-hooks@^0.4.0", "@vulcanjs/react-hooks@^0.4.7":
-  version "0.4.7"
-  resolved "https://registry.yarnpkg.com/@vulcanjs/react-hooks/-/react-hooks-0.4.7.tgz#477a6eba5d56cf21971f5e7a00f399018120b0b9"
-  integrity sha512-8OtRvElYVq/Zc8xtCnmuCB6FC+O180TK10NmiHNY0rmtuC8LGHk8vZ4Juy7IPzdH4EcQB1u66oONAcpE4YUJuA==
+"@vulcanjs/react-hooks@^0.4.0", "@vulcanjs/react-hooks@^0.4.9":
+  version "0.4.9"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/react-hooks/-/react-hooks-0.4.9.tgz#0116f5025656c477589dcbf4170eafe0953361ba"
+  integrity sha512-FxtFpJ9C0dSxV1TVilRm5E9CcUJRg5a/6UBBFW69BldUTLFEeQd99vlSeNaTmXAjhfvdK1Hk4245xxf8UJyaxQ==
   dependencies:
-    "@vulcanjs/graphql" "^0.4.7"
-    "@vulcanjs/mongo" "^0.4.7"
+    "@vulcanjs/graphql" "^0.4.9"
+    "@vulcanjs/mongo" "^0.4.9"
     debug "^4.3.1"
     graphql "^15.5.0"
     lodash "^4.17.20"
     mingo "^3.0.6"
 
 "@vulcanjs/react-ui@^0.4.2":
-  version "0.4.7"
-  resolved "https://registry.yarnpkg.com/@vulcanjs/react-ui/-/react-ui-0.4.7.tgz#9cc13b9ebccc7018a43774783e81da59abb8dba8"
-  integrity sha512-jvrro/E9rz7iY72ufwPICdu/bgjkecpZw5aRD01ZbyAyonu2O25hhhBBFfmfgD6Aq9UowtlyRthMFX48TlN12A==
+  version "0.4.9"
+  resolved "https://registry.yarnpkg.com/@vulcanjs/react-ui/-/react-ui-0.4.9.tgz#4f4d28ca6d75e62c2676c870d31e0c940a11535f"
+  integrity sha512-tcB7m44NCSt6893N3s8tdaa/hC7NWWDteSJaAVvEsn5b3TcWogozGQoRYQCVkvIMFmhTtFmOxz5TD+pnFFHXHg==
   dependencies:
     "@vulcanjs/core" "^0.4.6"
-    "@vulcanjs/graphql" "^0.4.7"
+    "@vulcanjs/graphql" "^0.4.9"
     "@vulcanjs/i18n" "^0.4.7"
     "@vulcanjs/model" "^0.4.6"
     "@vulcanjs/permissions" "^0.4.6"
-    "@vulcanjs/react-hooks" "^0.4.7"
+    "@vulcanjs/react-hooks" "^0.4.9"
     "@vulcanjs/schema" "^0.4.6"
     "@vulcanjs/utils" "^0.4.6"
     classnames "^2.3.1"
@@ -14472,7 +14472,7 @@ prop-types-extra@^1.1.0:
     react-is "^16.3.2"
     warning "^4.0.0"
 
-prop-types@^15.0.0, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.0.0, prop-types@^15.5.8, prop-types@^15.6.0:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -14480,6 +14480,15 @@ prop-types@^15.0.0, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.2, 
     loose-envify "^1.4.0"
     object-assign "^4.1.1"
     react-is "^16.8.1"
+
+prop-types@^15.6.2, prop-types@^15.7.2:
+  version "15.8.0"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.0.tgz#d237e624c45a9846e469f5f31117f970017ff588"
+  integrity sha512-fDGekdaHh65eI3lMi5OnErU6a8Ighg2KjcjQxO7m8VHyWjcPyj5kiOgV1LQDOOOgVy3+5FgjXvdSSX7B8/5/4g==
+  dependencies:
+    loose-envify "^1.4.0"
+    object-assign "^4.1.1"
+    react-is "^16.13.1"
 
 property-information@^5.0.0, property-information@^5.3.0:
   version "5.6.0"
@@ -15545,12 +15554,19 @@ rxjs@^6.3.3, rxjs@^6.4.0:
   dependencies:
     tslib "^1.9.0"
 
-rxjs@^7.1.0, rxjs@^7.2.0, rxjs@^7.4.0:
+rxjs@^7.1.0, rxjs@^7.4.0:
   version "7.4.0"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-7.4.0.tgz#a12a44d7eebf016f5ff2441b87f28c9a51cebc68"
   integrity sha512-7SQDi7xeTMCJpqViXh8gL/lebcwlp3d831F05+9B44A4B0WfsEwUQHR64gsH1kvJ+Ep/J9K2+n1hVl1CsGN23w==
   dependencies:
     tslib "~2.1.0"
+
+rxjs@^7.2.0:
+  version "7.5.1"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-7.5.1.tgz#af73df343cbcab37628197f43ea0c8256f54b157"
+  integrity sha512-KExVEeZWxMZnZhUZtsJcFwz8IvPvgu4G2Z2QyqjZQzUGr32KDYuSxrEYO4w3tFFNbfLozcrKUTvTPi+E9ywJkQ==
+  dependencies:
+    tslib "^2.1.0"
 
 safe-buffer@5.1.1:
   version "5.1.1"
@@ -18315,9 +18331,9 @@ yargs@^15.0.2, yargs@^15.4.1:
     yargs-parser "^18.1.2"
 
 yargs@^17.0.1:
-  version "17.3.0"
-  resolved "https://registry.yarnpkg.com/yargs/-/yargs-17.3.0.tgz#295c4ffd0eef148ef3e48f7a2e0f58d0e4f26b1c"
-  integrity sha512-GQl1pWyDoGptFPJx9b9L6kmR33TGusZvXIZUT+BOz9f7X2L94oeAskFYLEg/FkhV06zZPBYLvLZRWeYId29lew==
+  version "17.3.1"
+  resolved "https://registry.yarnpkg.com/yargs/-/yargs-17.3.1.tgz#da56b28f32e2fd45aefb402ed9c26f42be4c07b9"
+  integrity sha512-WUANQeVgjLbNsEmGk20f+nlHgOqzRFpiGWVaBrYGYIGANIIu3lWjoyi0fNlFmJkvfhCZ6BXINe7/W2O2bV4iaA==
   dependencies:
     cliui "^7.0.2"
     escalade "^3.1.1"
