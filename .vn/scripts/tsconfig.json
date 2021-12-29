@@ -1,10 +1,14 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["./**/*.tsx", "./**/*.ts"],
+  "include": [
+    "./**/*.tsx",
+    "./**/*.ts"
+  ],
   "exclude": [],
   "compilerOptions": {
-      "noEmit": false,
-      "outDir": "./",
-      "moduleResolution": "node"
+    "jsx": "react", // otherwise it fails to build server-side components like mails or components in a schema
+    "noEmit": false,
+    "outDir": "./",
+    "moduleResolution": "node"
   }
 }

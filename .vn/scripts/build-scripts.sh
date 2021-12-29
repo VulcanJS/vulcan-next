@@ -13,7 +13,9 @@ do
     fname=`basename "$f"`
     fname_no_ext=`echo "$fname" | cut -d. -f1`
     echo "Filename $fname, without ext $fname_no_ext"
-    yarn run ncc build "$ts_sources_dir/$f" --no-cache --out "$vn_scripts_dir/dist"
+    # TODO: We use transpile-only because SimpleSchema typings are not correctly loaded, we would
+    # need to find a way to point to the right declaration file
+    yarn run ncc build "$ts_sources_dir/$f" --no-cache --out "$vn_scripts_dir/dist" --transpile-only
     mkdir -p "$vn_scripts_dir/$dname"
     mv "$vn_scripts_dir/dist/index.js" "$vn_scripts_dir/$dname/$fname_no_ext".js
 done
