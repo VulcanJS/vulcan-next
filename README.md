@@ -141,6 +141,9 @@ They give time and share knowledge to support the project.
 <a href="https://www.lbke.fr" target="_blank" rel="noopener noreferrer">
 <img src="https://www.lbke.fr/img/logo-md.png" height="75" alt="lbke" />
 </a>
+<a href="https://letter.so/" target="_blank" rel="noopener noreferrer">
+<img src=https://github.com/VulcanJS/vulcan-next/blob/devel/public/img/letter-96x96.png?raw=true" height="75" alt="letter.so" />
+</a>
 
 ## Other cool Next stuff
 
