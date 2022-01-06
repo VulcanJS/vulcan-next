@@ -31,4 +31,7 @@ const config = {
 
 const extended = extendWebpackConfig()(config);
 
+// TODO: does not seem reckognized by Cypress, right now we still use webpack 4
+delete extended.resolve.fallback;
+
 module.exports = extended;

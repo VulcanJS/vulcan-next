@@ -74,6 +74,11 @@ const extendWebpackConfig = (environment) => (webpackConfig) => {
       stream: false,
       util: false,
     };
+    // @see https://stackoverflow.com/questions/68339243/how-can-i-use-top-level-await-in-typescript-next-js
+    webpackConfig.experiments = {
+      ...webpackConfig.experiments,
+      topLevelAwait: true,
+    };
   }
 
   withMagicImports(webpackConfig);
