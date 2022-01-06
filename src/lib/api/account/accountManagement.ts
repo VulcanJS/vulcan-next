@@ -38,7 +38,9 @@ export const authenticate = (method, req, res): Promise<any> =>
     })(req, res);
   });
 
-import bcrypt from "bcrypt";
+// Uncomment only if using Meteor, using bcrypt native module
+// leads to all sort of issue eg breaking seed scripts, avoid if possible
+//import bcrypt from "bcrypt";
 /**
  * Check that the provided password is the user's password
  * @param user
@@ -74,8 +76,8 @@ export const checkPasswordForUser = (
     const userInput = new crypto.Hash("sha256")
       .update(passwordToTest)
       .digest("hex");
-
-    return bcrypt.compareSync(userInput, storedHashedPassword);
+    throw new Error("Bcrypt not enabled in this app");
+    //return bcrypt.compareSync(userInput, storedHashedPassword);
   }
   const hash = (crypto as any)
     .pbkdf2Sync(passwordToTest, user.salt, 1000, 64, "sha512")

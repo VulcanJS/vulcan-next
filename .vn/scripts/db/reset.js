@@ -35676,8 +35676,12 @@ Connection.prototype.model = function(name, schema, collection, options) {
     schema = false;
   }
 
-  if (utils.isObject(schema) && !(schema instanceof this.base.Schema)) {
-    schema = new Schema(schema);
+  if (utils.isObject(schema)) {
+    if (!schema.instanceOfSchema) {
+      schema = new Schema(schema);
+    } else if (!(schema instanceof this.base.Schema)) {
+      schema = schema._clone(this.base.Schema);
+    }
   }
   if (schema && !schema.instanceOfSchema) {
     throw new Error('The 2nd parameter to `mongoose.model()` should be a ' +
@@ -36947,7 +36951,7 @@ function _nextDoc(ctx, doc, pop, callback) {
     });
   }
 
-  _create(ctx, doc, pop, (err, doc) => {
+  ctx.query._completeOne(doc, null, (err, doc) => {
     if (err != null) {
       return callback(err);
     }
@@ -36973,24 +36977,6 @@ function _waitForCursor(ctx, cb) {
       return;
     }
     cb();
-  });
-}
-
-/*!
- * Convert a raw doc into a full mongoose doc.
- */
-
-function _create(ctx, doc, populatedIds, cb) {
-  const instance = helpers.createModel(ctx.query.model, doc, ctx.query._fields);
-  const opts = populatedIds ?
-    { populated: populatedIds } :
-    undefined;
-
-  instance.$init(doc, opts, function(err) {
-    if (err) {
-      return cb(err);
-    }
-    cb(null, instance);
   });
 }
 
@@ -56775,9 +56761,10 @@ function _execPopulateQuery(mod, match, select, assignmentOpts, callback) {
       for (const pop of subPopulate) {
         pop._fullPath = basePath + '.' + pop.path;
       }
-    } else if (subPopulate != null) {
+    } else if (typeof subPopulate === 'object') {
       subPopulate._fullPath = basePath + '.' + subPopulate.path;
     }
+
     query.populate(subPopulate);
   }
 
@@ -58846,6 +58833,7 @@ const applyGlobalMaxTimeMS = __nccwpck_require__(7428);
 const applyWriteConcern = __nccwpck_require__(5661);
 const cast = __nccwpck_require__(9179);
 const castArrayFilters = __nccwpck_require__(4856);
+const castNumber = __nccwpck_require__(1582);
 const castUpdate = __nccwpck_require__(3303);
 const completeMany = __nccwpck_require__(2941);
 const get = __nccwpck_require__(8730);
@@ -59635,6 +59623,21 @@ Query.prototype.mod = function() {
  * @api public
  */
 
+Query.prototype.limit = function limit(v) {
+  this._validate('limit');
+
+  if (typeof v === 'string') {
+    try {
+      v = castNumber(v);
+    } catch (err) {
+      throw new CastError('Number', v, 'limit');
+    }
+  }
+
+  this.options.limit = v;
+  return this;
+};
+
 /**
  * Specifies the number of documents to skip.
  *
@@ -59653,6 +59656,21 @@ Query.prototype.mod = function() {
  * @see cursor.skip http://docs.mongodb.org/manual/reference/method/cursor.skip/
  * @api public
  */
+
+Query.prototype.skip = function skip(v) {
+  this._validate('skip');
+
+  if (typeof v === 'string') {
+    try {
+      v = castNumber(v);
+    } catch (err) {
+      throw new CastError('Number', v, 'skip');
+    }
+  }
+
+  this.options.skip = v;
+  return this;
+};
 
 /**
  * Specifies the maxScan option.
@@ -60412,6 +60430,21 @@ Query.prototype.setOptions = function(options, overwrite) {
   if ('defaults' in options) {
     this._mongooseOptions.defaults = options.defaults;
     // deleting options.defaults will cause 7287 to fail
+  }
+
+  if (typeof options.limit === 'string') {
+    try {
+      options.limit = castNumber(options.limit);
+    } catch (err) {
+      throw new CastError('Number', options.limit, 'limit');
+    }
+  }
+  if (typeof options.skip === 'string') {
+    try {
+      options.skip = castNumber(options.skip);
+    } catch (err) {
+      throw new CastError('Number', options.skip, 'skip');
+    }
   }
 
   return Query.base.setOptions.call(this, options);
@@ -65143,7 +65176,16 @@ Schema.prototype.tree;
  */
 
 Schema.prototype.clone = function() {
-  const Constructor = this.base == null ? Schema : this.base.Schema;
+  const s = this._clone();
+
+  // Bubble up `init` for backwards compat
+  s.on('init', v => this.emit('init', v));
+
+  return s;
+};
+
+Schema.prototype._clone = function _clone(Constructor) {
+  Constructor = Constructor || (this.base == null ? Schema : this.base.Schema);
 
   const s = new Constructor({}, this._userProvidedOptions);
   s.base = this.base;
@@ -65181,9 +65223,6 @@ Schema.prototype.clone = function() {
   }
 
   s.aliases = Object.assign({}, this.aliases);
-
-  // Bubble up `init` for backwards compat
-  s.on('init', v => this.emit('init', v));
 
   return s;
 };
@@ -84458,7 +84497,7 @@ module.exports = JSON.parse('[[[0,44],4],[[45,46],2],[47,4],[[48,57],2],[[58,64]
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"vulcan-next","version":"0.6.5","private":true,"scripts":{"analyze:bundle:storybook":"cross-env ANALYZE=true yarn run build:storybook","analyze:bundle":"cross-env ANALYZE=true npm run build","auto-changelog":"auto-changelog -u","build-storybook":"build-storybook","build:docker":"docker build -f ./.vn/docker/vn.production.dockerfile -t vulcan-next .","build:scripts":"./.vn/scripts/build-scripts.sh","build:static":"# Next Export is not compatible with i18n, this feature is now deactivated in Vulcan Next. See https://github.com/VulcanJS/vulcan-next/issues/98 #next build && next export","build:storybook":"rm -Rf storybook-static && build-storybook -s ./public # TODO: we shouldn\'t need to remove, but Storybook 6.1 has a small bug and can\'t remove existing build automatically","build:test:docker":"docker build -f ./.vn/docker/cypress.dockerfile -t vulcan-next-test .","build":"next build","chromatic":"dotenv -e .env.development.local chromatic --build-script-name build-storybook","clean":"rm -Rf ./dist ./storybook-static .yalc # clean various build folders","combine:reports":"nyc merge reports && mv coverage.json .nyc_output/out.json # intermediate script","copy:reports":"cp coverage-e2e/coverage-final.json reports/from-cypress.json && cp coverage-unit/coverage-final.json reports/from-jest.json # intermediate scripts","coverage:e2e":"cross-env COVERAGE=1 npm run build && start-server-and-test start:test http://localhost:3000 \'COVERAGE=1 cypress run\'","coverage:unit":"jest --coverage","coverage":"npm run coverage:unit && npm run coverage:e2e","cypress:open":"cross-env CYPRESS_coverage=false NODE_ENV=test  cypress open","cypress:run":"cross-env CYPRESS_DEBUG=false CYPRESS_coverage=false NODE_ENV=test cypress run --headless","db:test:seed":"dotenv -e .env.test node .vn/scripts/db/seed.js","db:test:reset":"dotenv -e .env.test node .vn/scripts/db/reset.js # reset can only happen against the test database!","debug":"NODE_OPTIONS=\'--inspect\' next","dev":"next","dev:test":"cross-env NODE_ENV=test next # Start app in test + dev mode","link:vulcan":"./.vn/scripts/link-vulcan.sh # for linking a local copy of Vulcan NPM monorepo (don\'t forget to publish in Vulcan NPM first)","lint":"yarn run next lint","mkdir:reports":"rm -Rf reports && mkdir reports || true # intermediate script","mongo":"yarn run start:mongo  # shortcut for start:mongo","postbuild":"next-sitemap --config vulcan-next-sitemap.js","postcoverage":"npm run report:combined # combine jest and cypress coverage reports","postinstall":"","precombine:reports":"npm run copy:reports && rm -Rf .nyc_output && mkdir .nyc_output || true # intermediate script","precopy:reports":"npm run mkdir:reports # intermediate script","precoverage":"rm -rf .nyc_output || true # delete previous nyx instrumentation","prereport:combined":"npm run combine:reports # intermediate script","report:combined":"nyc report --reporter lcov --report-dir coverage | exit 0 # intermediate script","start:docker":"docker run -p 3000:3000 --env-file .env.development -it vns:latest","start:mongo":"docker run --rm -p 27017:27017 -v \\"$(pwd)/.mongo:/data/db\\" --label vulcan-mongodb mongo:4.0.4 # will start or create & start the image + store data locally in .mongo folder + remove the container when stopped","start:static":"# Next Export is not compatible with i18n, this feature is now deactivated in Vulcan Next. See https://github.com/VulcanJS/vulcan-next/issues/98 #serve ./out","start:storybook-static":"serve storybook-static","start:test":"cross-env NODE_ENV=test npm run start # Start app in test mode","start":"next start","storybook":"start-storybook -p 6006 -s ./public","test:docker":"docker run --env-file .env.development -it vns-test:latest","test:e2e":"cross-env NODE_ENV=test npm run build && start-server-and-test start:test http://localhost:3000 \'cypress:run\'","test:unit":"jest","test:vn":"jest --config=./.vn/jest.config.vn.js --testPathPattern=tests/vn # run tests for Vulcan Next itself, eg scripts (long) ","test":"npm run test:unit && npm run test:e2e","upgrade:vulcan":"yarn upgrade --pattern \'@vulcanjs/*\'","typecheck-watch":"tsc --noEmit --p src/tsconfig.json -w","typecheck":"tsc --noEmit --p src/tsconfig.json # in case of error with @vulcanjs/* package, check that src/types (eg simpl-schema) are up-to-date with vulcan-npm","link:vulcan:update":"yalc update"},"dependencies":{"@apollo/client":"^3.2.0","@emotion/cache":"^11.4.0","@emotion/react":"^11.4.1","@emotion/server":"^11.4.0","@emotion/styled":"^11.3.0","@hapi/iron":"6.0.0","@mdx-js/loader":"^1.6.6","@mdx-js/react":"^1.6.13","@mui/icons-material":"^5.0.0","@mui/material":"^5.0.0","@next/mdx":"^10.0.2","@vulcanjs/demo":"^0.4.0","@vulcanjs/graphql":"^0.4.0","@vulcanjs/mdx":"^0.4.0","@vulcanjs/meteor-legacy":"^0.4.0","@vulcanjs/mongo":"^0.4.0","@vulcanjs/react-hooks":"^0.4.0","@vulcanjs/react-ui":"^0.4.2","apollo-server-express":"2.14.2","babel-jest":"26.0.1","babel-plugin-istanbul":"6.0.0","bcrypt":"^5.0.1","clsx":"^1.1.1","cors":"^2.8.5","cross-env":"7.0.2","debug":"4.1.1","express":"4.17.1","graphql":"15.4.0","graphql-tag":"2.10.3","gray-matter":"^4.0.2","i18next":"^19.4.5","i18next-browser-languagedetector":"^4.2.0","i18next-http-backend":"^1.0.15","lodash":"^4.17.19","mongoose":"6","nanoid":"^3.1.25","next":"12","next-connect":"^0.9.1","next-i18next":"^8.10.0","next-mdx-remote":"3","next-sitemap":"^1.4.17","nodemailer":"^6.6.3","passport":"^0.4.1","passport-local":"1.0.0","polished":"^3.6.5","postcss-nested":"^4.2.1","querystring":"^0.2.1","react":"^17.0.1","react-bootstrap-typeahead":"^6.0.0-alpha.4","react-cookie":"^4.1.1","react-dom":"^17.0.1","react-hook-form":"4.9.8","react-i18next":"^11.5.0","react-spring":"^8.0.27","styled-jsx-plugin-postcss":"^3.0.2","swr":"^0.4.0"},"devDependencies":{"@babel/core":"^7.10.2","@storybook/testing-react":"^0.0.22","@types/mongoose":"^5.7.27","@types/node":"^13.7.6","@types/nodemailer":"^6.4.4","@types/react":"^16.9.23","@types/react-dom":"^16.9.5","@types/shelljs":"^0.8.8","@vercel/ncc":"^0.30.0","babel-loader":"^8.1.0","babel-plugin-import":"^1.13.3","chalk":"^4.1.2","eslint":"^7.32.0","graphql-voyager":"^1.0.0-rc.31","mongodb-memory-server":"^7.3.6","react-is":"^16.13.1","source-map-support":"^0.5.19","storybook-css-modules-preset":"^1.1.1","supertest":"^6.1.6","ts-loader":"^7.0.5","ts-node":"^8.10.2","typescript":"=4.3.5","yalc":"^1.0.0-pre.53"},"optionalDependencies":{"@cypress/code-coverage":"^3.8.1","@cypress/webpack-preprocessor":"^5.4.1","@istanbuljs/nyc-config-typescript":"^1.0.1","@next/bundle-analyzer":"^9.4.4","@next/plugin-storybook":"^11.1.0","@storybook/addon-a11y":"^6.3.7","@storybook/addon-actions":"^6.3.7","@storybook/addon-backgrounds":"^6.3.7","@storybook/addon-controls":"^6.3.7","@storybook/addon-docs":"^6.3.7","@storybook/addon-essentials":"^6.3.7","@storybook/addon-links":"^6.3.7","@storybook/addons":"^6.3.7","@storybook/react":"^6.3.7","@testing-library/cypress":"^6.0.0","@testing-library/jest-dom":"^5.9.0","@testing-library/react":"^10.2.0","@testing-library/react-hooks":"^3.3.0","@types/jest":"^25.2.3","auto-changelog":"^2.2.1","chromatic":"^5.9.2","cypress":"^9","dotenv-cli":"^4.0.0","eslint-config-next":"^11.1.0","eslint-plugin-cypress":"2.11.1","jest":"^26.0.1","jest-transformer-mdx":"^2.2.0","nyc":"^15.1.0","serve":"^11.3.2","shelljs":"^0.8.4","smtp-tester":"^1.2.0","start-server-and-test":"^1.11.0","storybook-addon-next-router":"^3.0.7"}}');
+module.exports = JSON.parse('{"name":"vulcan-next","version":"0.6.5","private":true,"scripts":{"analyze:bundle:storybook":"cross-env ANALYZE=true yarn run build:storybook","analyze:bundle":"cross-env ANALYZE=true npm run build","auto-changelog":"auto-changelog -u","build-storybook":"build-storybook","build:docker":"docker build -f ./.vn/docker/vn.production.dockerfile -t vulcan-next .","build:scripts":"./.vn/scripts/build-scripts.sh","build:static":"# Next Export is not compatible with i18n, this feature is now deactivated in Vulcan Next. See https://github.com/VulcanJS/vulcan-next/issues/98 #next build && next export","build:storybook":"rm -Rf storybook-static && build-storybook -s ./public # TODO: we shouldn\'t need to remove, but Storybook 6.1 has a small bug and can\'t remove existing build automatically","build:test:docker":"docker build -f ./.vn/docker/cypress.dockerfile -t vulcan-next-test .","build":"next build","chromatic":"dotenv -e .env.development.local chromatic --build-script-name build-storybook","clean":"rm -Rf ./dist ./storybook-static .yalc # clean various build folders","combine:reports":"nyc merge reports && mv coverage.json .nyc_output/out.json # intermediate script","copy:reports":"cp coverage-e2e/coverage-final.json reports/from-cypress.json && cp coverage-unit/coverage-final.json reports/from-jest.json # intermediate scripts","coverage:e2e":"cross-env COVERAGE=1 npm run build && start-server-and-test start:test http://localhost:3000 \'COVERAGE=1 cypress run\'","coverage:unit":"jest --coverage","coverage":"npm run coverage:unit && npm run coverage:e2e","cypress:open":"cross-env CYPRESS_coverage=false NODE_ENV=test  cypress open","cypress:run":"cross-env CYPRESS_DEBUG=false CYPRESS_coverage=false NODE_ENV=test cypress run --headless","db:test:seed":"dotenv -e .env.test node .vn/scripts/db/seed.js","db:test:reset":"dotenv -e .env.test node .vn/scripts/db/reset.js # reset can only happen against the test database!","debug":"NODE_OPTIONS=\'--inspect\' next","dev":"next","dev:test":"cross-env NODE_ENV=test next # Start app in test + dev mode","link:vulcan":"./.vn/scripts/link-vulcan.sh # for linking a local copy of Vulcan NPM monorepo (don\'t forget to publish in Vulcan NPM first)","lint":"yarn run next lint","mkdir:reports":"rm -Rf reports && mkdir reports || true # intermediate script","mongo":"yarn run start:mongo  # shortcut for start:mongo","postbuild":"next-sitemap --config vulcan-next-sitemap.js","postcoverage":"npm run report:combined # combine jest and cypress coverage reports","postinstall":"","precombine:reports":"npm run copy:reports && rm -Rf .nyc_output && mkdir .nyc_output || true # intermediate script","precopy:reports":"npm run mkdir:reports # intermediate script","precoverage":"rm -rf .nyc_output || true # delete previous nyx instrumentation","prereport:combined":"npm run combine:reports # intermediate script","report:combined":"nyc report --reporter lcov --report-dir coverage | exit 0 # intermediate script","start:docker":"docker run -p 3000:3000 --env-file .env.development -it vns:latest","start:mongo":"docker run --rm -p 27017:27017 -v \\"$(pwd)/.mongo:/data/db\\" --label vulcan-mongodb mongo:4.0.4 # will start or create & start the image + store data locally in .mongo folder + remove the container when stopped","start:static":"# Next Export is not compatible with i18n, this feature is now deactivated in Vulcan Next. See https://github.com/VulcanJS/vulcan-next/issues/98 #serve ./out","start:storybook-static":"serve storybook-static","start:test":"cross-env NODE_ENV=test npm run start # Start app in test mode","start":"next start","storybook":"start-storybook -p 6006 -s ./public","test:docker":"docker run --env-file .env.development -it vns-test:latest","test:e2e":"cross-env NODE_ENV=test npm run build && start-server-and-test start:test http://localhost:3000 \'cypress:run\'","test:unit":"jest","test:vn":"jest --config=./.vn/jest.config.vn.js --testPathPattern=tests/vn # run tests for Vulcan Next itself, eg scripts (long) ","test":"npm run test:unit && npm run test:e2e","upgrade:vulcan":"yarn upgrade --latest --pattern \'@vulcanjs/*\'","typecheck-watch":"tsc --noEmit --p src/tsconfig.json -w","typecheck":"tsc --noEmit --p src/tsconfig.json # in case of error with @vulcanjs/* package, check that src/types (eg simpl-schema) are up-to-date with vulcan-npm","link:vulcan:update":"yalc update"},"dependencies":{"@apollo/client":"^3.2.0","@emotion/cache":"^11.4.0","@emotion/react":"^11.4.1","@emotion/server":"^11.4.0","@emotion/styled":"^11.3.0","@hapi/iron":"6.0.0","@mdx-js/loader":"^1.6.6","@mdx-js/react":"^1.6.13","@mui/icons-material":"^5.0.0","@mui/material":"^5.0.0","@next/mdx":"^10.0.2","@vulcanjs/crud":"^0.5.0","@vulcanjs/demo":"^0.5.0","@vulcanjs/graphql":"^0.5.0","@vulcanjs/mdx":"^0.5.0","@vulcanjs/meteor-legacy":"^0.5.0","@vulcanjs/mongo":"^0.5.0","@vulcanjs/react-hooks":"^0.5.0","@vulcanjs/react-ui":"^0.5.0","apollo-server":"^3","apollo-server-express":"^3","babel-jest":"26.0.1","babel-plugin-istanbul":"6.0.0","bcrypt":"^5.0.1","clsx":"^1.1.1","cors":"^2.8.5","cross-env":"7.0.2","debug":"4.1.1","express":"4.17.1","graphql":"15.4.0","graphql-tag":"2.10.3","gray-matter":"^4.0.2","i18next":"^19.4.5","i18next-browser-languagedetector":"^4.2.0","i18next-http-backend":"^1.0.15","lodash":"^4.17.19","mongoose":"6","nanoid":"^3.1.25","next":"12","next-connect":"^0.9.1","next-i18next":"^8.10.0","next-mdx-remote":"3","next-sitemap":"^1.4.17","nodemailer":"^6.6.3","passport":"^0.4.1","passport-local":"1.0.0","polished":"^3.6.5","postcss-nested":"^4.2.1","querystring":"^0.2.1","react":"^17.0.1","react-bootstrap-typeahead":"^6.0.0-alpha.4","react-cookie":"^4.1.1","react-dom":"^17.0.1","react-hook-form":"4.9.8","react-i18next":"^11.5.0","react-spring":"^8.0.27","styled-jsx-plugin-postcss":"^3.0.2","swr":"^0.4.0"},"devDependencies":{"@babel/core":"^7.10.2","@storybook/testing-react":"^0.0.22","@types/mongoose":"^5.7.27","@types/node":"^13.7.6","@types/nodemailer":"^6.4.4","@types/react":"^16.9.23","@types/react-dom":"^16.9.5","@types/shelljs":"^0.8.8","@vercel/ncc":"^0.30.0","babel-loader":"^8.1.0","babel-plugin-import":"^1.13.3","chalk":"^4.1.2","eslint":"^7.32.0","graphql-voyager":"^1.0.0-rc.31","mongodb-memory-server":"^7.3.6","react-is":"^16.13.1","source-map-support":"^0.5.19","storybook-css-modules-preset":"^1.1.1","supertest":"^6.1.6","ts-loader":"^7.0.5","ts-node":"^8.10.2","typescript":"=4.3.5","yalc":"^1.0.0-pre.53"},"optionalDependencies":{"@cypress/code-coverage":"^3.8.1","@cypress/webpack-preprocessor":"^5.4.1","@istanbuljs/nyc-config-typescript":"^1.0.1","@next/bundle-analyzer":"^9.4.4","@next/plugin-storybook":"^11.1.0","@storybook/addon-a11y":"^6.3.7","@storybook/addon-actions":"^6.3.7","@storybook/addon-backgrounds":"^6.3.7","@storybook/addon-controls":"^6.3.7","@storybook/addon-docs":"^6.3.7","@storybook/addon-essentials":"^6.3.7","@storybook/addon-links":"^6.3.7","@storybook/addons":"^6.3.7","@storybook/react":"^6.3.7","@testing-library/cypress":"^6.0.0","@testing-library/jest-dom":"^5.9.0","@testing-library/react":"^10.2.0","@testing-library/react-hooks":"^3.3.0","@types/jest":"^25.2.3","auto-changelog":"^2.2.1","chromatic":"^5.9.2","cypress":"^9","dotenv-cli":"^4.0.0","eslint-config-next":"^11.1.0","eslint-plugin-cypress":"2.11.1","jest":"^26.0.1","jest-transformer-mdx":"^2.2.0","nyc":"^15.1.0","serve":"^11.3.2","shelljs":"^0.8.4","smtp-tester":"^1.2.0","start-server-and-test":"^1.11.0","storybook-addon-next-router":"^3.0.7"}}');
 
 /***/ }),
 
