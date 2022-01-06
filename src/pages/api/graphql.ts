@@ -2,16 +2,16 @@ import express, { Request } from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import { ApolloServer, gql } from "apollo-server-express";
-import { makeExecutableSchema, mergeSchemas } from "graphql-tools";
-const { mergeResolvers, mergeTypeDefs } = require("@graphql-tools/merge");
+import { makeExecutableSchema } from "@graphql-tools/schema";
+import { mergeResolvers, mergeTypeDefs } from "@graphql-tools/merge";
+import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
+
 import { buildApolloSchema } from "@vulcanjs/graphql/server";
 
 import mongoConnection from "~/lib/api/middlewares/mongoConnection";
 import corsOptions from "~/lib/api/cors";
 import { contextFromReq } from "~/lib/api/context";
 import models from "~/models/index.server";
-
-// will trigger seed
 import runSeed from "~/lib/api/runSeed";
 
 /**
@@ -70,11 +70,19 @@ const executableSchema = makeExecutableSchema(mergedSchema);
 const mongoUri = process.env.MONGO_URI;
 if (!mongoUri) throw new Error("MONGO_URI env variable is not defined");
 
+const app = express();
+
 // Define the server (using Express for easier middleware usage)
-const server = new ApolloServer({
-  schema: executableSchema,
-  context: ({ req }) => contextFromReq(req as Request),
-  introspection: process.env.NODE_ENV !== "production",
+const runServer = async () => {
+  const server = new ApolloServer({
+    schema: executableSchema,
+    context: ({ req }) => contextFromReq(req as Request),
+    introspection: process.env.NODE_ENV !== "production",
+    // @see https://github.com/graphql/graphql-playground/issues/1143
+    // @see https://www.apollographql.com/docs/apollo-server/testing/build-run-queries/#graphql-playground
+    // We keep Graphql Playground for now until Apollo ecosystem sorts out the way we can access the web-based gql IDE
+    // Apollo Studio works ok but will lead to issue with CORS, cookies etc.
+    /*
   playground:
     process.env.NODE_ENV !== "production"
       ? {
@@ -82,26 +90,36 @@ const server = new ApolloServer({
             "request.credentials": "include",
           },
         }
-      : false,
-  formatError: (err) => {
-    // This function is mandatory to log error messages, even in development
-    // You may enhance this function, eg by plugging an error tracker like Sentry in production
-    console.error(err);
-    return err;
-  },
-});
+      : false,*/
+    plugins:
+      process.env.NODE_ENV !== "production"
+        ? [
+            ApolloServerPluginLandingPageGraphQLPlayground({
+              // @see https://www.apollographql.com/docs/apollo-server/api/plugin/landing-pages/#graphql-playground-landing-page
+              // options
+            }),
+          ]
+        : [],
+    formatError: (err) => {
+      // This function is mandatory to log error messages, even in development
+      // You may enhance this function, eg by plugging an error tracker like Sentry in production
+      console.error(err);
+      return err;
+    },
+  });
+  await server.start();
 
-const app = express();
+  app.set("trust proxy", true);
+  const gqlPath = "/api/graphql";
+  // setup cors
+  app.use(gqlPath, cors(corsOptions));
+  // init the db
+  app.use(gqlPath, mongoConnection(mongoUri));
 
-app.set("trust proxy", true);
+  server.applyMiddleware({ app, path: "/api/graphql" });
+};
 
-const gqlPath = "/api/graphql";
-// setup cors
-app.use(gqlPath, cors(corsOptions));
-// init the db
-app.use(gqlPath, mongoConnection(mongoUri));
-
-server.applyMiddleware({ app, path: "/api/graphql" });
+runServer();
 
 export default app;
 
