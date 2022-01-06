@@ -6,8 +6,8 @@ const path = require("path");
 const plugins = [];
 if (process.env.ANALYZE === "true") {
   debugWebpack("Enabling bundle analysis for Storybook"); // eslint-disable-line no-console
-  const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
-    .BundleAnalyzerPlugin;
+  const BundleAnalyzerPlugin =
+    require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
   plugins.push(new BundleAnalyzerPlugin());
 }
 module.exports = {
@@ -65,6 +65,9 @@ module.exports = {
     // Allow to use next-i18next isomorphic code
     // @see https://github.com/isaachinman/next-i18next/issues/1012
     withVulcan.node = { ...(withVulcan.node || {}), fs: "empty" };
+
+    //  Storybook seems unhappy with fallback, probably a version thing
+    delete withVulcan.resolve.fallback;
 
     return withVulcan;
   },

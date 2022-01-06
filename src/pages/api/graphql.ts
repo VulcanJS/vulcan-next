@@ -71,9 +71,8 @@ const mongoUri = process.env.MONGO_URI;
 if (!mongoUri) throw new Error("MONGO_URI env variable is not defined");
 
 const app = express();
-
-// Define the server (using Express for easier middleware usage)
 const runServer = async () => {
+  // Define the server (using Express for easier middleware usage)
   const server = new ApolloServer({
     schema: executableSchema,
     context: ({ req }) => contextFromReq(req as Request),
@@ -117,17 +116,11 @@ const runServer = async () => {
   app.use(gqlPath, mongoConnection(mongoUri));
 
   server.applyMiddleware({ app, path: "/api/graphql" });
-};
 
-runServer();
+  // Seed in development
+  runSeed();
+};
 
 export default app;
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
-// Seed in development
-runSeed();
+runServer();
