@@ -3,6 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import { ApolloServer, gql } from "apollo-server-express";
 import { makeExecutableSchema, mergeSchemas } from "graphql-tools";
+const { mergeResolvers, mergeTypeDefs } = require("@graphql-tools/merge");
 import { buildApolloSchema } from "@vulcanjs/graphql/server";
 
 import mongoConnection from "~/lib/api/middlewares/mongoConnection";
@@ -18,12 +19,11 @@ import runSeed from "~/lib/api/runSeed";
  * http://vulcanjs.org/
  */
 const vulcanRawSchema = buildApolloSchema(models);
-const vulcanSchema = makeExecutableSchema(vulcanRawSchema);
 
 /**
  * Example custom Apollo server, written by hand
  */
-const typeDefs = gql`
+const customTypeDefs = gql`
   type Query {
     restaurants: [Restaurant]
   }
@@ -32,7 +32,7 @@ const typeDefs = gql`
     name: String
   }
 `;
-const resolvers = {
+const customResolvers = {
   Query: {
     // Demo with mongoose
     // Expected the database to be setup with the demo "restaurant" API from mongoose
@@ -51,16 +51,28 @@ const resolvers = {
     },
   },
 };
-const customSchema = makeExecutableSchema({ typeDefs, resolvers });
-// NOTE: schema stitching can cause a bad developer experience with errors
-const mergedSchema = mergeSchemas({ schemas: [vulcanSchema, customSchema] });
+
+/*
+Merging schema happens in 2 steps:
+1. Merge typedefs and resolvers
+=> this allow you to reuse Vulcan scalars in your own schema,
+such as "JSON"
+2. Make executable only after everything is merged
+*/
+const mergedSchema = {
+  ...vulcanRawSchema,
+  typeDefs: mergeTypeDefs([vulcanRawSchema.typeDefs, customTypeDefs]),
+  resolvers: mergeResolvers([vulcanRawSchema.resolvers, customResolvers]),
+};
+
+const executableSchema = makeExecutableSchema(mergedSchema);
 
 const mongoUri = process.env.MONGO_URI;
 if (!mongoUri) throw new Error("MONGO_URI env variable is not defined");
 
 // Define the server (using Express for easier middleware usage)
 const server = new ApolloServer({
-  schema: mergedSchema,
+  schema: executableSchema,
   context: ({ req }) => contextFromReq(req as Request),
   introspection: process.env.NODE_ENV !== "production",
   playground:
