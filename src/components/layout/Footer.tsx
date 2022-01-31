@@ -34,6 +34,7 @@ const Footer = () => {
                 side-effects with GET is a bad practice leading to all sort of troubles */}
                 {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
                 <a
+                  href="#"
                   onClick={async (evt) => {
                     evt.preventDefault();
                     await fetch(apiRoutes.account.logout.href, {
