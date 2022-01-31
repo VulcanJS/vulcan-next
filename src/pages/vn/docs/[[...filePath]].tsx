@@ -19,9 +19,10 @@ const components = {
   ...muiMdComponents,
 };
 
+const docsBaseRoute = "/vn/docs";
 const indexLink = (
   <div style={{ maxWidth: "1000px" }}>
-    <NextLink href="/docs">
+    <NextLink href={docsBaseRoute}>
       <Typography>Back to documentation index</Typography>
     </NextLink>
   </div>
@@ -41,7 +42,7 @@ function PreviousPageLink(props: { filePath: string }) {
   if (splittedPath.length < 2) {
     return null;
   } else {
-    const url = "/docs/" + splittedPath.slice(0, -1).join("/");
+    const url = docsBaseRoute + "/" + splittedPath.slice(0, -1).join("/");
     return (
       <div style={{ margin: "8px auto", maxWidth: "1000px" }}>
         <Link href={url}>
@@ -112,7 +113,7 @@ const FolderTableOfContent = ({
       {pages.map((pageName) => (
         <NextMuiListItemButton
           key={pageName}
-          href={`/docs/${filePath}${pageName}`}
+          href={`${docsBaseRoute}/${filePath}${pageName}`}
         >
           <Typography style={{ textTransform: "capitalize" }}>
             {
@@ -146,8 +147,9 @@ export default function DocPage({ pages, filePath, source }: PageArguments) {
 interface PathsProps {
   params: { filePath: Array<String> }; // Use String and not string to match vulcan-npm MdxPath syntax
 }
+const docContentRoot = "./src/content/vn/docs";
 export async function getStaticPaths() {
-  const docsDir = path.resolve("./src/content/docs"); // relative to the project root
+  const docsDir = path.resolve(docContentRoot); // relative to the project root
   const files = await getMdxPaths(docsDir);
   // paths is the file without the extension, shaped as [{ params: { filePath: [ 'subfolder', 'file' ] } } ]
   const paths = spreadPaths(files);
@@ -176,12 +178,10 @@ export async function getStaticProps({ params }) {
   // Check if the filePath is a file or a directory
   if (!params.filePath) {
     // We're in /docs
-    return await getMdxPages(path.resolve("./src/content/docs"), ""); // relative to the project root
+    return await getMdxPages(path.resolve(docContentRoot), ""); // relative to the project root
   } else {
     // we're in a file or a subfolder
-    let resolvedPath = path.resolve(
-      "./src/content/docs/" + params.filePath.join("/")
-    );
+    let resolvedPath = path.resolve(docContentRoot, params.filePath.join("/"));
     if (existsSync(resolvedPath) && lstatSync(resolvedPath).isDirectory()) {
       // We're in a subfolder
       return await getMdxPages(resolvedPath, params.filePath.join("/"));
