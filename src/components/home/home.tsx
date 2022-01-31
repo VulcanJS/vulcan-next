@@ -30,7 +30,13 @@ export const Home = () => {
       </Typography>
       <Typography>
         You can also read the rest of{" "}
-        <a href="/docs">Vulcan documentation here.</a>
+        <a
+          href="https://vulcan-docs.vercel.app/docs/vulcan-next"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Vulcan Next documentation here.
+        </a>
       </Typography>
       <Typography>Have fun!</Typography>
     </Paper>

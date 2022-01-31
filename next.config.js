@@ -1,13 +1,19 @@
-const { extendNextConfig } = require("./packages/@vulcanjs/next-config");
 // Use @next/mdx for a basic MDX support.
 // See the how Vulcan Next docs are setup with next-mdx-remote
 // which is more advanced (loading remote MD, supporting styling correctly etc.)
 const withMDX = require("@next/mdx")({ extension: /\.mdx?$/ });
+
+// Custom config from vulcan-next
+const { extendNextConfig } = require("./packages/@vulcanjs/next-config");
 const withPkgInfo = require("./.vn/nextConfig/withPkgInfo");
 const withI18n = require("./.vn/nextConfig/withI18n");
+const {
+  vnRedirects,
+  vnRewrites,
+} = require("./.vn/nextConfig/redirectsAndRewrites");
 
 const flowRight = require("lodash/flowRight");
-const debug = require("debug")("vns:next");
+const debug = require("debug")("vn:next");
 
 // @see https://nextjs.org/docs/api-reference/next.config.js/runtime-configuration
 module.exports = (phase, { defaultConfig }) => {
@@ -53,30 +59,11 @@ module.exports = (phase, { defaultConfig }) => {
 
   extendedConfig.redirects = async () => {
     // learn offline vs online
-    return [
-      {
-        source: "/learn",
-        destination: "/learn/intro-offline",
-        permanent: true,
-        has: [
-          {
-            type: "host",
-            value: "localhost",
-          },
-        ],
-      },
-      {
-        source: "/learn",
-        destination: "/learn/intro-online",
-        permanent: true,
-        has: [
-          {
-            type: "host",
-            value: "vulcan-next",
-          },
-        ],
-      },
-    ];
+    return [...(await vnRedirects())];
+  };
+  extendedConfig.rewrites = async () => {
+    // rewrite Vulcan Next page to "/vn"
+    return [...(await vnRewrites())];
   };
 
   extendedConfig.experimental = {};

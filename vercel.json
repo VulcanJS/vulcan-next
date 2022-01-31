@@ -1,1 +1,9 @@
-{}
+{
+  "redirects": [
+    {
+      "source": "/docs(?.*)",
+      "destination": "https://vulcan-docs.vercel.app/docs/vulcan-next",
+      "permanent": true
+    }
+  ]
+}
