@@ -1,6 +1,6 @@
 {
   "name": "vulcan-next",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "private": true,
   "scripts": {
     "analyze:bundle:storybook": "cross-env ANALYZE=true yarn run build:storybook",
