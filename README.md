@@ -22,9 +22,9 @@ Vulcan Next provides:
 
 [Get started with the live tutorial](https://vulcan-next.vercel.app/learn)
 
-[Check all the features from our live app](https://vulcan-next.vercel.app/docs/features) or [directly on Github](https://github.com/VulcanJS/vulcan-next/tree/devel/src/content/docs/features)
-
 [Read the introductory article on FreeCodeCamp](https://www.freecodecamp.org/news/how-to-replace-meteor-by-next-introducing-vulcan-next-starter/)
+
+[Check the full documentation](https://vulcan-docs.vercel.app)
 
 ## A word about Vulcan.js aka Vulcan Meteor
 
@@ -41,7 +41,7 @@ yarn run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
-You can then access the live docs on [http://localhost:3000/docs](http://localhost:3000/docs).
+You can then access the live tutorial on [http://localhost:3000/learn](http://localhost:3000/learn).
 
 ### Setup your own git repository
 
@@ -175,14 +175,6 @@ To learn more about Next.js, take a look at the following resources:
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
 ---
-
-## Deploy on Netlify
-
-We use Netlify for our deployments, and so should you!
-
-<a href="https://www.netlify.com">
-  <img src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg" alt="Deploys by Netlify" />
-</a>
 
 ## Deploy on Vercel
 
