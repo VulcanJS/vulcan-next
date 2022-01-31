@@ -4,7 +4,6 @@ Disallow: /vn/*
 Disallow: /login
 Disallow: /profile
 Disallow: /signup
-Disallow: /admin
 Disallow: /auth
 
 # Host
