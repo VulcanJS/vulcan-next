@@ -26,4 +26,11 @@ export const routes = {
       href: "/account/profile",
     },
   },
+  vn: {
+    admin: {
+      home: {
+        href: "/vn/admin",
+      },
+    },
+  },
 };

@@ -15,7 +15,7 @@ const AdminPage = () => {
     <PageLayout>
       <Typography variant="h1">Admin area</Typography>
       <Typography variant="body1">/!\ This is experimental</Typography>
-      <NextMuiLink href="/admin/crud">
+      <NextMuiLink href={routes.vn.admin.home.href}>
         <Typography>Manage your data</Typography>
       </NextMuiLink>
     </PageLayout>

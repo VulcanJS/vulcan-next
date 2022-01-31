@@ -26,7 +26,7 @@ it("redirect back to from page after login", () => {
       body: { user: null },
     }
   );
-  cy.visit(`${routes.account.login.href}?from=%2Fadmin`);
+  cy.visit(`${routes.account.login.href}?from=%2Fvn%2Fadmin`);
   cy.findByLabelText(/email/i).type(Cypress.env("ADMIN_EMAIL"));
   cy.findByLabelText(/password/i).type(Cypress.env("ADMIN_INITIAL_PASSWORD"));
   cy.findByRole("button").click();
