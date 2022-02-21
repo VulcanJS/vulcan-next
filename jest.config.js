@@ -29,6 +29,7 @@ const commonConfig = {
   ],
 
   // A map from regular expressions to module names that allow to stub out resources with a single module
+  // @see https://nextjs.org/docs/testing#setting-up-jest-with-babel
   moduleNameMapper: {
     "~/(.*)": "<rootDir>/src/$1",
     // Also handles multi-entrypoints imports eg @vulcanjs/graphql/server
@@ -36,6 +37,16 @@ const commonConfig = {
       "<rootDir>/node_modules/@vulcanjs/$1",
       "<rootDir>/packages/@vulcanjs/$1",
     ],
+    // Handle CSS imports (with CSS modules)
+    // https://jestjs.io/docs/webpack#mocking-css-modules
+    '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
+
+    // Handle CSS imports (without CSS modules)
+    '^.+\\.(css|sass|scss)$': '<rootDir>/__mocks__/styleMock.js',
+
+    // Handle image imports
+    // https://jestjs.io/docs/webpack#handling-static-assets
+    '^.+\\.(png|jpg|jpeg|gif|webp|avif|ico|bmp|svg)$/i': `<rootDir>/__mocks__/fileMock.js`,
   },
 
   // The directory where Jest should output its coverage files
