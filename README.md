@@ -158,6 +158,7 @@ They give time and share knowledge to support the project.
 - [A frontend performance oriented starter](https://github.com/ixartz/Next-js-Boilerplate)
 - [Bison, a full-stack Next.js starter](https://github.com/echobind/bisonapp)
 - [Nextra](https://github.com/shuding/nextra), a no-code site generator with Markdown (great for blogging)
+- [BlueLibs](https://www.bluelibs.com/docs/), a toolkit that also proposes a React starter
 
 ---
 
