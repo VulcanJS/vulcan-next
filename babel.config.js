@@ -73,5 +73,27 @@ module.exports = {
     ],
   ],
   plugins,
+  // ESM support in Jest
   babelrc: false,
+  env: {
+    // @see https://babeljs.io/docs/en/babel-plugin-transform-modules-commonjs
+    // @see https://bl.ocks.org/rstacruz/511f43265de4939f6ca729a3df7b001c
+    test: {
+      plugins: ["@babel/plugin-transform-modules-commonjs"],
+      presets: [
+        [
+          "next/babel",
+          {
+            "styled-jsx": {
+              plugins: ["styled-jsx-plugin-postcss"],
+            },
+            "preset-react": {
+              //needed somehow to avoid React messing the import
+              runtime: "automatic",
+            },
+          },
+        ],
+      ],
+    },
+  },
 };

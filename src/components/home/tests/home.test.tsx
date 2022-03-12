@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   render,
   screen,
@@ -14,7 +13,7 @@ import * as stories from "../stories/home.stories";
 // Every component that is returned maps 1:1 with the stories, but they already contain all decorators from story level, meta level and global level.
 const { HomeStory } = composeStories(stories);
 
-describe('components/home', () => {
+describe("components/home", () => {
   test("renders home with testing-react", () => {
     const { queryAllByText } = render(<HomeStory />);
     expect(queryAllByText("Vulcan Next", { exact: false })).not.toBeNull();
