@@ -36,6 +36,7 @@ You can't teach an old dog new tricks! Vulcan Next is the successor of "Vulcan.j
 
 ```sh
 git clone -b main https://github.com/VulcanJS/vulcan-next
+cd vulcan-next
 yarn
 yarn run dev
 ```
