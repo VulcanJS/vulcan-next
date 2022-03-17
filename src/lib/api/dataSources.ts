@@ -20,11 +20,8 @@ interface ModelDataSources {
  */
 export const createDataSources = (): ModelDataSources => {
   const dataSources = models.reduce((dataSources, model) => {
-    const connector = model.graphql.connector;
-    if (!connector)
-      throw new Error(
-        `Model ${model.name} has no connector, cannot create dataSources for it.`
-      );
+    // TODO: we should find a way to guarantee that all models have a default connector
+    const connector = model.graphql.connector || createMongooseConnector(model);
     return {
       ...dataSources,
       [model.name]:
@@ -36,6 +33,7 @@ export const createDataSources = (): ModelDataSources => {
 
 import { MongoDataSource } from "apollo-datasource-mongodb";
 import type { Model } from "mongoose";
+import { createMongooseConnector } from "@vulcanjs/mongo";
 /**
  * Create a mongoose data source
  * @param model

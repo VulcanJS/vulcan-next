@@ -72,6 +72,7 @@ const mongoUri = process.env.MONGO_URI;
 if (!mongoUri) throw new Error("MONGO_URI env variable is not defined");
 
 const app = express();
+
 // Define the server (using Express for easier middleware usage)
 const server = new ApolloServer({
   schema: executableSchema,

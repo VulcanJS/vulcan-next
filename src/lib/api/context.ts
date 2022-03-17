@@ -49,6 +49,9 @@ const createContextForModels = (
       ...context,
       [model.name]: {
         model,
+        // TODO: we should find a more elegant way to generate connector
+        // on model creation. For instance having a "graphql+mongo" package
+        // that creates the default kind of Vulcan Model (currently we separate graphql and mongo)
         connector: model.graphql.connector || createMongooseConnector(model),
       },
     }),
