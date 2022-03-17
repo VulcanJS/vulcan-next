@@ -83,6 +83,7 @@
     "@vulcanjs/mongo": "^0.6.0",
     "@vulcanjs/react-hooks": "^0.6.0",
     "@vulcanjs/react-ui": "^0.6.0",
+    "apollo-datasource-mongodb": "^0.5.2",
     "apollo-server": "^3",
     "apollo-server-express": "^3",
     "babel-jest": "26.0.1",

@@ -13,6 +13,7 @@ import corsOptions from "~/lib/api/cors";
 import { contextFromReq } from "~/lib/api/context";
 import models from "~/models/index.server";
 import runSeed from "~/lib/api/runSeed";
+import { createDataSources } from "~/lib/api/dataSources";
 
 /**
  * Example graphQL schema and resolvers generated using Vulcan declarative approach
@@ -75,6 +76,7 @@ const app = express();
 const server = new ApolloServer({
   schema: executableSchema,
   context: ({ req }) => contextFromReq(req as Request),
+  dataSources: createDataSources,
   introspection: process.env.NODE_ENV !== "production",
   // @see https://github.com/graphql/graphql-playground/issues/1143
   // @see https://www.apollographql.com/docs/apollo-server/testing/build-run-queries/#graphql-playground

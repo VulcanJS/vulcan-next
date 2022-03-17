@@ -44,11 +44,11 @@ yarn run dev
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 You can then access the live tutorial on [http://localhost:3000/learn](http://localhost:3000/learn).
 
-### Setup your own git repository
+## Setup your own git repository
 
 When creating your own application, you'll want to host the code on your own Git repository (on GitHub, BitBucket, etc.).
 
-#### Point git to your own repository
+### Point git to your own repository
 
 Rename "origin" to "upstream", so you can use your own git repository as the main "origin", and VN official repo as "upstream".
 
@@ -57,6 +57,8 @@ git remote rename origin upstream
 # Then do what you need to create your own origin remote
 # git remote add origin <your-own-git-repository-url>
 ```
+
+---
 
 ## Next steps
 

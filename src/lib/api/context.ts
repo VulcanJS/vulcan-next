@@ -1,7 +1,7 @@
 /**
  * Context creation, for graphql but also REST endpoints
  */
-import { VulcanGraphqlModel } from "@vulcanjs/graphql/server";
+import type { VulcanGraphqlModel } from "@vulcanjs/graphql/server";
 import { Connector } from "@vulcanjs/crud/server";
 
 import { createMongooseConnector } from "@vulcanjs/mongo";
@@ -31,12 +31,20 @@ interface ModelContext {
  * Build a default graphql context for a list of models
  *
  * Will use Mongoose connector if no connector is specified in the model
+ *
+ * NOTE: when coding custom mutation or resolvers, you DON'T need to rely on this context
+ * It is used internally by Vulcan to generate the default query and mutation resolvers,
+ * and field/relation resolvers for the dataSources
  * @param models
  */
 const createContextForModels = (
   models: Array<VulcanGraphqlModelServer>
 ): ModelContext => {
-  return models.reduce(
+  /**
+   * This context will be used by default Vulcan resolvers
+   *
+   */
+  const context = models.reduce(
     (context, model) => ({
       ...context,
       [model.name]: {
@@ -46,6 +54,7 @@ const createContextForModels = (
     }),
     {}
   );
+  return context;
 };
 
 // TODO: isolate context creation code like we do in Vulcan + initialize the currentUser too
