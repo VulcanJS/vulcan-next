@@ -6,14 +6,17 @@ import { makeExecutableSchema } from "@graphql-tools/schema";
 import { mergeResolvers, mergeTypeDefs } from "@graphql-tools/merge";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 
-import { buildApolloSchema } from "@vulcanjs/graphql/server";
+import {
+  buildApolloSchema,
+  createDataSources,
+  createContext,
+} from "@vulcanjs/graphql/server";
+import { addDefaultMongoConnector } from "@vulcanjs/mongo-apollo";
 
 import mongoConnection from "~/lib/api/middlewares/mongoConnection";
 import corsOptions from "~/lib/api/cors";
-import { contextFromReq } from "~/lib/api/context";
 import models from "~/models/index.server";
 import runSeed from "~/lib/api/runSeed";
-import { createDataSources } from "~/lib/api/dataSources";
 
 /**
  * Example graphQL schema and resolvers generated using Vulcan declarative approach
@@ -73,11 +76,24 @@ if (!mongoUri) throw new Error("MONGO_URI env variable is not defined");
 
 const app = express();
 
+// Add default connectors and dataSources creators for models that may miss some
+// @see https://www.apollographql.com/docs/apollo-server/data/data-sources
+addDefaultMongoConnector(models);
+const createContextForModels = createContext(models);
+const createDataSourcesForModels = createDataSources(models);
+
 // Define the server (using Express for easier middleware usage)
 const server = new ApolloServer({
   schema: executableSchema,
-  context: ({ req }) => contextFromReq(req as Request),
-  dataSources: createDataSources,
+  context: async ({ req }) => ({
+    ...(await createContextForModels(req as Request)),
+    /** Add your own context here (the field names must be DIFFERENT from the model names) */
+  }),
+  // @see https://www.apollographql.com/docs/apollo-server/data/data-sources
+  dataSources: () => ({
+    ...createDataSourcesForModels(),
+    /* Add your own dataSources here (their name must be DIFFERENT from the model names) */
+  }),
   introspection: process.env.NODE_ENV !== "production",
   // @see https://github.com/graphql/graphql-playground/issues/1143
   // @see https://www.apollographql.com/docs/apollo-server/testing/build-run-queries/#graphql-playground
