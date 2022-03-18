@@ -16,6 +16,7 @@
 ./node_modules/.bin/yalc link @vulcanjs/mdx
 ./node_modules/.bin/yalc link @vulcanjs/meteor-legacy
 ./node_modules/.bin/yalc link @vulcanjs/model
+./node_modules/.bin/yalc link @vulcanjs/mongo-apollo
 ./node_modules/.bin/yalc link @vulcanjs/mongo
 ./node_modules/.bin/yalc link @vulcanjs/multi-env-demo
 ./node_modules/.bin/yalc link @vulcanjs/permissions

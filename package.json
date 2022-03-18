@@ -80,6 +80,7 @@
     "@vulcanjs/graphql": "^0.6.0",
     "@vulcanjs/mdx": "^0.6.0",
     "@vulcanjs/meteor-legacy": "^0.6.0",
+    "@vulcanjs/mongo-apollo": "^0.6.0",
     "@vulcanjs/mongo": "^0.6.0",
     "@vulcanjs/react-hooks": "^0.6.0",
     "@vulcanjs/react-ui": "^0.6.0",
