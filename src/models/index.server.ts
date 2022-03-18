@@ -3,4 +3,10 @@
 import { SampleModel } from "./sampleModel.server";
 import { User } from "./user.server";
 const models = [User, SampleModel];
+
+// Add default connectors and dataSources creators for models that may miss some
+// @see https://www.apollographql.com/docs/apollo-server/data/data-sources
+import { addDefaultMongoConnector } from "@vulcanjs/mongo-apollo";
+addDefaultMongoConnector(models);
+
 export default models;

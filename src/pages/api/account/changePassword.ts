@@ -26,7 +26,7 @@ export default async function changePassword(
     const body = req.body;
     const { oldPassword, newPassword } = body as ChangePasswordBody;
     // context computation step œis shared with graphql endpoint
-    const context = await contextFromReq((req as unknown) as Request);
+    const context = await contextFromReq(req as unknown as Request);
 
     // Important: we get userId from the context, so user has to be logged in
     // + we expect "contextFromReq" to correctly compute those values

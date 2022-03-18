@@ -6,17 +6,14 @@ import { makeExecutableSchema } from "@graphql-tools/schema";
 import { mergeResolvers, mergeTypeDefs } from "@graphql-tools/merge";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 
-import {
-  buildApolloSchema,
-  createDataSources,
-  createContext,
-} from "@vulcanjs/graphql/server";
-import { addDefaultMongoConnector } from "@vulcanjs/mongo-apollo";
+import { buildApolloSchema, createDataSources } from "@vulcanjs/graphql/server";
 
 import mongoConnection from "~/lib/api/middlewares/mongoConnection";
 import corsOptions from "~/lib/api/cors";
 import models from "~/models/index.server";
 import runSeed from "~/lib/api/runSeed";
+
+import { contextFromReq } from "~/lib/api/context";
 
 /**
  * Example graphQL schema and resolvers generated using Vulcan declarative approach
@@ -76,19 +73,18 @@ if (!mongoUri) throw new Error("MONGO_URI env variable is not defined");
 
 const app = express();
 
-// Add default connectors and dataSources creators for models that may miss some
-// @see https://www.apollographql.com/docs/apollo-server/data/data-sources
-addDefaultMongoConnector(models);
-const createContextForModels = createContext(models);
 const createDataSourcesForModels = createDataSources(models);
 
 // Define the server (using Express for easier middleware usage)
 const server = new ApolloServer({
   schema: executableSchema,
   context: async ({ req }) => ({
-    ...(await createContextForModels(req as Request)),
-    /** Add your own context here (the field names must be DIFFERENT from the model names) */
+    ...(await contextFromReq(req as Request)),
+    /** Add your own context here (the field names must be DIFFERENT from the model names)
+     * or modify "lib/api/context"
+     */
   }),
+
   // @see https://www.apollographql.com/docs/apollo-server/data/data-sources
   dataSources: () => ({
     ...createDataSourcesForModels(),
