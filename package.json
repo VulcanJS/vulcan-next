@@ -33,7 +33,7 @@
     "link:vulcan": "./.vn/scripts/link-vulcan.sh",
     "lint": "yarn run next lint",
     "mkdir:reports": "rm -Rf reports && mkdir reports || true # intermediate script",
-    "mongo": "yarn run start:mongo  # shortcut for start:mongo",
+    "mongo": "yarn run start:mongo # shortcut for start:mongo",
     "postbuild": "next-sitemap --config vulcan-next-sitemap.js",
     "postcoverage": "npm run report:combined # combine jest and cypress coverage reports",
     "postinstall": "node ./.vn/scripts/fix-apollo.js",
