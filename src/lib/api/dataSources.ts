@@ -27,7 +27,7 @@ export const createDataSources = (): ModelDataSources => {
       [model.name]:
         model.graphql.dataSource || createMongooseDataSource(model, connector),
     };
-  });
+  }, {});
   return dataSources;
 };
 
