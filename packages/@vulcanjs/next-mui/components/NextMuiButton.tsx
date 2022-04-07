@@ -5,8 +5,8 @@ import {
   ListItemButtonProps,
 } from "@mui/material";
 import NextLink, { LinkProps as NextLinkProps } from "next/link";
-import pick from "lodash/pick";
-import omit from "lodash/omit";
+import pick from "lodash/pick.js";
+import omit from "lodash/omit.js";
 
 const nextLinkProps: Array<keyof NextLinkProps> = [
   "href",

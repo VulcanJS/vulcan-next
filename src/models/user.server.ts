@@ -1,7 +1,7 @@
 /**
  * Extends user.ts with server-side logic
  */
-import merge from "lodash/merge";
+import merge from "lodash/merge.js";
 
 import {
   CreateGraphqlModelOptionsServer,

@@ -4,6 +4,10 @@ import {
 } from "~/lib/api/mongoose/connection";
 import runSeed from "~/lib/api/runSeed";
 
-await connectToAppDb();
-await runSeed();
-await closeDbConnection();
+// No top-level async for Node 14
+async function run() {
+  await connectToAppDb();
+  await runSeed();
+  await closeDbConnection();
+}
+run();

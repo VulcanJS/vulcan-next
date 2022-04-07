@@ -8,7 +8,7 @@
     "auto-changelog": "auto-changelog -u",
     "build-storybook": "build-storybook",
     "build:docker": "docker build -f ./.vn/docker/vn.production.dockerfile -t vulcan-next .",
-    "build:scripts": "./.vn/scripts/build-scripts.sh",
+    "build:scripts": "tsup-node",
     "build:static": "# Next Export is not compatible with i18n, this feature is now deactivated in Vulcan Next. See https://github.com/VulcanJS/vulcan-next/issues/98 #next build && next export",
     "build:storybook": "rm -Rf storybook-static && build-storybook -s ./public # TODO: we shouldn't need to remove, but Storybook 6.1 has a small bug and can't remove existing build automatically",
     "build:test:docker": "docker build -f ./.vn/docker/cypress.dockerfile -t vulcan-next-test .",
@@ -22,9 +22,9 @@
     "coverage": "npm run coverage:unit && npm run coverage:e2e",
     "cypress:open": "cross-env CYPRESS_coverage=false NODE_ENV=test  cypress open",
     "cypress:run": "cross-env CYPRESS_DEBUG=false CYPRESS_coverage=false NODE_ENV=test cypress run --headless",
-    "db:test:seed": "dotenv -e .env.test node .vn/scripts/db/seed.js",
+    "db:test:seed": "dotenv -e .env.test node .vn/scripts/js-dist/seed.mjs",
     "//db:test:reset": "### Reset can only happen against the test database!",
-    "db:test:reset": "dotenv -e .env.test node .vn/scripts/db/reset.js",
+    "db:test:reset": "dotenv -e .env.test node .vn/scripts/js-dist/reset.mjs",
     "debug": "NODE_OPTIONS='--inspect' next",
     "dev": "next",
     "//dev:test": "Starts app in test + dev mode (mainly for Cypress)",
@@ -184,6 +184,7 @@
     "shelljs": "^0.8.4",
     "smtp-tester": "^1.2.0",
     "start-server-and-test": "^1.11.0",
-    "storybook-addon-next-router": "^3.0.7"
+    "storybook-addon-next-router": "^3.0.7",
+    "tsup": "^5.12.4"
   }
 }

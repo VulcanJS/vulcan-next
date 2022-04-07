@@ -4,6 +4,9 @@ import {
   connectToAppDb,
 } from "~/lib/api/mongoose/connection";
 
-await connectToAppDb();
-await mongoose.connection.db.dropDatabase();
-await closeDbConnection();
+async function run() {
+  await connectToAppDb();
+  await mongoose.connection.db.dropDatabase();
+  await closeDbConnection();
+}
+run();

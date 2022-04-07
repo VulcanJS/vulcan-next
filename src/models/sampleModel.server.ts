@@ -8,7 +8,7 @@ import {
   VulcanGraphqlSchemaServer,
 } from "@vulcanjs/graphql/server";
 import { createMongooseConnector } from "@vulcanjs/mongo";
-import merge from "lodash/merge";
+import merge from "lodash/merge.js";
 import {
   modelDef as commonModelDef,
   SampleModelType,
