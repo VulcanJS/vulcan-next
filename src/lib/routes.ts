@@ -31,6 +31,9 @@ export const routes = {
       home: {
         href: "/vn/admin",
       },
+      crud: {
+        href: "/vn/admin/crud",
+      },
     },
   },
 };

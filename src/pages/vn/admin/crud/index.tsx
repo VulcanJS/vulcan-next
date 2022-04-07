@@ -12,7 +12,7 @@ const ModelsPage = () => {
       <List>
         {models.map((model) => (
           <ListItem key={model.name}>
-            <Link href={routes.vn.admin.home.href + "/" + model.name}>
+            <Link href={routes.vn.admin.crud.href + "/" + model.name}>
               <Typography sx={{ textTransform: "capitalize" }}>
                 {model.name}
               </Typography>
