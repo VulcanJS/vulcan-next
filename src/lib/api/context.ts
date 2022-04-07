@@ -17,10 +17,10 @@ import { createContext as createVulcanDefaultContext } from "@vulcanjs/graphql/s
 const createContextForModels = createVulcanDefaultContext(models);
 
 // TODO: isolate context creation code like we do in Vulcan + initialize the currentUser too
-export const contextBase = {
-  ...createContextForModels,
+export const createContextBase = async () => ({
+  ...(await createContextForModels(null)),
   // add some custom context here if needed
-};
+});
 
 interface UserContext {
   userId?: string;

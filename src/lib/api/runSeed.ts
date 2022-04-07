@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { debugMongo } from "~/lib/debuggers";
 import { connectToAppDb } from "~/lib/api/mongoose/connection";
 import seedDatabase from "~/lib/api/seed";
-import { contextBase } from "~/lib/api/context";
+import { createContextBase } from "~/lib/api/context";
 
 async function runSeed() {
   // Seed in development
@@ -14,6 +14,7 @@ async function runSeed() {
       // TODO: what is the best pattern to seed in a serverless context?
       // We pass the default graphql context to the seed function,
       // so it can access our models
+      const contextBase = await createContextBase();
       await seedDatabase(contextBase);
       // also seed restaurant manually to demo a custom server
       const seedRestaurants = async () => {
