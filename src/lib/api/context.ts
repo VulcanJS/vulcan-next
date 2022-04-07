@@ -18,7 +18,10 @@ const createContextForModels = createVulcanDefaultContext(models);
 
 // TODO: isolate context creation code like we do in Vulcan + initialize the currentUser too
 export const createContextBase = async () => ({
-  ...(await createContextForModels(null)),
+  ...(await createContextForModels(
+    // @ts-ignore TODO: check why we must pass the req object here
+    null
+  )),
   // add some custom context here if needed
 });
 
@@ -41,6 +44,7 @@ const userContextFromReq = async (
 export const contextFromReq = async (req: Request) => {
   // TODO
   const userContext = await userContextFromReq(req);
+  const contextBase = await createContextForModels(req);
   const context = {
     ...contextBase,
     ...userContext,
