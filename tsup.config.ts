@@ -24,7 +24,7 @@ export default defineConfig([
     ],
     ...commonConfig,
     format: ["esm"],
-    outDir: "./.vn/scripts/js-dist",
+    outDir: "./.vn/scripts/js-generated",
     platform: "node",
     target: "node14",
   },
