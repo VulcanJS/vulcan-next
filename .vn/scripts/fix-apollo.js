@@ -48,8 +48,8 @@ edits.forEach(([packageJsonPath, fieldsToAdd]) => {
   console.log(
     "Edited, will drop '.next' folder to avoid build issues (only during dev)"
   );
-  if (process.NODE_ENV !== "production") {
-    const dotNextFolder = path.resolve(__dirname, "../../", ".next");
+  const dotNextFolder = path.resolve(__dirname, "../../", ".next");
+  if (process.NODE_ENV !== "production" && fs.existsSync(dotNextFolder)) {
     fs.rmdirSync(dotNextFolder, { recursive: true });
   }
 });
