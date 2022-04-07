@@ -3,7 +3,7 @@
  *
  * @see https://reactjs.org/docs/react-dom-server.html
  */
-import ReactDOMServer from "react-dom/server";
+import ReactDOMServer from "react-dom/server.js";
 
 import { Typography } from "@mui/material";
 import Mail from "nodemailer/lib/mailer";

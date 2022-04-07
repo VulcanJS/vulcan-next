@@ -3,7 +3,7 @@
  *
  * @see https://reactjs.org/docs/react-dom-server.html
  */
-import ReactDOMServer from "react-dom/server";
+import ReactDOMServer from "react-dom/server.js";
 
 import { Typography } from "@mui/material";
 import Mail from "nodemailer/lib/mailer";
@@ -20,8 +20,9 @@ export const ChangePasswordSuccessEmail = () => (
   </div>
 );
 
-export const changePasswordSuccessEmailParameters = (): Partial<Mail.Options> => ({
-  subject: "Here is your password reset link",
-  text: `Your password has been changed successfully. You didn't ask for a password change? Please reach out our Technical Teams.`,
-  html: ReactDOMServer.renderToStaticMarkup(<ChangePasswordSuccessEmail />),
-});
+export const changePasswordSuccessEmailParameters =
+  (): Partial<Mail.Options> => ({
+    subject: "Here is your password reset link",
+    text: `Your password has been changed successfully. You didn't ask for a password change? Please reach out our Technical Teams.`,
+    html: ReactDOMServer.renderToStaticMarkup(<ChangePasswordSuccessEmail />),
+  });
