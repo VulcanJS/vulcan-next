@@ -129,7 +129,6 @@
     "@babel/core": "^7.10.2",
     "@babel/plugin-transform-modules-commonjs": "^7.16.8",
     "@storybook/testing-react": "^0.0.22",
-    "@types/mongoose": "^5.7.27",
     "@types/node": "^13.7.6",
     "@types/nodemailer": "^6.4.4",
     "@types/react": "^16.9.23",

@@ -43,10 +43,10 @@ export const NextMuiListItemButton = (
   props: ListItemButtonProps & NextLinkProps
 ) => {
   const linkProps = pick(props, nextLinkProps);
-  const buttonProps = omit(props, nextLinkProps);
+  const buttonProps = omit(props, nextLinkProps) as ListItemButtonProps<"a">;
   return (
     <NextLink {...linkProps} passHref>
-      <ListItemButton component="a" {...buttonProps}></ListItemButton>
+      <ListItemButton component="a" {...buttonProps} />
     </NextLink>
   );
 };

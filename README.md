@@ -114,6 +114,14 @@ git merge upstream/main -X ours
 
 ---
 
+## Contribute or raise an issue
+
+This starter is **read-only**! Please avoid opening pull requests against it.
+
+All developments [happen in our monorepo "Vulcan NPM" here.](https://github.com/VulcanJS/vulcan-npm)
+
+---
+
 ## They support Vulcan Next and Vulcan Meteor
 
 ### Contributors
