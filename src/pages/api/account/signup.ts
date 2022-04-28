@@ -1,7 +1,7 @@
 import { Request } from "express";
 import { createMutator } from "@vulcanjs/graphql/server";
 import { NextApiRequest, NextApiResponse } from "next";
-import { User, UserConnector, UserTypeServer } from "~/models/user.server";
+import { User, UserMongooseModel, UserTypeServer } from "~/models/user.server";
 import { contextFromReq } from "~/lib/api/context";
 import runSeed from "~/lib/api/runSeed";
 import { sendVerificationEmail } from "~/lib/api/account";
@@ -33,7 +33,7 @@ export default async function signup(
     // like hashing the password
     // in the future, we may want connectors to trigger callbacks
     // Check that the user doesn't exist already
-    const foundUser = await UserConnector.findOne({ email });
+    const foundUser = await UserMongooseModel.findOne({ email });
     // if foundUser exist, DO NOT CREATE AGAIN,
     // BUT DO NOT FAIL SIGNUP EITHER! That would leak user existence information
     if (!foundUser) {

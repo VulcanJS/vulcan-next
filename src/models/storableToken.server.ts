@@ -21,7 +21,7 @@ const schema: VulcanSchema = {
     type: String,
     optional: false,
     // NOTE: this is not a graphql model, there is no notion of relation
-    // if you want the user, you need to query it using the UserConnector
+    // if you want the user, you need to query it using the User data source or Mongoose model
   },
   hashedToken: {
     type: String,

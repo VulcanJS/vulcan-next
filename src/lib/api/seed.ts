@@ -1,5 +1,5 @@
-import { createMutator, getModelConnector } from "@vulcanjs/graphql/server";
-import { User } from "~/models/user.server";
+import { createMutator } from "@vulcanjs/graphql/server";
+import { User, UserMongooseModel } from "~/models/user.server";
 
 const seed = async (context) => {
   if (process.env.MONGO_URI?.match(/lbke-demo/)) {
@@ -7,11 +7,10 @@ const seed = async (context) => {
     return;
   }
   // Add your seed functions here based on the example of users
-  const UserConnector = getModelConnector(context, User);
 
   const seedAdminUser = async () => {
     // FIXME: the isAdmin: true filter seems ignored for unknown version
-    const count = await UserConnector.count({ isAdmin: true });
+    const count = await UserMongooseModel.count({ isAdmin: true });
     if (count === 0) {
       console.log("No admin user found, seeding admin");
       if (!process.env.ADMIN_EMAIL) {

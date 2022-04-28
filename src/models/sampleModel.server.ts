@@ -5,6 +5,7 @@
 import {
   CreateGraphqlModelOptionsServer,
   createGraphqlModelServer,
+  getModelDataSource,
   VulcanGraphqlSchemaServer,
 } from "@vulcanjs/graphql/server";
 import { createMongooseConnector } from "@vulcanjs/mongo";
@@ -14,7 +15,7 @@ import {
   SampleModelType,
   schema as commonSchema,
 } from "./sampleModel";
-import { User, UserConnector } from "./user.server";
+import { User, UserMongooseModel } from "./user.server";
 
 const schema: VulcanGraphqlSchemaServer = merge({}, commonSchema, {
   // An API-only field, that will appear in the graphql schema
@@ -75,8 +76,12 @@ const schema: VulcanGraphqlSchemaServer = merge({}, commonSchema, {
         // - each model and connector (but you should import them explicitely, this only is used internally by Vulcan)
         // Permissions are automatically checked for you based on "canRead" field
 
-        // Dumb example of how you can use a connector to fetch data from another collection
-        const tenUsers = await UserConnector.find({}, { limit: 10 });
+        // Example with a data source, useful if you get users from known ids or fields
+        //const UserDataSource = getModelDataSource(context, User);
+        // const tenUsers = await UserDataSource.findByFields({}, { limit: 10 });
+
+        // Here we need a custom call, we need to call mongoose
+        const tenUsers = await UserMongooseModel.find({}, null, { limit: 10 });
         const filtered = tenUsers.filter((u) =>
           u.email?.match(document.demoCustomResolverField)
         );
@@ -112,9 +117,9 @@ export const SampleModel = createGraphqlModelServer(modelDef);
  *
  * This is optional, a connector is automatically created for you during graphql context creation
  */
-export const SampleModelConnector =
+const SampleModelConnector =
   createMongooseConnector<SampleModelType>(SampleModel);
 // We registrer the connector within the model
 // (Note: since the connector depends on the model, it can not be done during model creation,
 // you have to do this afterward)
-SampleModel.graphql.connector = SampleModelConnector;
+SampleModel.crud.connector = SampleModelConnector;

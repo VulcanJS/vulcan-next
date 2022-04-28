@@ -1,7 +1,7 @@
 import { Request } from "express";
 import { updateMutator } from "@vulcanjs/graphql/server";
 import { NextApiRequest, NextApiResponse } from "next";
-import { User, UserConnector } from "~/models/user.server";
+import { User, UserMongooseModel } from "~/models/user.server";
 import {
   StorableTokenConnector,
   hashToken,
@@ -25,7 +25,7 @@ export default async function changePassword(
     const body = req.body;
     const { token, newPassword } = body as ResetPasswordBody;
     // context computation step œis shared with graphql endpoint
-    const context = await contextFromReq((req as unknown) as Request);
+    const context = await contextFromReq(req as unknown as Request);
 
     // check the token and get the user from it
     const storedToken = await StorableTokenConnector.findOne({
@@ -38,7 +38,7 @@ export default async function changePassword(
       return res.status(500).send("Expired or invalid token");
     }
     const { userId } = storedToken;
-    const user = await UserConnector.findOneById(userId);
+    const user = await UserMongooseModel.findById(userId);
     if (!user) {
       return res.status(500).send("Expired or invalid token");
     }

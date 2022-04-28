@@ -1,12 +1,12 @@
 import { getSession } from "~/lib/api/account";
 import runSeed from "~/lib/api/runSeed";
-import { UserConnector } from "~/models/user.server";
+import { UserMongooseModel } from "~/models/user.server";
 
 export default async function user(req, res) {
   const session = await getSession(req);
   // Get fresh data about the user
   const user = session?._id
-    ? await UserConnector.findOneById(session._id)
+    ? await UserMongooseModel.findById(session._id)
     : null;
   // TODO: apply usual security like mutators would do! In order to filter out the hash
   if (user) {

@@ -4,7 +4,7 @@
  * Use vulcan helper for the default context
  * + add user related context
  */
-import { UserConnector, UserType } from "~/models/user.server";
+import { UserMongooseModel, UserType } from "~/models/user.server";
 import { NextApiRequest } from "next";
 import { getSession } from "~/lib/api/account";
 import { Request } from "express";
@@ -35,7 +35,7 @@ const userContextFromReq = async (
   const session = await getSession(req);
   if (!session?._id) return {};
   // Refetch the user from db in order to get the freshest data
-  const user = await UserConnector.findOneById(session._id);
+  const user = await UserMongooseModel.findById(session._id);
   if (user) {
     return { userId: user._id, currentUser: user };
   }

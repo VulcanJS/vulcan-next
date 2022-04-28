@@ -2,11 +2,11 @@
  * Helpers for email/password based authentication and account management
  *
  * /!\ Those methods expects the connection with the database to be already established
- * - Either create a UserConnector that guarantees that the connection is always established
+ * - Either create a UserMongooseModel that guarantees that the connection is always established
  * - Or establish the connection before you run those function, using "connectoToAppDb()" helper
  */
 import crypto from "crypto";
-import { UserTypeServer, UserConnector } from "~/models/user.server";
+import { UserMongooseModel, UserTypeServer } from "~/models/user.server";
 import { localMailTransport } from "~/lib/api/mail/transports";
 import { resetPasswordTokenEmailParameters } from "./emails/resetPasswordToken";
 import { verifyEmailEmailParameters } from "./emails/verifyEmail";
@@ -14,7 +14,7 @@ import { verifyEmailEmailParameters } from "./emails/verifyEmail";
 import passport from "passport";
 import { resetPasswordSuccessEmailParameters } from "./emails/resetPasswordSuccess";
 import { changePasswordSuccessEmailParameters } from "./emails/changePasswordSuccess";
-import { hashPassword } from "./utils";
+//import { hashPassword } from "./utils";
 /**
  * Generic authentication method
  *
@@ -99,7 +99,7 @@ export async function findUserByCredentials({
 }): Promise<UserTypeServer | null> {
   // Here you should lookup for the user in your DB and compare the password:
   //
-  const user = await UserConnector.findOne({ email });
+  const user = await UserMongooseModel.findOne({ email });
   // NOTE: we should NEVER differentiate the return type depending on whether the email is found or the password is mismatching
   // otherwise attacker could guess whether an user has an account or not in the application
   if (!user) {

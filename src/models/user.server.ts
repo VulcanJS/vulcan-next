@@ -17,7 +17,7 @@ import {
   UserType as UserTypeShared,
 } from "./user";
 import { hashPassword } from "~/lib/api/account";
-import mongoose from "mongoose";
+import type { Model } from "mongoose";
 
 // use if you specifically want to accept only server user definition
 export interface UserTypeServer extends UserTypeShared {
@@ -132,7 +132,7 @@ const modelDef: CreateGraphqlModelOptionsServer = mergeModelDefinitionServer(
 );
 
 export const User = createGraphqlModelServer(modelDef);
-export const UserConnector = createMongooseConnector<UserTypeServer>(
+const UserConnector = createMongooseConnector<UserTypeServer>(
   User
   /*
   UNCOMMENT ONLY WHEN REUSING A MONGO DATABASE WITH STRING IDS
@@ -144,4 +144,8 @@ export const UserConnector = createMongooseConnector<UserTypeServer>(
 }
 */
 );
-User.graphql.connector = UserConnector;
+User.crud.connector = UserConnector;
+
+// Used for custom calls to mongoose
+export const UserMongooseModel =
+  UserConnector.getRawCollection() as Model<UserType>;

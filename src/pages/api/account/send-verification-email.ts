@@ -8,7 +8,7 @@
  * TODO: this is not finished, it should reuse code from signup
  */
 import { NextApiRequest, NextApiResponse } from "next";
-import { UserConnector } from "~/models/user.server";
+import { UserMongooseModel } from "~/models/user.server";
 
 // TODO: factor the context creation so we can reuse it for graphql and REST endpoints
 import { contextFromReq } from "~/lib/api/context";
@@ -29,7 +29,7 @@ export default async function sendVerificationEmail(
     }
 
     // verify that an user corresponds to this email adress
-    const user = await UserConnector.findOne({ email });
+    const user = await UserMongooseModel.findOne({ email });
     if (!user) {
       return res
         .status(500)

@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { UserConnector } from "~/models/user.server";
+import { UserMongooseModel } from "~/models/user.server";
 import {
   generateToken,
   hashToken,
@@ -31,7 +31,7 @@ export default async function sendResetPasswordEmailEndpoint(
       return res.status(500).send("Please provide a valid email");
     }
     // verify that an user corresponds to this email adress
-    const user = await UserConnector.findOne({ email });
+    const user = await UserMongooseModel.findOne({ email });
     if (!user) {
       // user not found, wait a little
       // (prevents timings attack to check if an email exists in db)
