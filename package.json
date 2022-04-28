@@ -140,7 +140,7 @@
     "chalk": "^4.1.2",
     "eslint": "^7.32.0",
     "graphql-voyager": "^1.0.0-rc.31",
-    "mongodb-memory-server": "^7.3.6",
+    "mongodb-memory-server": "^8.4.0",
     "react-is": "^16.13.1",
     "source-map-support": "^0.5.19",
     "storybook-css-modules-preset": "^1.1.1",

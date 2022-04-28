@@ -44,9 +44,15 @@ const path = require("path");
 edits.forEach(([packageJsonPath, fieldsToAdd]) => {
   const fullPath = path.resolve(__dirname, "../../", packageJsonPath);
   console.log("Add fields", fieldsToAdd, "to", fullPath);
-  const currentPackage = JSON.parse(fs.readFileSync(fullPath));
-  const editedPackage = { ...currentPackage, ...fieldsToAdd };
-  fs.writeFileSync(fullPath, JSON.stringify(editedPackage, null, 2));
+  try {
+    const currentPackage = JSON.parse(fs.readFileSync(fullPath));
+    const editedPackage = { ...currentPackage, ...fieldsToAdd };
+    fs.writeFileSync(fullPath, JSON.stringify(editedPackage, null, 2));
+  } catch (err) {
+    console.warn("Could not read/write file", fullPath);
+    console.warn("Maybe the package has been bootstraped via Lerna?");
+    console.error(err);
+  }
   // Drop .next folder to force a rebuild
   console.log(
     "Edited, will drop '.next' folder to avoid build issues (only during dev)"

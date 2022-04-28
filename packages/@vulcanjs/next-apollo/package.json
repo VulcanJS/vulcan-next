@@ -19,6 +19,6 @@
   },
   "dependencies": {
     "@apollo/client": "^3.2.0",
-    "@vulcanjs/next-utils": "^0.0.1"
+    "@vulcanjs/next-utils": "latest"
   }
 }
