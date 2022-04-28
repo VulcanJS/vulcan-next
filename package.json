@@ -185,5 +185,9 @@
     "start-server-and-test": "^1.11.0",
     "storybook-addon-next-router": "^3.0.7",
     "tsup": "^5.12.4"
+  },
+  "resolutions": {
+    "@types/react": "^17.0.16",
+    "@types/react-dom": "^17.0.16"
   }
 }
