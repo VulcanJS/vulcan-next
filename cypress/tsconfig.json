@@ -1,0 +1,11 @@
+{
+  "extends": "../tsconfig.common.json",
+  "outDir": "./dist/",
+  "compilerOptions": {
+    "types": ["cypress", "@testing-library/cypress"],
+    "noEmit": false,
+    "sourceMap": false,
+    "isolatedModules": false
+  },
+  "include": ["./**/*.ts", "./**/*.tsx"]
+}

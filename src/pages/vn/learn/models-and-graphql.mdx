@@ -1,0 +1,86 @@
+import { NextMuiButton } from "@vulcanjs/next-mui";
+import { Button } from "@mui/material";
+import { LearnLayout } from "~/components/vn/learn/LearnLayout";
+import { StepIfElse } from "~/components/vn/learn/Steps";
+
+# Step 2: Plug the database
+
+Vulcan is a **full-stack** framework. It means that it provides a way to create user interfaces (front-end) and to manage a web server (back-end).
+Most back-end need to manipulate data, using a database, like [MongoDB](https://www.mongodb.com/).
+This is what we sometimes call the ["3-tier architecture"](https://en.wikipedia.org/wiki/Multitier_architecture#Three-tier_architecture).
+
+Therefore, for Vulcan to work, you need to setup a Mongo database on your computer.
+
+## Prerequesites
+
+- Install Docker ([link for Ubuntu](https://docs.docker.com/engine/install/ubuntu/), [link for Mac](https://docs.docker.com/desktop/mac/install/)).
+- (Optional) Install [Compass](https://www.mongodb.com/fr-fr/download-center/compass), the official tool to visualize your data
+
+## Run Mongo
+
+If Docker is installed, this magic command will either install and run, or just run Mongo on your computer.
+
+```sh
+yarn run mongo
+```
+
+You should already be able to access the database in Compass, using the following URI:
+
+```
+mongodb://localhost:27017/vulcan-next-app
+```
+
+## Link Mongo to your Vulcan application
+
+Now, you'll want your Vulcan Next app to connect to this database.
+
+To do so, you need to configure a global environment variable, `MONGO_URI`.
+We are going to use [Next.js configuration features](https://blog.vulcanjs.org/how-to-set-configuration-variables-in-next-js-a81505e43dad).
+
+```sh
+# Duplicate ".env.development" to create a ".env.development.local"
+cp .env.development .env.development.local
+```
+
+You can change the values of this `.env.development.local`: it
+will only exist on your own computer, so you can even put password
+and secret values here.
+
+You'll find a line like this:
+
+```
+MONGO_URI="mongodb+srv://johnDoe:T74OcxqL15TRt7Zn@lbke-demo-ara2d.mongodb.net/sample_restaurants?retryWrites=true&w=majority"
+# MONGO_URI="mongodb://localhost:27017/vulcan-next-app"
+```
+
+You can comment the first value, and remove the second one:
+
+```
+MONGO_URI="mongodb://localhost:27017/vulcan-next-app"
+```
+
+Now, Vulcan Next will use your local database.
+
+**Restart your server for this change to apply (ctrl+C in your terminal and then `yarn run dev`).**
+
+## Go to step 3
+
+If this button is still disabled:
+
+- check if you Mongo server is running correctly
+- restart Vulcan Next (ctrl+C in your terminal, and `yarn run dev` again)
+
+      <StepIfElse
+
+  step={3}
+  ifOk={<NextMuiButton variant="contained" href="/learn/final">Click to go to next step</NextMuiButton>}
+  ifNotOk={
+
+  <Button variant="contained" disabled={true}>
+    Please complete step 2 to activate this button
+  </Button>
+  } />
+
+export default function MongoPage(props) {
+  return <LearnLayout {...props} />;
+}

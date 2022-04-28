@@ -1,0 +1,108 @@
+import { NextMuiButton } from "@vulcanjs/next-mui";
+import { LearnLayout } from "~/components/vn/learn/LearnLayout";
+import { StepIfElse } from "~/components/vn/learn/Steps";
+import { MultipleChoiceQuestion } from "~/components/vn/learn/MultipleChoiceQuestion";
+import models from "~/models";
+
+# Step 3: Discover models
+
+## Thinking in models
+
+You application will certainly manipulate concepts that exist in real life.
+A blog is about managing Authors, Posts, Comments.
+A restaurant website is about managing Menus, Reservations, Payments.
+
+In Vulcan, we call those concepts "models": they are modelling the real world, using JavaScript.
+
+In real-life, an Author is a human-being, with an education level, professionnal experiences, personnal tastes...
+A very complicated object!
+In Vulcan, an Author will be a JSON file, that describes the author `firstName`, `lastName`, and list of `publications`,
+and also a few other information like who can create/update author's data.
+
+We only keep the "fields" that matters for our web application.
+
+## Describing a model using a schema
+
+Vulcan provides a Sample model in `src/models/sampleModel.ts`. Open this file and take a look at it.
+
+### The base fields
+
+All models will have:
+
+- an `_id`: this is the document unique identifier in the Mongo database
+- an `userId`: this is the id of the user that created the document. This special field will be used to tell who "`owns`" this document
+- timestamps (`createdAt`, `updatedAt`): those information are added by Mongo when creating the document. `createdAt` is the most useful,
+  because it lets us sort documents by creation date.
+
+### Your custom fields
+
+Of course, you can also add your custom fields to the model.
+A great way to discover Vulcan possibilities is to press ctrl+space, within a field: it will show you all possible fields, thanks
+to TypeScript typings.
+
+```ts
+// Example of a custom field in a model
+  firstName: {
+    type: String,
+    optional: true,
+    canRead: ["guests"],
+    canUpdate: ["admins", "owners"],
+    canCreate: ["admins", "owners"],
+  },
+```
+
+The model provides a lot of information. In this example, the `firstName` is an optional, string value.
+We also see that everybody can see the firstName, but only the Author himself or an admin can modifiy it ("owners" permission).
+
+## Export your model
+
+The schema describe all the fields of a model. But a model is more than just its field,
+the same way an Author is not just a name and a list of publication.
+
+After you have defined your schema, you can use the `createGraphqlModel` to give it life.
+You can configure model-level permissions, like who can see or update documents of this model.
+
+```tsx
+export const modelDef: CreateGraphqlModelOptionsShared = {
+  name: "sample",
+  schema,
+  graphql: {
+    typeName,
+    multiTypeName,
+  },
+  permissions: {
+    canCreate: ["member"],
+    canUpdate: ["owners", "admins"],
+    canDelete: ["owners", "admins"],
+    canRead: ["members", "admins"],
+  },
+};
+export const SampleModel = createGraphqlModel(modelDef);
+```
+
+Vulcan automates a lot of things based on your model:
+
+- generating the corresponding GraphQL server (to provide data to any app)
+- generating the corresponding GraphQL client (to get data in your app)
+- generating an admin area, etc.
+
+**Always remember to export your model in `src/models/index` to activate this automated generation.**
+
+## Go to step 4
+
+First, please answer this question:
+
+<MultipleChoiceQuestion
+  question="How many models are exported in src/models/index.tsx?"
+  answers={[models.length.toString(), (models.length + 1).toString()]}
+  validAnswerIdx={0}
+  ifOk={
+    <NextMuiButton variant="contained" href="/learn/server-only-models">
+      Click to go to next step
+    </NextMuiButton>
+  }
+/>
+
+export default function AboutModelsPage(props) {
+  return <LearnLayout {...props} />;
+}

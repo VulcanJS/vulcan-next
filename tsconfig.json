@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.common.json",
+  "include": ["next-env.d.ts", "src/**/*.ts", "src/**/*.tsx"],
+  "exclude": [
+    "**/*.stories.tsx",
+    "**/stories.tsx",
+    "**/*.test.ts",
+    "**/*.tests.ts",
+    // must exclude collocated code too
+    // can create inconsistencies with VS Code...
+    "cypress"
+  ]
+}

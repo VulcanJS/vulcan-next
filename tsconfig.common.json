@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "alwaysStrict": true,
+    "baseUrl": "./",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "lib": ["dom", "es2018"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": false, // won't fail on unused variables
+    "noUnusedParameters": false,
+    "paths": {
+      "@vulcanjs/*": ["packages/@vulcanjs/*", "node_modules/@vulcanjs/*"],
+      "~/*": ["src/*"]
+    },
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "strictNullChecks": true,
+    "sourceMap": true,
+    "target": "ES2018"
+  },
+  "exclude": ["node_modules"]
+}

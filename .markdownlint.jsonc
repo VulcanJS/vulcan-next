@@ -1,0 +1,11 @@
+{
+    "MD041":false,
+    "no-inline-html": false,
+    "first-line-heading/first-line-h1": false,
+    "line-length": false,
+    "no-bare-urls": false,
+    "no-emphasis-as-heading/no-emphasis-as-header":false,
+    "no-duplicate-heading": false,
+    "no-trailing-punctuation": false,
+    "single-title/single-h": false
+}

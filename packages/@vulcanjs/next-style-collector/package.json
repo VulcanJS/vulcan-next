@@ -1,0 +1,20 @@
+{
+  "name": "@vulcanjs/next-style-collector",
+  "version": "0.0.1",
+  "description": "Vulcan stylesheets collecting for SSR (Material UI, Styled Components)",
+  "main": "./dist/index.js",
+  "author": "eric-burel <eb@lebrun-burel.com>",
+  "homepage": "https://github.com/VulcanJS/vulcan-npm#readme",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VulcanJS/vulcan-npm.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "build": "webpack --config ./webpack.config.js"
+  },
+  "bugs": {
+    "url": "https://github.com/VulcanJS/vulcan-npm/issues"
+  }
+}

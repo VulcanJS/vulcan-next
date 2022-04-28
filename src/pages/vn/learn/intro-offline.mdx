@@ -1,0 +1,21 @@
+import { NextMuiButton } from "@vulcanjs/next-mui";
+import { LearnLayout } from "~/components/vn/learn/LearnLayout";
+
+# Step 1: Opening Vulcan locally
+
+Great, you have installed and started Vulcan on your own machine!
+
+The "`localhost`" in the url means that Vulcan Next is currently running on your own computer,
+litterally the "local host".
+
+This is all you have to do for this step. Next step is going to be about the database.
+
+## Go to step 2
+
+<NextMuiButton href="/learn/mongo" variant="contained">
+  Click to go to next step
+</NextMuiButton>
+
+export default function IntroOfflinePage(props) {
+  return <LearnLayout {...props} />;
+}
