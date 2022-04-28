@@ -4,7 +4,10 @@ const edits = [
     {
       type: "module",
       exports: {
-        ".": "./lib/invariant.esm.js",
+        // 0.9
+        //".": "./lib/invariant.esm.js",
+        // 0.10
+        ".": "./lib/invariant.js",
         "./process/index.js": "./process/index.js",
       },
     },

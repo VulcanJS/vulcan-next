@@ -1,4 +1,4 @@
-import { createMutator } from "@vulcanjs/graphql/server";
+import { createMutator } from "@vulcanjs/crud/server";
 import { User, UserMongooseModel } from "~/models/user.server";
 
 const seed = async (context) => {
