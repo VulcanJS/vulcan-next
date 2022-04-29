@@ -11,7 +11,7 @@ export default async function user(req, res) {
     : null;
   debugAccount(
     `Got user ${user ? JSON.stringify(user) : "null"} for session._id ${
-      session._id
+      session?._id
     }`
   );
   // TODO: apply usual security like mutators would do! In order to filter out the hash

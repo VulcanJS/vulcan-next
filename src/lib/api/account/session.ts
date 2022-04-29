@@ -28,7 +28,7 @@ export function encryptSession(session: UserType) {
  */
 export async function getSession(
   req: NextApiRequest | Request
-): Promise<UserType> {
+): Promise<UserType | null | undefined> {
   const TOKEN_SECRET = getTokenSecret();
   const token = getTokenCookie(req);
   return token && Iron.unseal(token, TOKEN_SECRET, Iron.defaults);
