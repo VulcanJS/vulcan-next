@@ -58,11 +58,13 @@
     "test:docker": "docker run --env-file .env.development -it vns-test:latest",
     "test:e2e": "cross-env NODE_ENV=test rm -Rf .next && npm run build && start-server-and-test start:test http://localhost:3000 cypress:run",
     "test:unit": "jest",
-    "test:vn": "jest --config=./.vn/jest.config.vn.js --testPathPattern=tests/vn # run tests for Vulcan Next itself, eg scripts (long) ",
+    "//test:vn": "# run tests for Vulcan Next itself, eg scripts (long)",
+    "test:vn": "jest --config=./.vn/jest.config.vn.js --testPathPattern=tests/vn",
     "test": "npm run test:unit && npm run test:e2e",
     "upgrade:vulcan": "yarn upgrade --latest --pattern '@vulcanjs/*'",
     "typecheck-watch": "tsc --noEmit --p src/tsconfig.json -w",
-    "typecheck": "tsc --noEmit --p src/tsconfig.json # in case of error with @vulcanjs/* package, check that src/types (eg simpl-schema) are up-to-date with vulcan-npm",
+    "//typecheck": "# in case of error with @vulcanjs/* package, check that src/types (eg simpl-schema) are up-to-date with vulcan-npm",
+    "typecheck": "tsc --noEmit --p src/tsconfig.json",
     "link:vulcan:update": "yalc update"
   },
   "dependencies": {
