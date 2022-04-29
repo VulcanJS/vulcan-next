@@ -30,6 +30,6 @@ it("redirect back to from page after login", () => {
   cy.findByLabelText(/email/i).type(Cypress.env("ADMIN_EMAIL"));
   cy.findByLabelText(/password/i).type(Cypress.env("ADMIN_INITIAL_PASSWORD"));
   cy.findByRole("button").click();
-  cy.url().should("match", /\/admin$/);
+  cy.url().should("match", /admin$/);
   // NOTE: since we do a fake auth its ok that user is redirected back to login at the end
 });
