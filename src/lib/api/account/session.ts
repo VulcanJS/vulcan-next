@@ -3,16 +3,22 @@
 import Iron from "@hapi/iron";
 import { Request } from "express";
 import { NextApiRequest } from "next";
-import { UserType } from "~/models/user";
+import { debugAccount } from "~/lib/debuggers";
+import type { UserType } from "~/models/user";
 import { getTokenCookie } from "./auth-cookies";
 
 // Use an environment variable here instead of a hardcoded value for production
-const TOKEN_SECRET = process.env.TOKEN_SECRET;
-if (!TOKEN_SECRET)
-  throw new Error("Authentication not set for this application");
+const getTokenSecret = () => {
+  const TOKEN_SECRET = process.env.TOKEN_SECRET;
+  if (!TOKEN_SECRET)
+    throw new Error("Authentication not set for this application");
+  return TOKEN_SECRET;
+};
 
 export function encryptSession(session: UserType) {
-  return Iron.seal(session, TOKEN_SECRET!, Iron.defaults);
+  const TOKEN_SECRET = getTokenSecret();
+  debugAccount(`Encrypting session ${JSON.stringify(session)}`);
+  return Iron.seal(session, TOKEN_SECRET, Iron.defaults);
 }
 
 /**
@@ -23,10 +29,12 @@ export function encryptSession(session: UserType) {
 export async function getSession(
   req: NextApiRequest | Request
 ): Promise<UserType> {
+  const TOKEN_SECRET = getTokenSecret();
   const token = getTokenCookie(req);
-  return token && Iron.unseal(token, TOKEN_SECRET!, Iron.defaults);
+  return token && Iron.unseal(token, TOKEN_SECRET, Iron.defaults);
 }
 
 export async function decryptToken(token: string) {
-  return Iron.unseal(token, TOKEN_SECRET!, Iron.defaults);
+  const TOKEN_SECRET = getTokenSecret();
+  return Iron.unseal(token, TOKEN_SECRET, Iron.defaults);
 }

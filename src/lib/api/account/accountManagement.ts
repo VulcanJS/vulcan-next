@@ -24,12 +24,13 @@ import { changePasswordSuccessEmailParameters } from "./emails/changePasswordSuc
  * @param res
  * @returns
  */
-export const authenticate = (method, req, res): Promise<any> =>
+export const authenticate = (method, req, res) =>
   new Promise((resolve, reject) => {
-    passport.authenticate(method, { session: false }, (error, token) => {
+    passport.authenticate(method, { session: false }, (error, token: any) => {
       if (error) {
         reject(error);
       } else if (token) {
+        // Token will be the actual User document for password based auth
         resolve(token);
       } else {
         // This occurs when the request has an incorrect body, eg you are using "username" instead of "emails"

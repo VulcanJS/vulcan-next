@@ -1,5 +1,6 @@
 import { getSession } from "~/lib/api/account";
 import runSeed from "~/lib/api/runSeed";
+import { debugAccount } from "~/lib/debuggers";
 import { UserMongooseModel } from "~/models/user.server";
 
 export default async function user(req, res) {
@@ -8,6 +9,11 @@ export default async function user(req, res) {
   const user = session?._id
     ? await UserMongooseModel.findById(session._id)
     : null;
+  debugAccount(
+    `Got user ${user ? JSON.stringify(user) : "null"} for session._id ${
+      session._id
+    }`
+  );
   // TODO: apply usual security like mutators would do! In order to filter out the hash
   if (user) {
     user.hash = undefined;
