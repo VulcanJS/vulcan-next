@@ -74,7 +74,7 @@ async function closeDbConnection() {
 import mongoose2 from "mongoose";
 
 // src/lib/api/seed.ts
-import { createMutator, getModelConnector } from "@vulcanjs/graphql/server";
+import { createMutator } from "@vulcanjs/crud/server";
 
 // src/models/user.server.ts
 import merge from "lodash/merge.js";
@@ -245,7 +245,7 @@ async function findUserByCredentials({
   email,
   password
 }) {
-  const user = await UserConnector.findOne({ email });
+  const user = await UserMongooseModel.findOne({ email });
   if (!user) {
     return null;
   }
@@ -353,7 +353,8 @@ var modelDef2 = mergeModelDefinitionServer(modelDef, {
 });
 var User2 = createGraphqlModelServer(modelDef2);
 var UserConnector = createMongooseConnector(User2);
-User2.graphql.connector = UserConnector;
+User2.crud.connector = UserConnector;
+var UserMongooseModel = UserConnector.getRawCollection();
 
 // src/lib/api/seed.ts
 var seed = async (context) => {
@@ -362,9 +363,8 @@ var seed = async (context) => {
     console.log("Using demo database, skip seeding");
     return;
   }
-  const UserConnector2 = getModelConnector(context, User2);
   const seedAdminUser = async () => {
-    const count = await UserConnector2.count({ isAdmin: true });
+    const count = await UserMongooseModel.count({ isAdmin: true });
     if (count === 0) {
       console.log("No admin user found, seeding admin");
       if (!process.env.ADMIN_EMAIL) {
@@ -486,7 +486,7 @@ var schema4 = merge2({}, schema3, {
       arguments: "someArgument: String, anotherArgument: Int",
       description: "A resolved field",
       resolver: async (document, args, context, info) => {
-        const tenUsers = await UserConnector.find({}, { limit: 10 });
+        const tenUsers = await UserMongooseModel.find({}, null, { limit: 10 });
         const filtered = tenUsers.filter((u) => {
           var _a;
           return (_a = u.email) == null ? void 0 : _a.match(document.demoCustomResolverField);
@@ -504,7 +504,7 @@ var modelDef4 = merge2({}, modelDef3, {
 });
 var SampleModel2 = createGraphqlModelServer2(modelDef4);
 var SampleModelConnector = createMongooseConnector2(SampleModel2);
-SampleModel2.graphql.connector = SampleModelConnector;
+SampleModel2.crud.connector = SampleModelConnector;
 
 // src/models/index.server.ts
 import { addDefaultMongoConnector } from "@vulcanjs/mongo-apollo";
@@ -524,8 +524,8 @@ async function runSeed() {
     try {
       await connectToAppDb();
       debugMongo("Connected to db, seeding admin and restaurants");
-      const contextBase2 = await createContextBase();
-      await seed_default(contextBase2);
+      const contextBase = await createContextBase();
+      await seed_default(contextBase);
       const seedRestaurants = async () => {
         const db = mongoose2.connection;
         const count = await db.collection("restaurants").countDocuments();
