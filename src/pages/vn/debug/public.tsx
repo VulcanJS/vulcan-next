@@ -10,7 +10,7 @@ const PublicPage = () => {
         redirection happen.
       </div>
       <div>
-        <Link href="/vn/debug/private">
+        <Link href="/vn/debug/private-raw">
           <a className="private">
             Link to a private page, should redirect you back here
           </a>
@@ -20,7 +20,7 @@ const PublicPage = () => {
         <button
           className="private-shallow"
           onClick={() => {
-            router.push("/vn/debug/private", undefined, { shallow: true });
+            router.push("/vn/debug/private-raw", undefined, { shallow: true });
           }}
         >
           Link to a private page, shallow redirect, should redirect you back
@@ -28,7 +28,7 @@ const PublicPage = () => {
         </button>
       </div>
       <div>
-        <Link href="/vn/debug/private?allowed=true">
+        <Link href="/vn/debug/private-raw?allowed=true">
           <a className="private-allowed">
             Link to a private page, should not redirect you
           </a>
@@ -38,7 +38,7 @@ const PublicPage = () => {
         <button
           className="private-allowed-shallow"
           onClick={() => {
-            router.push("/vn/debug/private?allowed=true", undefined, {
+            router.push("/vn/debug/private-raw?allowed=true", undefined, {
               shallow: true,
             });
           }}

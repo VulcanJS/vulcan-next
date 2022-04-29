@@ -7,12 +7,12 @@
 describe("private pages", () => {
   describe("server side", () => {
     it("redirects when accessing private page", () => {
-      cy.visit("/vn/debug/private");
+      cy.visit("/vn/debug/private-raw");
       cy.get("h1").contains("public", { timeout: 0 }).should("exist");
       cy.get("h1").contains("private", { timeout: 0 }).should("not.exist");
     });
     it("do not redirect when accessing allowed private page", () => {
-      cy.visit("/vn/debug/private?allowed=true");
+      cy.visit("/vn/debug/private-raw?allowed=true");
       cy.get("h1").contains("public", { timeout: 0 }).should("not.exist");
       cy.get("h1").contains("private", { timeout: 0 }).should("exist");
     });
