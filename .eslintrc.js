@@ -1,5 +1,9 @@
 module.exports = {
-  extends: ["plugin:cypress/recommended", "next"],
+  extends: [
+    "plugin:cypress/recommended",
+    "next",
+    "plugin:storybook/recommended",
+  ],
   root: true,
   plugins: [],
   env: {
