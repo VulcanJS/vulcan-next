@@ -29,8 +29,7 @@ export default nextConnect<NextApiRequest, NextApiResponse>()
     try {
       const user = await authenticateWithPassword(req, res);
       debugAccount(`Got user after authentication ${JSON.stringify(user)}`);
-      // Somehow this doesn't work right: {...user}, user may not be a normal POJO but a Mongoose object?
-      // session is the payload to save in the token, it may contain basic info about the user
+      // TODO: try gain with {...user} (previously it was a Mongoose Document but now we call ".toObject()" so spreading should work ok)
       const session = cloneDeep(user);
       // The token is a string with the encrypted session
       const token = await encryptSession(session);

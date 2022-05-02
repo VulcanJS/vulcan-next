@@ -7,7 +7,7 @@ export default async function user(req, res) {
   const session = await getSession(req);
   // Get fresh data about the user
   const user = session?._id
-    ? await UserMongooseModel.findById(session._id)
+    ? (await UserMongooseModel.findById(session._id))?.toObject()
     : null;
   debugAccount(
     `Got user ${user ? JSON.stringify(user) : "null"} for session._id ${
