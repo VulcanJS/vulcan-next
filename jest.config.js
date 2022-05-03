@@ -229,13 +229,18 @@ module.exports = {
   projects: [
     {
       ...commonConfig,
-      displayName: "client",
+      displayName: "jsdom",
       testEnvironment: "jsdom",
       // The glob patterns Jest uses to detect test files
       testMatch: [
+        // any test that is not specifically a server test will run in the
+        // jsdom environment
         "**/__tests__/(!server)/**/*.[jt]s?(x)",
         "**/__tests__/*.[jt]s?(x)",
         "**/!(*.server).test.[jt]s?(x)",
+        // will ignore any file in a "server" folder
+        // order matters: https://jestjs.io/fr/docs/configuration#testmatch-arraystring
+        "!**/server/**",
       ],
       // A list of paths to modules that run some code to configure or set up the testing framework before each test
       setupFilesAfterEnv: ["./.vn/tests/setupTests.ts"],
@@ -248,7 +253,10 @@ module.exports = {
       // The glob patterns Jest uses to detect test files
       testMatch: [
         "**/__tests__/server/**/*.[jt]s?(x)",
+        // any test ending with server.test
         "**/*.server.test.[jt]s?(x)",
+        // any test located in "server" folder
+        "**/server/**/*.test.[jt]s?(x)",
       ],
       setupFilesAfterEnv: ["./.vn/tests/setupTests.server.js"],
       modulePaths: ["<rootDir>"],

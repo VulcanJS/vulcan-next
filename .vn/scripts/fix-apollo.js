@@ -24,6 +24,10 @@ const edits = [
       exports: {
         ".": "./index.js",
         "./link/error": "./link/error/index.js",
+        "./testing": "./testing/index.js",
+        "./core": "./core/index.js",
+        "./cache": "./cache/index.js",
+        "./utilities": "./utilities/index.js",
       },
     },
   ],
