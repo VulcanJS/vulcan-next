@@ -6,7 +6,7 @@ const commonConfig = {
   // transform: undefined,
   transform: {
     //"^.+\\.[jt]sx?$": "ts-jest",
-    "^.+\\.(js|jsx|ts|tsx|mjs)$": "<rootDir>/node_modules/babel-jest",
+    "^.+\\.(js|jsx|ts|tsx|mjs)$": "babel-jest",
     // MDX support
     "^.+\\.(md|mdx)$": "jest-transformer-mdx",
   },
@@ -180,10 +180,17 @@ const commonConfig = {
   // testRunner: "jasmine2",
 
   // This option sets the URL for the jsdom environment. It is reflected in properties such as location.href
-  // testURL: "http://localhost",
+  /*
+  testEnvironmentOptions: {
+  // This option sets the URL for the jsdom environment. It is reflected in properties such as location.href
+   url: 'https://jestjs.io'
+ }*/
 
   // Setting this value to "fake" allows the use of fake timers for functions such as "setTimeout"
-  // timers: "real",
+  /*
+   fakeTimers: {
+   enableGlobally: true
+ }*/
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
   // unmockedModulePathPatterns: undefined,
@@ -222,9 +229,8 @@ module.exports = {
   projects: [
     {
       ...commonConfig,
-      name: "client",
       displayName: "client",
-      // testEnvironment: "jsdom", // defautl already
+      testEnvironment: "jsdom",
       // The glob patterns Jest uses to detect test files
       testMatch: [
         "**/__tests__/(!server)/**/*.[jt]s?(x)",
@@ -237,7 +243,6 @@ module.exports = {
     },
     {
       ...commonConfig,
-      name: "server",
       displayName: "server",
       testEnvironment: "node",
       // The glob patterns Jest uses to detect test files
