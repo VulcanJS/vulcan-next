@@ -11,6 +11,9 @@ if (process.env.ANALYZE === "true") {
   plugins.push(new BundleAnalyzerPlugin());
 }
 module.exports = {
+  core: {
+    builder: "webpack5",
+  },
   stories: [
     "../.vn/stories/**/*.stories.@(js|ts|jsx|tsx|mdx)",
     "../src/**/*.stories.@(js|ts|jsx|tsx|mdx)",
@@ -64,10 +67,15 @@ module.exports = {
 
     // Allow to use next-i18next isomorphic code
     // @see https://github.com/isaachinman/next-i18next/issues/1012
-    withVulcan.node = { ...(withVulcan.node || {}), fs: "empty" };
-
+    // Webpack4
+    //withVulcan.node = { ...(withVulcan.node || {}), fs: "empty" };
     //  Storybook seems unhappy with fallback, probably a version thing
-    delete withVulcan.resolve.fallback;
+    // delete withVulcan.resolve.fallback;
+    // Webpack 5 @see https://stackoverflow.com/questions/64361940/webpack-error-configuration-node-has-an-unknown-property-fs
+    withVulcan.resolve.fallback = {
+      ...(withVulcan.resolve.fallback || {}),
+      fs: false,
+    };
 
     return withVulcan;
   },
