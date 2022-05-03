@@ -1,4 +1,5 @@
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import gql from "graphql-tag";
 import { Box, Button, Typography } from "@mui/material";
 import { useState } from "react";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
