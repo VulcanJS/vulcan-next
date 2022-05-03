@@ -1,9 +1,11 @@
+import { WebpackPluginInstance, Configuration } from "webpack";
+
 const { extendWebpackConfig } = require("../packages/@vulcanjs/webpack");
 const debug = require("debug");
 const debugWebpack = debug("vns:webpack");
 const path = require("path");
 
-const plugins = [];
+const plugins: Array<WebpackPluginInstance> = [];
 if (process.env.ANALYZE === "true") {
   debugWebpack("Enabling bundle analysis for Storybook"); // eslint-disable-line no-console
   const BundleAnalyzerPlugin =
@@ -36,9 +38,16 @@ module.exports = {
     "storybook-addon-next-router",
   ],
   // https://github.com/storybookjs/storybook/blob/next/docs/src/pages/configurations/custom-webpack-config/index.md#debug-the-default-webpack-config
-  webpackFinal: async (config, { configType }) => {
+  webpackFinal: async (config: Configuration, { configType }) => {
     // add magic imports and isomorphic imports to Storybook
-    const withVulcan = extendWebpackConfig("client")(config);
+    const withVulcan = extendWebpackConfig("client")(config) as Configuration;
+    if (!withVulcan.module) {
+      withVulcan.module = {};
+    }
+    if (!withVulcan.module.rules) {
+      withVulcan.module.rules = [];
+    }
+
     // add mdx support, in components
     // @see https://mdxjs.com/getting-started/webpack
     withVulcan.module.rules.push({
@@ -51,10 +60,14 @@ module.exports = {
     withVulcan.module.rules = [
       ...withVulcan.module.rules.filter(
         // rules do not necessarily have a test, it can be a "oneOf"
+        // @ts-ignore
         (rule) => !rule.test || rule.test.source !== "\\.md$"
       ),
     ];
 
+    if (!withVulcan.resolve) {
+      withVulcan.resolve = {};
+    }
     // add mocks for NPM imports, eg next/router and next/config
     withVulcan.resolve.alias = {
       ...(withVulcan.resolve.alias || {}),

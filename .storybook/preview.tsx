@@ -29,6 +29,7 @@ const withMui = (storyFn) => <MuiThemeProvider>{storyFn()}</MuiThemeProvider>;
 
 const withI18n = (storyFn) => (
   <React.Suspense fallback={"Loading i18n..."}>
+    {/** @ts-ignore */}
     <I18nextProvider i18n={i18n}>{storyFn()}</I18nextProvider>
   </React.Suspense>
 );
