@@ -6,7 +6,11 @@ const commonConfig = {
   // transform: undefined,
   transform: {
     //"^.+\\.[jt]sx?$": "ts-jest",
-    "^.+\\.(js|jsx|ts|tsx|mjs)$": "babel-jest",
+    "^.+\\.(js|jsx|ts|tsx|mjs)$": [
+      "babel-jest",
+      ,
+      { configFile: "./Configuration/babel.config.jest.js" },
+    ],
     // MDX support
     "^.+\\.(md|mdx)$": "jest-transformer-mdx",
   },

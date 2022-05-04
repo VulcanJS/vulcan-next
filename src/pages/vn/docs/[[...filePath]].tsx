@@ -219,7 +219,8 @@ const getMdxPages = async (resolvedPath: string, filePath: string) => {
   // to import all frontMatters
   const files = await getMdxPaths(resolvedPath);
   const pageNames = files.map((f) => f.params.fileName[0]);
-  const pages = [...new Set(pageNames.sort())]; // delete duplicates
+  const pages = [...new Set(pageNames.sort())].filter((p) => !!p); // delete duplicates
+  console.log("Pages", pages);
   if (filePath) {
     filePath = filePath + "/";
   }
