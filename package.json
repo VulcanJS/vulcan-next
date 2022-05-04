@@ -1,6 +1,6 @@
 {
   "name": "vulcan-next",
-  "version": "0.6.4",
+  "version": "0.6.5-alpha.0",
   "private": true,
   "scripts": {
     "analyze:bundle:storybook": "cross-env ANALYZE=true yarn run build:storybook",
@@ -84,7 +84,7 @@
     "@vulcanjs/demo": "^0.6.2",
     "@vulcanjs/graphql": "^0.6.4",
     "@vulcanjs/mdx": "^0.6.4",
-    "@vulcanjs/meteor-legacy": "^0.6.4",
+    "@vulcanjs/meteor-legacy": "^0.6.5-alpha.0",
     "@vulcanjs/mongo": "^0.6.4",
     "@vulcanjs/mongo-apollo": "^0.6.4",
     "@vulcanjs/react-hooks": "^0.6.4",
