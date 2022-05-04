@@ -49,7 +49,8 @@ plugins.push([
 ]);
 */
 
-// // Fixe for pragmaFrag issue @see https://github.com/vercel/next.js/issues/11230
+// // Fix for pragmaFrag issue @see https://github.com/vercel/next.js/issues/11230
+// 05/2022/ breaks Jest, it has been removed
 // plugins.push([
 //   "@babel/plugin-transform-react-jsx",
 //   {
@@ -67,7 +68,7 @@ module.exports = {
           plugins: ["styled-jsx-plugin-postcss"],
         },
         "preset-react": {
-          runtime: "classic",
+          // runtime: "classic",
         },
       },
     ],

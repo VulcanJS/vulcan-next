@@ -5,7 +5,6 @@
 import {
   CreateGraphqlModelOptionsServer,
   createGraphqlModelServer,
-  getModelDataSource,
   VulcanGraphqlSchemaServer,
 } from "@vulcanjs/graphql/server";
 import { createMongooseConnector } from "@vulcanjs/mongo";

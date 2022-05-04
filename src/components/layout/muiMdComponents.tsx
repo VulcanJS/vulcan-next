@@ -87,7 +87,7 @@ export const muiMdComponents = {
   //del: Typography,
   //inlineCode: Typography,
   hr: (props) => <Divider sx={{ my: 2 }} {...props} />,
-  a: Link,
+  a: (props) => <Link {...props} />,
   // TODO: didn't find a way to override image styling...
   img: (props) => (
     // eslint-disable-next-line @next/next/no-img-element

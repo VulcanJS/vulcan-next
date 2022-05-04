@@ -1,7 +1,14 @@
-// Use @next/mdx for a basic MDX support.
-// See the how Vulcan Next docs are setup with next-mdx-remote
-// which is more advanced (loading remote MD, supporting styling correctly etc.)
-const withMDX = require("@next/mdx")({ extension: /\.mdx?$/ });
+/** Use @next/mdx for a basic MDX support.
+ * See the how Vulcan Next docs are setup with next-mdx-remote
+ * which is more advanced (loading remote MD, supporting styling correctly etc.)
+ */
+const withMDX = require("@next/mdx")({
+  extension: /\.mdx?$/,
+  /** @type {import('@mdx-js/loader').Options} */
+  options: {
+    jsxRuntime: "automatic",
+  },
+});
 
 // Custom config from vulcan-next
 const { extendNextConfig } = require("./packages/@vulcanjs/next-config");
