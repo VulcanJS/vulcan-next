@@ -220,7 +220,6 @@ const getMdxPages = async (resolvedPath: string, filePath: string) => {
   const files = await getMdxPaths(resolvedPath);
   const pageNames = files.map((f) => f.params.fileName[0]);
   const pages = [...new Set(pageNames.sort())].filter((p) => !!p); // delete duplicates
-  console.log("Pages", pages);
   if (filePath) {
     filePath = filePath + "/";
   }
