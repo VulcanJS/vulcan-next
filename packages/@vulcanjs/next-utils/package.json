@@ -11,8 +11,7 @@
     "url": "git+https://github.com/VulcanJS/vulcan-npm.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1",
-    "build": "webpack --config ./webpack.config.js"
+    "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "bugs": {
     "url": "https://github.com/VulcanJS/vulcan-npm/issues"
