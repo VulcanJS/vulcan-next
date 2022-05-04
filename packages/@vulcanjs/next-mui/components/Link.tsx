@@ -9,8 +9,11 @@ import { styled } from "@mui/material/styles";
 const Anchor = styled("a")({});
 
 export interface NextLinkComposedProps
-  extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href">,
-    Omit<NextLinkProps, "href" | "as"> {
+  extends Omit<
+      React.AnchorHTMLAttributes<HTMLAnchorElement>,
+      "href" | "onClick" | "onMouseEnter"
+    >,
+    Omit<NextLinkProps, "href" | "as" | "onClick" | "onMouseEnter"> {
   to: NextLinkProps["href"];
   linkAs?: NextLinkProps["as"];
   href?: NextLinkProps["href"];
@@ -73,23 +76,25 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(
   } = props;
 
   const router = useRouter();
-  const pathname = typeof href === "string" ? href : href.pathname;
+  const isExternal =
+    typeof href === "string" &&
+    (href.indexOf("http") === 0 || href.indexOf("mailto:") === 0);
+  const pathname =
+    (typeof href === "string" ? href : href.pathname) || undefined;
   const className = clsx(classNameProps, {
     [activeClassName]: router.pathname === pathname && activeClassName,
   });
 
-  const isExternal =
-    typeof href === "string" &&
-    (href.indexOf("http") === 0 || href.indexOf("mailto:") === 0);
-
   if (isExternal) {
     if (noLinkStyle) {
-      // @ts-expect-error
-      return <Anchor className={className} href={href} ref={ref} {...other} />;
+      return (
+        <Anchor className={className} href={pathname} ref={ref} {...other} />
+      );
     }
 
-    // @ts-expect-error
-    return <MuiLink className={className} href={href} ref={ref} {...other} />;
+    return (
+      <MuiLink className={className} href={pathname} ref={ref} {...other} />
+    );
   }
 
   if (noLinkStyle) {
