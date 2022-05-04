@@ -85,10 +85,12 @@
     "@vulcanjs/graphql": "^0.6.4",
     "@vulcanjs/mdx": "^0.6.4",
     "@vulcanjs/meteor-legacy": "^0.6.7-alpha.0",
+    "@vulcanjs/model": "^0.6.4",
     "@vulcanjs/mongo": "^0.6.4",
     "@vulcanjs/mongo-apollo": "^0.6.4",
     "@vulcanjs/react-hooks": "^0.6.4",
     "@vulcanjs/react-ui": "^0.6.4",
+    "@vulcanjs/schema": "^0.6.4",
     "apollo-datasource-mongodb": "^0.5.2",
     "apollo-server": "^3",
     "apollo-server-express": "^3",
@@ -197,5 +199,8 @@
   "resolutions": {
     "@types/react": "^17.0.16",
     "@types/react-dom": "^17.0.16"
+  },
+  "installConfig": {
+    "hoistingLimits": "dependencies"
   }
 }
