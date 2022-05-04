@@ -2,6 +2,11 @@ import * as React from "react";
 import { withA11y } from "@storybook/addon-a11y";
 import { MuiThemeProvider } from "~/components/providers";
 import { I18nextProvider } from "react-i18next";
+// Vulcan custom i18n
+// FIXME: breaks ESM currently
+// import { makeStringsRegistry } from "@vulcanjs/i18n";
+// import { IntlProvider } from "@vulcanjs/react-i18n";
+
 // @see https://github.com/isaachinman/next-i18next/issues/1012
 import { i18n } from "next-i18next";
 //import { AppLayout } from "~/components/layout";
@@ -38,10 +43,22 @@ const withGlobalAppStyle = (storyFn) => (
   <GlobalAppStyle>{storyFn()}</GlobalAppStyle>
 );
 
+/*
+const withVulcanI18n = (storyFn) => (
+  <IntlProvider
+    locale="fr"
+    stringsRegistry={makeStringsRegistry()}
+    messages={[]}
+  >
+    {storyFn()}
+  </IntlProvider>
+);*/
+
 export const decorators = [
   withMui,
   // @see https://gist.github.com/justincy/c1075650b1d5ba448c50eaf83cbb4ffe
   withI18n,
   withGlobalAppStyle,
   withA11y,
+  //withVulcanI18n,
 ];

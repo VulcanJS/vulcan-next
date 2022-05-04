@@ -8,6 +8,8 @@ describe("doc", () => {
     cy.findByText(/Features/i).click();
     cy.url().should("include", "/docs/features");
   });
+  /*
+  Doc are now moved to Docusaurus so we only left the setup
   it("access to the nested markdown file", () => {
     cy.visit(docsRoot + "/features");
     cy.findByText(/Not Yet Implemented Features/i).click();
@@ -38,4 +40,5 @@ describe("doc", () => {
       "/docs/features/not-yet-implemented-features"
     );
   });
+  */
 });
