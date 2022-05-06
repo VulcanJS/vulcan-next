@@ -3,8 +3,6 @@
  *
  * Ignore if you don't use Vulcan Meteor
  */
-import "@vulcanjs/demo";
-
 const IS_PROD = process.env.NODE_ENV === "production";
 
 const rootUrl = IS_PROD ? process.env.ROOT_URL : "http://localhost:3000";

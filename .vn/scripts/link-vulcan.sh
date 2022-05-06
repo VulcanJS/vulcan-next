@@ -10,7 +10,6 @@
 # which prevents duplicating React and thus breaking the rule of hooks
 ./node_modules/.bin/yalc link @vulcanjs/core
 ./node_modules/.bin/yalc link @vulcanjs/crud
-./node_modules/.bin/yalc link @vulcanjs/demo
 ./node_modules/.bin/yalc link @vulcanjs/graphql
 ./node_modules/.bin/yalc link @vulcanjs/i18n
 ./node_modules/.bin/yalc link @vulcanjs/mdx
