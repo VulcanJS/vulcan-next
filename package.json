@@ -1,6 +1,6 @@
 {
   "name": "vulcan-next",
-  "version": "0.6.6-y.0",
+  "version": "0.6.6-y.1",
   "private": true,
   "scripts": {
     "analyze:bundle:storybook": "cross-env ANALYZE=true yarn run build:storybook",
@@ -90,7 +90,7 @@
     "@vulcanjs/mongo": "^0.6.4",
     "@vulcanjs/mongo-apollo": "^0.6.6-alpha.4",
     "@vulcanjs/react-hooks": "^0.6.6-alpha.4",
-    "@vulcanjs/react-ui": "^0.6.6-y.0",
+    "@vulcanjs/react-ui": "^0.6.6-y.1",
     "@vulcanjs/schema": "^0.6.4",
     "apollo-datasource-mongodb": "^0.5.2",
     "apollo-server": "^3",
