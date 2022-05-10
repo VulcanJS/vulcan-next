@@ -15,7 +15,11 @@ import {
   List,
   ListItem,
 } from "@mui/material";
-import { SmartForm } from "@vulcanjs/react-ui";
+import {
+  SmartForm,
+  VulcanComponentsProvider,
+} from "@vulcanjs/react-ui";
+import { liteFormComponents, liteCoreComponents } from "@vulcanjs/react-ui-lite"
 import { VulcanGraphqlModel } from "@vulcanjs/graphql";
 import { ItemCard } from "~/components/vn/ItemCard";
 import { PageLayout } from "~/components/layout";
@@ -77,57 +81,64 @@ export default function CrudPage({ modelName }) {
 
   return (
     <PageLayout>
-      <Typography variant="h1"> Manage {model.name}</Typography>
-      <Typography variant="body1">
-        /!&#92; This page is an experimental demonstration of using Vulcan
-        "magic" components (SmartForm) to manage your model
-      </Typography>
-      <hr />
-      <Typography variant="h2"> Create a new {model.name} </Typography>
-      <SmartForm model={model} />
-      <Typography variant="h2"> Read </Typography>
-      {
-        <List>
-          {documentsResult.map((document) => (
-            <ListItem key={document.id}>
-              <ItemCard document={document} model={model} />
-            </ListItem>
-          ))}
-        </List>
-      }
-      <hr />
-      <Typography variant="h2">Select a document for edition</Typography>
-      <FormControl>
-        <InputLabel id="updateDocumentLabel">Document</InputLabel>
-        <Select
-          labelId="updateDocumentLabel"
-          id="updatedDocumentSelectId"
-          value={selectedDocumentId}
-          onChange={handleSelectDocumentChange}
-          style={{ minWidth: "120px" }}
-        >
-          <MenuItem value="">
-            <em>None</em>{" "}
-          </MenuItem>
-          {documentsResult.map((result) => (
-            <MenuItem key={result._id} value={result._id}>
-              {result._id}
+      <VulcanComponentsProvider
+        // We load additional components needed by the smart form
+        // Could be replaced by your own components
+        // You can also move this provider to a shared layout
+        // if you have a lot of forms
+        value={{ ...liteFormComponents, ...liteCoreComponents }}>
+        <Typography variant="h1"> Manage {model.name}</Typography>
+        <Typography variant="body1">
+          /!&#92; This page is an experimental demonstration of using Vulcan
+          "magic" components (SmartForm) to manage your model
+        </Typography>
+        <hr />
+        <Typography variant="h2"> Create a new {model.name} </Typography>
+        <SmartForm model={model} />
+        <Typography variant="h2"> Read </Typography>
+        {
+          <List>
+            {documentsResult.map((document) => (
+              <ListItem key={document.id}>
+                <ItemCard document={document} model={model} />
+              </ListItem>
+            ))}
+          </List>
+        }
+        <hr />
+        <Typography variant="h2">Select a document for edition</Typography>
+        <FormControl>
+          <InputLabel id="updateDocumentLabel">Document</InputLabel>
+          <Select
+            labelId="updateDocumentLabel"
+            id="updatedDocumentSelectId"
+            value={selectedDocumentId}
+            onChange={handleSelectDocumentChange}
+            style={{ minWidth: "120px" }}
+          >
+            <MenuItem value="">
+              <em>None</em>{" "}
             </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+            {documentsResult.map((result) => (
+              <MenuItem key={result._id} value={result._id}>
+                {result._id}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
 
-      {selectedDocumentId && (
-        <div>
-          <Typography variant="h2"> Update selected document </Typography>
-          <SmartForm model={model} documentId={selectedDocumentId} />
+        {selectedDocumentId && (
+          <div>
+            <Typography variant="h2"> Update selected document </Typography>
+            <SmartForm model={model} documentId={selectedDocumentId} />
 
-          <Typography variant="h2"> Delete select document </Typography>
-          <Button color={"secondary"} onClick={() => handleDelete()}>
-            Delete document
-          </Button>
-        </div>
-      )}
+            <Typography variant="h2"> Delete select document </Typography>
+            <Button color={"secondary"} onClick={() => handleDelete()}>
+              Delete document
+            </Button>
+          </div>
+        )}
+      </VulcanComponentsProvider>
     </PageLayout>
   );
 }

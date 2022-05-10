@@ -8,11 +8,8 @@ import { appWithTranslation } from "next-i18next";
 import { createEmotionCache } from "@vulcanjs/next-mui";
 import { MuiThemeProvider } from "~/components/providers";
 
+import { VulcanCurrentUserProvider } from "@vulcanjs/react-ui"
 import Head from "next/head";
-import {
-  VulcanComponentsProvider,
-  VulcanCurrentUserProvider,
-} from "@vulcanjs/react-ui";
 
 import debug from "debug";
 import AppLayout from "~/components/layout/AppLayout";
@@ -98,24 +95,22 @@ function VNApp({
             false /* TODO: we don't get the loading information from useUser yet */,
         }}
       >
-        <VulcanComponentsProvider>
-          <Head>
-            <title>Vulcan Next</title>
-            <meta
-              name="viewport"
-              content="minimum-scale=1, initial-scale=1, width=device-width"
-            />
-            <Favicons />
-          </Head>
-          {/** Provide MUI theme but also mui utilities like CSS baseline, StyledEngineProvider... */}
-          <MuiThemeProvider>
-            <ApolloProvider client={apolloClient}>
-              <AppLayout>
-                <Component {...pageProps} />
-              </AppLayout>
-            </ApolloProvider>
-          </MuiThemeProvider>
-        </VulcanComponentsProvider>
+        <Head>
+          <title>Vulcan Next</title>
+          <meta
+            name="viewport"
+            content="minimum-scale=1, initial-scale=1, width=device-width"
+          />
+          <Favicons />
+        </Head>
+        {/** Provide MUI theme but also mui utilities like CSS baseline, StyledEngineProvider... */}
+        <MuiThemeProvider>
+          <ApolloProvider client={apolloClient}>
+            <AppLayout>
+              <Component {...pageProps} />
+            </AppLayout>
+          </ApolloProvider>
+        </MuiThemeProvider>
       </VulcanCurrentUserProvider>
     </CacheProvider>
   );
