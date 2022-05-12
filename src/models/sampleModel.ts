@@ -22,6 +22,13 @@ export const schema: VulcanGraphqlSchema = {
     type: String,
     optional: true,
     canRead: ["guests"],
+    // This means you can resolve the "user" field when fetching for "samples"
+    relation: {
+      fieldName: "user",
+      kind: "hasOne",
+      model: User,
+      //typeName: "Contributor",
+    },
   },
   /** Timestamps handled by the database (you could also define updatedAt) */
   createdAt: {
