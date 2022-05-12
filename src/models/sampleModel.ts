@@ -26,8 +26,9 @@ export const schema: VulcanGraphqlSchema = {
     relation: {
       fieldName: "user",
       kind: "hasOne",
+      // Deprecated old syntax, prefer passing a "model" directly
+      //typeName: "User",
       model: User,
-      //typeName: "Contributor",
     },
   },
   /** Timestamps handled by the database (you could also define updatedAt) */
