@@ -27,7 +27,7 @@ export const schema: VulcanGraphqlSchema = {
       fieldName: "user",
       kind: "hasOne",
       // Deprecated old syntax, prefer passing a "model" directly
-      typeName: "VulcanUser",
+      //typeName: "VulcanUser"
       model: User,
     },
   },
