@@ -105,6 +105,7 @@ const server = new ApolloServer({
         }
       : false,*/
   plugins:
+    process.env.FORCE_GRAPHQL_PLAYGROUND ||
     process.env.NODE_ENV !== "production"
       ? [
           ApolloServerPluginLandingPageGraphQLPlayground({
