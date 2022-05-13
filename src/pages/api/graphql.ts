@@ -90,7 +90,9 @@ const server = new ApolloServer({
     ...createDataSourcesForModels(),
     /* Add your own dataSources here (their name must be DIFFERENT from the model names) */
   }),
-  introspection: process.env.NODE_ENV !== "production",
+  introspection:
+    !!process.env.FORCE_GRAPHQL_PLAYGROUND ||
+    process.env.NODE_ENV !== "production",
   // @see https://github.com/graphql/graphql-playground/issues/1143
   // @see https://www.apollographql.com/docs/apollo-server/testing/build-run-queries/#graphql-playground
   // We keep Graphql Playground for now until Apollo ecosystem sorts out the way we can access the web-based gql IDE
