@@ -8,6 +8,9 @@ const withMDX = require("@next/mdx")({
   options: {
     jsxRuntime: "automatic",
   },
+  // TODO: upgrade to v2 https://mdxjs.com/migrating/v2/
+  // Currently (05/2022) we are blocked by Storybook which
+  // doesn't support mdx v2
 });
 
 // Custom config from vulcan-next
