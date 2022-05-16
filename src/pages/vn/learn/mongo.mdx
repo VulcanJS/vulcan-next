@@ -68,6 +68,7 @@ Now, Vulcan Next will use your local database.
 If this button is still disabled:
 
 - check if you Mongo server is running correctly
+- check that your app runs on port 3000 (and not 3001!), otherwise we cannot send request to the graphql backend to verify if you run Mongo
 - restart Vulcan Next (ctrl+C in your terminal, and `yarn run dev` again)
 
   <StepIfElse

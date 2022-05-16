@@ -19,6 +19,9 @@ const mdSrc=`---
       <Link href="http://slack.vulcanjs.org" target="_blank" rel="noreferrer">
         Join us on Slack and ask your questions directly
       </Link>
+      <Link href="https://discord.gg/4dqeKSNv" target="_blank" rel="noreferrer">
+        Join us on Discord
+      </Link>
     </footer>
   );
 };

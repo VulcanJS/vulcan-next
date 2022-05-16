@@ -33,6 +33,7 @@ const detectStep = ({ usersCount }) => {
   // TODO: we should maybe use a specific collection to debug this, instead of users
   // because for security reasons guests might not see users
   // For instance, use a specific "learn" collection or "sample" model that we seed also for guests
+  // NOTE: sending an HTTP request to Mongo doesn't work client-side because of CORS
   if (usersCount >= 1 /* TODO */) {
     return 3;
   }

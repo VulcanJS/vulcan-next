@@ -20,6 +20,8 @@ Vulcan Next provides:
 
 [Join the Slack and meet Vulcan contributors](http://slack.vulcanjs.org/)
 
+[Join the new Discord and meet Vulcan contributors](https://discord.gg/4dqeKSNv)
+
 [Get started with the live tutorial](https://vulcan-next.vercel.app/learn)
 
 [Read the introductory article on FreeCodeCamp](https://www.freecodecamp.org/news/how-to-replace-meteor-by-next-introducing-vulcan-next-starter/)
