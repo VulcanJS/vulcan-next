@@ -1,6 +1,6 @@
 {
   "name": "vulcan-next",
-  "version": "0.6.8-alpha.0",
+  "version": "0.6.8-alpha.1",
   "private": true,
   "scripts": {
     "//----- DEVELOP -----": "",
@@ -113,8 +113,8 @@
     "@vulcanjs/mongo": "^0.6.7",
     "@vulcanjs/mongo-apollo": "^0.6.7",
     "@vulcanjs/react-hooks": "^0.6.7",
-    "@vulcanjs/react-ui": "^0.6.8-alpha.0",
-    "@vulcanjs/react-ui-lite": "^0.6.8-alpha.0",
+    "@vulcanjs/react-ui": "^0.6.8-alpha.1",
+    "@vulcanjs/react-ui-lite": "^0.6.8-alpha.1",
     "@vulcanjs/schema": "^0.6.7",
     "apollo-datasource-mongodb": "^0.5.2",
     "apollo-server": "^3",
