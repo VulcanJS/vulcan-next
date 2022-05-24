@@ -17,12 +17,14 @@ import {
   generateToken,
   hashToken,
 } from "~/models/storableToken.server";
+import { connectToAppDb } from "~/lib/api/mongoose/connection";
 
 export default async function sendVerificationEmail(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   try {
+    await connectToAppDb();
     const email: string = req.body?.email;
     if (!email) {
       res.status(500).end("email not found");

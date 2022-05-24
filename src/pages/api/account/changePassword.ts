@@ -8,6 +8,7 @@ import {
   checkPasswordForUser,
   sendChangePasswordSuccessEmail,
 } from "~/lib/api/account";
+import { connectToAppDb } from "~/lib/api/mongoose/connection";
 
 interface ChangePasswordBody {
   oldPassword: string;
@@ -23,6 +24,7 @@ export default async function changePassword(
   res: NextApiResponse
 ) {
   try {
+    await connectToAppDb();
     const body = req.body;
     const { oldPassword, newPassword } = body as ChangePasswordBody;
     // context computation step œis shared with graphql endpoint

@@ -13,6 +13,7 @@ import {
 import { getRootUrl } from "~/lib/api/utils";
 import { routes } from "~/lib/routes";
 import { debugAccount } from "~/lib/debuggers";
+import { connectToAppDb } from "~/lib/api/mongoose/connection";
 
 type SignupBody = Pick<UserTypeServer, "email" | "password">;
 
@@ -21,6 +22,7 @@ export default async function signup(
   res: NextApiResponse
 ) {
   try {
+    await connectToAppDb();
     const { email, password } = req.body as SignupBody;
 
     // NOTE: the mutator is the function used by the create mutations in Vulcan

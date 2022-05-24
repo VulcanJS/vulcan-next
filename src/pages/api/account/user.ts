@@ -1,9 +1,11 @@
 import { getSession } from "~/lib/api/account";
+import { connectToAppDb } from "~/lib/api/mongoose/connection";
 import runSeed from "~/lib/api/runSeed";
 import { debugAccount } from "~/lib/debuggers";
 import { UserMongooseModel } from "~/models/user.server";
 
 export default async function user(req, res) {
+  await connectToAppDb();
   const session = await getSession(req);
   // Get fresh data about the user
   const user = session?._id

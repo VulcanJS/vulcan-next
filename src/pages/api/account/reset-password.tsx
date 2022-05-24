@@ -9,6 +9,7 @@ import {
 
 import { contextFromReq } from "~/lib/api/context";
 import { sendResetPasswordSuccessEmail } from "~/lib/api/account";
+import { connectToAppDb } from "~/lib/api/mongoose/connection";
 
 interface ResetPasswordBody {
   token: string;
@@ -22,6 +23,7 @@ export default async function changePassword(
   res: NextApiResponse
 ) {
   try {
+    await connectToAppDb();
     const body = req.body;
     const { token, newPassword } = body as ResetPasswordBody;
     // context computation step œis shared with graphql endpoint

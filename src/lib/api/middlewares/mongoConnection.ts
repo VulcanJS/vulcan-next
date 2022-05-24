@@ -12,6 +12,12 @@ import mongoose from "mongoose";
 import "~/lib/api/mongoose/models";
 import { connectToDb } from "~/lib/api/mongoose/connection";
 
+/**
+ * @deprecated Prefer using connectToAppDb
+ *
+ * @param mongoUri
+ * @returns
+ */
 const mongoConnectionMiddleware = (mongoUri: string) => {
   // init the first database connection on server startup
   const isLocalMongo = mongoUri.match(/localhost/);

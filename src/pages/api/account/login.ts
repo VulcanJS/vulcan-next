@@ -10,6 +10,7 @@ import { authenticate } from "~/lib/api/account";
 import { debugAccount } from "~/lib/debuggers";
 import { UserType } from "~/models/user";
 import cloneDeep from "lodash/cloneDeep.js";
+import { connectToAppDbMiddleware } from "~/lib/api/middlewares/mongoAppConnection";
 
 passport.use(localStrategy);
 
@@ -25,7 +26,7 @@ interface LoginReqBody {
 // this is the normal behaviour
 export default nextConnect<NextApiRequest, NextApiResponse>()
   .use(passport.initialize())
-  .post(async (req, res) => {
+  .post(connectToAppDbMiddleware, async (req, res) => {
     try {
       const user = await authenticateWithPassword(req, res);
       debugAccount(`Got user after authentication ${JSON.stringify(user)}`);

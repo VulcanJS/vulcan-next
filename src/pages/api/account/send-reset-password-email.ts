@@ -8,6 +8,7 @@ import {
 import { sendResetPasswordEmail } from "~/lib/api/account";
 import { routes } from "~/lib/routes";
 import { getRootUrl } from "~/lib/api/utils";
+import { connectToAppDb } from "~/lib/api/mongoose/connection";
 
 interface SendResetPasswordEmailBody {
   email?: string;
@@ -23,6 +24,7 @@ export default async function sendResetPasswordEmailEndpoint(
   res: NextApiResponse
 ) {
   try {
+    await connectToAppDb();
     const { email } = req.body as SendResetPasswordEmailBody;
     // NOTE: it's tempting to validate that the email is actually an email, but can be a bad idea, as
     // surprising emails are valid.

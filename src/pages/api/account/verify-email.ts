@@ -8,6 +8,7 @@ import {
 } from "~/models/storableToken.server";
 
 import { contextFromReq } from "~/lib/api/context";
+import { connectToAppDb } from "~/lib/api/mongoose/connection";
 
 interface VerifyEmailBody {
   token: string;
@@ -20,6 +21,7 @@ export default async function verifyEmail(
   res: NextApiResponse
 ) {
   try {
+    await connectToAppDb();
     const body = req.body;
     const { token } = body as VerifyEmailBody;
     // context computation step is shared with graphql endpoint

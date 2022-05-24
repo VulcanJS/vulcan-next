@@ -14,6 +14,7 @@ import models from "~/models/index.server";
 import runSeed from "~/lib/api/runSeed";
 
 import { contextFromReq } from "~/lib/api/context";
+import { connectToAppDbMiddleware } from "~/lib/api/middlewares/mongoAppConnection";
 
 /**
  * Example graphQL schema and resolvers generated using Vulcan declarative approach
@@ -67,9 +68,6 @@ const mergedSchema = {
 };
 
 const executableSchema = makeExecutableSchema(mergedSchema);
-
-const mongoUri = process.env.MONGO_URI;
-if (!mongoUri) throw new Error("MONGO_URI env variable is not defined");
 
 const app = express();
 
@@ -130,7 +128,7 @@ const gqlPath = "/api/graphql";
 // setup cors
 app.use(gqlPath, cors(corsOptions));
 // init the db
-app.use(gqlPath, mongoConnection(mongoUri));
+app.use(gqlPath, connectToAppDbMiddleware);
 
 server.applyMiddleware({ app, path: "/api/graphql" });
 
