@@ -23,6 +23,8 @@
     "*.env.production": "env",
     "*.env.development.local": "env",
     "*.env.production.local": "env",
-    ".env.local": "env"
+    ".env.local": "env",
+    ".env.test": "env",
+    ".env.test.local": "env"
   }
 }
