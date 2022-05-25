@@ -1,3 +1,6 @@
+import mongoose from 'mongoose';
+import debug from 'debug';
+
 var __defProp = Object.defineProperty;
 var __getOwnPropSymbols = Object.getOwnPropertySymbols;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
@@ -14,17 +17,8 @@ var __spreadValues = (a, b) => {
     }
   return a;
 };
-
-// .vn/scripts/ts-sources/db/reset.ts
-import mongoose2 from "mongoose";
-
-// src/lib/debuggers.ts
-import debug from "debug";
 var debugMongo = debug("vn:mongo");
-var debugAccount = debug("vn:account");
-
-// src/lib/api/mongoose/connection.ts
-import mongoose from "mongoose";
+debug("vn:account");
 var globalNode = __spreadValues({
   mongooseCache: void 0
 }, global);
@@ -76,7 +70,7 @@ async function closeDbConnection() {
 // .vn/scripts/ts-sources/db/reset.ts
 async function run() {
   await connectToAppDb();
-  await mongoose2.connection.db.dropDatabase();
+  await mongoose.connection.db.dropDatabase();
   await closeDbConnection();
 }
 run();

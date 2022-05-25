@@ -1,3 +1,21 @@
+import debug from 'debug';
+import mongoose from 'mongoose';
+import { createMutator } from '@vulcanjs/crud/server';
+import merge2 from 'lodash/merge.js';
+import { mergeModelDefinitionServer, createGraphqlModelServer, createContext } from '@vulcanjs/graphql/server';
+import { createMongooseConnector } from '@vulcanjs/mongo';
+import SimpleSchema from 'simpl-schema';
+import { createGraphqlModel } from '@vulcanjs/graphql';
+import crypto from 'crypto';
+import nodemailer from 'nodemailer';
+import 'react-dom/server.js';
+import '@mui/material';
+import 'passport';
+import 'cookie';
+import Local from 'passport-local';
+import '@hapi/iron';
+import { addDefaultMongoConnector } from '@vulcanjs/mongo-apollo';
+
 var __defProp = Object.defineProperty;
 var __getOwnPropSymbols = Object.getOwnPropertySymbols;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
@@ -14,14 +32,8 @@ var __spreadValues = (a, b) => {
     }
   return a;
 };
-
-// src/lib/debuggers.ts
-import debug from "debug";
 var debugMongo = debug("vn:mongo");
-var debugAccount = debug("vn:account");
-
-// src/lib/api/mongoose/connection.ts
-import mongoose from "mongoose";
+debug("vn:account");
 var globalNode = __spreadValues({
   mongooseCache: void 0
 }, global);
@@ -69,26 +81,6 @@ async function closeDbConnection() {
     throw err;
   }
 }
-
-// src/lib/api/runSeed.ts
-import mongoose2 from "mongoose";
-
-// src/lib/api/seed.ts
-import { createMutator } from "@vulcanjs/crud/server";
-
-// src/models/user.server.ts
-import merge from "lodash/merge.js";
-import {
-  createGraphqlModelServer,
-  mergeModelDefinitionServer
-} from "@vulcanjs/graphql/server";
-import { createMongooseConnector } from "@vulcanjs/mongo";
-
-// src/models/user.ts
-import SimpleSchema from "simpl-schema";
-import {
-  createGraphqlModel
-} from "@vulcanjs/graphql";
 var passwordAuthSchema = {
   password: {
     type: String,
@@ -183,12 +175,6 @@ var modelDef = {
   }
 };
 var User = createGraphqlModel(modelDef);
-
-// src/lib/api/account/accountManagement.ts
-import crypto from "crypto";
-
-// src/lib/api/mail/transports.ts
-import nodemailer from "nodemailer";
 var transport = {
   streamTransport: true,
   newline: "unix",
@@ -205,26 +191,7 @@ if (process.env.SMTP_HOST) {
   console.warn("SMTP Transport not set during development");
   console.warn("If you run auth test using Cypress, use 'yarn run dev:test' instead!");
 }
-var localMailTransport = nodemailer.createTransport(transport);
-
-// src/lib/api/account/emails/resetPasswordToken.tsx
-import ReactDOMServer from "react-dom/server.js";
-import { Typography } from "@mui/material";
-
-// src/lib/api/account/emails/verifyEmail.tsx
-import ReactDOMServer2 from "react-dom/server.js";
-import { Typography as Typography2 } from "@mui/material";
-
-// src/lib/api/account/accountManagement.ts
-import passport from "passport";
-
-// src/lib/api/account/emails/resetPasswordSuccess.tsx
-import ReactDOMServer3 from "react-dom/server.js";
-import { Typography as Typography3 } from "@mui/material";
-
-// src/lib/api/account/emails/changePasswordSuccess.tsx
-import ReactDOMServer4 from "react-dom/server.js";
-import { Typography as Typography4 } from "@mui/material";
+nodemailer.createTransport(transport);
 
 // src/lib/api/account/accountManagement.ts
 var checkPasswordForUser = (user, passwordToTest) => {
@@ -234,7 +201,7 @@ var checkPasswordForUser = (user, passwordToTest) => {
     const storedHashedPassword = (_b = (_a = user == null ? void 0 : user.services) == null ? void 0 : _a.password) == null ? void 0 : _b.bcrypt;
     if (!storedHashedPassword)
       throw new Error("User has no Meteor password either.");
-    const userInput = new crypto.Hash("sha256").update(passwordToTest).digest("hex");
+    new crypto.Hash("sha256").update(passwordToTest).digest("hex");
     throw new Error("Bcrypt not enabled in this app");
   }
   const hash = crypto.pbkdf2Sync(passwordToTest, user.salt, 1e3, 64, "sha512").toString("hex");
@@ -255,14 +222,7 @@ async function findUserByCredentials({
   }
   return user;
 }
-
-// src/lib/api/account/auth-cookies.ts
-import { serialize, parse } from "cookie";
-var MAX_AGE = 60 * 60 * 8;
-
-// src/lib/api/account/passport/password-local.ts
-import Local from "passport-local";
-var localStrategy = new Local.Strategy({
+new Local.Strategy({
   usernameField: "email",
   passwordField: "password"
 }, function(email, password, done) {
@@ -284,18 +244,9 @@ var localStrategy = new Local.Strategy({
     done(err);
   });
 });
-
-// src/lib/api/account/session.ts
-import Iron from "@hapi/iron";
-var TOKEN_SECRET = process.env.TOKEN_SECRET;
-if (!TOKEN_SECRET)
-  throw new Error("Authentication not set for this application");
-
-// src/lib/api/account/utils.ts
-import crypto2 from "crypto";
 var hashPassword = (password) => {
-  const salt = crypto2.randomBytes(16).toString("hex");
-  const hash = crypto2.pbkdf2Sync(password, salt, 1e3, 64, "sha512").toString("hex");
+  const salt = crypto.randomBytes(16).toString("hex");
+  const hash = crypto.pbkdf2Sync(password, salt, 1e3, 64, "sha512").toString("hex");
   return { salt, hash };
 };
 
@@ -336,7 +287,7 @@ var passwordAuthSchema2 = {
     canUpdate: []
   }
 };
-var schema2 = merge({}, schema, __spreadValues({}, passwordAuthSchema2));
+var schema2 = merge2({}, schema, __spreadValues({}, passwordAuthSchema2));
 var modelDef2 = mergeModelDefinitionServer(modelDef, {
   graphql: {
     callbacks: {
@@ -396,21 +347,6 @@ var seed = async (context) => {
   await seedAdminUser();
 };
 var seed_default = seed;
-
-// src/lib/api/context.ts
-import debug2 from "debug";
-
-// src/models/sampleModel.server.ts
-import {
-  createGraphqlModelServer as createGraphqlModelServer2
-} from "@vulcanjs/graphql/server";
-import { createMongooseConnector as createMongooseConnector2 } from "@vulcanjs/mongo";
-import merge2 from "lodash/merge.js";
-
-// src/models/sampleModel.ts
-import {
-  createGraphqlModel as createGraphqlModel2
-} from "@vulcanjs/graphql";
 var schema3 = {
   _id: {
     type: String,
@@ -420,7 +356,12 @@ var schema3 = {
   userId: {
     type: String,
     optional: true,
-    canRead: ["guests"]
+    canRead: ["guests"],
+    relation: {
+      fieldName: "user",
+      kind: "hasOne",
+      model: User
+    }
   },
   createdAt: {
     type: Date,
@@ -463,7 +404,7 @@ var modelDef3 = {
     canRead: ["members", "admins"]
   }
 };
-var SampleModel = createGraphqlModel2(modelDef3);
+createGraphqlModel(modelDef3);
 
 // src/models/sampleModel.server.ts
 var schema4 = merge2({}, schema3, {
@@ -487,7 +428,7 @@ var schema4 = merge2({}, schema3, {
       description: "A resolved field",
       resolver: async (document, args, context, info) => {
         const tenUsers = await UserMongooseModel.find({}, null, { limit: 10 });
-        const filtered = tenUsers.filter((u) => {
+        tenUsers.filter((u) => {
           var _a;
           return (_a = u.email) == null ? void 0 : _a.match(document.demoCustomResolverField);
         });
@@ -502,20 +443,14 @@ var modelDef4 = merge2({}, modelDef3, {
   schema: schema4,
   graphql: __spreadValues({}, modelDef3.graphql)
 });
-var SampleModel2 = createGraphqlModelServer2(modelDef4);
-var SampleModelConnector = createMongooseConnector2(SampleModel2);
+var SampleModel2 = createGraphqlModelServer(modelDef4);
+var SampleModelConnector = createMongooseConnector(SampleModel2);
 SampleModel2.crud.connector = SampleModelConnector;
-
-// src/models/index.server.ts
-import { addDefaultMongoConnector } from "@vulcanjs/mongo-apollo";
 var models = [User2, SampleModel2];
 addDefaultMongoConnector(models);
 var index_server_default = models;
-
-// src/lib/api/context.ts
-import { createContext as createVulcanDefaultContext } from "@vulcanjs/graphql/server";
-var debugGraphqlContext = debug2("vn:graphql:context");
-var createContextForModels = createVulcanDefaultContext(index_server_default);
+debug("vn:graphql:context");
+var createContextForModels = createContext(index_server_default);
 var createContextBase = async () => __spreadValues({}, await createContextForModels(null));
 
 // src/lib/api/runSeed.ts
@@ -527,7 +462,7 @@ async function runSeed() {
       const contextBase = await createContextBase();
       await seed_default(contextBase);
       const seedRestaurants = async () => {
-        const db = mongoose2.connection;
+        const db = mongoose.connection;
         const count = await db.collection("restaurants").countDocuments();
         if (count === 0) {
           await db.collection("restaurants").insertMany([

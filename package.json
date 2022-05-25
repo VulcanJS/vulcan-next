@@ -10,7 +10,7 @@
     "clean": "rm -Rf ./dist ./storybook-static .yalc .next",
     "clean:next": "rm -Rf .next",
     "//_____TS scripts_____": "",
-    "build:scripts": "tsup-node --external graphql --external graphql-tag",
+    "build:scripts": "tsup-node --external graphql --external graphql-tag --treeshake",
     "//____Mongo database and seed": "",
     "db:test:seed": "dotenv -e .env.test node .vn/scripts/js-generated/seed.mjs",
     "//db:test:reset": "### Reset can only happen against the test database!",
@@ -221,7 +221,7 @@
     "smtp-tester": "^1.2.0",
     "start-server-and-test": "^1.11.0",
     "storybook-addon-next-router": "^3.1.1",
-    "tsup": "^5.12.4"
+    "tsup": "^6.0.1"
   },
   "resolutions": {
     "@types/react": "^17.0.16",
