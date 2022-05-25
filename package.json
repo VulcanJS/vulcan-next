@@ -1,6 +1,6 @@
 {
   "name": "vulcan-next",
-  "version": "0.6.8-alpha.4",
+  "version": "0.6.8",
   "private": true,
   "scripts": {
     "//----- DEVELOP -----": "",
