@@ -8,13 +8,13 @@ import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-co
 
 import { buildApolloSchema, createDataSources } from "@vulcanjs/graphql/server";
 
-import mongoConnection from "~/lib/api/middlewares/mongoConnection";
-import corsOptions from "~/lib/api/cors";
-import models from "~/models/index.server";
-import runSeed from "~/lib/api/runSeed";
+import mongoConnection from "~/core/server/middlewares/mongoConnection";
+import corsOptions from "~/core/server/cors";
+import models from "~/core/models.server";
+import runSeed from "~/core/server/runSeed";
 
-import { contextFromReq } from "~/lib/api/context";
-import { connectToAppDbMiddleware } from "~/lib/api/middlewares/mongoAppConnection";
+import { contextFromReq } from "~/core/server/context";
+import { connectToAppDbMiddleware } from "~/core/server/middlewares/mongoAppConnection";
 
 /**
  * Example graphQL schema and resolvers generated using Vulcan declarative approach

@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useUser } from "~/components/account/hooks";
-import Layout from "~/components/account/layout";
-import UserForm from "~/components/account/form";
-import { routes } from "~/lib/routes";
+import { useUser } from "~/account/components/hooks";
+import Layout from "~/account/components/layout";
+import UserForm from "~/account/components/form";
+import { routes } from "~/core/routes";
 import { useRouter } from "next/router";
-import { apiRoutes } from "~/lib/api/apiRoutes";
+import { apiRoutes } from "~/core/server/apiRoutes";
 
 const Signup = () => {
   const router = useRouter();

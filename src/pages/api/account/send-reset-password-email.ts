@@ -1,14 +1,14 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { UserMongooseModel } from "~/models/user.server";
+import { UserMongooseModel } from "~/account/models/user.server";
 import {
   generateToken,
   hashToken,
   StorableTokenConnector,
-} from "~/models/storableToken.server";
-import { sendResetPasswordEmail } from "~/lib/api/account";
-import { routes } from "~/lib/routes";
-import { getRootUrl } from "~/lib/api/utils";
-import { connectToAppDb } from "~/lib/api/mongoose/connection";
+} from "~/account/models/storableToken.server";
+import { sendResetPasswordEmail } from "~/account/server";
+import { routes } from "~/core/routes";
+import { getRootUrl } from "~/core/server/utils";
+import { connectToAppDb } from "~/core/server/mongoose/connection";
 
 interface SendResetPasswordEmailBody {
   email?: string;

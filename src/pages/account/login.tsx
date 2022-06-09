@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useUser } from "~/components/account/hooks";
-import Layout from "~/components/account/layout";
-import Form from "~/components/account/form";
-import { apiRoutes } from "~/lib/api/apiRoutes";
+import { useUser } from "~/account/components/hooks";
+import Layout from "~/account/components/layout";
+import Form from "~/account/components/form";
+import { apiRoutes } from "~/core/server/apiRoutes";
 import { useRouter } from "next/router";
 
 const Login = () => {

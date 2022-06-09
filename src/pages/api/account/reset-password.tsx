@@ -1,15 +1,15 @@
 import { Request } from "express";
 import { updateMutator } from "@vulcanjs/crud/server";
 import { NextApiRequest, NextApiResponse } from "next";
-import { User, UserMongooseModel } from "~/models/user.server";
+import { User, UserMongooseModel } from "~/account/models/user.server";
 import {
   StorableTokenConnector,
   hashToken,
-} from "~/models/storableToken.server";
+} from "~/account/models/storableToken.server";
 
-import { contextFromReq } from "~/lib/api/context";
-import { sendResetPasswordSuccessEmail } from "~/lib/api/account";
-import { connectToAppDb } from "~/lib/api/mongoose/connection";
+import { contextFromReq } from "~/core/server/context";
+import { sendResetPasswordSuccessEmail } from "~/account/server";
+import { connectToAppDb } from "~/core/server/mongoose/connection";
 
 interface ResetPasswordBody {
   token: string;

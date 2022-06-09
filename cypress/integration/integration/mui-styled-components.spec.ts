@@ -1,4 +1,4 @@
-//import colors from "~/lib/style/colors";
+//import colors from "~/core/style/colors";
 const orange = "rgb(255, 166, 22)"; // hex color will be translated to RGB during render so directly testing the HEX value won't work
 describe("material-ui", () => {
   describe("ssr", () => {

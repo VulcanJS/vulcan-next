@@ -8,16 +8,16 @@
  * TODO: this is not finished, it should reuse code from signup
  */
 import { NextApiRequest, NextApiResponse } from "next";
-import { UserMongooseModel } from "~/models/user.server";
+import { UserMongooseModel } from "~/account/models/user.server";
 
 // TODO: factor the context creation so we can reuse it for graphql and REST endpoints
-import { contextFromReq } from "~/lib/api/context";
+import { contextFromReq } from "~/core/server/context";
 import {
   StorableTokenConnector,
   generateToken,
   hashToken,
-} from "~/models/storableToken.server";
-import { connectToAppDb } from "~/lib/api/mongoose/connection";
+} from "~/account/models/storableToken.server";
+import { connectToAppDb } from "~/core/server/mongoose/connection";
 
 export default async function sendVerificationEmail(
   req: NextApiRequest,

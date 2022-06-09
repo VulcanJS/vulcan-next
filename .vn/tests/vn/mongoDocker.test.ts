@@ -4,8 +4,11 @@
  * // @see https://jestjs.io/docs/en/next/configuration#testenvironment-string
  * @jest-environment node
  */
-import { connectToDb, closeDbConnection } from "~/lib/api/mongoose/connection";
-import { debugMongo } from "~/lib/debuggers";
+import {
+  connectToDb,
+  closeDbConnection,
+} from "~/core/server/mongoose/connection";
+import { debugMongo } from "~/core/lib/debuggers";
 import { spawn } from "child_process";
 // TODO: setup dotenv like in Next
 // @see https://github.com/VulcanJS/vulcan-next/issues/47

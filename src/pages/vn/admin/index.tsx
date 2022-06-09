@@ -1,9 +1,9 @@
 import React from "react";
-import { useUser } from "~/components/account/hooks";
+import { useUser } from "~/account/components/hooks";
 import { NextMuiLink } from "@vulcanjs/next-mui";
 import { Typography } from "@mui/material";
-import { PageLayout } from "~/components/layout";
-import { routes } from "~/lib/routes";
+import { PageLayout } from "~/core/components/layout";
+import { routes } from "~/core/routes";
 
 const AdminPage = () => {
   // TODO: this is an authenticated page, but we also would like to check the role

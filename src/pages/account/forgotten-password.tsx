@@ -1,4 +1,4 @@
-import { PageLayout } from "~/components/layout";
+import { PageLayout } from "~/core/components/layout";
 import {
   FormControl,
   InputLabel,
@@ -7,7 +7,7 @@ import {
   Typography,
   TextField,
 } from "@mui/material";
-import { ErrorSuccessMessages } from "~/components/account/ErrorSuccessMessages";
+import { ErrorSuccessMessages } from "~/account/components/ErrorSuccessMessages";
 import { useState } from "react";
 
 const ForgottenPassword = () => {

@@ -15,19 +15,19 @@ import {
   List,
   ListItem,
 } from "@mui/material";
+import { SmartForm, VulcanComponentsProvider } from "@vulcanjs/react-ui";
 import {
-  SmartForm,
-  VulcanComponentsProvider,
-} from "@vulcanjs/react-ui";
-import { liteFormComponents, liteCoreComponents } from "@vulcanjs/react-ui-lite"
+  liteFormComponents,
+  liteCoreComponents,
+} from "@vulcanjs/react-ui-lite";
 import { VulcanGraphqlModel } from "@vulcanjs/graphql";
-import { ItemCard } from "~/components/vn/ItemCard";
-import { PageLayout } from "~/components/layout";
-import models from "~/models";
+import { ItemCard } from "~/vulcan-demo/components/ItemCard";
+import { PageLayout } from "~/core/components/layout";
+import models from "~/core/models";
 
-import { useUser } from "~/components/account/hooks";
+import { useUser } from "~/account/components/hooks";
 import { useMulti, useDelete } from "@vulcanjs/react-hooks";
-import { routes } from "~/lib/routes";
+import { routes } from "~/core/routes";
 
 const modelsMap = models.reduce<{ [modelName: string]: VulcanGraphqlModel }>(
   (asMap, model) => ({ ...asMap, [model.name]: model }),
@@ -86,7 +86,8 @@ export default function CrudPage({ modelName }) {
         // Could be replaced by your own components
         // You can also move this provider to a shared layout
         // if you have a lot of forms
-        value={{ ...liteFormComponents, ...liteCoreComponents }}>
+        value={{ ...liteFormComponents, ...liteCoreComponents }}
+      >
         <Typography variant="h1"> Manage {model.name}</Typography>
         <Typography variant="body1">
           /!&#92; This page is an experimental demonstration of using Vulcan

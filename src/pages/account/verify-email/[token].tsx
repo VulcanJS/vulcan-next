@@ -1,9 +1,9 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
-import { apiRoutes } from "~/lib/api/apiRoutes";
+import { apiRoutes } from "~/core/server/apiRoutes";
 import { useRouter } from "next/router";
-import { PageLayout } from "~/components/layout";
-import { routes } from "~/lib/routes";
+import { PageLayout } from "~/core/components/layout";
+import { routes } from "~/core/routes";
 
 const useToken = () => {
   const router = useRouter();

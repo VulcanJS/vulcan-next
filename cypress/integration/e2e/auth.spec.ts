@@ -14,8 +14,8 @@
  *
  * @see https://docs.cypress.io/guides/getting-started/testing-your-app#Logging-in
  */
-import { apiRoutes } from "~/lib/api/apiRoutes";
-import { routes } from "~/lib/routes";
+import { apiRoutes } from "~/core/server/apiRoutes";
+import { routes } from "~/core/routes";
 describe("auth", () => {
   beforeEach(() => {
     // NOTE: those operations are expensive! When testing less-critical part of your UI,

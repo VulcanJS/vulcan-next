@@ -1,6 +1,6 @@
 import * as React from "react";
 import { withA11y } from "@storybook/addon-a11y";
-import { MuiThemeProvider } from "~/components/providers";
+import { MuiThemeProvider } from "~/core/components/providers";
 import { I18nextProvider } from "react-i18next";
 // Vulcan custom i18n
 // FIXME: breaks ESM currently
@@ -10,7 +10,7 @@ import { I18nextProvider } from "react-i18next";
 // @see https://github.com/isaachinman/next-i18next/issues/1012
 import { i18n } from "next-i18next";
 //import { AppLayout } from "~/components/layout";
-import { GlobalAppStyle } from "~/components/layout/AppLayout";
+import { GlobalAppStyle } from "~/core/components/layout/AppLayout";
 
 // @see https://github.com/vercel/next.js/pull/28528
 // import { RouterContext } from "next/dist/shared/lib/router-context"; // next 11.2

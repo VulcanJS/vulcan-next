@@ -1,19 +1,23 @@
 import { Request } from "express";
 import { createMutator } from "@vulcanjs/crud/server";
 import { NextApiRequest, NextApiResponse } from "next";
-import { User, UserMongooseModel, UserTypeServer } from "~/models/user.server";
-import { contextFromReq } from "~/lib/api/context";
-import runSeed from "~/lib/api/runSeed";
-import { sendVerificationEmail } from "~/lib/api/account";
+import {
+  User,
+  UserMongooseModel,
+  UserTypeServer,
+} from "~/account/models/user.server";
+import { contextFromReq } from "~/core/server/context";
+import runSeed from "~/core/server/runSeed";
+import { sendVerificationEmail } from "~/account/server";
 import {
   generateToken,
   hashToken,
   StorableTokenConnector,
-} from "~/models/storableToken.server";
-import { getRootUrl } from "~/lib/api/utils";
-import { routes } from "~/lib/routes";
-import { debugAccount } from "~/lib/debuggers";
-import { connectToAppDb } from "~/lib/api/mongoose/connection";
+} from "~/account/models/storableToken.server";
+import { getRootUrl } from "~/core/server/utils";
+import { routes } from "~/core/routes";
+import { debugAccount } from "~/core/lib/debuggers";
+import { connectToAppDb } from "~/core/server/mongoose/connection";
 
 type SignupBody = Pick<UserTypeServer, "email" | "password">;
 

@@ -1,8 +1,8 @@
-import { useUser } from "~/components/account/hooks";
-import { PageLayout } from "~/components/layout";
-import ChangePasswordForm from "~/components/account/ChangePassword";
+import { useUser } from "~/account/components/hooks";
+import { PageLayout } from "~/core/components/layout";
+import ChangePasswordForm from "~/account/components/ChangePassword";
 import { Typography } from "@mui/material";
-import { routes } from "~/lib/routes";
+import { routes } from "~/core/routes";
 
 const Profile = () => {
   const user = useUser({ redirectTo: routes.account.login.href });

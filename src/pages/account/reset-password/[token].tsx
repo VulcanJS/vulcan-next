@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { Button, Typography, TextField } from "@mui/material";
-import { PageLayout } from "~/components/layout";
-import { ErrorSuccessMessages } from "~/components/account/ErrorSuccessMessages";
-import { routes } from "~/lib/routes";
+import { PageLayout } from "~/core/components/layout";
+import { ErrorSuccessMessages } from "~/account/components/ErrorSuccessMessages";
+import { routes } from "~/core/routes";
 
 export default function ResetPasswordPage() {
   const router = useRouter();

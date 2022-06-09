@@ -1,8 +1,8 @@
-import { getSession } from "~/lib/api/account";
-import { connectToAppDb } from "~/lib/api/mongoose/connection";
-import runSeed from "~/lib/api/runSeed";
-import { debugAccount } from "~/lib/debuggers";
-import { UserMongooseModel } from "~/models/user.server";
+import { getSession } from "~/account/server";
+import { connectToAppDb } from "~/core/server/mongoose/connection";
+import runSeed from "~/core/server/runSeed";
+import { debugAccount } from "~/core/lib/debuggers";
+import { UserMongooseModel } from "~/account/models/user.server";
 
 export default async function user(req, res) {
   await connectToAppDb();

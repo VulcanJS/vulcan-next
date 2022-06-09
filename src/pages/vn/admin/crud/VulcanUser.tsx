@@ -15,19 +15,19 @@ import {
   List,
   ListItem,
 } from "@mui/material";
-import { PageLayout } from "~/components/layout";
+import { PageLayout } from "~/core/components/layout";
 
-import { User } from "~/models/user";
-import { useUser } from "~/components/account/hooks";
+import { User } from "~/account/models/user";
+import { useUser } from "~/account/components/hooks";
 import {
   //useCreate,
   useMulti,
   useUpdate,
   useDelete,
 } from "@vulcanjs/react-hooks";
-import { ItemCard } from "~/components/vn/ItemCard";
-import { routes } from "~/lib/routes";
-import { apiRoutes } from "~/lib/api/apiRoutes";
+import { ItemCard } from "~/vulcan-demo/components/ItemCard";
+import { routes } from "~/core/routes";
+import { apiRoutes } from "~/core/server/apiRoutes";
 
 export default function UserCrudPage() {
   // Auth

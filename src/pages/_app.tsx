@@ -6,13 +6,13 @@ import { appWithTranslation } from "next-i18next";
 
 // Comment if you don't need Material UI
 import { createEmotionCache } from "@vulcanjs/next-mui";
-import { MuiThemeProvider } from "~/components/providers";
+import { MuiThemeProvider } from "~/core/components/providers";
 
-import { VulcanCurrentUserProvider } from "@vulcanjs/react-ui"
+import { VulcanCurrentUserProvider } from "@vulcanjs/react-ui";
 import Head from "next/head";
 
 import debug from "debug";
-import AppLayout from "~/components/layout/AppLayout";
+import AppLayout from "~/core/components/layout/AppLayout";
 const debugPerf = debug("vns:perf");
 // @see https://nextjs.org/docs/advanced-features/measuring-performance
 export function reportWebVitals(metric) {
@@ -22,7 +22,7 @@ export function reportWebVitals(metric) {
 import { ApolloProvider } from "@apollo/client";
 import { useApollo } from "@vulcanjs/next-apollo";
 import { CacheProvider, EmotionCache } from "@emotion/react";
-import { useUser } from "~/components/account/hooks";
+import { useUser } from "~/account/components/hooks";
 
 // import environment from '@vulcanjs/multi-env-demo';
 // console.log('imported environment', environment); // should display "server"/"client" depending on the environment, this is just a test

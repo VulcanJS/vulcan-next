@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { getDefaultPageLayout } from "~/components/layout/PageLayout";
+import { getDefaultPageLayout } from "~/core/components/layout/PageLayout";
 
 export const VerifyEmailPage = () => {
   const isDev = process.env.NEXT_PUBLIC_NODE_ENV === "development";

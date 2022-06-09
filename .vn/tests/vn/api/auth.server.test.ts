@@ -5,8 +5,8 @@
  * @see https://github.com/vercel/next.js/discussions/15166
  * @see
  */
-import { connectToDb } from "~/lib/api/mongoose/connection";
-import { apiRoutes } from "~/lib/api/apiRoutes";
+import { connectToDb } from "~/core/server/mongoose/connection";
+import { apiRoutes } from "~/core/server/apiRoutes";
 import { MongoMemoryServer } from "mongodb-memory-server"; // @see https://github.com/nodkz/mongodb-memory-server
 import mongoose from "mongoose";
 import request from "supertest";

@@ -1,7 +1,7 @@
 // @see https://github.com/zeit/next.js/tree/master/examples/api-routes-apollo-server-and-client-auth
 import express from "express";
 import cors from "cors";
-import corsOptions from "~/lib/api/cors";
+import corsOptions from "~/core/server/cors";
 //import getConfig from "next/config";
 import { express as voyagerMiddleware } from "graphql-voyager/middleware";
 

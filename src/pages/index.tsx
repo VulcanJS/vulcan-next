@@ -1,9 +1,9 @@
-import Home from "~/components/home";
+import Home from "~/core/components/home";
 //import { useForm } from "react-hook-form";
 import path from "path";
 import { promises as fsPromises } from "fs";
-import { muiMdComponents } from "~/components/layout/muiMdComponents";
-import { PageLayout } from "~/components/layout";
+import { muiMdComponents } from "~/core/components/layout/muiMdComponents";
+import { PageLayout } from "~/core/components/layout";
 import { Box } from "@mui/material";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";

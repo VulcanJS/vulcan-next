@@ -1,6 +1,6 @@
 //**** API TESTS
 // TODO: those tests should be replaced by tests against API routes when this is more mature in Next (no need to use a browser here)
-import { apiRoutes } from "~/lib/api/apiRoutes";
+import { apiRoutes } from "~/core/server/apiRoutes";
 describe("auth - API", () => {
   beforeEach(() => {
     // NOTE: those operations are expensive! When testing less-critical part of your UI,

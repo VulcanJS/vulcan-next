@@ -1,14 +1,14 @@
 import { Request } from "express";
 import { updateMutator } from "@vulcanjs/crud/server";
 import { NextApiRequest, NextApiResponse } from "next";
-import { User, UserType } from "~/models/user.server";
+import { User, UserType } from "~/account/models/user.server";
 
-import { contextFromReq } from "~/lib/api/context";
+import { contextFromReq } from "~/core/server/context";
 import {
   checkPasswordForUser,
   sendChangePasswordSuccessEmail,
-} from "~/lib/api/account";
-import { connectToAppDb } from "~/lib/api/mongoose/connection";
+} from "~/account/server";
+import { connectToAppDb } from "~/core/server/mongoose/connection";
 
 interface ChangePasswordBody {
   oldPassword: string;

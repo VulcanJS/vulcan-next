@@ -1,8 +1,8 @@
 import {
   closeDbConnection,
   connectToAppDb,
-} from "~/lib/api/mongoose/connection";
-import runSeed from "~/lib/api/runSeed";
+} from "~/core/server/mongoose/connection";
+import runSeed from "~/core/server/runSeed";
 
 // No top-level async for Node 14
 async function run() {

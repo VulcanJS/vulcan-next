@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import {
   closeDbConnection,
   connectToAppDb,
-} from "~/lib/api/mongoose/connection";
+} from "~/core/server/mongoose/connection";
 
 async function run() {
   await connectToAppDb();

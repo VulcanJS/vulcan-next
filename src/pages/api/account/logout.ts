@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { removeTokenCookie } from "~/lib/api/account";
+import { removeTokenCookie } from "~/account/server";
 
 export default async function logout(
   req: NextApiRequest,

@@ -2,8 +2,8 @@
  * NOTE: those are integration test, so actual requests can be mocked
  * See e2e folder for testing against the actual api
  */
-import { apiRoutes } from "~/lib/api/apiRoutes";
-import { routes } from "~/lib/routes";
+import { apiRoutes } from "~/core/server/apiRoutes";
+import { routes } from "~/core/routes";
 it("redirect back to from page after login", () => {
   // TODO: mock the auth request with MSW and Cypress instead of actually login in
   cy.intercept(

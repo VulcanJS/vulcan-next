@@ -1,16 +1,16 @@
 import passport from "passport";
 import nextConnect from "next-connect";
-import { encryptSession } from "~/lib/api/account";
-import { setTokenCookie } from "~/lib/api/account";
+import { encryptSession } from "~/account/server";
+import { setTokenCookie } from "~/account/server";
 import { NextApiRequest, NextApiResponse } from "next";
-import runSeed from "~/lib/api/runSeed";
+import runSeed from "~/core/server/runSeed";
 
-import { localStrategy } from "~/lib/api/account/passport/password-local";
-import { authenticate } from "~/lib/api/account";
-import { debugAccount } from "~/lib/debuggers";
-import { UserType } from "~/models/user";
+import { localStrategy } from "~/account/server/passport/password-local";
+import { authenticate } from "~/account/server";
+import { debugAccount } from "~/core/lib/debuggers";
+import { UserType } from "~/account/models/user";
 import cloneDeep from "lodash/cloneDeep.js";
-import { connectToAppDbMiddleware } from "~/lib/api/middlewares/mongoAppConnection";
+import { connectToAppDbMiddleware } from "~/core/server/middlewares/mongoAppConnection";
 
 passport.use(localStrategy);
 

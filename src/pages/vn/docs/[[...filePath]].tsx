@@ -10,7 +10,7 @@ import {
 import { promises as fsPromises, lstatSync, existsSync } from "fs";
 import { List, ListItem, Link, Typography } from "@mui/material";
 import matter from "gray-matter";
-import { muiMdComponents } from "~/components/layout/muiMdComponents";
+import { muiMdComponents } from "~/core/components/layout/muiMdComponents";
 
 // Define components to allow them in your mdx files
 // You can also replace HTML tags (components is passed to MDXProvider )

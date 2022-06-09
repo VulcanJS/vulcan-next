@@ -1,9 +1,9 @@
 import React from "react";
-import models from "~/models";
-import { PageLayout } from "~/components/layout";
+import models from "~/core/models";
+import { PageLayout } from "~/core/components/layout";
 import { Typography, List, ListItem } from "@mui/material";
 import { Link } from "@vulcanjs/next-mui";
-import { routes } from "~/lib/routes";
+import { routes } from "~/core/routes";
 
 const ModelsPage = () => {
   return (

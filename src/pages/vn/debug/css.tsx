@@ -1,5 +1,5 @@
-import CSSModule from "~/components/vn/cssModule";
-import StyledJsx from "~/components/vn/styledJsx";
+import CSSModule from "~/vulcan-demo/components/cssModule";
+import StyledJsx from "~/vulcan-demo/components/styledJsx";
 //import { useForm } from "react-hook-form";
 
 const CSSDebugPage = () => {

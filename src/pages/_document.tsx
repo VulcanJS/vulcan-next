@@ -7,12 +7,12 @@ import Document, {
   NextScript,
   //DocumentInitialProps,
 } from "next/document";
-import theme from "~/lib/style/defaultTheme";
+import theme from "~/core/style/defaultTheme";
 import {
   getAppEnhancer as getMuiAppEnhancer,
   //getMuiDocumentInitialProps,
 } from "@vulcanjs/next-mui/server";
-import { i18nPropsFromCtx, DocumentLanguageProps } from "~/lib/i18n";
+import { i18nPropsFromCtx, DocumentLanguageProps } from "~/core/lib/i18n";
 
 interface VNSDocumentProps {
   i18nDocumentProps: Partial<DocumentLanguageProps>;
