@@ -147,7 +147,7 @@ export default function DocPage({ pages, filePath, source }: PageArguments) {
 interface PathsProps {
   params: { filePath: Array<String> }; // Use String and not string to match vulcan-npm MdxPath syntax
 }
-const docContentRoot = "./src/content/vn/docs";
+const docContentRoot = "./src/vulcan-demo/content/vn/docs";
 export async function getStaticPaths() {
   const docsDir = path.resolve(docContentRoot); // relative to the project root
   const files = await getMdxPaths(docsDir);
