@@ -22,7 +22,7 @@ const schema: VulcanGraphqlSchemaServer = merge({}, commonSchema, {
   demoServerOnlyField: {
     type: String,
     optional: true,
-    canRead: ["guests"],
+    canRead: ["guests", "anyone"],
     canUpdate: ["admins"],
     canCreate: ["owners"],
     searchable: true,

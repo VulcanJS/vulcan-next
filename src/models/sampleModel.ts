@@ -15,13 +15,13 @@ export const schema: VulcanGraphqlSchema = {
   _id: {
     type: String,
     optional: true,
-    canRead: ["guests"],
+    canRead: ["guests", "anyone"],
   },
   /** _id of the user that created the document. This special field is used to handle the "ownership" of the document. */
   userId: {
     type: String,
     optional: true,
-    canRead: ["guests"],
+    canRead: ["guests", "anyone"],
     // This means you can resolve the "user" field when fetching for "samples"
     relation: {
       fieldName: "user",
@@ -44,7 +44,7 @@ export const schema: VulcanGraphqlSchema = {
   someField: {
     type: String,
     optional: true,
-    canRead: ["guests"],
+    canRead: ["guests", "anyone"],
     canUpdate: ["admins", "owners"],
     canCreate: ["members"],
   },

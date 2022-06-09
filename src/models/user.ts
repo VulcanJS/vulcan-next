@@ -20,7 +20,7 @@ const passwordAuthSchema: VulcanGraphqlSchema = {
     type: String,
     optional: false,
     canRead: [],
-    canCreate: ["guests"],
+    canCreate: ["guests", "anyone"],
     canUpdate: ["owners"],
   },
 };
@@ -42,14 +42,14 @@ export const schema: VulcanGraphqlSchema = {
   _id: {
     type: String,
     optional: true,
-    canRead: ["guests"],
+    canRead: ["guests", "anyone"],
   },
   // userId is the _id of the owner of the document
   // Here, it guarantees that the user belongs to group "owners" for his own data
   userId: {
     type: String,
     optional: true,
-    canRead: ["guests"],
+    canRead: ["guests", "anyone"],
   },
   createdAt: {
     type: Date,
@@ -62,7 +62,7 @@ export const schema: VulcanGraphqlSchema = {
   username: {
     type: String,
     optional: true,
-    canRead: ["guests"],
+    canRead: ["guests", "anyone"],
     canUpdate: ["admins"],
     canCreate: ["owners"],
     searchable: true,
@@ -74,7 +74,7 @@ export const schema: VulcanGraphqlSchema = {
     optional: true,
     canCreate: ["admins"],
     canUpdate: ["admins"],
-    canRead: ["guests"],
+    canRead: ["guests", "anyone"],
   },
 
   email: {
@@ -96,7 +96,7 @@ export const schema: VulcanGraphqlSchema = {
     input: "checkboxgroup",
     canCreate: ["admins"],
     canUpdate: ["admins"],
-    canRead: ["guests"],
+    canRead: ["guests", "anyone"],
     // TODO: allow to manage custom groups
     // form: {
     //   options: function () {
@@ -130,7 +130,7 @@ export const modelDef: CreateGraphqlModelOptionsShared = {
   },
   schema,
   permissions: {
-    canCreate: ["guests"], // signup is enabled
+    canCreate: ["guests", "anyone"], // signup is enabled
     canUpdate: ["owners", "admins"],
     canDelete: ["owners", "admins"],
     canRead: ["members", "admins"],
