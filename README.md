@@ -149,7 +149,7 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 They give time and share knowledge to support the project.
 
 <a href="https://aplines.com" target="_blank" rel="noopener noreferrer">
-<img src="https://aplines.com/wp-content/uploads/2020/06/logo-1.png" alt="aplines" height="75"/>
+<img src="https://aplines.com/wp-content/uploads/2022/03/cropped-aplines-logo.png" alt="aplines" height="75"/>
 </a>
 <a href="https://www.lbke.fr" target="_blank" rel="noopener noreferrer">
 <img src="https://www.lbke.fr/img/logo-md.png" height="75" alt="lbke" />
