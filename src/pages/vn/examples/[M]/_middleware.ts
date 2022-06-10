@@ -16,7 +16,9 @@ export function middleware(req: NextRequest, event: NextFetchEvent) {
     theme,
     company,
   });
-  const res = NextResponse.rewrite(`/vn/examples/${megaparam}/megaparam-demo`);
+  // This patterns guarantee that the URL is absolute
+  req.nextUrl.pathname = `/vn/examples/${megaparam}/megaparam-demo`;
+  const res = NextResponse.rewrite(req.nextUrl);
   // remember theme if not yet done
   if (!req.cookies["theme"]) {
     res.cookies["theme"] = theme;
