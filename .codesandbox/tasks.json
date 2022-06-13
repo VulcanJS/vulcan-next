@@ -5,6 +5,10 @@
         {
             "name": "Install Dependencies",
             "command": "yarn install"
+        },
+        {
+            "name": "Init CodeSandbox",
+            "command": "yarn init:codesandbox"
         }
     ],
     // These tasks can be run from CodeSandbox. Running one will open a log in the app.
@@ -13,7 +17,7 @@
         "mongo": {
             "name": "mongo",
             "command": "yarn mongo",
-            "runAtStart": false
+            "runAtStart": true
         },
         "build": {
             "name": "build",
