@@ -38,6 +38,6 @@
             "name": "test:unit",
             "command": "yarn test:unit",
             "runAtStart": false
-        },
+        }
     }
 }
