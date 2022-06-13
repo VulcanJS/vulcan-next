@@ -1,0 +1,39 @@
+{
+    // These tasks will run in order when initializing your CodeSandbox project.
+    // @see https://docs.codesandbox.io/our-products/codesandbox-projects/configuration-tasks#80f443ed033a4c86b79d88568ab5137e
+    "setupTasks": [
+        {
+            "name": "Install Dependencies",
+            "command": "yarn install"
+        }
+    ],
+    // These tasks can be run from CodeSandbox. Running one will open a log in the app.
+    // Optionally enable commands from package.json here
+    "tasks": {
+        "mongo": {
+            "name": "mongo",
+            "command": "yarn mongo",
+            "runAtStart": false
+        },
+        "build": {
+            "name": "build",
+            "command": "yarn build",
+            "runAtStart": false
+        },
+        "dev": {
+            "name": "dev",
+            "command": "yarn dev",
+            "runAtStart": true
+        },
+        "test": {
+            "name": "test",
+            "command": "yarn test",
+            "runAtStart": false
+        },
+        "test:unit": {
+            "name": "test:unit",
+            "command": "yarn test:unit",
+            "runAtStart": false
+        },
+    }
+}
