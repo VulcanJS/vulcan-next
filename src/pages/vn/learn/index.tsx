@@ -6,11 +6,12 @@ const LearnIndex = () => {
   const router = useRouter();
   useEffect(() => {
     const isLocalhost = window.location.hostname.match(/localhost/);
+    const isCodeSandbox = window.location.hostname.match(/preview.csb.app$/);
     const isOfficialWebsite =
       !isLocalhost && window.location.hostname.match(/vulcan-next/);
     if (isOfficialWebsite) {
       router.push("/learn/intro-online");
-    } else if (isLocalhost) {
+    } else if (isLocalhost || isCodeSandbox) {
       router.push("/learn/intro-offline");
     } else {
       router.push("https://vulcan-next.vercel.app/learn");
