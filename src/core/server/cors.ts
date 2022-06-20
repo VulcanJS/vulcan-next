@@ -7,9 +7,8 @@ const corsWhitelist = parseEnvVariableArray(
 );
 
 if (process.env.NODE_ENV !== "production") {
-  // NOTE: can be removed if you prefer using Apollo GraphQL (check your server config)
-  // NOTE: you can also still Apollo Studio in production, just add it explicitely to APOLLO_SERVER_CORS_WHITELIST
-  corsWhitelist.push("https://studio.apollographql.com");
+  // Uncomment if you remove the "embed" option and connect to your local API via Apollo Studio
+  //corsWhitelist.push("https://studio.apollographql.com");
 }
 
 /**

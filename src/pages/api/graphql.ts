@@ -108,6 +108,10 @@ const createDataSourcesForModels = createDataSources(models);
 
 const server = new ApolloServer({
   schema: executableSchema,
+  // @see https://www.apollographql.com/docs/apollo-server/security/cors#preventing-cross-site-request-forgery-csrf
+  csrfPrevention: true,
+  // @see https://github.com/apollographql/apollo-server/blob/main/CHANGELOG.md#v390
+  cache: "bounded" as const,
   context: async ({ req }) => ({
     ...(await contextFromReq(req as Request)),
     /** Add your own context here (the field names must be DIFFERENT from the model names)
@@ -127,7 +131,11 @@ const server = new ApolloServer({
     // @see https://www.apollographql.com/docs/apollo-server/api/plugin/landing-pages/
     process.env.NODE_ENV === "production"
       ? ApolloServerPluginLandingPageProductionDefault()
-      : ApolloServerPluginLandingPageLocalDefault({ includeCookies: true }),
+      : ApolloServerPluginLandingPageLocalDefault({
+          includeCookies: true,
+          // Removed the need for a complex CORS/cookies configuration, Apollo Studio runs in localhost
+          embed: true,
+        }),
   ],
   formatError: (err) => {
     // This function is mandatory to log error messages, even in development
