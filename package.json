@@ -1,6 +1,6 @@
 {
   "name": "vulcan-next",
-  "version": "0.6.9-alpha.2",
+  "version": "0.6.9-alpha.3",
   "private": true,
   "scripts": {
     "//----- DEVELOP -----": "",
@@ -114,7 +114,7 @@
     "@vulcanjs/meteor-legacy": "^0.6.9-alpha.2",
     "@vulcanjs/model": "^0.6.7",
     "@vulcanjs/mongo": "^0.6.9-alpha.2",
-    "@vulcanjs/mongo-apollo": "^0.6.9-alpha.2",
+    "@vulcanjs/mongo-apollo": "^0.6.9-alpha.3",
     "@vulcanjs/react-hooks": "^0.6.9-alpha.2",
     "@vulcanjs/react-ui": "^0.6.9-alpha.2",
     "@vulcanjs/react-ui-lite": "^0.6.9-alpha.2",
