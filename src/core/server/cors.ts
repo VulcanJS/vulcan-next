@@ -1,10 +1,16 @@
 import { parseEnvVariableArray } from "~/core/lib/utils";
 import debug from "debug";
-const debugCors = debug("vns:cors");
+const debugCors = debug("vn:cors");
 
 const corsWhitelist = parseEnvVariableArray(
   process.env.APOLLO_SERVER_CORS_WHITELIST
 );
+
+if (process.env.NODE_ENV !== "production") {
+  // NOTE: can be removed if you prefer using Apollo GraphQL (check your server config)
+  // NOTE: you can also still Apollo Studio in production, just add it explicitely to APOLLO_SERVER_CORS_WHITELIST
+  corsWhitelist.push("https://studio.apollographql.com");
+}
 
 /**
  * Accept same origin queries, and
