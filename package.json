@@ -83,7 +83,7 @@
     "build:docker": "docker build -f ./.vn/docker/vn.production.dockerfile -t vulcan-next .",
     "test:docker": "docker run --env-file .env.development -it vns-test:latest",
     "//_____CodeSandbox____": "",
-    "init:codesandbox": "echo 'MONGO_URI=\"mongodb://localhost:27017/vulcan-next-app\"' > .env.development.local",
+    "init:codesandbox": "[ -f .env.development.local ] || echo 'MONGO_URI=\"mongodb://localhost:27017/vulcan-next-app\"' > .env.development.local",
     "//----- CONTRIBUTE -----": "",
     "//____Local dev_____": "",
     "//link:vulcan": "For linking a local copy of Vulcan NPM monorepo (don't forget to publish in Vulcan NPM first)",
