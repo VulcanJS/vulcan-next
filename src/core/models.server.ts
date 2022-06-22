@@ -7,6 +7,9 @@ const models = [User, SampleModel];
 // Add default connectors and dataSources creators for models that may miss some
 // @see https://www.apollographql.com/docs/apollo-server/data/data-sources
 import { addDefaultMongoConnector } from "@vulcanjs/mongo-apollo/server";
-addDefaultMongoConnector(models);
+addDefaultMongoConnector(
+  models
+  /* {useStringId: true} // Uncomment to use String _ids in Mongo:*/
+);
 
 export default models;
