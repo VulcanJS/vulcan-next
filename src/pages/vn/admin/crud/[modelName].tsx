@@ -54,7 +54,10 @@ export default function CrudPage({ modelName }) {
   const model = getCurrentModel(modelName);
 
   // Read
-  const documentsRawResult = useMulti({ model });
+  const documentsRawResult = useMulti<any>({
+    model,
+    //input: { filter: { _id: { _eq: "" } } },
+  });
   const documentsResult = documentsRawResult.documents || [];
 
   // Select
@@ -100,7 +103,7 @@ export default function CrudPage({ modelName }) {
         {
           <List>
             {documentsResult.map((document) => (
-              <ListItem key={document.id}>
+              <ListItem key={document._id}>
                 <ItemCard document={document} model={model} />
               </ListItem>
             ))}

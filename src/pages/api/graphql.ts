@@ -25,7 +25,10 @@ import { connectToAppDbMiddleware } from "~/core/server/middlewares/mongoAppConn
  * You may remove it if you prefer string ids (as Meteor does)
  * @see https://stackoverflow.com/questions/27896979/difference-between-storing-an-objectid-and-its-string-form-in-mongodb
  */
-import { objectIdTypeDefs, objectIdResolvers } from "@vulcanjs/mongo-apollo";
+import {
+  objectIdTypeDefs,
+  objectIdResolvers,
+} from "@vulcanjs/mongo-apollo/server";
 
 /**
  * Generate basic CRUD resolvers with Vulcan Fire
