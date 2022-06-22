@@ -44,7 +44,7 @@ export const schema: VulcanGraphqlSchema = {
   someField: {
     type: String,
     optional: true,
-    canRead: ["guests", "anyone"],
+    canRead: ["anyone"],
     canUpdate: ["admins", "owners"],
     canCreate: ["members"],
   },
@@ -54,6 +54,7 @@ export const schema: VulcanGraphqlSchema = {
   // this may make data fetching easier in the frontend (the client can know the relation)
   demoRelationFieldUserId: {
     type: String,
+    optional: true,
     relation: {
       fieldName: "resolvedFieldFromRelation",
       kind: "hasOne",
@@ -78,7 +79,7 @@ export const modelDef: CreateGraphqlModelOptionsShared = {
     multiTypeName,
   },
   permissions: {
-    canCreate: ["member"],
+    canCreate: ["members"],
     canUpdate: ["owners", "admins"],
     canDelete: ["owners", "admins"],
     canRead: ["members", "admins"],
