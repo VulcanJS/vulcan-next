@@ -14,7 +14,8 @@ import 'passport';
 import 'cookie';
 import Local from 'passport-local';
 import '@hapi/iron';
-import { addDefaultMongoConnector } from '@vulcanjs/mongo-apollo';
+import { MongoId } from '@vulcanjs/mongo-apollo';
+import { addDefaultMongoConnector } from '@vulcanjs/mongo-apollo/server';
 
 var __defProp = Object.defineProperty;
 var __getOwnPropSymbols = Object.getOwnPropertySymbols;
@@ -86,7 +87,7 @@ var passwordAuthSchema = {
     type: String,
     optional: false,
     canRead: [],
-    canCreate: ["guests"],
+    canCreate: ["guests", "anyone"],
     canUpdate: ["owners"]
   }
 };
@@ -104,12 +105,12 @@ var schema = __spreadValues(__spreadValues({
   _id: {
     type: String,
     optional: true,
-    canRead: ["guests"]
+    canRead: ["guests", "anyone"]
   },
   userId: {
     type: String,
     optional: true,
-    canRead: ["guests"]
+    canRead: ["guests", "anyone"]
   },
   createdAt: {
     type: Date,
@@ -122,7 +123,7 @@ var schema = __spreadValues(__spreadValues({
   username: {
     type: String,
     optional: true,
-    canRead: ["guests"],
+    canRead: ["guests", "anyone"],
     canUpdate: ["admins"],
     canCreate: ["owners"],
     searchable: true
@@ -134,7 +135,7 @@ var schema = __spreadValues(__spreadValues({
     optional: true,
     canCreate: ["admins"],
     canUpdate: ["admins"],
-    canRead: ["guests"]
+    canRead: ["guests", "anyone"]
   },
   email: {
     type: String,
@@ -153,7 +154,7 @@ var schema = __spreadValues(__spreadValues({
     input: "checkboxgroup",
     canCreate: ["admins"],
     canUpdate: ["admins"],
-    canRead: ["guests"]
+    canRead: ["guests", "anyone"]
   },
   "groups.$": {
     type: String,
@@ -168,7 +169,7 @@ var modelDef = {
   },
   schema,
   permissions: {
-    canCreate: ["guests"],
+    canCreate: ["guests", "anyone"],
     canUpdate: ["owners", "admins"],
     canDelete: ["owners", "admins"],
     canRead: ["members", "admins"]
@@ -193,7 +194,7 @@ if (process.env.SMTP_HOST) {
 }
 nodemailer.createTransport(transport);
 
-// src/lib/api/account/accountManagement.ts
+// src/account/server/accountManagement.ts
 var checkPasswordForUser = (user, passwordToTest) => {
   var _a, _b;
   if (!(user.salt && user.hash)) {
@@ -250,7 +251,7 @@ var hashPassword = (password) => {
   return { salt, hash };
 };
 
-// src/models/user.server.ts
+// src/account/models/user.server.ts
 var guaranteeOwnership = (data) => {
   data.userId = data._id;
   return data;
@@ -307,7 +308,7 @@ var UserConnector = createMongooseConnector(User2);
 User2.crud.connector = UserConnector;
 var UserMongooseModel = UserConnector.getRawCollection();
 
-// src/lib/api/seed.ts
+// src/core/server/seed.ts
 var seed = async (context) => {
   var _a;
   if ((_a = process.env.MONGO_URI) == null ? void 0 : _a.match(/lbke-demo/)) {
@@ -349,14 +350,16 @@ var seed = async (context) => {
 var seed_default = seed;
 var schema3 = {
   _id: {
+    typeName: MongoId,
     type: String,
     optional: true,
-    canRead: ["guests"]
+    canRead: ["guests", "anyone"]
   },
   userId: {
     type: String,
+    typeName: MongoId,
     optional: true,
-    canRead: ["guests"],
+    canRead: ["guests", "anyone"],
     relation: {
       fieldName: "user",
       kind: "hasOne",
@@ -374,12 +377,14 @@ var schema3 = {
   someField: {
     type: String,
     optional: true,
-    canRead: ["guests"],
+    canRead: ["anyone"],
     canUpdate: ["admins", "owners"],
     canCreate: ["members"]
   },
   demoRelationFieldUserId: {
     type: String,
+    typeName: MongoId,
+    optional: true,
     relation: {
       fieldName: "resolvedFieldFromRelation",
       kind: "hasOne",
@@ -398,7 +403,7 @@ var modelDef3 = {
     multiTypeName
   },
   permissions: {
-    canCreate: ["member"],
+    canCreate: ["members"],
     canUpdate: ["owners", "admins"],
     canDelete: ["owners", "admins"],
     canRead: ["members", "admins"]
@@ -406,12 +411,12 @@ var modelDef3 = {
 };
 createGraphqlModel(modelDef3);
 
-// src/models/sampleModel.server.ts
+// src/vulcan-demo/models/sampleModel.server.ts
 var schema4 = merge2({}, schema3, {
   demoServerOnlyField: {
     type: String,
     optional: true,
-    canRead: ["guests"],
+    canRead: ["guests", "anyone"],
     canUpdate: ["admins"],
     canCreate: ["owners"],
     searchable: true
@@ -448,12 +453,12 @@ var SampleModelConnector = createMongooseConnector(SampleModel2);
 SampleModel2.crud.connector = SampleModelConnector;
 var models = [User2, SampleModel2];
 addDefaultMongoConnector(models);
-var index_server_default = models;
+var models_server_default = models;
 debug("vn:graphql:context");
-var createContextForModels = createContext(index_server_default);
+var createContextForModels = createContext(models_server_default);
 var createContextBase = async () => __spreadValues({}, await createContextForModels(null));
 
-// src/lib/api/runSeed.ts
+// src/core/server/runSeed.ts
 async function runSeed() {
   if (process.env.NODE_ENV !== "production") {
     try {
