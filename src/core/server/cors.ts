@@ -1,10 +1,15 @@
 import { parseEnvVariableArray } from "~/core/lib/utils";
 import debug from "debug";
-const debugCors = debug("vns:cors");
+const debugCors = debug("vn:cors");
 
 const corsWhitelist = parseEnvVariableArray(
   process.env.APOLLO_SERVER_CORS_WHITELIST
 );
+
+if (process.env.NODE_ENV !== "production") {
+  // Uncomment if you remove the "embed" option and connect to your local API via Apollo Studio
+  //corsWhitelist.push("https://studio.apollographql.com");
+}
 
 /**
  * Accept same origin queries, and

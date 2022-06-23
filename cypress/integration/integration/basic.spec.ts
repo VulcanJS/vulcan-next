@@ -1,4 +1,4 @@
-import helper from "~/core/example-helper";
+import helper from "~/core/lib/example-helper";
 
 describe("basic (TypeScript test file)", () => {
   it("runs the app on port 3000", () => {

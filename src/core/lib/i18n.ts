@@ -13,12 +13,6 @@ interface HtmlLanguageProps {
   lang: string;
 }
 
-// i18next-http-middleware is in charge of enhancing the req object
-// interface IncomingMessageWithI18n extends IncomingMessage {
-//   language?: string;
-//   i18n: any;
-// }
-
 const rtlLocales: Array<string> = [
   /** Add locales of languages that reads right-to-left, depending on your own needs (persian, arabic, etc.)*/
 ];

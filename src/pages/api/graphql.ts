@@ -1,29 +1,44 @@
 import express, { Request } from "express";
-import cors from "cors";
 import mongoose from "mongoose";
 import { ApolloServer, gql } from "apollo-server-express";
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import { mergeResolvers, mergeTypeDefs } from "@graphql-tools/merge";
-import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
+import {
+  ApolloServerPluginLandingPageLocalDefault,
+  ApolloServerPluginLandingPageProductionDefault,
+} from "apollo-server-core";
 
 import { buildApolloSchema, createDataSources } from "@vulcanjs/graphql/server";
 
-import mongoConnection from "~/core/server/middlewares/mongoConnection";
 import corsOptions from "~/core/server/cors";
 import models from "~/core/models.server";
-import runSeed from "~/core/server/runSeed";
 
 import { contextFromReq } from "~/core/server/context";
 import { connectToAppDbMiddleware } from "~/core/server/middlewares/mongoAppConnection";
 
+// 1. DEFINING YOUR GRAPHQL SCHEMAS + GENERATING CRUD OPERATIONS WITH VULCAN FIRE + IMPORT 3RD PARTY REUSABLE RESOLVERS AND TYPES
+
 /**
- * Example graphQL schema and resolvers generated using Vulcan declarative approach
- * http://vulcanjs.org/
+ * Mongo uses ObjectId for _id, instead of normal strings
+ * This scalar handles the conversion for you
+ *
+ * You may remove it if you prefer string ids (as Meteor does)
+ * @see https://stackoverflow.com/questions/27896979/difference-between-storing-an-objectid-and-its-string-form-in-mongodb
+ */
+import {
+  objectIdTypeDefs,
+  objectIdResolvers,
+} from "@vulcanjs/mongo-apollo/server";
+
+/**
+ * Generate basic CRUD resolvers with Vulcan Fire
+ * @see https://vulcan-docs.vercel.app/docs/vulcan-fire/customTopLevelResolvers
  */
 const vulcanRawSchema = buildApolloSchema(models);
 
 /**
- * Example custom Apollo server, written by hand
+ * Add your custom GraphQL types here if needed
+ * @see https://vulcan-docs.vercel.app/docs/vulcan-fire/customTopLevelResolvers
  */
 const customTypeDefs = gql`
   type Query {
@@ -34,6 +49,11 @@ const customTypeDefs = gql`
     name: String
   }
 `;
+
+/**
+ * Add your custom resolvers here if needed
+ * @see https://vulcan-docs.vercel.app/docs/vulcan-fire/customTopLevelResolvers
+ */
 const customResolvers = {
   Query: {
     // Demo with mongoose
@@ -54,6 +74,7 @@ const customResolvers = {
   },
 };
 
+// 2. MERGING SCHEMAS AND MAKING THEM EXECUTABLE
 /*
 Merging schema happens in 2 steps:
 1. Merge typedefs and resolvers
@@ -63,19 +84,36 @@ such as "JSON"
 */
 const mergedSchema = {
   ...vulcanRawSchema,
-  typeDefs: mergeTypeDefs([vulcanRawSchema.typeDefs, customTypeDefs]),
-  resolvers: mergeResolvers([vulcanRawSchema.resolvers, customResolvers]),
+  // order matters (Vulcan will use Mongo typedefs, and your custom typedefs might use Vulcan etc.)
+  typeDefs: mergeTypeDefs([
+    objectIdTypeDefs,
+    vulcanRawSchema.typeDefs,
+    customTypeDefs,
+  ]),
+  resolvers: mergeResolvers([
+    objectIdResolvers,
+    vulcanRawSchema.resolvers,
+    customResolvers,
+  ]),
 };
-
 const executableSchema = makeExecutableSchema(mergedSchema);
+
+// 3. SINITIALIZING THE GRAPHQL SERVER (Apollo and Express)
 
 const app = express();
 
+/**
+ * This function generates optimized Apollo Data Sources for your Vulcan Models
+ * @see https://www.apollographql.com/docs/apollo-server/data/data-sources/
+ */
 const createDataSourcesForModels = createDataSources(models);
 
-// Define the server (using Express for easier middleware usage)
 const server = new ApolloServer({
   schema: executableSchema,
+  // @see https://www.apollographql.com/docs/apollo-server/security/cors#preventing-cross-site-request-forgery-csrf
+  csrfPrevention: true,
+  // @see https://github.com/apollographql/apollo-server/blob/main/CHANGELOG.md#v390
+  cache: "bounded" as const,
   context: async ({ req }) => ({
     ...(await contextFromReq(req as Request)),
     /** Add your own context here (the field names must be DIFFERENT from the model names)
@@ -89,31 +127,18 @@ const server = new ApolloServer({
     /* Add your own dataSources here (their name must be DIFFERENT from the model names) */
   }),
   introspection:
-    !!process.env.FORCE_GRAPHQL_PLAYGROUND ||
-    process.env.NODE_ENV !== "production",
-  // @see https://github.com/graphql/graphql-playground/issues/1143
-  // @see https://www.apollographql.com/docs/apollo-server/testing/build-run-queries/#graphql-playground
-  // We keep Graphql Playground for now until Apollo ecosystem sorts out the way we can access the web-based gql IDE
-  // Apollo Studio works ok but will lead to issue with CORS, cookies etc.
-  /*
-  playground:
-    process.env.NODE_ENV !== "production"
-      ? {
-          settings: {
-            "request.credentials": "include",
-          },
-        }
-      : false,*/
-  plugins:
-    process.env.FORCE_GRAPHQL_PLAYGROUND ||
-    process.env.NODE_ENV !== "production"
-      ? [
-          ApolloServerPluginLandingPageGraphQLPlayground({
-            // @see https://www.apollographql.com/docs/apollo-server/api/plugin/landing-pages/#graphql-playground-landing-page
-            // options
-          }),
-        ]
-      : [],
+    !!process.env.ALLOW_INTROSPECTION || process.env.NODE_ENV !== "production",
+  plugins: [
+    // If you prefer Playground:
+    // @see https://www.apollographql.com/docs/apollo-server/api/plugin/landing-pages/
+    process.env.NODE_ENV === "production"
+      ? ApolloServerPluginLandingPageProductionDefault()
+      : ApolloServerPluginLandingPageLocalDefault({
+          includeCookies: true,
+          // Removed the need for a complex CORS/cookies configuration, Apollo Studio runs in localhost
+          embed: true,
+        }),
+  ],
   formatError: (err) => {
     // This function is mandatory to log error messages, even in development
     // You may enhance this function, eg by plugging an error tracker like Sentry in production
@@ -121,20 +146,21 @@ const server = new ApolloServer({
     return err;
   },
 });
+
+// Starts Apollo
 await server.start();
 
 app.set("trust proxy", true);
 const gqlPath = "/api/graphql";
-// setup cors
-app.use(gqlPath, cors(corsOptions));
 // init the db
 app.use(gqlPath, connectToAppDbMiddleware);
 
-server.applyMiddleware({ app, path: "/api/graphql" });
+// Ties Apollo to Express on router /api/graphql => your server is now running and available on /api/graphql
+server.applyMiddleware({ app, path: "/api/graphql", cors: corsOptions });
 
-// Seed in development
-runSeed();
-
+/**
+ * @see https://nextjs.org/docs/api-routes/api-middlewares#custom-config
+ */
 export const config = {
   api: {
     bodyParser: false,

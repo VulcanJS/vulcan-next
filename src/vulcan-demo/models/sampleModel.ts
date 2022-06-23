@@ -9,10 +9,12 @@ import {
   VulcanGraphqlSchema,
 } from "@vulcanjs/graphql";
 import { User } from "~/account/models/user";
+import { MongoId } from "@vulcanjs/mongo-apollo";
 
 export const schema: VulcanGraphqlSchema = {
   /** Unique id of the document in the database. You'll want to leave this field as is. */
   _id: {
+    typeName: MongoId,
     type: String,
     optional: true,
     canRead: ["guests", "anyone"],
@@ -20,6 +22,7 @@ export const schema: VulcanGraphqlSchema = {
   /** _id of the user that created the document. This special field is used to handle the "ownership" of the document. */
   userId: {
     type: String,
+    typeName: MongoId,
     optional: true,
     canRead: ["guests", "anyone"],
     // This means you can resolve the "user" field when fetching for "samples"
@@ -44,7 +47,7 @@ export const schema: VulcanGraphqlSchema = {
   someField: {
     type: String,
     optional: true,
-    canRead: ["guests", "anyone"],
+    canRead: ["anyone"],
     canUpdate: ["admins", "owners"],
     canCreate: ["members"],
   },
@@ -54,6 +57,8 @@ export const schema: VulcanGraphqlSchema = {
   // this may make data fetching easier in the frontend (the client can know the relation)
   demoRelationFieldUserId: {
     type: String,
+    typeName: MongoId,
+    optional: true,
     relation: {
       fieldName: "resolvedFieldFromRelation",
       kind: "hasOne",
@@ -78,7 +83,7 @@ export const modelDef: CreateGraphqlModelOptionsShared = {
     multiTypeName,
   },
   permissions: {
-    canCreate: ["member"],
+    canCreate: ["members"],
     canUpdate: ["owners", "admins"],
     canDelete: ["owners", "admins"],
     canRead: ["members", "admins"],

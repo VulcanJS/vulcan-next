@@ -3,6 +3,8 @@ module.exports = {
     "plugin:cypress/recommended",
     "next",
     "plugin:storybook/recommended",
+    "next/babel",
+    "next/core-web-vitals",
   ],
   root: true,
   plugins: [],
