@@ -1,5 +1,5 @@
 /// <reference path="../../support/index.d.ts" />
-import helper from "~/core/example-helper";
+import helper from "~/core/lib/example-helper";
 
 describe("basic (vanilla JavaScript test file)", () => {
   it("runs the app on port 3000", () => {
