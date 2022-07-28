@@ -11,12 +11,19 @@ Vulcan Next helps you build GraphQL-based applications with Next.js.
 
 ## What's in the box?
 
+Where Vulcan Next shines:
+
+- B2B SaaS software, CMS, platforms
+- Apps that rely a lot on CRUD operations (managing and listing data structure, like in a CMS)
+- APIs that can be consumed by multiple clients (your own app but also a mobile version, data scientists, other 3rd party apps...)
+
 Vulcan Next provides:
 
-- A production-grade Next.js + Apollo GraphQL boilerplate. It includes development tooling such as Cypress, Jest, Storybook, MDX... and many others.
-- A GraphQL API endpoint set up with Apollo Server, so you can start coding back-end features immediately.
-- Schema-based helpers and hooks to quickly generate and consume your own GraphQL API.
-- Password based authentication
+- A production-grade Next.js + Apollo GraphQL boilerplate. 
+- A GraphQL API endpoint set up with Apollo Server and a Mongo connector, so you can start coding back-end features immediately.
+- Development tooling such as Cypress, Jest, Storybook... and many others.
+- Schema-based helpers and hooks to quickly generate and consume your own GraphQL API
+- Password based authentication with Passport
 
 [Join the Slack and meet Vulcan contributors](http://slack.vulcanjs.org/)
 
@@ -28,13 +35,21 @@ Vulcan Next provides:
 
 [Check the full documentation](https://vulcan-docs.vercel.app)
 
-## A word about Vulcan.js aka Vulcan Meteor
+## A word about the core team and sponsoring
 
 You can't teach an old dog new tricks! Vulcan Next is the successor of "Vulcan.js", the Meteor framework from [Sacha Greif](https://sachagreif.com/). It inherits years of experience, with a modernized architecture that replaces Meteor by Next.js.
+
+Vulcan Next powers the [Devographics](https://www.devographics.com/) surveys [State of JS](https://stateofjs.com/), [State of CSS](https://stateofcss.com/) and [State of GraphQL](https://www.stateofgraphql.com/).
+
+**Not familiar with Next.js yet?** You can join the [Next.js course at Human Coders](https://www.humancoders.com/formations/next-js-en) from [Eric Burel](https://twitter.com/ericbureltech), 3 days to understand the inner workings of Next.js router, server and static rendering, edge middlewares and all their friends.
 
 ---
 
 ## Install and run in 5 minutes
+
+**Pro tip:** you can test Vulcan Next with zero install by cloning it on [CodeSandbox](https://projects.codesandbox.io/).
+
+If you prefer a local install:
 
 ```sh
 git clone -b main https://github.com/VulcanJS/vulcan-next
@@ -46,11 +61,15 @@ yarn run dev
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 You can then access the live tutorial on [http://localhost:3000/learn](http://localhost:3000/learn).
 
-## Setup your own git repository
+---
+
+## Next steps
+
+### Setup your own git repository
 
 When creating your own application, you'll want to host the code on your own Git repository (on GitHub, BitBucket, etc.).
 
-### Point git to your own repository
+#### Point git to your own repository
 
 Rename "origin" to "upstream", so you can use your own git repository as the main "origin", and VN official repo as "upstream".
 
@@ -59,10 +78,6 @@ git remote rename origin upstream
 # Then do what you need to create your own origin remote
 # git remote add origin <your-own-git-repository-url>
 ```
-
----
-
-## Next steps
 
 ### Roll your own Mongo database
 
