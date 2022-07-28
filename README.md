@@ -43,6 +43,8 @@ Vulcan Next powers the [Devographics](https://www.devographics.com/) surveys [St
 
 **Not familiar with Next.js yet?** You can join the [Next.js course at Human Coders](https://www.humancoders.com/formations/next-js-en) from [Eric Burel](https://twitter.com/ericbureltech), 3 days to understand the inner workings of Next.js router, server and static rendering, edge middlewares and all their friends.
 
+**Want to help us building high quality boilerplates?** You can sponsor Vulcan on [Open Collective](https://opencollective.com/vulcan) or reach us out for bounties and freelance work (ping us on Vulcan slack or Discord).
+
 ---
 
 ## Install and run in 5 minutes
