@@ -41,6 +41,8 @@ const mongoConnectionMiddleware = (mongoUri: string) => {
       await connectToDb(mongoUri);
       // Do not forget to close connection on finish and close events
       // NOTE: actually we don't need this. Db connection close should happen on lambda destruction instead.
+      // @see https://groups.google.com/g/mongodb-user/c/IdSp7WcA66o/m/1eytPh2z2WIJ?pli=1
+      // @see https://stackoverflow.com/questions/24877580/close-db-connection-before-terminating
       // res.on("finish", closeDbConnection);
       // res.on("close", closeDbConnection);
       next();
