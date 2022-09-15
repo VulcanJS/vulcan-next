@@ -24,7 +24,7 @@
     "dev": "next",
     "//_____Build next app_____": "",
     "//prebuild": "# Temporary fix for https://github.com/vercel/next.js/issues/35110 and https://github.com/yarnpkg/berry/issues/1339#issuecomment-1136132035",
-    "prebuild": "(.vn/scripts/is-monorepo.js && rm -Rf ./node_modules/@vulcanjs && mkdir -p ./node_modules/@vulcanjs && cp -R ../../packages/* ./node_modules/@vulcanjs) || echo 'Not in the context of a monorepo, ok'",
+    "prebuild": "(node .vn/scripts/is-monorepo.js && rm -Rf ./node_modules/@vulcanjs && mkdir -p ./node_modules/@vulcanjs && cp -R ../../packages/* ./node_modules/@vulcanjs) || echo 'Not in the context of a monorepo, ok'",
     "//build": "# Tip: on failure, we drop .next to avoid caching issue. Run 'prebuild' explicitely",
     "build": "yarn run prebuild && next build || (rm -Rf .next && exit 1) && yarn run postbuild",
     "postbuild": "next-sitemap --config vulcan-next-sitemap.js",
