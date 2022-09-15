@@ -21,6 +21,7 @@ const edits = [
   [
     "node_modules/@apollo/client/package.json",
     {
+      type: "module",
       exports: {
         ".": "./index.js",
         "./link/error": "./link/error/index.js",
