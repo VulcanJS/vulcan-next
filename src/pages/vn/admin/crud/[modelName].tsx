@@ -19,6 +19,11 @@ import { SmartForm, VulcanComponentsProvider } from "@vulcanjs/react-ui";
 import {
   liteFormComponents,
   liteCoreComponents,
+  Alert,
+  Button as LiteButton,
+  FormattedMessage,
+  Loading,
+  TooltipTrigger,
 } from "@vulcanjs/react-ui-lite";
 import { VulcanGraphqlModel } from "@vulcanjs/graphql";
 import { ItemCard } from "~/vulcan-demo/components/ItemCard";
@@ -89,7 +94,15 @@ export default function CrudPage({ modelName }) {
         // Could be replaced by your own components
         // You can also move this provider to a shared layout
         // if you have a lot of forms
-        value={{ ...liteFormComponents, ...liteCoreComponents }}
+        value={{
+          ...liteFormComponents,
+          ...liteCoreComponents,
+          Button: LiteButton,
+          Loading,
+          TooltipTrigger,
+          FormattedMessage,
+          Alert,
+        }}
       >
         <Typography variant="h1"> Manage {model.name}</Typography>
         <Typography variant="body1">
