@@ -6724,7 +6724,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vulcanjs/react-i18n@^0.7.2-alpha.3":
+"@vulcanjs/react-i18n@^0.7.2-alpha.4":
   version: 0.0.0-use.local
   resolution: "@vulcanjs/react-i18n@workspace:packages/react-i18n"
   dependencies:
@@ -6737,7 +6737,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vulcanjs/react-ui-lite@^0.7.2-alpha.3":
+"@vulcanjs/react-ui-lite@^0.7.2-alpha.5":
   version: 0.0.0-use.local
   resolution: "@vulcanjs/react-ui-lite@workspace:packages/react-ui-lite"
   dependencies:
@@ -6747,8 +6747,8 @@ __metadata:
     "@vulcanjs/model": ^0.7.2-alpha.3
     "@vulcanjs/permissions": ^0.7.2-alpha.3
     "@vulcanjs/react-hooks": ^0.7.2-alpha.3
-    "@vulcanjs/react-i18n": ^0.7.2-alpha.3
-    "@vulcanjs/react-ui": ^0.7.2-alpha.3
+    "@vulcanjs/react-i18n": ^0.7.2-alpha.4
+    "@vulcanjs/react-ui": ^0.7.2-alpha.5
     "@vulcanjs/schema": ^0.7.2-alpha.3
     "@vulcanjs/utils": ^0.7.2-alpha.3
     classnames: ^2.3.1
@@ -6762,7 +6762,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vulcanjs/react-ui@^0.7.2-alpha.3":
+"@vulcanjs/react-ui@^0.7.2-alpha.5":
   version: 0.0.0-use.local
   resolution: "@vulcanjs/react-ui@workspace:packages/react-ui"
   dependencies:
@@ -6774,7 +6774,7 @@ __metadata:
     "@vulcanjs/model": ^0.7.2-alpha.3
     "@vulcanjs/permissions": ^0.7.2-alpha.3
     "@vulcanjs/react-hooks": ^0.7.2-alpha.3
-    "@vulcanjs/react-i18n": ^0.7.2-alpha.3
+    "@vulcanjs/react-i18n": ^0.7.2-alpha.4
     "@vulcanjs/schema": ^0.7.2-alpha.3
     "@vulcanjs/utils": ^0.7.2-alpha.3
     classnames: ^2.3.1
@@ -24888,8 +24888,8 @@ __metadata:
     "@vulcanjs/mongo": ^0.7.2-alpha.3
     "@vulcanjs/mongo-apollo": ^0.7.2-alpha.3
     "@vulcanjs/react-hooks": ^0.7.2-alpha.3
-    "@vulcanjs/react-ui": ^0.7.2-alpha.3
-    "@vulcanjs/react-ui-lite": ^0.7.2-alpha.3
+    "@vulcanjs/react-ui": ^0.7.2-alpha.5
+    "@vulcanjs/react-ui-lite": ^0.7.2-alpha.5
     "@vulcanjs/schema": ^0.7.2-alpha.3
     apollo-datasource-mongodb: ^0.5.2
     apollo-server: 3.9
