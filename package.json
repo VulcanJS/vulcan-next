@@ -129,7 +129,7 @@
     "clsx": "^1.1.1",
     "cors": "^2.8.5",
     "cross-env": "7.0.2",
-    "debug": "4.1.1",
+    "debug": "4.3.1",
     "express": "4.17.1",
     "graphql": "15.4.0",
     "graphql-tag": "2.10.3",
